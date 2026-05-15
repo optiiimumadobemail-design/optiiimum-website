@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Case Studies — Optiiimum · Receipts, not promises</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nine documented case studies across founders, doctors, ed-tech, and consumer brands — each with verified numbers and the strategy behind them.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  .csh-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(100px, 14vw, 160px) 0 clamp(48px, 6vw, 80px);
+  }
+  .csh-hero .ambient {
+    position: absolute; pointer-events: none;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -15vw; top: -15vw;
+    background: conic-gradient(from 220deg at 50% 50%, #FDD196, #FF966D, #E555C8, #BE6FD2, #54B3EC, #00FEFF, #FDD196);
+    filter: blur(120px); opacity: .3; border-radius: 50%; z-index: -1;
+  }
+  .csh-hero h1 {
+    font-size: clamp(44px, 7vw, 92px);
+    max-width: 18ch;
+    margin-top: 24px;
+  }
+  .csh-hero h1 .grad {
+    background: linear-gradient(120deg, #FDD196, #FF966D, #E555C8, #BE6FD2, #54B3EC, #00FEFF);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-style: italic;
+  }
+  html[lang="ar"] .csh-hero h1 .grad { font-style: normal; font-weight: 700; }
+  .csh-hero .lede { margin-top: 24px; max-width: 64ch; }
+
+  .csh-stats {
+    margin-top: 56px;
+    padding: 28px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (max-width: 860px) { .csh-stats { grid-template-columns: repeat(2, 1fr); } }
+  .csh-stats .item b {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .csh-stats .item span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .csh-stats .item span { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+
+  /* Featured */
+  .csh-featured {
+    padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 5vw, 64px);
+  }
+  .featured-case {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--bg-elev, var(--bg));
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+    color: inherit;
+  }
+  .featured-case:hover {
+    border-color: var(--ink-3);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-3px);
+  }
+  @media (max-width: 980px) { .featured-case { grid-template-columns: 1fr; } }
+  .featured-case .visual {
+    position: relative;
+    min-height: 480px;
+    background:
+      linear-gradient(135deg, rgba(11,11,11,.55), rgba(11,11,11,.0)),
+      url('assets/case study - Jozeph/IMG_9515.PNG') center/cover no-repeat,
+      linear-gradient(135deg, #FDD196, #E555C8);
+  }
+  .featured-case .visual .badge {
+    position: absolute; top: 24px; left: 24px;
+    background: rgba(11,11,11,.7);
+    backdrop-filter: blur(10px);
+    color: #F5F2EC;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  .featured-case .visual .stat-pill {
+    position: absolute; bottom: 24px; left: 24px;
+    background: rgba(11,11,11,.85);
+    backdrop-filter: blur(10px);
+    color: #F5F2EC;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-family: var(--font-serif);
+    font-size: 32px;
+    line-height: 1;
+  }
+  .featured-case .visual .stat-pill small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    opacity: .7;
+  }
+  .featured-case .body {
+    padding: clamp(36px, 4vw, 56px);
+    display: flex; flex-direction: column; gap: 18px;
+    justify-content: center;
+  }
+  .featured-case .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .featured-case .label { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .featured-case h2 {
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .featured-case .desc {
+    color: var(--ink-2);
+    font-size: 17px;
+    text-wrap: pretty;
+    max-width: 56ch;
+  }
+  .featured-case .stats-row {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .featured-case .stats-row b {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 28px;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .featured-case .stats-row span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 4px;
+    display: block;
+  }
+  .featured-case .read {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex; gap: 10px;
+  }
+  .featured-case .read .arrow { transition: transform .3s; }
+  .featured-case:hover .read .arrow { transform: translateX(6px); }
+  html[lang="ar"] .featured-case:hover .read .arrow { transform: translateX(-6px); }
+
+  /* Case grid */
+  .cases-section {
+    padding: clamp(40px, 6vw, 80px) 0 clamp(80px, 10vw, 120px);
+  }
+  .csh-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 860px) { .csh-grid { grid-template-columns: 1fr; } }
+  .case-tile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-elev, var(--bg));
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    color: inherit;
+    min-height: 280px;
+  }
+  .case-tile:hover {
+    transform: translateY(-3px);
+    border-color: var(--ink-3);
+    box-shadow: var(--shadow-1);
+  }
+  .case-tile .img {
+    background: var(--bg-band) center/cover no-repeat;
+    position: relative;
+  }
+  .case-tile .img .pill {
+    position: absolute; top: 14px; left: 14px;
+    background: rgba(11,11,11,.7);
+    backdrop-filter: blur(8px);
+    color: #F5F2EC;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .case-tile .body {
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .case-tile .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .case-tile .label { letter-spacing: .04em; text-transform: none; font-size: 12px; }
+  .case-tile h3 {
+    font-size: 22px;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .case-tile .stat {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .case-tile .stat .big {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    text-transform: none;
+    letter-spacing: 0;
+    background: linear-gradient(120deg, var(--cs-g1, #E555C8), var(--cs-g2, #54B3EC));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  /* Per-tile accent */
+  .case-tile[data-accent="amber"] { --cs-g1:#FDD196; --cs-g2:#FF966D; }
+  .case-tile[data-accent="pink"]  { --cs-g1:#E555C8; --cs-g2:#BE6FD2; }
+  .case-tile[data-accent="cyan"]  { --cs-g1:#00FEFF; --cs-g2:#54B3EC; }
+  .case-tile[data-accent="cool"]  { --cs-g1:#54B3EC; --cs-g2:#BE6FD2; }
+  .case-tile[data-accent="warm"]  { --cs-g1:#FDD196; --cs-g2:#FA58A4; }
+
+  @media (max-width: 540px) {
+    .case-tile { grid-template-columns: 1fr; }
+    .case-tile .img { aspect-ratio: 16/10; }
+  }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html" aria-current="page"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html" aria-current="page"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<!-- HERO -->
+<section class="csh-hero">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="container">
+    <span class="eyebrow"><span class="i18n-en">Case studies · 9 documented engagements</span><span class="i18n-ar">دراسات الحالة · ٩ تعاونات موثقة</span></span>
+    <h1>
+      <span class="i18n-en"><span class="grad">Receipts</span>, not promises.</span>
+      <span class="i18n-ar"><span class="grad">أدلة</span>، مش وعود.</span>
+    </h1>
+    <p class="lede">
+      <span class="i18n-en">Nine documented engagements across founders, doctors, ed-tech, and consumer brands. Real numbers. Real timelines. Every claim is verifiable on the brand's public profile.</span>
+      <span class="i18n-ar">تسع تعاونات موثقة مع مؤسسين، أطباء، تعليم، وعلامات استهلاكية. أرقام حقيقية وجداول زمنية حقيقية. كل ادّعاء قابل للتحقق على بروفايل البراند العام.</span>
+    </p>
+
+    <div class="csh-stats">
+      <div class="item">
+        <b>9</b>
+        <span><span class="i18n-en">Documented case studies</span><span class="i18n-ar">دراسة حالة موثقة</span></span>
+      </div>
+      <div class="item">
+        <b>678K</b>
+        <span><span class="i18n-en">Largest personal brand</span><span class="i18n-ar">أكبر براند شخصي</span></span>
+      </div>
+      <div class="item">
+        <b>1M+</b>
+        <span><span class="i18n-en">Single-video views</span><span class="i18n-ar">مشاهدات فيديو واحد</span></span>
+      </div>
+      <div class="item">
+        <b>2,450%</b>
+        <span><span class="i18n-en">Best growth ratio (DSE)</span><span class="i18n-ar">أفضل نسبة نمو (DSE)</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="csh-featured">
+  <div class="container">
+    <a href="case-study-jozeph-ezzat.html" class="featured-case">
+      <div class="visual" aria-hidden="true">
+        <span class="badge"><span class="i18n-en">Featured · 01</span><span class="i18n-ar">مميز · ٠١</span></span>
+        <span class="stat-pill">
+          678K
+          <small><span class="i18n-en">Followers · Built from 0</span><span class="i18n-ar">متابع · من الصفر</span></small>
+        </span>
+      </div>
+      <div class="body">
+        <span class="label"><span class="i18n-en">Personal Brand · Founder · Digital Marketing</span><span class="i18n-ar">براند شخصي · مؤسس · تسويق رقمي</span></span>
+        <h2>
+          <span class="i18n-en">Jozeph Ezzat — built from zero to category leader.</span>
+          <span class="i18n-ar">جوزيف عزت — من الصفر لقائد القطاع.</span>
+        </h2>
+        <p class="desc">
+          <span class="i18n-en">The Optiiimum founder is also our most documented case study. 678,000 followers, 25,000 paying students, and a system that proved the phone in your pocket is a studio, a classroom, and a business.</span>
+          <span class="i18n-ar">مؤسس أوبتيموم نفسه دراسة حالة. ٦٧٨ ألف متابع، ٢٥ ألف طالب مدفوع، ونظام بيثبت إن الموبايل اللي في إيدك ستوديو، فصل دراسي، ومشروع.</span>
+        </p>
+        <div class="stats-row">
+          <div><b>678K</b><span><span class="i18n-en">Followers</span><span class="i18n-ar">متابع</span></span></div>
+          <div><b>25K+</b><span><span class="i18n-en">Students</span><span class="i18n-ar">طالب</span></span></div>
+          <div><b>50</b><span><span class="i18n-en">Months</span><span class="i18n-ar">شهر</span></span></div>
+        </div>
+        <span class="read">
+          <span class="i18n-en">Read the full case</span><span class="i18n-ar">اقرأ الدراسة كاملة</span>
+          <span class="arrow">→</span>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ALL CASES GRID -->
+<section class="cases-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow"><span class="i18n-en">All case studies</span><span class="i18n-ar">كل دراسات الحالة</span></span>
+        <h2 style="margin-top:8px;">
+          <span class="i18n-en">Eight more documented engagements.</span>
+          <span class="i18n-ar">ثمان تعاونات موثقة إضافية.</span>
+        </h2>
+      </div>
+      <p class="right">
+        <span class="i18n-en">Each one is the same playbook applied to a different brand, vertical, and starting point.</span>
+        <span class="i18n-ar">كل واحدة نفس البلايبوك مطبّق على براند مختلف وقطاع مختلف ونقطة بداية مختلفة.</span>
+      </p>
+    </div>
+
+    <div class="csh-grid">
+
+      <a href="case-study-diana-clinics.html" class="case-tile" data-accent="pink">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Diana Clinics/Screenshots/IMG_9277.PNG');">
+          <span class="pill">02</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Aesthetic Medicine · Brand Rebuild</span><span class="i18n-ar">طب تجميل · إعادة بناء براند</span></span>
+          <h3>
+            <span class="i18n-en">Diana Clinics — deleted fake followers, grew 250K real ones.</span>
+            <span class="i18n-ar">عيادات ديانا — حذفنا الوهميين وكسبنا ٢٥٠ ألف حقيقي.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Real followers</span><span class="i18n-ar">متابع حقيقي</span></span>
+            <span class="big">250K+</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-shift-tamrid.html" class="case-tile" data-accent="cyan">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Shift tamreed/IMG_9538.PNG');">
+          <span class="pill">03</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Healthcare · Nursing Media</span><span class="i18n-ar">صحة · إعلام التمريض</span></span>
+          <h3>
+            <span class="i18n-en">Shift Tamrid — single video over 1M views.</span>
+            <span class="i18n-ar">شيفت تمريض — فيديو واحد تخطّى المليون.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Single video views</span><span class="i18n-ar">مشاهدات فيديو واحد</span></span>
+            <span class="big">1M+</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-dse.html" class="case-tile" data-accent="cool">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dse/IMG_9524.PNG');">
+          <span class="pill">04</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Education · Youth Mobility</span><span class="i18n-ar">تعليم · هجرة الشباب</span></span>
+          <h3>
+            <span class="i18n-en">DSE — from 2K to 51K in 13 months.</span>
+            <span class="i18n-ar">DSE — من ٢ ألف لـ ٥١ ألف في ١٣ شهر.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Growth ratio</span><span class="i18n-ar">نسبة النمو</span></span>
+            <span class="big">2,450%</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-bassant-habash.html" class="case-tile" data-accent="warm">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dr Bassant Habash/IMG_9426.PNG');">
+          <span class="pill">05</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Nutrition · Health & Wellness</span><span class="i18n-ar">تغذية · صحة وعافية</span></span>
+          <h3>
+            <span class="i18n-en">Dr. Bassant Habash — from Mansoura to national icon.</span>
+            <span class="i18n-ar">د. بسنت حبش — من المنصورة لأيقونة وطنية.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Authentic followers</span><span class="i18n-ar">متابع حقيقي</span></span>
+            <span class="big">96.8K</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-auzonia-kamel.html" class="case-tile" data-accent="pink">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Auzonia Kamel/IMG_9499.PNG');">
+          <span class="pill">06</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Education · Teacher Training</span><span class="i18n-ar">تعليم · تدريب المعلمين</span></span>
+          <h3>
+            <span class="i18n-en">Mrs. Auzonia Kamel — at 63, she started something nobody had done.</span>
+            <span class="i18n-ar">أ. أوزونيا كامل — في الـ٦٣ بدأت حاجة محدش عملها قبل كده.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Followers</span><span class="i18n-ar">متابع</span></span>
+            <span class="big">77.4K</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-dalia-hosny.html" class="case-tile" data-accent="amber">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dalia Hosny/IMG_9414.PNG');">
+          <span class="pill">07</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Social Entrepreneurship · Women Empowerment</span><span class="i18n-ar">ريادة اجتماعية · تمكين المرأة</span></span>
+          <h3>
+            <span class="i18n-en">Dalia Hosny — we did not build a brand, we amplified a movement.</span>
+            <span class="i18n-ar">داليا حسني — ما بنيناش براند، كبّرنا حركة قائمة.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Authentic followers</span><span class="i18n-ar">متابع حقيقي</span></span>
+            <span class="big">56.8K</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-peter-moris.html" class="case-tile" data-accent="cool">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dr Peter Moris/IMG_9441.PNG');">
+          <span class="pill">08</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Plastic Surgery · Medical Tourism</span><span class="i18n-ar">جراحة تجميل · سياحة علاجية</span></span>
+          <h3>
+            <span class="i18n-en">Dr. Peter Moris — the surgeon nobody knew. The brand everyone books.</span>
+            <span class="i18n-ar">د. بيتر موريس — الجرّاح اللي محدش يعرفه. والبراند اللي الكل بيحجزه.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Male patient growth</span><span class="i18n-ar">نمو المرضى الذكور</span></span>
+            <span class="big">+80%</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-dina-asaad.html" class="case-tile" data-accent="warm">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dina Asaad/IMG_9330.PNG');">
+          <span class="pill">09</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Therapy & NLP · Personal Brand</span><span class="i18n-ar">علاج نفسي · براند شخصي</span></span>
+          <h3>
+            <span class="i18n-en">Dr. Dina Asaad — the voice she never knew she had.</span>
+            <span class="i18n-ar">د. دينا أسعد — الصوت اللي ماكانتش عارفة عندها.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Followers in 6 months</span><span class="i18n-ar">متابع في ٦ شهور</span></span>
+            <span class="big">100K</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <span class="eyebrow" style="color:rgba(245,242,236,.55);"><span class="i18n-en">Start a project</span><span class="i18n-ar">ابدأ مشروع</span></span>
+    <h2 style="margin-top:16px;">
+      <span class="i18n-en">Ready to be case study number 10?</span>
+      <span class="i18n-ar">جاهز تكون دراسة الحالة رقم ١٠؟</span>
+    </h2>
+    <p class="lede">
+      <span class="i18n-en">Tell us where you're stuck. We'll respond within one business day with a clear next step — or honestly tell you we're not the right fit.</span>
+      <span class="i18n-ar">قول لنا فين بتقف. هنرد خلال يوم عمل بخطوة واضحة — أو بصراحة هنقول لك إحنا مش الأنسب لك.</span>
+    </p>
+    <div class="final-cta-btns">
+      <a href="Home.html#contact" class="btn btn-primary">
+        <span class="i18n-en">Book a discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost">
+        <span class="i18n-en">WhatsApp us</span><span class="i18n-ar">واتساب</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-bottom" style="border:0; padding-top:40px;">
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div><a href="Home.html"><span class="i18n-en">Back to Home</span><span class="i18n-ar">للصفحة الرئيسية</span></a></div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) { document.documentElement.setAttribute('data-theme', t); const i=document.getElementById('themeIcon'); if(i) i.textContent = t==='dark'?'☾':'◐'; }
+  function applyLang(l) { document.documentElement.setAttribute('lang', l); document.documentElement.setAttribute('dir', l==='ar'?'rtl':'ltr'); }
+  function toggleTheme() { const cur = document.documentElement.getAttribute('data-theme')||'light'; const next = cur==='light'?'dark':'light'; localStorage.setItem('opt_theme', next); applyTheme(next); }
+  function toggleLang() { const cur = document.documentElement.getAttribute('lang')||'en'; const next = cur==='en'?'ar':'en'; localStorage.setItem('opt_lang', next); applyLang(next); }
+  (function() { const t = localStorage.getItem('opt_theme'); if(t) applyTheme(t); const l=localStorage.getItem('opt_lang'); if(l) applyLang(l); })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+</script>
+</body>
+</html>

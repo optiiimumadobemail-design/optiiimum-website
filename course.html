@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+// Theme + lang bootstrap (synchronous, prevents flash)
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') theme = manual;
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch(e) {}
+})();
+</script>
+
+<title>Course — Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An Optiiimum bilingual course — strategy, content, media, and growth playbooks productised by Jozeph Ezzat's team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ===== COURSE DETAIL ===== */
+  .course-hero {
+    position: relative;
+    padding: clamp(120px, 16vw, 180px) 0 clamp(48px, 7vw, 80px);
+    overflow: hidden;
+  }
+  .course-hero .container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  @media (max-width: 920px) { .course-hero .container { grid-template-columns: 1fr; } }
+
+  .course-eyebrow { color: var(--ink-3); }
+  .course-title-line {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(36px, 5.2vw, 64px);
+    letter-spacing: -.025em;
+    line-height: 1.05;
+    margin: 18px 0 0;
+    text-wrap: balance;
+  }
+  /* Title is bilingual in both languages — split styling on the two halves */
+  .course-title-ar {
+    font-family: var(--font-ar);
+    font-weight: 700;
+    background: linear-gradient(110deg, #FDD196 0%, #FF966D 22%, #E555C8 48%, #BE6FD2 65%, #54B3EC 82%, #00FEFF 100%);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .course-title-sep {
+    margin: 0 .35em;
+    color: var(--ink-3);
+    font-weight: 400;
+    font-style: normal;
+  }
+  .course-title-en {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  /* In RTL pages, keep both halves readable side-by-side */
+  html[dir="rtl"] .course-title-line { text-align: start; }
+
+  .course-short {
+    margin: 22px 0 0;
+    font-size: clamp(17px, 1.5vw, 21px);
+    color: var(--ink-2);
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+  .course-meta-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 28px;
+  }
+  .course-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    background: var(--bg-elev);
+  }
+  html[lang="ar"] .course-pill { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+  .course-pill.is-cat {
+    background: linear-gradient(110deg, rgba(229,85,200,.14), rgba(84,179,236,.12));
+    border-color: rgba(229,85,200,.3);
+    color: var(--ink);
+  }
+
+  .course-cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+
+  .course-cover {
+    aspect-ratio: 16 / 11;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--bg-band);
+    position: relative;
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 60px -24px rgba(229,85,200,.35);
+  }
+  .course-cover img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .course-cover.no-cover {
+    background:
+      radial-gradient(70% 60% at 30% 25%, rgba(229,85,200,.35), transparent 65%),
+      radial-gradient(60% 50% at 75% 80%, rgba(84,179,236,.32), transparent 60%),
+      linear-gradient(135deg, #1a1a1a, #0b0b0b);
+    display: grid; place-items: center;
+    color: #FFFFFF;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+  [data-theme="light"] .course-cover.no-cover {
+    background:
+      radial-gradient(70% 60% at 30% 25%, rgba(229,85,200,.18), transparent 65%),
+      radial-gradient(60% 50% at 75% 80%, rgba(84,179,236,.16), transparent 60%),
+      linear-gradient(135deg, #FFFFFF, #F1EFE9);
+    color: #0A0A0A;
+  }
+
+  /* Body sections */
+  .course-section {
+    padding: clamp(48px, 7vw, 88px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .course-section h2 {
+    font-size: clamp(28px, 3.4vw, 42px);
+    margin: 0 0 24px;
+    letter-spacing: -.02em;
+  }
+  .course-section .lede { max-width: 64ch; }
+
+  .course-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 800px) { .course-grid-2 { grid-template-columns: 1fr; } }
+
+  .course-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: grid; gap: 14px;
+  }
+  .course-list li {
+    position: relative;
+    padding: 14px 18px 14px 46px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+  html[dir="rtl"] .course-list li { padding: 14px 46px 14px 18px; }
+  .course-list li::before {
+    content: "";
+    position: absolute;
+    top: 22px; inset-inline-start: 18px;
+    width: 14px; height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #FDD196, #E555C8 50%, #00FEFF);
+    flex: none;
+  }
+  html[lang="ar"] .course-list li { font-size: 16px; line-height: 1.75; }
+
+  .course-instructor {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    align-items: center;
+    padding: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+  }
+  @media (max-width: 720px) { .course-instructor { grid-template-columns: 1fr; } }
+  .course-instructor .portrait {
+    aspect-ratio: 1;
+    background:
+      radial-gradient(80% 60% at 70% 30%, rgba(229,85,200,.18), transparent 60%),
+      #F1EFE9 center/cover;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .course-instructor .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; }
+  .course-instructor h3 { font-size: 22px; margin: 0 0 6px; }
+  .course-instructor p { color: var(--ink-2); font-size: 15px; line-height: 1.65; }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+  @media (max-width: 920px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+  .related-card {
+    display: block;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .related-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(229,85,200,.4);
+    box-shadow: 0 18px 40px -22px rgba(229,85,200,.35);
+  }
+  .related-card .thumb {
+    aspect-ratio: 16 / 10;
+    background: var(--bg-band) center/cover;
+  }
+  .related-card .body { padding: 16px 18px 18px; }
+  .related-card .cat {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 6px;
+  }
+  html[lang="ar"] .related-card .cat { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 12.5px; }
+  .related-card h4 {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: -.005em;
+  }
+  .related-card h4 .ar { font-family: var(--font-ar); font-weight: 700; }
+  .related-card h4 .sep { color: var(--ink-3); margin: 0 .25em; font-weight: 400; }
+
+  .final-cta-section { padding: clamp(64px, 9vw, 120px) 0; border-top: 1px solid var(--line); text-align: center; }
+  .final-cta-section .opt-box {
+    max-width: 720px; margin: 0 auto;
+    padding: clamp(36px, 5vw, 56px);
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-section .opt-box::before {
+    content: ""; position: absolute; inset: -20%;
+    background:
+      radial-gradient(50% 40% at 30% 20%, rgba(229,85,200,.18), transparent 60%),
+      radial-gradient(45% 35% at 70% 80%, rgba(84,179,236,.16), transparent 60%);
+    filter: blur(40px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .final-cta-section .opt-box > * { position: relative; z-index: 1; }
+  .final-cta-section h2 { font-size: clamp(28px, 3.6vw, 44px); margin: 0; }
+  .final-cta-section p { margin: 14px auto 28px; max-width: 56ch; color: var(--ink-2); }
+  .final-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .course-error {
+    padding: 160px 0 120px;
+    text-align: center;
+  }
+  .course-error h1 { font-size: 36px; margin-bottom: 14px; }
+  .course-error p { color: var(--ink-2); max-width: 48ch; margin: 0 auto 24px; }
+
+  /* Status banner (coming soon / youtube) */
+  .course-status-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(229,85,200,.1);
+    border: 1px solid rgba(229,85,200,.35);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  html[lang="ar"] .course-status-banner { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 14px; }
+  .course-status-banner.is-free { background: rgba(0,254,255,.08); border-color: rgba(0,254,255,.4); }
+
+  /* Lang visibility helpers (some content swaps with lang) */
+  html[lang="en"] .lang-ar { display: none; }
+  html[lang="ar"] .lang-en { display: none; }
+  /* But course title halves should ALWAYS show */
+  .course-title-ar, .course-title-en, .course-title-sep { display: inline !important; }
+  html[lang="ar"] .related-card h4 .ar { order: 1; }
+  html[lang="ar"] .related-card h4 .en { order: 3; }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html" aria-current="page"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<main id="courseRoot">
+  <!-- Course content is rendered by script below, based on ?slug= -->
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-bottom">
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a> ·
+        <a href="Courses.html"><span class="i18n-en">All courses</span><span class="i18n-ar">كل الكورسات</span></a> ·
+        <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="courses-data.js"></script>
+<script>
+(function () {
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function bilingualTitle(c) {
+    // displayTitle is always Arabic — English with em-dash separator.
+    // We split intelligently around the em-dash and tag halves so CSS
+    // can give Arabic the gradient + Arabic font, English the sans face.
+    var parts = c.displayTitle.split('—');
+    var arPart = (parts[0] || c.titleAr || '').trim();
+    var enPart = (parts[1] || c.titleEn || '').trim();
+    return (
+      '<span class="course-title-ar" dir="rtl">' + escapeHtml(arPart) + '</span>' +
+      '<span class="course-title-sep">—</span>' +
+      '<span class="course-title-en" dir="ltr">' + escapeHtml(enPart) + '</span>'
+    );
+  }
+
+  function bilingualSmall(c) {
+    var parts = c.displayTitle.split('—');
+    var arPart = (parts[0] || c.titleAr || '').trim();
+    var enPart = (parts[1] || c.titleEn || '').trim();
+    return (
+      '<span class="ar" dir="rtl">' + escapeHtml(arPart) + '</span>' +
+      '<span class="sep">—</span>' +
+      '<span class="en" dir="ltr">' + escapeHtml(enPart) + '</span>'
+    );
+  }
+
+  function renderRelated(currentSlug) {
+    var pool = window.COURSES.filter(function (c) { return c.slug !== currentSlug; });
+    // pick 3 deterministic-ish related ones
+    var picks = [];
+    var seen = {};
+    pool.forEach(function (c) {
+      if (picks.length < 3 && !seen[c.slug]) { picks.push(c); seen[c.slug] = 1; }
+    });
+    return picks.map(function (c) {
+      var thumb = c.cover
+        ? 'background-image: url(' + JSON.stringify(c.cover) + ');'
+        : 'background: radial-gradient(70% 60% at 30% 25%, rgba(229,85,200,.25), transparent 65%), radial-gradient(60% 50% at 75% 80%, rgba(84,179,236,.22), transparent 60%), linear-gradient(135deg, #1a1a1a, #0b0b0b);';
+      return (
+        '<a class="related-card" href="course.html?slug=' + encodeURIComponent(c.slug) + '">' +
+          '<div class="thumb" style="' + thumb + '"></div>' +
+          '<div class="body">' +
+            '<span class="cat"><span class="i18n-en">' + escapeHtml(c.categoryEn) + '</span><span class="i18n-ar">' + escapeHtml(c.categoryAr) + '</span></span>' +
+            '<h4>' + bilingualSmall(c) + '</h4>' +
+          '</div>' +
+        '</a>'
+      );
+    }).join('');
+  }
+
+  function renderList(items) {
+    return '<ul class="course-list">' + items.map(function (x) { return '<li>' + escapeHtml(x) + '</li>'; }).join('') + '</ul>';
+  }
+
+  function getSlug() {
+    var m = location.search.match(/[?&]slug=([^&]+)/);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  function renderError() {
+    document.getElementById('courseRoot').innerHTML =
+      '<section class="course-error"><div class="container">' +
+        '<h1><span class="i18n-en">Course not found</span><span class="i18n-ar">الكورس غير موجود</span></h1>' +
+        '<p><span class="i18n-en">The link you followed is missing a valid course slug. Browse the full catalog instead.</span>' +
+        '<span class="i18n-ar">الرابط مش بيحتوي على slug كورس صحيح. تصفّح كل الكورسات بدل كده.</span></p>' +
+        '<a href="Courses.html" class="btn btn-primary">' +
+          '<span class="i18n-en">All courses</span><span class="i18n-ar">كل الكورسات</span>' +
+          '<span class="arrow">→</span>' +
+        '</a>' +
+      '</div></section>';
+  }
+
+  function renderCourse(c) {
+    var hasCover = !!c.cover;
+    var coverEl = hasCover
+      ? '<div class="course-cover"><img src="' + escapeHtml(c.cover) + '" alt="' + escapeHtml(c.titleEn) + ' / ' + escapeHtml(c.titleAr) + '"></div>'
+      : '<div class="course-cover no-cover"><span><span class="i18n-en">Cover · coming soon</span><span class="i18n-ar">الغلاف قريبًا</span></span></div>';
+
+    var statusBanner = '';
+    if (c.purchaseLinkStatus === 'coming-soon') {
+      statusBanner =
+        '<div class="course-status-banner"><span class="i18n-en">⏳ Enrolment opens soon · joining list available on request</span><span class="i18n-ar">⏳ التسجيل قريبًا — يمكن الانضمام لقائمة الانتظار</span></div>';
+    } else if (c.purchaseLinkStatus === 'youtube-free') {
+      statusBanner =
+        '<div class="course-status-banner is-free"><span class="i18n-en">▶ Free on YouTube · no enrolment required</span><span class="i18n-ar">▶ مجاني على يوتيوب — ما يحتاجش تسجيل</span></div>';
+    }
+
+    var enrollButton;
+    if (c.purchaseLink && c.purchaseLinkStatus !== 'coming-soon') {
+      var enrollAria = (c.purchaseLinkStatus === 'youtube-free')
+        ? 'Official free course on YouTube · رابط الكورس المجاني الرسمي على يوتيوب'
+        : 'Official course enrollment link · رابط الاشتراك الرسمي في الكورس';
+      enrollButton =
+        '<a href="' + escapeHtml(c.purchaseLink) + '" target="_blank" rel="noopener noreferrer" ' +
+          'aria-label="' + escapeHtml(enrollAria) + '" class="btn btn-primary">' +
+          '<span class="i18n-en">' + (c.purchaseLinkStatus === 'youtube-free' ? 'Watch free on YouTube' : 'Enroll now') + '</span>' +
+          '<span class="i18n-ar">' + (c.purchaseLinkStatus === 'youtube-free' ? 'شاهد مجانًا على يوتيوب' : 'سجّل الآن') + '</span>' +
+          '<span class="arrow">→</span>' +
+        '</a>';
+    } else {
+      enrollButton =
+        '<a href="Consultation.html" class="btn btn-primary">' +
+          '<span class="i18n-en">Get notified</span><span class="i18n-ar">سجّلني في قائمة الانتظار</span>' +
+          '<span class="arrow">→</span>' +
+        '</a>';
+    }
+
+    var html =
+      '<section class="course-hero">' +
+        '<div class="container">' +
+          '<div>' +
+            '<span class="eyebrow course-eyebrow"><span class="i18n-en">Optiiimum Academy · Course</span><span class="i18n-ar">أكاديمية أوبتيموم · كورس</span></span>' +
+            '<h1 class="course-title-line">' + bilingualTitle(c) + '</h1>' +
+            '<p class="course-short"><span class="i18n-en">' + escapeHtml(c.shortEn) + '</span><span class="i18n-ar">' + escapeHtml(c.shortAr) + '</span></p>' +
+            '<div class="course-meta-row">' +
+              '<span class="course-pill is-cat"><span class="i18n-en">' + escapeHtml(c.categoryEn) + '</span><span class="i18n-ar">' + escapeHtml(c.categoryAr) + '</span></span>' +
+              '<span class="course-pill"><span class="i18n-en">' + escapeHtml(c.durationEn) + '</span><span class="i18n-ar">' + escapeHtml(c.durationAr) + '</span></span>' +
+              '<span class="course-pill"><span class="i18n-en">' + escapeHtml(c.accessEn) + '</span><span class="i18n-ar">' + escapeHtml(c.accessAr) + '</span></span>' +
+            '</div>' +
+            statusBanner +
+            '<div class="course-cta-row">' +
+              enrollButton +
+              '<a href="Courses.html" class="btn btn-ghost"><span class="i18n-en">All courses</span><span class="i18n-ar">كل الكورسات</span></a>' +
+            '</div>' +
+          '</div>' +
+          coverEl +
+        '</div>' +
+      '</section>' +
+
+      '<section class="course-section">' +
+        '<div class="container">' +
+          '<h2><span class="i18n-en">Overview</span><span class="i18n-ar">نظرة عامة</span></h2>' +
+          '<p class="lede"><span class="i18n-en">' + escapeHtml(c.overviewEn) + '</span><span class="i18n-ar">' + escapeHtml(c.overviewAr) + '</span></p>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="course-section">' +
+        '<div class="container">' +
+          '<h2><span class="i18n-en">What you\u2019ll learn</span><span class="i18n-ar">هتتعلّم إيه؟</span></h2>' +
+          '<div class="lang-en">' + renderList(c.learnEn) + '</div>' +
+          '<div class="lang-ar">' + renderList(c.learnAr) + '</div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="course-section">' +
+        '<div class="container">' +
+          '<h2><span class="i18n-en">Who is this course for?</span><span class="i18n-ar">الكورس ده لمين؟</span></h2>' +
+          '<div class="lang-en">' + renderList(c.forEn) + '</div>' +
+          '<div class="lang-ar">' + renderList(c.forAr) + '</div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="course-section">' +
+        '<div class="container">' +
+          '<h2><span class="i18n-en">Your instructor</span><span class="i18n-ar">المدرّب</span></h2>' +
+          '<div class="course-instructor">' +
+            '<div class="portrait"><img src="assets/Team/Jozeph -Managing irector.jpg" alt="Jozeph Ezzat — Founder of Optiiimum"></div>' +
+            '<div>' +
+              '<h3>Jozeph Ezzat</h3>' +
+              '<span class="course-pill" style="margin-bottom:14px;"><span class="i18n-en">Founder · Optiiimum</span><span class="i18n-ar">مؤسّس Optiiimum</span></span>' +
+              '<p><span class="i18n-en">Jozeph built Optiiimum into a regional growth system — 35+ global brands, 1M+ single-video views, and 13 documented case studies. He teaches the exact playbooks used inside the studio every week.</span>' +
+                '<span class="i18n-ar">جوزيف بنى Optiiimum وحوّلها إلى نظام نموّ إقليمي — أكتر من ٣٥ براند عالمي، وأكتر من مليون مشاهدة لفيديو واحد، و١٣ دراسة حالة موثّقة. بيدرّس نفس الـ playbooks اللي بنشتغل بيها داخل الاستوديو كل أسبوع.</span></p>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="course-section">' +
+        '<div class="container">' +
+          '<h2><span class="i18n-en">Related courses</span><span class="i18n-ar">كورسات ذات صلة</span></h2>' +
+          '<div class="related-grid">' + renderRelated(c.slug) + '</div>' +
+        '</div>' +
+      '</section>' +
+
+      '<section class="final-cta-section">' +
+        '<div class="container">' +
+          '<div class="opt-box">' +
+            '<h2><span class="i18n-en">Ready to start?</span><span class="i18n-ar">جاهز تبدأ؟</span></h2>' +
+            '<p><span class="i18n-en">Join the same operating system trusted by founders, doctors, and creators across the region.</span>' +
+              '<span class="i18n-ar">انضم لنفس نظام التشغيل اللي بيثق فيه المؤسسون والأطباء وصنّاع المحتوى في المنطقة كلها.</span></p>' +
+            '<div class="final-cta-btns">' + enrollButton +
+              '<a href="Consultation.html" class="btn btn-ghost"><span class="i18n-en">Talk to a strategist</span><span class="i18n-ar">كلّم استراتيجي معانا</span></a>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+
+    document.getElementById('courseRoot').innerHTML = html;
+
+    // SEO + browser tab title
+    try {
+      document.title = c.displayTitle + ' | Optiiimum';
+      var desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', c.shortEn + ' · ' + c.shortAr);
+    } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var slug = getSlug();
+    var c = window.COURSES_BY_SLUG && window.COURSES_BY_SLUG[slug];
+    if (!c) { renderError(); return; }
+    renderCourse(c);
+  });
+})();
+</script>
+
+<script>
+  // Theme/lang toggles + mobile menu
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    var ic = document.getElementById('themeIcon');
+    if (ic) ic.textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    var next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    var cur = document.documentElement.getAttribute('lang') || 'en';
+    var next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    var t = localStorage.getItem('opt_theme'); if (t) applyTheme(t);
+    var l = localStorage.getItem('opt_lang'); if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+</script>
+
+</body>
+</html>

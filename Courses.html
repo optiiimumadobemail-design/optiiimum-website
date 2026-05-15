@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Courses — Optiiimum Academy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Twelve courses. The same systems we run for paying clients — productised for founders, doctors, and creators.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ==== ABOUT-SPECIFIC ==== */
+  .about-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(80px, 14vw, 160px) 0 clamp(40px, 6vw, 80px);
+  }
+  .about-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(44px, 7.5vw, 96px);
+  }
+  .about-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .about-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .about-hero .meta {
+    display: flex; gap: 36px; margin-top: 56px;
+    padding-top: 28px; border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .about-hero .meta .item b { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); margin-bottom: 8px; font-weight: 500; }
+  html[lang="ar"] .about-hero .meta .item b { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .about-hero .meta .item span { font-family: var(--font-serif); font-size: 22px; line-height: 1.2; }
+  html[lang="ar"] .about-hero .meta .item span { font-family: var(--font-ar); font-weight: 600; }
+
+  .ambient-orb {
+    position: absolute; pointer-events: none;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -15vw; top: -15vw;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .35; border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* Story */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 920px) { .story-grid { grid-template-columns: 1fr; } }
+  .story-side { position: sticky; top: 110px; }
+  @media (max-width: 920px) { .story-side { position: static; } }
+  .story-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg-band) center/cover;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line);
+    overflow: hidden; position: relative;
+  }
+  .story-portrait::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4) 100%);
+  }
+  .story-portrait .label {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    z-index: 2; color: white;
+  }
+  .story-portrait .label b { font-family: var(--font-serif); font-size: 24px; display: block; line-height: 1.1; }
+  html[lang="ar"] .story-portrait .label b { font-family: var(--font-ar); font-weight: 700; }
+  .story-portrait .label span { font-size: 13px; opacity: .85; margin-top: 4px; display: block; }
+
+  .story-body { font-size: 17px; line-height: 1.7; color: var(--ink-2); }
+  .story-body p { margin: 0 0 1.2em; text-wrap: pretty; }
+  .story-body p:first-child::first-letter {
+    font-family: var(--font-serif); font-size: 4em; line-height: .8;
+    float: left; padding: 0.05em 0.1em 0 0; color: var(--ink);
+  }
+  html[lang="ar"] .story-body p:first-child::first-letter {
+    font-family: var(--font-ar); float: right; padding: 0 0 0 0.15em; font-size: 3em;
+  }
+  .story-body strong { color: var(--ink); font-weight: 500; }
+  .story-body .signature {
+    display: flex; align-items: center; gap: 14px; margin-top: 32px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    color: var(--ink-3); font-size: 13px;
+  }
+  .story-body .signature b { color: var(--ink); font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
+  html[lang="ar"] .story-body .signature b { font-family: var(--font-ar); font-weight: 600; }
+  .story-body .signature .glyph {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    flex: none;
+  }
+
+  /* Geos */
+  .geos {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-top: 28px;
+  }
+  @media (max-width: 720px) { .geos { grid-template-columns: repeat(2, 1fr); } }
+  .geo {
+    padding: 14px; border: 1px solid var(--line);
+    border-radius: var(--r); background: var(--bg-elev);
+    font-size: 13.5px; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .geo .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* Why different */
+  .why-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 920px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .15s, transform .2s, box-shadow .2s;
+  }
+  .why-card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-1); }
+  .why-card .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .12em;
+  }
+  .why-card h3 { font-size: 22px; line-height: 1.15; }
+  .why-card p { color: var(--ink-2); font-size: 14.5px; margin: 0; text-wrap: pretty; }
+
+  /* Culture grid */
+  .culture-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+  }
+  @media (max-width: 920px) { .culture-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 140px; } }
+  @media (max-width: 560px) { .culture-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .culture-tile {
+    grid-column: span 2; grid-row: span 1;
+    border-radius: var(--r-lg);
+    background: var(--bg-band) center/cover;
+    border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+    transition: transform .25s ease;
+  }
+  .culture-tile:hover { transform: scale(1.02); }
+  .culture-tile::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+  }
+  .culture-tile .cap {
+    position: absolute; left: 16px; right: 16px; bottom: 14px;
+    color: white; z-index: 2;
+    font-family: var(--font-mono); font-size: 11.5px;
+    text-transform: uppercase; letter-spacing: .12em;
+  }
+  html[lang="ar"] .culture-tile .cap { letter-spacing: .04em; text-transform: none; font-size: 13px; font-family: var(--font-mono); }
+  /* Asymmetric layout */
+  .culture-tile.tall { grid-row: span 2; }
+  .culture-tile.wide { grid-column: span 3; }
+  .culture-tile.huge { grid-column: span 3; grid-row: span 2; }
+  @media (max-width: 920px) {
+    .culture-tile.tall, .culture-tile.huge { grid-row: span 2; }
+    .culture-tile.wide, .culture-tile.huge { grid-column: span 3; }
+  }
+  @media (max-width: 560px) {
+    .culture-tile, .culture-tile.tall, .culture-tile.wide, .culture-tile.huge {
+      grid-column: span 2; grid-row: span 1;
+    }
+  }
+
+  /* Credibility */
+  .creds-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .creds-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cred {
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--bg-elev);
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative; overflow: hidden;
+  }
+  .cred .badge {
+    position: absolute; top: 16px; inset-inline-end: 16px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: conic-gradient(from 220deg, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2));
+    opacity: .8;
+  }
+  .cred b { font-family: var(--font-serif); font-size: clamp(36px, 4vw, 52px); line-height: 1; }
+  .cred .label { font-size: 13.5px; color: var(--ink-2); }
+  .cred .note { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-top: 6px; letter-spacing: .08em; }
+  html[lang="ar"] .cred .note { letter-spacing: 0; font-size: 12.5px; }
+
+  /* Team preview */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  .role {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 180px; position: relative;
+    transition: border-color .15s, transform .2s;
+  }
+  .role:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .role .num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: .12em; }
+  .role .glyph {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(229,85,200,.12);
+    margin-bottom: 8px;
+  }
+  .role b { font-size: 17px; line-height: 1.2; font-family: var(--font-serif); font-weight: 400; }
+  html[lang="ar"] .role b { font-family: var(--font-ar); font-weight: 600; font-size: 18px; }
+  .role p { font-size: 13px; color: var(--ink-2); margin: 0; }
+  .role .count { margin-top: auto; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+
+  /* Notice */
+  .image-notice {
+    background: rgba(229,85,200,.08);
+    border: 1px solid rgba(229,85,200,.3);
+    color: var(--accent);
+    padding: 14px 18px; border-radius: var(--r);
+    font-size: 13px; line-height: 1.5;
+    margin-top: 24px;
+  }
+  .image-notice b { color: var(--accent); }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html" aria-current="page"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html" aria-current="page"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow"><span class="i18n-en">Optiiimum Academy</span><span class="i18n-ar">أكاديمية أوبتيمم</span></span>
+    <h1><span class="i18n-en">Our playbooks — <span class="opt-grad-text">productised.</span></span><span class="i18n-ar">مناهجنا — <span class="opt-grad-text">في صورة منتجات.</span></span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="courses-grid" style="grid-template-columns: repeat(3, 1fr);">
+<a href="course.html?slug=smart-man-crew" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس التصوير والمونتاج بالموبايل - Smart Man Crew.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Production · Mobile</span><span class="i18n-ar">إنتاج · موبايل</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس التصوير والمونتاج بالموبايل</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Smart Man Crew</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Shoot and edit cinematic-grade content using only your phone.</span><span class="i18n-ar">صوّر وعدّل محتوى بمستوى سينمائي من موبايلك فقط.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=confidence-on-camera" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس من غير كسوف - Confidence on Camera.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Personal Branding · Presence</span><span class="i18n-ar">براند شخصي · حضور</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس من غير كسوف</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Confidence on Camera Course</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Stop freezing on camera. Speak with the energy your audience needs.</span><span class="i18n-ar">بطّل تتجمّد قدّام الكاميرا. اتكلم بنفس الطاقة اللي جمهورك محتاجها.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=go-viral" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس المليون مشاهدة - Go Viral Course.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Content · Virality</span><span class="i18n-ar">محتوى · فيرال</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس المليون مشاهدة</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Go Viral Course</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Engineer a single piece of content that earns its way to a million views.</span><span class="i18n-ar">اصنع فيديو واحد بيستحق مليون مشاهدة بمعادلة واضحة.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=digital-marketing-by-mobile" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس التسويق الإلكتروني بالموبايل.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Marketing · Foundations</span><span class="i18n-ar">تسويق · أساسيات</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس التسويق الإلكتروني بالموبايل</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Digital Marketing &amp; Social Media Course</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Run a full marketing stack from your phone — content, ads, analytics, sales.</span><span class="i18n-ar">شغّل ستاك تسويق كامل من موبايلك — محتوى، إعلانات، تحليلات، مبيعات.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=content-creation-for-teachers" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس سبورة المحتوى - Content Creation for Teachers.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Vertical · Educators</span><span class="i18n-ar">قطاع · معلمون</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس سبورة المحتوى</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Content Creation for Teachers</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Turn your classroom expertise into a magnetic online teaching brand.</span><span class="i18n-ar">حوّل خبرتك في الفصل إلى براند تعليمي مغناطيسي على الإنترنت.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=content-creation-for-fitness-coaches" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس ملعب المحتوى - Content Creation for Fitness & Coaches.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Vertical · Fitness</span><span class="i18n-ar">قطاع · لياقة</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس ملعب المحتوى</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Content Creation for Fitness &amp; Coaches</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">A content playbook engineered for trainers, coaches, and gym brands.</span><span class="i18n-ar">كتالوج محتوى مبني خصيصاً للمدربين، الكوتشز، وبراندات الجيم.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=doctors-content-creation" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس روشتة المحتوى - Doctors Content Creation Course.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Vertical · Doctors</span><span class="i18n-ar">قطاع · أطباء</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس روشتة المحتوى</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Doctors Content Creation Course</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">A medical-grade content protocol — for doctors who refuse to sound like influencers.</span><span class="i18n-ar">بروتوكول محتوى بمستوى طبي — للأطباء اللي رافضين يبقوا 'إنفلونسرز'.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=ai-x-business-3-days" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس AI × Business × 3 Days.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">AI · 3 days</span><span class="i18n-ar">ذكاء اصطناعي · ٣ أيام</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس AI × Business × 3 Days</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">الذكاء الاصطناعي في البيزنس خلال 3 أيام</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Operationalise AI inside your business in 3 days — not 3 months.</span><span class="i18n-ar">فعّل الذكاء الاصطناعي جوّه شغلك في ٣ أيام — مش ٣ شهور.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=ugc-in-7-days" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/كورس UGC في 7 أيام.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Creator · UGC</span><span class="i18n-ar">صانع محتوى · UGC</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس UGC في 7 أيام</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">User Generated Content Course</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Become a paid UGC creator in 7 days — brands, briefs, deliverables.</span><span class="i18n-ar">ابقى صانع UGC مدفوع في ٧ أيام — براندات، بريفس، تسليمات.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=shift-digital-15-days" class="course-card">
+        <div class="thumb" style="background: radial-gradient(70% 60% at 30% 25%, rgba(229,85,200,.28), transparent 65%), radial-gradient(60% 50% at 75% 80%, rgba(84,179,236,.26), transparent 60%), linear-gradient(135deg, #1a1a1a, #0b0b0b);"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Bundle · 15 days</span><span class="i18n-ar">مجموعة · ١٥ يوم</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">مجموعة شيفت ديجيتال في 15 يوم</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Shift Digital Program</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">A 15-day shift from non-digital to fully-operating digital business.</span><span class="i18n-ar">نقلة ١٥ يوم من بيزنس غير رقمي لبيزنس بيشتغل ديجيتال بالكامل.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=digital-pro-max-30-days" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/Digital Pro Max في 30 يوم.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Flagship · 30 days</span><span class="i18n-ar">رئيسي · ٣٠ يوم</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">Digital Pro Max في 30 يوم</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Digital Pro Max in 30 Days</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">The complete Optiiimum operating system in 30 days — strategy, content, ads, sales.</span><span class="i18n-ar">نظام تشغيل Optiiimum الكامل في ٣٠ يوم — استراتيجية، محتوى، إعلانات، مبيعات.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=kidia-ai-creators" class="course-card">
+        <div class="thumb" style="background: radial-gradient(70% 60% at 30% 25%, rgba(229,85,200,.28), transparent 65%), radial-gradient(60% 50% at 75% 80%, rgba(84,179,236,.26), transparent 60%), linear-gradient(135deg, #1a1a1a, #0b0b0b);"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">AI · Kids</span><span class="i18n-ar">ذكاء اصطناعي · أطفال</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">Kidia AI Creators</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">AI Content Creation for Kids</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">An AI-content programme designed for kids — safe, structured, future-ready.</span><span class="i18n-ar">برنامج محتوى بالذكاء الاصطناعي مصمّم للأطفال — آمن، منظّم، جاهز للمستقبل.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+<a href="course.html?slug=free-content-creation-7-days" class="course-card">
+        <div class="thumb" style="background-image:url('assets/courses Covers/صناعة المحتوى في 7 ايام.png');"></div>
+        <div class="body">
+          <span class="cat"><span class="i18n-en">Free · 7 days</span><span class="i18n-ar">مجاني · ٧ أيام</span></span>
+          <h3 class="course-title-bi">
+            <span class="cti-ar" dir="rtl">كورس صناعة المحتوى في 7 أيام</span>
+            <span class="cti-sep">—</span>
+            <span class="cti-en" dir="ltr">Free Content Creation Course</span>
+          </h3>
+          <p class="desc"><span class="i18n-en">Free 7-day YouTube series — the fastest way to start creating content.</span><span class="i18n-ar">سلسلة يوتيوب مجانية ٧ أيام — أسرع طريقة تبدأ تصنع محتوى.</span></p>
+          <span class="enrol"><span class="i18n-en">View Course</span><span class="i18n-ar">شاهد تفاصيل الكورس</span> <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="final-cta-section">
+  <div class="container">
+    <div class="opt-box">
+      <h2>
+        <span class="i18n-en">Not sure which <span class="opt-grad-text">course</span> fits?</span>
+        <span class="i18n-ar">لستَ متأكدًا أيُّ <span class="opt-grad-text">دورة</span> تناسبك؟</span>
+      </h2>
+      <p class="lede">
+        <span class="i18n-en">30-minute discovery call. No pitch deck, no boilerplate — just a frank look at where the leverage is in your business.</span>
+        <span class="i18n-ar">مكالمة استكشافية لمدة 30 دقيقة. بلا عروض جاهزة، بلا حشوٍ — محادثةٌ صريحةٌ حول مكامن القوة في عملك.</span>
+      </p>
+      <div class="final-cta-btns">
+        <a href="Consultation.html" class="btn btn-primary">
+          <span class="i18n-en">Book a discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        </a>
+        <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost">
+          <span class="i18n-en">WhatsApp us</span><span class="i18n-ar">تواصل عبر واتساب</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="Home.html#cases"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Home.html#team"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Home.html#blog"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Home.html#services"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Home.html#courses"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+          <li><a href="https://www.instagram.com/optiiimumsolutions" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/104597175/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@optimumsolutions851" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@optiiimumsolutionsegy" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/Optiiimum" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://x.com/optiiimum_sol" target="_blank" rel="noopener">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="needs-final">
+        <b><span class="i18n-en">⚠ Needs final links</span><span class="i18n-ar">⚠ تحتاج الروابط النهائية</span></b>
+        <div style="margin-top:6px;">
+          <span class="i18n-en">Public email address · Calendly / booking link · Privacy &amp; Terms pages — to be supplied by the team.</span>
+          <span class="i18n-ar">إيميل عام · رابط حجز المكالمة · صفحات الخصوصية والشروط — في انتظار البيانات النهائية من الفريق.</span>
+        </div>
+      </div>
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute('lang') || 'en';
+    const next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    const t = localStorage.getItem('opt_theme');
+    if (t) applyTheme(t);
+    const l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+</script>
+
+<!-- Courses catalog + card enhancement (adds external "Enroll Now" pills) -->
+<script src="courses-data.js"></script>
+<script src="courses-enhance.js" defer></script>
+
+</body>
+</html>

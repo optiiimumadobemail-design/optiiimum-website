@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Services — Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Eight services. One operating system. Strategy, content, performance, personal branding, video, moderation, campaigns, and growth systems — engineered as a single growth machine.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ==== SERVICES PAGE ==== */
+  .svc-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(80px, 14vw, 140px) 0 clamp(40px, 5vw, 64px);
+  }
+  .svc-hero h1 { max-width: 18ch; font-size: clamp(44px, 7vw, 92px); }
+  .svc-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .svc-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .svc-hero .ambient {
+    position: absolute; pointer-events: none;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -15vw; top: -15vw;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .3; border-radius: 50%; z-index: -1;
+  }
+
+  /* Index strip */
+  .svc-index {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    border-top: 1px solid var(--line); padding-top: 28px;
+  }
+  @media (max-width: 920px) { .svc-index { grid-template-columns: repeat(2, 1fr); } }
+  .svc-index a {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 10px 12px; border-radius: var(--r);
+    color: var(--ink-2); font-size: 14px;
+    transition: background .15s, color .15s;
+  }
+  .svc-index a:hover { background: var(--bg-band); color: var(--ink); }
+  .svc-index a .n { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: .12em; }
+
+  /* Service module */
+  .svc {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(28px, 5vw, 80px);
+    padding: clamp(56px, 8vw, 100px) 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+    scroll-margin-top: 80px;
+  }
+  @media (max-width: 920px) { .svc { grid-template-columns: 1fr; } }
+  .svc.band-bg {
+    background: var(--bg-band);
+    border-color: transparent;
+  }
+  .svc-head { position: sticky; top: 100px; }
+  @media (max-width: 920px) { .svc-head { position: static; } }
+  .svc-num {
+    display: block; font-family: var(--font-serif);
+    font-size: clamp(80px, 12vw, 150px); line-height: .9;
+    color: var(--ink); opacity: .12;
+    margin-bottom: 4px;
+  }
+  html[lang="ar"] .svc-num { font-family: var(--font-serif); }
+  .svc-head h2 {
+    font-size: clamp(34px, 4.4vw, 56px);
+    margin: 0 0 24px;
+  }
+  .svc-problem {
+    color: var(--ink-2); font-size: 16px; line-height: 1.55;
+    border-inline-start: 3px solid var(--accent);
+    padding-inline-start: 16px;
+    margin: 0;
+  }
+
+  .svc-body { display: flex; flex-direction: column; gap: 36px; }
+  .svc-block h4 {
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: var(--ink-3); font-weight: 500; margin: 0 0 14px;
+  }
+  html[lang="ar"] .svc-block h4 { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .svc-block p {
+    font-size: 16.5px; line-height: 1.65; color: var(--ink-2); margin: 0;
+    text-wrap: pretty;
+  }
+  .svc-block .impact-line {
+    font-family: var(--font-serif); font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.2; color: var(--ink); margin: 0;
+    text-wrap: balance;
+  }
+  html[lang="ar"] .svc-block .impact-line { font-family: var(--font-ar); font-weight: 600; line-height: 1.4; }
+
+  .svc-deliv-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px;
+  }
+  @media (max-width: 560px) { .svc-deliv-list { grid-template-columns: 1fr; } }
+  .svc-deliv-list li {
+    font-size: 14.5px; color: var(--ink); padding-inline-start: 22px;
+    position: relative;
+  }
+  .svc-deliv-list li::before {
+    content: ""; position: absolute;
+    inset-inline-start: 0; top: .55em;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--grad-2), var(--grad-3));
+  }
+
+  .svc-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .svc-chip {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    color: var(--ink-2); padding: 6px 12px; border-radius: 999px;
+    font-size: 13px;
+  }
+  .svc.band-bg .svc-chip { background: var(--bg); }
+
+  .svc-ctas {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    padding-top: 16px; border-top: 1px solid var(--line);
+  }
+  .svc-ctas .btn { font-size: 13.5px; padding: 11px 18px; }
+
+  /* Wave divider */
+  .wave-sep {
+    height: 80px; position: relative; overflow: hidden;
+    border-top: 1px solid var(--line);
+  }
+
+  .links-cta-bar {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 36px;
+  }
+
+  .svc-pull {
+    background: var(--ink); color: var(--bg);
+    border-radius: var(--r-xl); padding: 56px clamp(28px, 4vw, 56px);
+    margin: clamp(48px, 7vw, 96px) 0;
+    position: relative; overflow: hidden;
+  }
+  .svc-pull::before {
+    content: ""; position: absolute; inset: -30% 50% -30% -30%;
+    background: conic-gradient(from 220deg, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2));
+    filter: blur(80px); opacity: .35; border-radius: 50%; pointer-events: none;
+  }
+  .svc-pull > * { position: relative; }
+  .svc-pull .lede { color: rgba(245,242,236,.78); margin-top: 16px; max-width: 60ch; }
+  .svc-pull h2 { color: var(--bg); max-width: 22ch; }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html" aria-current="page"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html" aria-current="page"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<!-- HERO -->
+<section class="svc-hero">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="container">
+    <span class="chip"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></span>
+    <h1 style="margin-top:24px;">
+      <span class="i18n-en">Eight services. <span class="alt">One operating system.</span></span>
+      <span class="i18n-ar">ثمان خدمات. <span class="alt">نظام تشغيل واحد.</span></span>
+    </h1>
+    <p class="lede" style="margin-top:24px; max-width: 64ch;">
+      <span class="i18n-en">Each capability below is a department, not a checkbox. Most engagements run three or more, layered against a single growth thesis. Below: the problem each one solves, what we deliver, and what to expect.</span>
+      <span class="i18n-ar">كل قدرة من اللي تحت هي إدارة كاملة، مش بند في قائمة. أغلب التعاملات بنشغّل فيها ثلاثة أو أكتر متراصين تحت فرضية نمو واحدة. تحت: المشكلة اللي بنحلها، اللي بنسلّمه، واللي تتوقعه.</span>
+    </p>
+
+    <nav class="svc-index" aria-label="Services">
+      <a href="#svc-01"><span class="n">01</span> <span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a>
+      <a href="#svc-02"><span class="n">02</span> <span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a>
+      <a href="#svc-03"><span class="n">03</span> <span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a>
+      <a href="#svc-04"><span class="n">04</span> <span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a>
+      <a href="#svc-05"><span class="n">05</span> <span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a>
+      <a href="#svc-06"><span class="n">06</span> <span class="i18n-en">Moderation</span><span class="i18n-ar">إدارة المجتمع</span></a>
+      <a href="#svc-07"><span class="n">07</span> <span class="i18n-en">Campaign Management</span><span class="i18n-ar">إدارة الحملات</span></a>
+      <a href="#svc-08"><span class="n">08</span> <span class="i18n-en">Growth Systems</span><span class="i18n-ar">أنظمة النمو</span></a>
+    </nav>
+  </div>
+</section>
+
+<!-- ============== 01 SOCIAL MEDIA STRATEGY ============== -->
+<section class="container">
+  <article class="svc" id="svc-01">
+    <header class="svc-head">
+      <span class="svc-num">01</span>
+      <h2><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال ميديا</span></h2>
+      <p class="svc-problem">
+        <span class="i18n-en">Posting volume without a thesis is just noise — expensive, exhausting, and unmeasurable.</span>
+        <span class="i18n-ar">النشر بكثرة من غير فرضية هو ضوضاء — مكلفة، مرهقة، وما تتقاسش.</span>
+      </p>
+    </header>
+    <div class="svc-body">
+      <div class="svc-block">
+        <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+        <p>
+          <span class="i18n-en">We start with the audience map, the message hierarchy, and the platform-specific physics. Then we engineer a content architecture: pillars, formats, cadence, hook libraries, and a 90-day editorial line synced to your business calendar — not your competitors'.</span>
+          <span class="i18n-ar">بنبدأ بخريطة الجمهور، تسلسل الرسائل، وفيزيا كل منصة. وبعدين بنهندس معمار محتوى: أعمدة، فورمات، إيقاع، مكتبة هوكس، وخط تحريري ٩٠ يوم متزامن مع كاليندار شغلك — مش كاليندار المنافسين.</span>
+        </p>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+        <ul class="svc-deliv-list">
+          <li><span class="i18n-en">90-day editorial calendar</span><span class="i18n-ar">كاليندار تحريري ٩٠ يوم</span></li>
+          <li><span class="i18n-en">Per-platform playbook (IG · TikTok · LinkedIn · YouTube · X)</span><span class="i18n-ar">بلايبوك لكل منصة (IG · TikTok · LinkedIn · YouTube · X)</span></li>
+          <li><span class="i18n-en">Hook & caption libraries (EN/AR)</span><span class="i18n-ar">مكتبة هوكس وكابشنز عربي وإنجليزي</span></li>
+          <li><span class="i18n-en">Competitive teardown & gap analysis</span><span class="i18n-ar">تحليل المنافسين وتحديد الفجوات</span></li>
+          <li><span class="i18n-en">Monthly performance review &amp; iteration</span><span class="i18n-ar">مراجعة شهرية للأداء وتحديثات</span></li>
+          <li><span class="i18n-en">KPI dashboard for the leadership team</span><span class="i18n-ar">داشبورد مؤشرات للإدارة</span></li>
+        </ul>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+        <div class="svc-chips">
+          <span class="svc-chip"><span class="i18n-en">Founders building a personal brand</span><span class="i18n-ar">مؤسسين بيبنوا براند شخصي</span></span>
+          <span class="svc-chip"><span class="i18n-en">Brands resetting after a quiet year</span><span class="i18n-ar">براندات بترجع بعد فترة هدوء</span></span>
+          <span class="svc-chip"><span class="i18n-en">Scale-ups entering a new market</span><span class="i18n-ar">شركات بتفتح سوق جديد</span></span>
+        </div>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+        <p class="impact-line">
+          <span class="i18n-en">Audiences that compound. Posts that earn distribution algorithmically — not by ad spend.</span>
+          <span class="i18n-ar">جمهور بيتراكم. وبوستات بتكسب التوزيع بالخوارزمية — مش بالميزانية.</span>
+        </p>
+      </div>
+      <div class="svc-ctas">
+        <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+        <a href="Home.html#cases" class="btn btn-ghost"><span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span></a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============== 02 CONTENT CREATION ============== -->
+<section style="background: var(--bg-band);">
+  <div class="container">
+    <article class="svc" id="svc-02" style="border-top-color: transparent;">
+      <header class="svc-head">
+        <span class="svc-num">02</span>
+        <h2><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></h2>
+        <p class="svc-problem">
+          <span class="i18n-en">Beautiful posts that get scrolled past. Quantity that hides the absence of voice.</span>
+          <span class="i18n-ar">بوستات شكلها حلو لكن بتتعدّى بسرعة. كتر إنتاج بيخبّي إن مفيش صوت واضح.</span>
+        </p>
+      </header>
+      <div class="svc-body">
+        <div class="svc-block">
+          <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+          <p>
+            <span class="i18n-en">A creator-led production line — script, shoot, edit, ship — calibrated to the brand's voice and the platform's tax. Mobile-first when speed wins. Full rig when story demands it. Hooks tested as ads before they become brand assets.</span>
+            <span class="i18n-ar">خط إنتاج بقيادة صنّاع المحتوى — سكريبت، تصوير، مونتاج، نشر — معاير على نبرة البراند ومتطلبات كل منصة. موبايل أولاً لما السرعة هي الأهم. ستوديو كامل لما القصة تستاهل. والهوكس بتتختبر كإعلانات قبل ما تبقى أصول للبراند.</span>
+          </p>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+          <ul class="svc-deliv-list">
+            <li><span class="i18n-en">Reels &amp; TikTok-native short form</span><span class="i18n-ar">ريلز ومحتوى تيك توك أصلي</span></li>
+            <li><span class="i18n-en">Carousels, stills, educational posts</span><span class="i18n-ar">كاروسيلز، صور، بوستات تعليمية</span></li>
+            <li><span class="i18n-en">Captions &amp; hooks in EN/AR</span><span class="i18n-ar">كابشنز وهوكس عربي وإنجليزي</span></li>
+            <li><span class="i18n-en">Podcast cuts &amp; long-form repurposing</span><span class="i18n-ar">قصاصات بودكاست وإعادة استخدام محتوى طويل</span></li>
+            <li><span class="i18n-en">Ad creative variants (3-5 per concept)</span><span class="i18n-ar">إعلانات (٣-٥ نسخ لكل فكرة)</span></li>
+            <li><span class="i18n-en">Talent direction &amp; on-camera coaching</span><span class="i18n-ar">إدارة التالنت وتدريب على الكاميرا</span></li>
+          </ul>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+          <div class="svc-chips">
+            <span class="svc-chip"><span class="i18n-en">Brands replacing freelancer chaos</span><span class="i18n-ar">براندات سايبة الفريلانسر فوضى</span></span>
+            <span class="svc-chip"><span class="i18n-en">Experts behind on publishing schedule</span><span class="i18n-ar">خبراء متأخرين في النشر</span></span>
+            <span class="svc-chip"><span class="i18n-en">Campaigns needing 30+ assets/month</span><span class="i18n-ar">حملات محتاجة ٣٠+ أصل في الشهر</span></span>
+          </div>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+          <p class="impact-line">
+            <span class="i18n-en">Creative that earns watch-time, not just impressions.</span>
+            <span class="i18n-ar">محتوى بيكسب وقت مشاهدة حقيقي، مش مجرد ظهور.</span>
+          </p>
+        </div>
+        <div class="svc-ctas">
+          <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+          <a href="Home.html#cases" class="btn btn-ghost"><span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== 03 PAID MEDIA ============== -->
+<section class="container">
+  <article class="svc" id="svc-03">
+    <header class="svc-head">
+      <span class="svc-num">03</span>
+      <h2><span class="i18n-en">Paid Ads &amp; Media Buying</span><span class="i18n-ar">الإعلانات الممولة وشراء الميديا</span></h2>
+      <p class="svc-problem">
+        <span class="i18n-en">Spend without a funnel is theatre. Reach without economics is vanity.</span>
+        <span class="i18n-ar">صرف من غير فانل هو مسرحية. ووصول من غير اقتصاد هو غرور.</span>
+      </p>
+    </header>
+    <div class="svc-body">
+      <div class="svc-block">
+        <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+        <p>
+          <span class="i18n-en">Performance media engineered around a measurable funnel: from first-touch hook to qualified lead. Continuous creative rotation, audience layering, and an attribution model your finance team will trust. Creative and media live in the same room — every test refines the next brief.</span>
+          <span class="i18n-ar">ميديا أداء مبنية على فانل بأرقام واضحة: من أول هوك للعميل المؤهّل. تجديد إعلانات مستمر، طبقات جمهور، ونموذج إسناد فريق المالية هيوافق عليه. الإبداع والميديا في أوضة واحدة — كل اختبار بيحسّن البريف اللي بعده.</span>
+        </p>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+        <ul class="svc-deliv-list">
+          <li><span class="i18n-en">Funnel architecture (TOFU/MOFU/BOFU)</span><span class="i18n-ar">معمار فانل (وعي · اهتمام · تحويل)</span></li>
+          <li><span class="i18n-en">Creative testing matrix</span><span class="i18n-ar">مصفوفة اختبار إعلانات</span></li>
+          <li><span class="i18n-en">Pixel, events &amp; conversion API setup</span><span class="i18n-ar">بكسل وأحداث وإعداد Conversion API</span></li>
+          <li><span class="i18n-en">Weekly LTV / CAC reporting</span><span class="i18n-ar">تقرير أسبوعي LTV / CAC</span></li>
+          <li><span class="i18n-en">Spend optimisation &amp; budget pacing</span><span class="i18n-ar">تحسين الإنفاق وتوزيع الميزانية</span></li>
+          <li><span class="i18n-en">Meta · Google · TikTok · YouTube · LinkedIn</span><span class="i18n-ar">ميتا · جوجل · تيك توك · يوتيوب · لينكد إن</span></li>
+        </ul>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+        <div class="svc-chips">
+          <span class="svc-chip"><span class="i18n-en">D2C with positive unit economics</span><span class="i18n-ar">D2C باقتصاد وحدة موجب</span></span>
+          <span class="svc-chip"><span class="i18n-en">Service businesses with a real funnel</span><span class="i18n-ar">شركات خدمات بفانل حقيقي</span></span>
+          <span class="svc-chip"><span class="i18n-en">Ed-tech with a course catalogue</span><span class="i18n-ar">منصات تعليمية بكتالوج كورسات</span></span>
+        </div>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+        <p class="impact-line">
+          <span class="i18n-en">A return on ad spend you can defend in a board meeting.</span>
+          <span class="i18n-ar">عائد على الإنفاق الإعلاني تقدر تدافع عنه في اجتماع مجلس الإدارة.</span>
+        </p>
+      </div>
+      <div class="svc-ctas">
+        <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+        <a href="Home.html#cases" class="btn btn-ghost"><span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span></a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============== 04 PERSONAL BRANDING ============== -->
+<section style="background: var(--bg-band);">
+  <div class="container">
+    <article class="svc" id="svc-04" style="border-top-color: transparent;">
+      <header class="svc-head">
+        <span class="svc-num">04</span>
+        <h2><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></h2>
+        <p class="svc-problem">
+          <span class="i18n-en">Expertise without a platform is invisible. Visibility without strategy is risky.</span>
+          <span class="i18n-ar">الخبرة من غير منصة بتفضل خفية. والظهور من غير استراتيجية خطر.</span>
+        </p>
+      </header>
+      <div class="svc-body">
+        <div class="svc-block">
+          <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+          <p>
+            <span class="i18n-en">We compose your reference position — the niche only you can own — then build a content archive that converts strangers into believers. Identity, voice, content pipelines, opportunity flow. This is where Optiiimum was born: we built one of MENA's largest personal brands from zero.</span>
+            <span class="i18n-ar">بنركّب مكانتك المرجعية — التخصص اللي مفيش غيرك يقدر يمتلكه — وبعدين بنبني أرشيف محتوى بيحوّل الغرباء لمؤمنين بيك. هوية، صوت، خطوط إنتاج، تدفق فرص. ده المكان اللي اتولد منه أوبتيموم: إحنا بنينا واحد من أكبر البراندات الشخصية في المنطقة من الصفر.</span>
+          </p>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+          <ul class="svc-deliv-list">
+            <li><span class="i18n-en">Positioning &amp; narrative document</span><span class="i18n-ar">وثيقة مكانة وسرد</span></li>
+            <li><span class="i18n-en">Content pillars &amp; signature topics</span><span class="i18n-ar">أعمدة محتوى ومواضيع توقيعية</span></li>
+            <li><span class="i18n-en">Visual identity &amp; on-camera direction</span><span class="i18n-ar">هوية بصرية وتوجيه على الكاميرا</span></li>
+            <li><span class="i18n-en">12-week launch sequence</span><span class="i18n-ar">سلسلة إطلاق ١٢ أسبوع</span></li>
+            <li><span class="i18n-en">Founder coaching cadence</span><span class="i18n-ar">جلسات كوتشينج للمؤسس</span></li>
+            <li><span class="i18n-en">Inbound opportunity tracking</span><span class="i18n-ar">متابعة الفرص الواردة</span></li>
+          </ul>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+          <div class="svc-chips">
+            <span class="svc-chip"><span class="i18n-en">Founders going public</span><span class="i18n-ar">مؤسسين بيظهروا للعلن</span></span>
+            <span class="svc-chip"><span class="i18n-en">Doctors &amp; clinicians</span><span class="i18n-ar">أطباء وممارسين صحيين</span></span>
+            <span class="svc-chip"><span class="i18n-en">Lawyers &amp; consultants</span><span class="i18n-ar">محامين ومستشارين</span></span>
+            <span class="svc-chip"><span class="i18n-en">Educators &amp; authors</span><span class="i18n-ar">معلمين ومؤلفين</span></span>
+            <span class="svc-chip"><span class="i18n-en">Executives &amp; CEOs</span><span class="i18n-ar">تنفيذيين ورؤساء شركات</span></span>
+          </div>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+          <p class="impact-line">
+            <span class="i18n-en">From specialist no one Googles to category authority with inbound demand.</span>
+            <span class="i18n-ar">من متخصص محدش بيدوّر عليه لمرجع بيوصله طلب من غير ما يدوّر.</span>
+          </p>
+        </div>
+        <div class="svc-ctas">
+          <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+          <a href="Home.html#ambassadors" class="btn btn-ghost"><span class="i18n-en">Meet the ambassadors</span><span class="i18n-ar">قابل سفراء أوبتيموم</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== 05 VIDEO PRODUCTION ============== -->
+<section class="container">
+  <article class="svc" id="svc-05">
+    <header class="svc-head">
+      <span class="svc-num">05</span>
+      <h2><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></h2>
+      <p class="svc-problem">
+        <span class="i18n-en">Production quality is a form of respect. Bad video tells viewers their time is cheap.</span>
+        <span class="i18n-ar">جودة الإنتاج شكل من أشكال احترام الجمهور. والفيديو الضعيف بيقول لهم إن وقتهم رخيص.</span>
+      </p>
+    </header>
+    <div class="svc-body">
+      <div class="svc-block">
+        <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+        <p>
+          <span class="i18n-en">Cinematic standards on a phone or full set, depending on what the story needs. In-house DOPs, editors, and motion designers run a single quality bar across formats — from reels to long-form to ads.</span>
+          <span class="i18n-ar">جودة سينمائية على الموبايل أو ستوديو كامل، حسب احتياج القصة. فريق داخلي من DOPs ومونتيرز ومصممي موشن بيشتغل على نفس مستوى الجودة عبر كل الفورمات — من الريلز للفيديو الطويل للإعلانات.</span>
+        </p>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+        <ul class="svc-deliv-list">
+          <li><span class="i18n-en">Concept boards &amp; scripts</span><span class="i18n-ar">بوردات أفكار وسكريبتس</span></li>
+          <li><span class="i18n-en">On-location &amp; studio shooting</span><span class="i18n-ar">تصوير ميداني واستوديو</span></li>
+          <li><span class="i18n-en">Post-production &amp; colour</span><span class="i18n-ar">ما بعد الإنتاج وكلر</span></li>
+          <li><span class="i18n-en">Motion design &amp; subtitles (EN/AR)</span><span class="i18n-ar">موشن وكابشنز (عربي/إنجليزي)</span></li>
+          <li><span class="i18n-en">Multi-aspect deliverables (9:16 · 1:1 · 16:9)</span><span class="i18n-ar">تسليم بأكتر من أبعاد (٩:١٦ · ١:١ · ١٦:٩)</span></li>
+          <li><span class="i18n-en">Talent casting &amp; direction</span><span class="i18n-ar">اختيار التالنت والتوجيه</span></li>
+        </ul>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+        <div class="svc-chips">
+          <span class="svc-chip"><span class="i18n-en">Founders launching a personal brand</span><span class="i18n-ar">مؤسسين بيطلقوا براند شخصي</span></span>
+          <span class="svc-chip"><span class="i18n-en">Campaigns needing hero film</span><span class="i18n-ar">حملات محتاجة هيرو فيلم</span></span>
+          <span class="svc-chip"><span class="i18n-en">Online courses &amp; teaching content</span><span class="i18n-ar">كورسات أونلاين ومحتوى تعليمي</span></span>
+        </div>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+        <p class="impact-line">
+          <span class="i18n-en">Stories worth watching to the end — and re-watching.</span>
+          <span class="i18n-ar">قصص تستاهل الكمال للآخر — وإعادة المشاهدة.</span>
+        </p>
+      </div>
+      <div class="svc-ctas">
+        <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+        <a href="Home.html#cases" class="btn btn-ghost"><span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span></a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============== 06 MODERATION ============== -->
+<section style="background: var(--bg-band);">
+  <div class="container">
+    <article class="svc" id="svc-06" style="border-top-color: transparent;">
+      <header class="svc-head">
+        <span class="svc-num">06</span>
+        <h2><span class="i18n-en">Moderation</span><span class="i18n-ar">إدارة المجتمع</span></h2>
+        <p class="svc-problem">
+          <span class="i18n-en">Comments either build community or quietly destroy it. Most agencies leave that surface unmanned.</span>
+          <span class="i18n-ar">الكومنتس إما بتبني مجتمع أو بتهدّه في صمت. ومعظم الوكالات بتسيب السطح ده من غير حد.</span>
+        </p>
+      </header>
+      <div class="svc-body">
+        <div class="svc-block">
+          <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+          <p>
+            <span class="i18n-en">A trained moderation team applying your brand voice in DMs, comments, and replies — 24/7, EN and AR — with escalation tiers, sentiment tracking, and a weekly community digest for the executive team.</span>
+            <span class="i18n-ar">فريق مدرّب بيطبّق نبرة البراند في الرسائل، الكومنتس، والردود — على مدار الساعة، عربي وإنجليزي — بمستويات تصعيد، تتبع للمشاعر، وتقرير أسبوعي للمجتمع للإدارة.</span>
+          </p>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+          <ul class="svc-deliv-list">
+            <li><span class="i18n-en">Tone-of-voice playbook</span><span class="i18n-ar">دليل نبرة البراند</span></li>
+            <li><span class="i18n-en">Canned-response library</span><span class="i18n-ar">مكتبة ردود جاهزة</span></li>
+            <li><span class="i18n-en">Escalation matrix &amp; SLAs</span><span class="i18n-ar">مصفوفة تصعيد و SLAs</span></li>
+            <li><span class="i18n-en">Bilingual coverage (EN/AR)</span><span class="i18n-ar">تغطية ثنائية اللغة (عربي/إنجليزي)</span></li>
+            <li><span class="i18n-en">Weekly community report</span><span class="i18n-ar">تقرير أسبوعي للمجتمع</span></li>
+            <li><span class="i18n-en">Crisis &amp; reputation protocols</span><span class="i18n-ar">بروتوكولات أزمات وسمعة</span></li>
+          </ul>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+          <div class="svc-chips">
+            <span class="svc-chip"><span class="i18n-en">High-engagement brands</span><span class="i18n-ar">براندات عليها تفاعل كبير</span></span>
+            <span class="svc-chip"><span class="i18n-en">Clinics &amp; courses with prospect questions</span><span class="i18n-ar">عيادات وكورسات بأسئلة عملاء</span></span>
+            <span class="svc-chip"><span class="i18n-en">Founders being scrutinised publicly</span><span class="i18n-ar">مؤسسين تحت ضوء عام</span></span>
+          </div>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+          <p class="impact-line">
+            <span class="i18n-en">A community that compounds, not corrodes.</span>
+            <span class="i18n-ar">مجتمع بيتراكم، مش بيتآكل.</span>
+          </p>
+        </div>
+        <div class="svc-ctas">
+          <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+          <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost"><span class="i18n-en">WhatsApp us</span><span class="i18n-ar">واتساب</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== 07 CAMPAIGN MANAGEMENT ============== -->
+<section class="container">
+  <article class="svc" id="svc-07">
+    <header class="svc-head">
+      <span class="svc-num">07</span>
+      <h2><span class="i18n-en">Campaign Management</span><span class="i18n-ar">إدارة الحملات</span></h2>
+      <p class="svc-problem">
+        <span class="i18n-en">Multi-channel campaigns fall apart in the seams. Most fail not in concept but in coordination.</span>
+        <span class="i18n-ar">الحملات متعددة القنوات بتتفكك في الوصلات. ومعظمها بيفشل مش في الفكرة لكن في التنسيق.</span>
+      </p>
+    </header>
+    <div class="svc-body">
+      <div class="svc-block">
+        <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+        <p>
+          <span class="i18n-en">End-to-end campaign orchestration: brief → concept → production → distribution → measurement → debrief. A single point of accountability across every channel, every asset, every deadline.</span>
+          <span class="i18n-ar">تنظيم كامل للحملة: بريف ← فكرة ← إنتاج ← توزيع ← قياس ← دي بريف. شخص واحد مسؤول عبر كل القنوات، كل الأصول، وكل المواعيد النهائية.</span>
+        </p>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+        <ul class="svc-deliv-list">
+          <li><span class="i18n-en">Campaign brief &amp; timeline</span><span class="i18n-ar">بريف الحملة وجدولها</span></li>
+          <li><span class="i18n-en">Integrated creative across channels</span><span class="i18n-ar">إبداع متكامل عبر القنوات</span></li>
+          <li><span class="i18n-en">Channel-by-channel rollout plan</span><span class="i18n-ar">خطة تنفيذ قناة بقناة</span></li>
+          <li><span class="i18n-en">Live war room during launch</span><span class="i18n-ar">غرفة عمليات حية وقت الإطلاق</span></li>
+          <li><span class="i18n-en">Influencer / PR coordination</span><span class="i18n-ar">تنسيق مع المؤثرين والـ PR</span></li>
+          <li><span class="i18n-en">Full debrief &amp; playbook</span><span class="i18n-ar">دي بريف كامل وبلايبوك</span></li>
+        </ul>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+        <div class="svc-chips">
+          <span class="svc-chip"><span class="i18n-en">Product launches</span><span class="i18n-ar">إطلاق منتجات</span></span>
+          <span class="svc-chip"><span class="i18n-en">Seasonal moments</span><span class="i18n-ar">لحظات موسمية</span></span>
+          <span class="svc-chip"><span class="i18n-en">PR-amplified pushes</span><span class="i18n-ar">حملات بدعم PR</span></span>
+          <span class="svc-chip"><span class="i18n-en">Rebrands needing air cover</span><span class="i18n-ar">إعادة هوية محتاجة تغطية إعلامية</span></span>
+        </div>
+      </div>
+      <div class="svc-block">
+        <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+        <p class="impact-line">
+          <span class="i18n-en">One cohesive moment instead of fragmented activity.</span>
+          <span class="i18n-ar">لحظة واحدة متماسكة بدل نشاط مبعثر.</span>
+        </p>
+      </div>
+      <div class="svc-ctas">
+        <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+        <a href="Home.html#cases" class="btn btn-ghost"><span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span></a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============== 08 GROWTH SYSTEMS ============== -->
+<section style="background: var(--bg-band);">
+  <div class="container">
+    <article class="svc" id="svc-08" style="border-top-color: transparent;">
+      <header class="svc-head">
+        <span class="svc-num">08</span>
+        <h2><span class="i18n-en">Digital Growth Systems</span><span class="i18n-ar">أنظمة النمو الرقمي</span></h2>
+        <p class="svc-problem">
+          <span class="i18n-en">Most agencies sell hours. Few sell systems. The bill keeps coming, the leverage doesn't.</span>
+          <span class="i18n-ar">معظم الوكالات بتبيع ساعات. القليل بيبيع أنظمة. الفاتورة بتيجي، والنفع ما بييجيش.</span>
+        </p>
+      </header>
+      <div class="svc-body">
+        <div class="svc-block">
+          <h4><span class="i18n-en">Our approach</span><span class="i18n-ar">منهجنا</span></h4>
+          <p>
+            <span class="i18n-en">We build the operating system that runs after we leave: dashboards, SOPs, content infrastructure, paid playbooks, and the governance that keeps it running. Optionally, a transition plan to bring it in-house — with team training and a 90-day handover.</span>
+            <span class="i18n-ar">بنبني نظام التشغيل اللي بيكمّل شغّال من بعدنا: داشبوردز، SOPs، بنية تحتية للمحتوى، بلايبوكاتس مدفوعة، والحوكمة اللي بتخلّيه شغّال. واختيارياً، خطة تسليم للفريق الداخلي — مع تدريب وحقبة تسليم ٩٠ يوم.</span>
+          </p>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">What we deliver</span><span class="i18n-ar">إيه اللي بنسلّمه</span></h4>
+          <ul class="svc-deliv-list">
+            <li><span class="i18n-en">Growth operating manual</span><span class="i18n-ar">دليل تشغيل النمو</span></li>
+            <li><span class="i18n-en">Content infrastructure (templates, banks, workflows)</span><span class="i18n-ar">بنية محتوى (تمبليتس، مكاتب، ووركفلوز)</span></li>
+            <li><span class="i18n-en">Paid playbooks &amp; pixel architecture</span><span class="i18n-ar">بلايبوكاتس مدفوعة ومعمار البكسل</span></li>
+            <li><span class="i18n-en">KPI dashboards &amp; reporting cadence</span><span class="i18n-ar">داشبوردز مؤشرات وإيقاع تقارير</span></li>
+            <li><span class="i18n-en">Team training &amp; certification</span><span class="i18n-ar">تدريب الفريق وشهادات</span></li>
+            <li><span class="i18n-en">90-day in-housing handover</span><span class="i18n-ar">تسليم داخلي ٩٠ يوم</span></li>
+          </ul>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Best for</span><span class="i18n-ar">الأنسب لمين</span></h4>
+          <div class="svc-chips">
+            <span class="svc-chip"><span class="i18n-en">Brands committed to in-housing</span><span class="i18n-ar">براندات ناوية تشتغل داخلياً</span></span>
+            <span class="svc-chip"><span class="i18n-en">Founders wanting agency quality without dependence</span><span class="i18n-ar">مؤسسين عايزين جودة وكالة من غير اعتمادية</span></span>
+            <span class="svc-chip"><span class="i18n-en">PE-backed teams needing rigour</span><span class="i18n-ar">فرق مدعومة بصناديق استثمار محتاجة انضباط</span></span>
+          </div>
+        </div>
+        <div class="svc-block">
+          <h4><span class="i18n-en">Expected impact</span><span class="i18n-ar">النتيجة المتوقعة</span></h4>
+          <p class="impact-line">
+            <span class="i18n-en">Growth that survives the agency relationship.</span>
+            <span class="i18n-ar">نمو بيكمّل بعد ما تخلص علاقة الوكالة.</span>
+          </p>
+        </div>
+        <div class="svc-ctas">
+          <a href="#contact" class="btn btn-primary"><span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span> <span class="arrow">→</span></a>
+          <a href="About.html" class="btn btn-ghost"><span class="i18n-en">How we operate</span><span class="i18n-ar">إزاي بنشتغل</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <span class="eyebrow" style="color:rgba(245,242,236,.55);"><span class="i18n-en">Start a project</span><span class="i18n-ar">ابدأ مشروع</span></span>
+    <h2 style="margin-top:16px;">
+      <span class="i18n-en">Tell us where you're stuck.</span>
+      <span class="i18n-ar">قول لنا فين بتقف.</span>
+    </h2>
+    <p class="lede">
+      <span class="i18n-en">We'll respond within one business day with a clear next step — or honestly tell you we're not the right fit. No deck, no salesman handoff.</span>
+      <span class="i18n-ar">هنرد خلال يوم عمل بخطوة واضحة — أو بصراحة هنقول لك إحنا مش الأنسب لك. مفيش بريزنتيشن، ومفيش تحويل لفريق مبيعات.</span>
+    </p>
+    <div class="final-cta-btns">
+      <a href="#" class="btn btn-primary">
+        <span class="i18n-en">Book a strategy call</span><span class="i18n-ar">احجز مكالمة استراتيجية</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost">
+        <span class="i18n-en">WhatsApp us</span><span class="i18n-ar">واتساب</span>
+      </a>
+      <a href="Home.html#cases" class="btn btn-ghost">
+        <span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="Home.html#cases"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Home.html#team"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Home.html#blog"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="#svc-01"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="#svc-02"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="#svc-03"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="#svc-04"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="#svc-05"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Home.html#courses"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+          <li><a href="https://www.instagram.com/optiiimumsolutions" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/104597175/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@optimumsolutions851" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@optiiimumsolutionsegy" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/Optiiimum" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://x.com/optiiimum_sol" target="_blank" rel="noopener">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="needs-final">
+        <b><span class="i18n-en">⚠ Needs final links</span><span class="i18n-ar">⚠ تحتاج الروابط النهائية</span></b>
+        <div style="margin-top:6px;">
+          <span class="i18n-en">Public email address · Calendly / booking link · Privacy &amp; Terms pages — to be supplied by the team.</span>
+          <span class="i18n-ar">إيميل عام · رابط حجز المكالمة · صفحات الخصوصية والشروط — في انتظار البيانات النهائية من الفريق.</span>
+        </div>
+      </div>
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute('lang') || 'en';
+    const next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    const t = localStorage.getItem('opt_theme'); if (t) applyTheme(t);
+    const l = localStorage.getItem('opt_lang'); if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Careers — Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Join the team building digital growth systems at Optiiimum — content, strategy, media buying, design, video, moderation, and operations.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  .careers-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(96px, 14vw, 160px) 0 clamp(40px, 6vw, 72px);
+  }
+  .careers-hero .eyebrow { display: inline-block; }
+  .careers-hero h1 {
+    max-width: 20ch;
+    margin-top: 18px;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  .careers-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .careers-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .careers-hero .lede { max-width: 56ch; margin-top: 22px; }
+  .careers-hero-orb {
+    position: absolute; pointer-events: none; z-index: -1;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -18vw; top: -16vw;
+    background: conic-gradient(from 220deg at 50% 50%,
+      var(--grad-1), var(--grad-6), var(--grad-5),
+      var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .32; border-radius: 50%;
+  }
+
+  /* Two-column why-join + culture strip */
+  .why-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: clamp(28px, 4vw, 56px); align-items: start;
+  }
+  @media (max-width: 920px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-list { display: grid; gap: 16px; margin-top: 28px; }
+  .why-item {
+    border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 20px 22px; background: var(--bg-band);
+  }
+  .why-item b {
+    display: block; font-family: var(--font-serif); font-size: 22px;
+    line-height: 1.15; letter-spacing: -.01em;
+  }
+  html[lang="ar"] .why-item b { font-family: var(--font-ar); font-weight: 700; font-style: normal; }
+  .why-item p { color: var(--ink-2); margin-top: 6px; font-size: 15px; line-height: 1.55; }
+
+  .culture-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 180px;
+    gap: 12px;
+  }
+  .culture-bento figure {
+    margin: 0; border-radius: var(--r-lg); overflow: hidden;
+    border: 1px solid var(--line); position: relative;
+    background: var(--bg-band);
+  }
+  .culture-bento figure img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    display: block;
+  }
+  .culture-bento .wide { grid-column: 1 / -1; }
+  .culture-bento .tall { grid-row: span 2; }
+  .culture-bento figcaption {
+    position: absolute; left: 12px; right: 12px; bottom: 12px;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: #fff;
+    text-shadow: 0 1px 6px rgba(0,0,0,.7);
+  }
+  html[lang="ar"] .culture-bento figcaption {
+    font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px;
+  }
+  @media (max-width: 720px) {
+    .culture-bento { grid-auto-rows: 140px; }
+  }
+
+  /* Roles grid */
+  .roles-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px; margin-top: 32px;
+  }
+  .role-card {
+    border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 22px; background: var(--bg-band);
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color .25s, transform .25s;
+  }
+  .role-card:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+  .role-card .role-cat {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+  }
+  html[lang="ar"] .role-card .role-cat {
+    font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px;
+  }
+  .role-card b {
+    font-family: var(--font-serif); font-size: 22px; line-height: 1.15;
+    letter-spacing: -.01em;
+  }
+  html[lang="ar"] .role-card b { font-family: var(--font-ar); font-weight: 700; font-style: normal; }
+  .role-card p { color: var(--ink-2); font-size: 14px; line-height: 1.55; }
+  .role-card .role-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 11px;
+    text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3);
+  }
+  html[lang="ar"] .role-card .role-foot {
+    font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px;
+  }
+
+  /* Application form */
+  .apply-section {
+    padding: clamp(56px, 8vw, 96px) 0;
+  }
+  .apply-card {
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: clamp(28px, 5vw, 56px);
+    background: var(--bg-band);
+    position: relative; overflow: hidden;
+  }
+  .apply-card::before {
+    content: ""; position: absolute; inset: -2px;
+    background: linear-gradient(135deg,
+      rgba(229,85,200,.35), rgba(0,254,255,.25), rgba(255,150,109,.30));
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(40px); opacity: .5;
+  }
+  .form-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 18px 20px; margin-top: 32px;
+  }
+  @media (max-width: 720px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field.full { grid-column: 1 / -1; }
+  .form-field label {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .form-field label {
+    font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 14px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    font: inherit;
+    color: var(--ink);
+    font-family: var(--font-sans);
+    transition: border-color .2s;
+  }
+  html[lang="ar"] .form-field input,
+  html[lang="ar"] .form-field select,
+  html[lang="ar"] .form-field textarea { font-family: var(--font-ar); }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none; border-color: var(--ink-2);
+  }
+  .form-field textarea { resize: vertical; min-height: 110px; }
+  .form-foot {
+    margin-top: 32px;
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .form-note {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .form-note {
+    font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px;
+  }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="Careers.html" aria-current="page"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="Careers.html" aria-current="page"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="careers-hero">
+  <div class="careers-hero-orb" aria-hidden="true"></div>
+  <div class="container">
+    <span class="eyebrow"><span class="i18n-en">Careers at Optiiimum</span><span class="i18n-ar">الوظائف في Optiiimum</span></span>
+    <h1>
+      <span class="i18n-en">Join the team building <span class="alt">digital growth systems.</span></span>
+      <span class="i18n-ar">انضم للفريق اللي بيبني <span class="alt">أنظمة نمو رقمية.</span></span>
+    </h1>
+    <p class="lede">
+      <span class="i18n-en">We've been engineering brands, content, and performance media since 2021 — across Dubai, Cairo, and Alexandria. If you build systems that ship and care about the outcome, we want to meet you.</span>
+      <span class="i18n-ar">من 2021 وإحنا بنبني براندات، محتوى، وإعلانات أداء — بين دبي، القاهرة، والإسكندرية. لو بتبني أنظمة بتشتغل وبتهتم بالنتيجة، يبقى عايزين نتعرف عليك.</span>
+    </p>
+    <div class="hero-ctas" style="margin-top:28px;">
+      <a href="#apply" class="btn btn-primary">
+        <span class="i18n-en">Apply now</span><span class="i18n-ar">قدّم دلوقتي</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="#roles" class="btn btn-ghost">
+        <span class="i18n-en">See roles</span><span class="i18n-ar">شوف التخصصات</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY JOIN ============ -->
+<section class="section">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="eyebrow"><span class="i18n-en">Why Optiiimum</span><span class="i18n-ar">ليه Optiiimum</span></span>
+        <h2 style="margin-top:8px;">
+          <span class="i18n-en">A team that <span class="opt-grad-text">builds, ships,</span> and stays.</span>
+          <span class="i18n-ar">فريق <span class="opt-grad-text">بيبني، بيطلق،</span> وبيكمّل.</span>
+        </h2>
+        <div class="why-list">
+          <div class="why-item">
+            <b><span class="i18n-en">Real ownership, real outputs.</span><span class="i18n-ar">ملكية حقيقية، شغل بيوصل.</span></b>
+            <p>
+              <span class="i18n-en">Every role has its name on the work. We don't hide behind agency layers — strategists, creators, editors, and media buyers all sign their results.</span>
+              <span class="i18n-ar">كل دور اسمه ظاهر على الشغل. مش بنختبي ورا طبقات الإدارة — كل واحد بيوقّع على نتيجته.</span>
+            </p>
+          </div>
+          <div class="why-item">
+            <b><span class="i18n-en">Cross-team alignment, by design.</span><span class="i18n-ar">تنسيق بين الأقسام، مش صدفة.</span></b>
+            <p>
+              <span class="i18n-en">Content, design, video, paid, moderation, and ops actually talk. Quarterly planning, weekly reviews, and shared dashboards keep everyone honest.</span>
+              <span class="i18n-ar">المحتوى، التصميم، الفيديو، الإعلانات، الموديريشن، والتشغيل بيتكلموا فعلاً. تخطيط ربعي، مراجعات أسبوعية، وداشبوردز مشتركة.</span>
+            </p>
+          </div>
+          <div class="why-item">
+            <b><span class="i18n-en">Growth that's earned, not promised.</span><span class="i18n-ar">نمو مكسوب، مش وعود.</span></b>
+            <p>
+              <span class="i18n-en">Career paths are built on shipped systems and documented case studies — not on time-served. If you ship, you grow.</span>
+              <span class="i18n-ar">مسار الترقية مبني على الأنظمة اللي بتطلقها ودراسات الحالة الموثقة — مش على الأقدمية.</span>
+            </p>
+          </div>
+          <div class="why-item">
+            <b><span class="i18n-en">Hybrid by default. Human by choice.</span><span class="i18n-ar">هايبرد افتراضي. بشري باختيارنا.</span></b>
+            <p>
+              <span class="i18n-en">Studios in Cairo, Alexandria, and Dubai. Async-first work where it makes sense, but we still gather, plan, and create together.</span>
+              <span class="i18n-ar">استوديوهات في القاهرة، الإسكندرية، ودبي. شغل أونلاين أول، بس بنتقابل ونخطط ونبتكر مع بعض.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="culture-bento" aria-label="Inside Optiiimum">
+        <figure class="tall">
+          <img src="assets/Culture/culture-01.png" alt="Optiiimum team collaborating around content planning" loading="lazy">
+          <figcaption><span class="i18n-en">Where ideas become systems</span><span class="i18n-ar">حيث تتحوّل الأفكار إلى أنظمة</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/Culture/culture-05.png" alt="Campaign review session" loading="lazy">
+          <figcaption><span class="i18n-en">Strategy in motion</span><span class="i18n-ar">استراتيجية بتتحرك</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/Culture/culture-12.png" alt="Optiiimum team during launch" loading="lazy">
+          <figcaption><span class="i18n-en">Launch day</span><span class="i18n-ar">يوم الإطلاق</span></figcaption>
+        </figure>
+        <figure class="wide">
+          <img src="assets/Culture/culture-09.png" alt="Full studio strategy session" loading="lazy">
+          <figcaption><span class="i18n-en">Built by real teams</span><span class="i18n-ar">شغل مبني بفريق حقيقي</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POTENTIAL ROLES ============ -->
+<section class="section band" id="roles">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow"><span class="i18n-en">Potential roles we hire for</span><span class="i18n-ar">تخصصات بنحتاجها في مراحل مختلفة</span></span>
+        <h2 style="margin-top:8px;">
+          <span class="i18n-en">Across every department, <span class="opt-grad-text">in-house and named.</span></span>
+          <span class="i18n-ar">في كل الأقسام، <span class="opt-grad-text">داخلي وبأسماء معروفة.</span></span>
+        </h2>
+      </div>
+      <p class="right">
+        <span class="i18n-en">These are the disciplines we recruit for as the team grows. Send your application even if your exact title isn't listed — fit comes first.</span>
+        <span class="i18n-ar">دي التخصصات اللي بنوظف فيها مع نمو الفريق. ابعت تقديمك حتى لو مسماك مش مكتوب — الشخص قبل المسمى.</span>
+      </p>
+    </div>
+
+    <div class="roles-grid">
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Content & Strategy</span><span class="i18n-ar">المحتوى والاستراتيجية</span></span>
+        <b><span class="i18n-en">Content Strategist</span><span class="i18n-ar">استراتيجي محتوى</span></b>
+        <p><span class="i18n-en">Turn brand goals into editorial systems, content calendars, and message architectures that scale.</span><span class="i18n-ar">حوّل أهداف البراند لأنظمة تحريرية وخطط محتوى ورسائل بتتوسع.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · Hybrid</span><span class="i18n-ar">القاهرة · هايبرد</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Content & Strategy</span><span class="i18n-ar">المحتوى والاستراتيجية</span></span>
+        <b><span class="i18n-en">Senior Copywriter (AR/EN)</span><span class="i18n-ar">كاتب محتوى أول (عربي/إنجليزي)</span></b>
+        <p><span class="i18n-en">Write hooks, scripts, captions, and long-form for founders, doctors, and consumer brands. Bilingual is a must.</span><span class="i18n-ar">اكتب هوكس، سكربتات، كابشنز، ومحتوى طويل لمؤسسين، أطباء، وبراندات استهلاكية.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo / Remote</span><span class="i18n-ar">القاهرة / ريموت</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Creative & Design</span><span class="i18n-ar">الإبداع والتصميم</span></span>
+        <b><span class="i18n-en">Art Director</span><span class="i18n-ar">مدير فني</span></b>
+        <p><span class="i18n-en">Own the visual system across personal brands, campaigns, and product launches. Lead designers and editors on shoot days.</span><span class="i18n-ar">قود النظام البصري في البراندات الشخصية والحملات والإطلاقات. اقود فريق التصميم في التصوير.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · On-site</span><span class="i18n-ar">القاهرة · حضوري</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Creative & Design</span><span class="i18n-ar">الإبداع والتصميم</span></span>
+        <b><span class="i18n-en">Brand Designer</span><span class="i18n-ar">مصمم براند</span></b>
+        <p><span class="i18n-en">Build visual identities, social systems, and motion-ready brand kits with strong typography and grid sense.</span><span class="i18n-ar">صمم هويات بصرية، أنظمة سوشيال، وبراند كيتس جاهزة للموشن.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · Hybrid</span><span class="i18n-ar">القاهرة · هايبرد</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Production & Editing</span><span class="i18n-ar">الإنتاج والمونتاج</span></span>
+        <b><span class="i18n-en">Senior Video Editor</span><span class="i18n-ar">مونتير أول</span></b>
+        <p><span class="i18n-en">Cut short-form for personal brands, founder content, and case-study reels. Strong story sense and platform fluency required.</span><span class="i18n-ar">قص فيديوهات قصيرة لبراندات شخصية ومحتوى مؤسسين وريلز دراسات الحالة.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Alexandria · On-site</span><span class="i18n-ar">الإسكندرية · حضوري</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Production & Editing</span><span class="i18n-ar">الإنتاج والمونتاج</span></span>
+        <b><span class="i18n-en">Videographer / DOP</span><span class="i18n-ar">مصور / مدير تصوير</span></b>
+        <p><span class="i18n-en">Shoot founder content, doctor interviews, and on-location brand stories. Lighting + audio + colour fluency required.</span><span class="i18n-ar">صور محتوى المؤسسين، مقابلات الأطباء، وقصص البراندات في المواقع.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · On-site</span><span class="i18n-ar">القاهرة · حضوري</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Media Buying</span><span class="i18n-ar">شراء الإعلانات</span></span>
+        <b><span class="i18n-en">Performance Media Buyer</span><span class="i18n-ar">مشتري إعلانات أداء</span></b>
+        <p><span class="i18n-en">Run Meta, Google, TikTok, and YouTube campaigns end-to-end. ROAS, CPL, attribution, and creative testing in your sleep.</span><span class="i18n-ar">شغل حملات ميتا، جوجل، تيك توك، ويوتيوب من البداية للنهاية.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · Hybrid</span><span class="i18n-ar">القاهرة · هايبرد</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Moderation</span><span class="i18n-ar">المجتمع</span></span>
+        <b><span class="i18n-en">Community Manager</span><span class="i18n-ar">مدير مجتمع</span></b>
+        <p><span class="i18n-en">Run DMs, comments, and inbound for personal brands and clinics. Speed, empathy, and tone-of-voice discipline.</span><span class="i18n-ar">شغل الرسائل، التعليقات، والاستفسارات لبراندات شخصية وعيادات.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · Remote OK</span><span class="i18n-ar">القاهرة · ريموت</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Accounts</span><span class="i18n-ar">إدارة الحسابات</span></span>
+        <b><span class="i18n-en">Account Manager</span><span class="i18n-ar">مدير حسابات</span></b>
+        <p><span class="i18n-en">Own the client relationship. Translate brand goals into briefs, timelines, and outcomes. Read the room.</span><span class="i18n-ar">إدارة العلاقة مع العميل. حوّل أهداف البراند لبريفات وجداول ونتائج.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · Hybrid</span><span class="i18n-ar">القاهرة · هايبرد</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Operations</span><span class="i18n-ar">العمليات</span></span>
+        <b><span class="i18n-en">Operations Lead</span><span class="i18n-ar">قائد العمليات</span></b>
+        <p><span class="i18n-en">Run the agency engine — workflows, dashboards, vendor relationships, hiring ops. Quietly make everything ship faster.</span><span class="i18n-ar">شغل ماكينة الوكالة — أنظمة عمل، داشبوردز، علاقات موردين، عمليات توظيف.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · On-site</span><span class="i18n-ar">القاهرة · حضوري</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Internships</span><span class="i18n-ar">تدريب</span></span>
+        <b><span class="i18n-en">Growth Internship</span><span class="i18n-ar">تدريب نمو</span></b>
+        <p><span class="i18n-en">3-month paid program rotating across content, design, and media buying. Top performers join full-time.</span><span class="i18n-ar">برنامج مدفوع 3 شهور بين المحتوى والتصميم وشراء الإعلانات. اللي بيبدع بنوظفه.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Cairo · On-site</span><span class="i18n-ar">القاهرة · حضوري</span></span></div>
+      </article>
+
+      <article class="role-card">
+        <span class="role-cat"><span class="i18n-en">Open application</span><span class="i18n-ar">تقديم مفتوح</span></span>
+        <b><span class="i18n-en">Don't see your role?</span><span class="i18n-ar">مالقتش تخصصك؟</span></b>
+        <p><span class="i18n-en">If you build digital growth systems and your work survives a portfolio audit, we want to hear from you.</span><span class="i18n-ar">لو بتبني أنظمة نمو رقمية وشغلك بيدافع عن نفسه في أي أوديت، ابعتلنا.</span></p>
+        <div class="role-foot"><span><span class="i18n-en">Send anyway</span><span class="i18n-ar">ابعت برضه</span></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLICATION FORM ============ -->
+<section class="apply-section" id="apply">
+  <div class="container">
+    <div class="apply-card">
+      <span class="eyebrow"><span class="i18n-en">Apply</span><span class="i18n-ar">قدّم</span></span>
+      <h2 style="margin-top:8px;">
+        <span class="i18n-en">Tell us where you'd <span class="opt-grad-text">build with us.</span></span>
+        <span class="i18n-ar">قولنا فين <span class="opt-grad-text">تحب تبني معانا.</span></span>
+      </h2>
+      <p class="lede" style="margin-top:16px; max-width: 64ch;">
+        <span class="i18n-en">Submit once and we'll route you to the right team lead. Expect a reply within 7 working days.</span>
+        <span class="i18n-ar">قدّم مرة واحدة وهنوصلك للقائد المناسب. هنرد عليك خلال 7 أيام عمل.</span>
+      </p>
+
+      <form class="form-grid" id="applyForm" novalidate>
+        <div class="form-field">
+          <label for="f-name"><span class="i18n-en">Full name</span><span class="i18n-ar">الاسم بالكامل</span></label>
+          <input id="f-name" name="name" type="text" required>
+        </div>
+        <div class="form-field">
+          <label for="f-email"><span class="i18n-en">Email</span><span class="i18n-ar">الإيميل</span></label>
+          <input id="f-email" name="email" type="email" required>
+        </div>
+        <div class="form-field">
+          <label for="f-phone"><span class="i18n-en">Phone / WhatsApp</span><span class="i18n-ar">تليفون / واتساب</span></label>
+          <input id="f-phone" name="phone" type="tel" required>
+        </div>
+        <div class="form-field">
+          <label for="f-city"><span class="i18n-en">City / Country</span><span class="i18n-ar">المدينة / الدولة</span></label>
+          <input id="f-city" name="city" type="text" required>
+        </div>
+        <div class="form-field">
+          <label for="f-role"><span class="i18n-en">Role you're applying for</span><span class="i18n-ar">التخصص اللي بتقدم عليه</span></label>
+          <select id="f-role" name="role" required>
+            <option value="">—</option>
+            <option>Content Strategist</option>
+            <option>Senior Copywriter</option>
+            <option>Art Director</option>
+            <option>Brand Designer</option>
+            <option>Senior Video Editor</option>
+            <option>Videographer / DOP</option>
+            <option>Performance Media Buyer</option>
+            <option>Community Manager</option>
+            <option>Account Manager</option>
+            <option>Operations Lead</option>
+            <option>Growth Internship</option>
+            <option>Open application</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="f-years"><span class="i18n-en">Years of experience</span><span class="i18n-ar">سنوات الخبرة</span></label>
+          <input id="f-years" name="years" type="number" min="0" max="40" step="1">
+        </div>
+        <div class="form-field">
+          <label for="f-portfolio"><span class="i18n-en">Portfolio link</span><span class="i18n-ar">لينك البورتفوليو</span></label>
+          <input id="f-portfolio" name="portfolio" type="url" placeholder="https://">
+        </div>
+        <div class="form-field">
+          <label for="f-linkedin"><span class="i18n-en">LinkedIn / social profile</span><span class="i18n-ar">لينكدإن / حساب اجتماعي</span></label>
+          <input id="f-linkedin" name="linkedin" type="url" placeholder="https://">
+        </div>
+        <div class="form-field full">
+          <label for="f-cv"><span class="i18n-en">CV / résumé link (Drive, Dropbox, Notion…)</span><span class="i18n-ar">لينك السيرة الذاتية (درايف، دروب بوكس، نوشن…)</span></label>
+          <input id="f-cv" name="cv" type="url" placeholder="https://">
+        </div>
+        <div class="form-field full">
+          <label for="f-why"><span class="i18n-en">Why do you want to join Optiiimum?</span><span class="i18n-ar">ليه عايز تنضم لـ Optiiimum؟</span></label>
+          <textarea id="f-why" name="why" rows="4"></textarea>
+        </div>
+        <div class="form-field full">
+          <label for="f-message"><span class="i18n-en">Anything else we should know?</span><span class="i18n-ar">حاجة تانية تحب تقولهالنا؟</span></label>
+          <textarea id="f-message" name="message" rows="3"></textarea>
+        </div>
+
+        <div class="form-foot full">
+          <button type="submit" class="btn btn-primary">
+            <span class="i18n-en">Submit application</span><span class="i18n-ar">ابعت التقديم</span>
+            <span class="arrow">→</span>
+          </button>
+          <span class="form-note">
+            <span class="i18n-en">Or email us at careers@optiiimum.com</span>
+            <span class="i18n-ar">أو ابعتلنا على careers@optiiimum.com</span>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta-section">
+  <div class="container">
+    <div class="opt-box">
+      <h2>
+        <span class="i18n-en">Want to build a brand <span class="opt-grad-text">people trust</span>?</span>
+        <span class="i18n-ar">عايز تبني <span class="opt-grad-text">براند الناس تثق فيه</span>؟</span>
+      </h2>
+      <p class="lede">
+        <span class="i18n-en">Start with a 15-minute discovery call and let's identify the right growth system for your brand.</span>
+        <span class="i18n-ar">ابدأ بمكالمة استكشافية 15 دقيقة ونحدد نظام النمو الأنسب لبراندك.</span>
+      </p>
+      <div class="final-cta-btns">
+        <a href="Consultation.html" class="btn btn-primary">
+          <span class="i18n-en">Book a 15-minute discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية 15 دقيقة</span>
+        </a>
+        <a href="CaseStudies.html" class="btn btn-ghost">
+          <span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-wordmark" role="img" aria-label="Optiiimum"></div>
+
+    <div class="foot-top">
+      <div class="foot-col">
+        <h4>Optiiimum</h4>
+        <p class="blurb">
+          <span class="i18n-en">Building digital growth systems since 2021 — strategy, content, paid ads, and AI production for personal brands and ambitious companies.</span>
+          <span class="i18n-ar">نبني أنظمة نمو رقمية منذ 2021 — استراتيجية، محتوى، إعلانات مدفوعة، وإنتاج بالذكاء الاصطناعي للبراندات الشخصية والشركات الطموحة.</span>
+        </p>
+        <p class="locations">
+          <span class="i18n-en">Dubai · Alexandria · Cairo</span>
+          <span class="i18n-ar">دبي · الإسكندرية · القاهرة</span>
+        </p>
+        <div class="phone-pills">
+          <a href="tel:+201097961682" class="phone-pill">+20 109 796 1682</a>
+          <a href="tel:+971523949481" class="phone-pill">+971 52 394 9481</a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Site</span><span class="i18n-ar">الموقع</span></h4>
+        <ul>
+          <li><a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a></li>
+          <li><a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="Consultation.html#pricing"><span class="i18n-en">Pricing</span><span class="i18n-ar">الأسعار</span></a></li>
+          <li><a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a></li>
+          <li><a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Services.html#personal-branding"><span class="i18n-en">Personal branding</span><span class="i18n-ar">بناء العلامة الشخصية</span></a></li>
+          <li><a href="Services.html#strategic-content"><span class="i18n-en">Strategic content</span><span class="i18n-ar">محتوى استراتيجي</span></a></li>
+          <li><a href="Services.html#social-media"><span class="i18n-en">Social media</span><span class="i18n-ar">إدارة المنصّات</span></a></li>
+          <li><a href="Services.html#paid-media"><span class="i18n-en">Paid &amp; media buying</span><span class="i18n-ar">الإعلانات المدفوعة</span></a></li>
+          <li><a href="Services.html#ai-production"><span class="i18n-en">AI &amp; event production</span><span class="i18n-ar">الذكاء الاصطناعي وإنتاج الفعاليات</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Elsewhere</span><span class="i18n-ar">تجدونا</span></h4>
+        <ul>
+          <li><a class="ext" href="https://www.instagram.com/optiiimumsolutions" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a class="ext" href="https://www.facebook.com/Optiiimum" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a class="ext" href="https://www.tiktok.com/@optiiimumsolutionsegy" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a class="ext" href="https://www.linkedin.com/company/104597175/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="ext" href="https://www.youtube.com/@optimumsolutions851" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a class="ext" href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>
+        <span class="i18n-en">© 2021–2027 Optiiimum. All rights reserved. · Established 2021.</span>
+        <span class="i18n-ar">© 2021–2027 Optiiimum. جميع الحقوق محفوظة. · تأسست عام 2021.</span>
+      </div>
+      <div>
+        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute('lang') || 'en';
+    const next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    var theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    var icon = document.getElementById('themeIcon');
+    if (icon) icon.textContent = theme === 'dark' ? '☾' : '◐';
+    const l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // Submission: client-side, opens mailto with the filled values so user has
+  // a record; real backend would replace this.
+  document.getElementById('applyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var f = this;
+    var fd = new FormData(f);
+    var lines = [];
+    fd.forEach((v, k) => { if (v) lines.push(k + ': ' + v); });
+    var subject = encodeURIComponent('Optiiimum careers — ' + (fd.get('name') || 'application'));
+    var body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:careers@optiiimum.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>

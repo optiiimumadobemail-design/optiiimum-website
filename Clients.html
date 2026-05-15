@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Clients — Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Global brands and personal brands we built — every name on this page is a real engagement.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ==== ABOUT-SPECIFIC ==== */
+  .about-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(80px, 14vw, 160px) 0 clamp(40px, 6vw, 80px);
+  }
+  .about-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(44px, 7.5vw, 96px);
+  }
+  .about-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .about-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .about-hero .meta {
+    display: flex; gap: 36px; margin-top: 56px;
+    padding-top: 28px; border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .about-hero .meta .item b { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); margin-bottom: 8px; font-weight: 500; }
+  html[lang="ar"] .about-hero .meta .item b { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .about-hero .meta .item span { font-family: var(--font-serif); font-size: 22px; line-height: 1.2; }
+  html[lang="ar"] .about-hero .meta .item span { font-family: var(--font-ar); font-weight: 600; }
+
+  .ambient-orb {
+    position: absolute; pointer-events: none;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -15vw; top: -15vw;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .35; border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* Story */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 920px) { .story-grid { grid-template-columns: 1fr; } }
+  .story-side { position: sticky; top: 110px; }
+  @media (max-width: 920px) { .story-side { position: static; } }
+  .story-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg-band) center/cover;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line);
+    overflow: hidden; position: relative;
+  }
+  .story-portrait::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4) 100%);
+  }
+  .story-portrait .label {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    z-index: 2; color: white;
+  }
+  .story-portrait .label b { font-family: var(--font-serif); font-size: 24px; display: block; line-height: 1.1; }
+  html[lang="ar"] .story-portrait .label b { font-family: var(--font-ar); font-weight: 700; }
+  .story-portrait .label span { font-size: 13px; opacity: .85; margin-top: 4px; display: block; }
+
+  .story-body { font-size: 17px; line-height: 1.7; color: var(--ink-2); }
+  .story-body p { margin: 0 0 1.2em; text-wrap: pretty; }
+  .story-body p:first-child::first-letter {
+    font-family: var(--font-serif); font-size: 4em; line-height: .8;
+    float: left; padding: 0.05em 0.1em 0 0; color: var(--ink);
+  }
+  html[lang="ar"] .story-body p:first-child::first-letter {
+    font-family: var(--font-ar); float: right; padding: 0 0 0 0.15em; font-size: 3em;
+  }
+  .story-body strong { color: var(--ink); font-weight: 500; }
+  .story-body .signature {
+    display: flex; align-items: center; gap: 14px; margin-top: 32px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    color: var(--ink-3); font-size: 13px;
+  }
+  .story-body .signature b { color: var(--ink); font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
+  html[lang="ar"] .story-body .signature b { font-family: var(--font-ar); font-weight: 600; }
+  .story-body .signature .glyph {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    flex: none;
+  }
+
+  /* Geos */
+  .geos {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-top: 28px;
+  }
+  @media (max-width: 720px) { .geos { grid-template-columns: repeat(2, 1fr); } }
+  .geo {
+    padding: 14px; border: 1px solid var(--line);
+    border-radius: var(--r); background: var(--bg-elev);
+    font-size: 13.5px; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .geo .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* Why different */
+  .why-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 920px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .15s, transform .2s, box-shadow .2s;
+  }
+  .why-card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-1); }
+  .why-card .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .12em;
+  }
+  .why-card h3 { font-size: 22px; line-height: 1.15; }
+  .why-card p { color: var(--ink-2); font-size: 14.5px; margin: 0; text-wrap: pretty; }
+
+  /* Culture grid */
+  .culture-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+  }
+  @media (max-width: 920px) { .culture-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 140px; } }
+  @media (max-width: 560px) { .culture-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .culture-tile {
+    grid-column: span 2; grid-row: span 1;
+    border-radius: var(--r-lg);
+    background: var(--bg-band) center/cover;
+    border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+    transition: transform .25s ease;
+  }
+  .culture-tile:hover { transform: scale(1.02); }
+  .culture-tile::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+  }
+  .culture-tile .cap {
+    position: absolute; left: 16px; right: 16px; bottom: 14px;
+    color: white; z-index: 2;
+    font-family: var(--font-mono); font-size: 11.5px;
+    text-transform: uppercase; letter-spacing: .12em;
+  }
+  html[lang="ar"] .culture-tile .cap { letter-spacing: .04em; text-transform: none; font-size: 13px; font-family: var(--font-mono); }
+  /* Asymmetric layout */
+  .culture-tile.tall { grid-row: span 2; }
+  .culture-tile.wide { grid-column: span 3; }
+  .culture-tile.huge { grid-column: span 3; grid-row: span 2; }
+  @media (max-width: 920px) {
+    .culture-tile.tall, .culture-tile.huge { grid-row: span 2; }
+    .culture-tile.wide, .culture-tile.huge { grid-column: span 3; }
+  }
+  @media (max-width: 560px) {
+    .culture-tile, .culture-tile.tall, .culture-tile.wide, .culture-tile.huge {
+      grid-column: span 2; grid-row: span 1;
+    }
+  }
+
+  /* Credibility */
+  .creds-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .creds-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cred {
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--bg-elev);
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative; overflow: hidden;
+  }
+  .cred .badge {
+    position: absolute; top: 16px; inset-inline-end: 16px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: conic-gradient(from 220deg, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2));
+    opacity: .8;
+  }
+  .cred b { font-family: var(--font-serif); font-size: clamp(36px, 4vw, 52px); line-height: 1; }
+  .cred .label { font-size: 13.5px; color: var(--ink-2); }
+  .cred .note { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-top: 6px; letter-spacing: .08em; }
+  html[lang="ar"] .cred .note { letter-spacing: 0; font-size: 12.5px; }
+
+  /* Team preview */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  .role {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 180px; position: relative;
+    transition: border-color .15s, transform .2s;
+  }
+  .role:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .role .num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: .12em; }
+  .role .glyph {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(229,85,200,.12);
+    margin-bottom: 8px;
+  }
+  .role b { font-size: 17px; line-height: 1.2; font-family: var(--font-serif); font-weight: 400; }
+  html[lang="ar"] .role b { font-family: var(--font-ar); font-weight: 600; font-size: 18px; }
+  .role p { font-size: 13px; color: var(--ink-2); margin: 0; }
+  .role .count { margin-top: auto; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+
+  /* Notice */
+  .image-notice {
+    background: rgba(229,85,200,.08);
+    border: 1px solid rgba(229,85,200,.3);
+    color: var(--accent);
+    padding: 14px 18px; border-radius: var(--r);
+    font-size: 13px; line-height: 1.5;
+    margin-top: 24px;
+  }
+  .image-notice b { color: var(--accent); }
+</style>
+<style>
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+.logo-cell {
+  aspect-ratio: 5/3;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px;
+}
+.logo-cell img {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  filter: brightness(0) invert(.85);
+  opacity: .8;
+  transition: filter .15s, opacity .15s;
+}
+.logo-cell:hover img { filter: none; opacity: 1; }
+[data-theme="light"] .logo-cell img { filter: brightness(0) invert(.15); }
+[data-theme="light"] .logo-cell:hover img { filter: none; }
+
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html" aria-current="page"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html" aria-current="page"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></span>
+    <h1><span class="i18n-en">Receipts, not <span class="opt-grad-text">promises.</span></span><span class="i18n-ar">أدلّةٌ، لا <span class="opt-grad-text">وعود.</span></span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="i18n-en">
+<h2 style="margin-bottom:24px;">Global brands that trusted our work.</h2>
+<div class="logo-grid"><div class="logo-cell"><img src="assets/clients- Logos/unilever.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/pepsico.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/vodafone (2).png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/nissan.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/Four Seasons.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/Hilton.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/careem.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/macdonald.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dove.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/lipton.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/emmar.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/allizanz.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/TOSHIPA.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/cairokee.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/Energizer.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/alex west.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/aopr.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/city center.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dividaa+.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/favelin.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/hayat.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/karsmaa logo.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/masar agbary.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/mismon.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/mnhd.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/sulfax.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/trio.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/egypt.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/shezlong.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/diana logo.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dina.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dr mai.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/hesham.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/miss ouzoinia.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/shift تمريض.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/نور الدين الشريف.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/اتصالات.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/مترو.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/معامل حساب.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/هتون.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/وزارة التراث.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/وزارة الدخلية.png" alt=""></div></div>
+<h2 style="margin: 72px 0 24px;">Brands we <span class="opt-grad-text">built</span> into growth systems.</h2>
+<div class="services-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+<a href="case-study-peter-moris.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Healthcare</span>
+  <h3 style="font-size:22px;">Dr. Peter Moris</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-bassant-habash.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Aesthetic Medicine</span>
+  <h3 style="font-size:22px;">Dr. Bassant Habash</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-dina-asaad.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Aesthetic Medicine</span>
+  <h3 style="font-size:22px;">Dr. Dina Asaad</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-diana-clinics.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Healthcare</span>
+  <h3 style="font-size:22px;">Diana Clinics</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-dse.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Education</span>
+  <h3 style="font-size:22px;">DSE Ausbildung</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-shift-tamrid.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Healthcare Training</span>
+  <h3 style="font-size:22px;">Shift Tamrid</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-auzonia-kamel.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Author</span>
+  <h3 style="font-size:22px;">Auzonia Kamel</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-dalia-hosny.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Lifestyle</span>
+  <h3 style="font-size:22px;">Dalia Hosny</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="case-study-jozeph-ezzat.html" class="service-card" style="text-decoration:none;">
+  <span class="num">Personal Brand</span>
+  <h3 style="font-size:22px;">Jozeph Ezzat</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a><a href="Courses.html" class="service-card" style="text-decoration:none;">
+  <span class="num">EdTech</span>
+  <h3 style="font-size:22px;">OptiiimumSkools</h3>
+  <span class="cta">Read case <span class="arrow">→</span></span>
+</a>
+</div>
+</div>
+    <div class="i18n-ar">
+<h2 style="margin-bottom:24px;">علاماتٌ عالميةٌ وثقت بعملنا.</h2>
+<div class="logo-grid"><div class="logo-cell"><img src="assets/clients- Logos/unilever.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/pepsico.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/vodafone (2).png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/nissan.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/Four Seasons.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/Hilton.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/careem.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/macdonald.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dove.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/lipton.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/emmar.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/allizanz.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/TOSHIPA.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/cairokee.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/Energizer.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/alex west.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/aopr.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/city center.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dividaa+.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/favelin.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/hayat.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/karsmaa logo.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/masar agbary.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/mismon.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/mnhd.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/sulfax.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/trio.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/egypt.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/shezlong.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/diana logo.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dina.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/dr mai.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/hesham.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/miss ouzoinia.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/shift تمريض.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/نور الدين الشريف.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/اتصالات.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/مترو.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/معامل حساب.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/هتون.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/وزارة التراث.png" alt=""></div><div class="logo-cell"><img src="assets/clients- Logos/وزارة الدخلية.png" alt=""></div></div>
+<h2 style="margin: 72px 0 24px;">علاماتٌ <span class="opt-grad-text">بنيناها</span> لتصبح أنظمة نمو.</h2>
+<div class="services-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+<a href="case-study-peter-moris.html" class="service-card" style="text-decoration:none;">
+  <span class="num">صحة</span>
+  <h3 style="font-size:22px;">Dr. Peter Moris</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-bassant-habash.html" class="service-card" style="text-decoration:none;">
+  <span class="num">طب تجميل</span>
+  <h3 style="font-size:22px;">Dr. Bassant Habash</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-dina-asaad.html" class="service-card" style="text-decoration:none;">
+  <span class="num">طب تجميل</span>
+  <h3 style="font-size:22px;">Dr. Dina Asaad</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-diana-clinics.html" class="service-card" style="text-decoration:none;">
+  <span class="num">صحة</span>
+  <h3 style="font-size:22px;">Diana Clinics</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-dse.html" class="service-card" style="text-decoration:none;">
+  <span class="num">تعليم</span>
+  <h3 style="font-size:22px;">DSE Ausbildung</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-shift-tamrid.html" class="service-card" style="text-decoration:none;">
+  <span class="num">تدريب صحي</span>
+  <h3 style="font-size:22px;">Shift Tamrid</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-auzonia-kamel.html" class="service-card" style="text-decoration:none;">
+  <span class="num">مؤلِّفة</span>
+  <h3 style="font-size:22px;">Auzonia Kamel</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-dalia-hosny.html" class="service-card" style="text-decoration:none;">
+  <span class="num">نمط حياة</span>
+  <h3 style="font-size:22px;">Dalia Hosny</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="case-study-jozeph-ezzat.html" class="service-card" style="text-decoration:none;">
+  <span class="num">علامة شخصية</span>
+  <h3 style="font-size:22px;">Jozeph Ezzat</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a><a href="Courses.html" class="service-card" style="text-decoration:none;">
+  <span class="num">تقنيات تعليمية</span>
+  <h3 style="font-size:22px;">OptiiimumSkools</h3>
+  <span class="cta">اقرأ الدراسة <span class="arrow">→</span></span>
+</a>
+</div>
+</div>
+  </div>
+</section>
+<section class="final-cta-section">
+  <div class="container">
+    <div class="opt-box">
+      <h2>
+        <span class="i18n-en">Ready to become a <span class="opt-grad-text">case study</span>?</span>
+        <span class="i18n-ar">هل أنت مستعدٌّ لتصبح <span class="opt-grad-text">دراسة الحالة القادمة</span>؟</span>
+      </h2>
+      <p class="lede">
+        <span class="i18n-en">30-minute discovery call. No pitch deck, no boilerplate — just a frank look at where the leverage is in your business.</span>
+        <span class="i18n-ar">مكالمة استكشافية لمدة 30 دقيقة. بلا عروض جاهزة، بلا حشوٍ — محادثةٌ صريحةٌ حول مكامن القوة في عملك.</span>
+      </p>
+      <div class="final-cta-btns">
+        <a href="Consultation.html" class="btn btn-primary">
+          <span class="i18n-en">Book a discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        </a>
+        <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost">
+          <span class="i18n-en">WhatsApp us</span><span class="i18n-ar">تواصل عبر واتساب</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="Home.html#cases"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Home.html#team"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Home.html#blog"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Home.html#services"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Home.html#courses"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+          <li><a href="https://www.instagram.com/optiiimumsolutions" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/104597175/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@optimumsolutions851" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@optiiimumsolutionsegy" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/Optiiimum" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://x.com/optiiimum_sol" target="_blank" rel="noopener">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="needs-final">
+        <b><span class="i18n-en">⚠ Needs final links</span><span class="i18n-ar">⚠ تحتاج الروابط النهائية</span></b>
+        <div style="margin-top:6px;">
+          <span class="i18n-en">Public email address · Calendly / booking link · Privacy &amp; Terms pages — to be supplied by the team.</span>
+          <span class="i18n-ar">إيميل عام · رابط حجز المكالمة · صفحات الخصوصية والشروط — في انتظار البيانات النهائية من الفريق.</span>
+        </div>
+      </div>
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute('lang') || 'en';
+    const next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    const t = localStorage.getItem('opt_theme');
+    if (t) applyTheme(t);
+    const l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+</script>
+
+</body>
+</html>

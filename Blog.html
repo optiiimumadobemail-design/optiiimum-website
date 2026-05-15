@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Blog — Optiiimum · Insights on Digital Growth &amp; Personal Branding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Frameworks, anti-patterns, and field notes from Optiiimum on personal branding, content strategy, and digital growth. A 10-part series for founders, doctors, and experts.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ---------- BLOG HUB ---------- */
+  .blog-hero {
+    position: relative;
+    padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 6vw, 80px);
+    overflow: hidden;
+  }
+  .blog-hero .ambient {
+    position: absolute; pointer-events: none;
+    width: 55vw; height: 55vw; max-width: 640px; max-height: 640px;
+    inset-inline-end: -12vw; top: -10vw;
+    background: conic-gradient(from 220deg at 50% 50%, #FDD196, #FF966D, #E555C8, #BE6FD2, #54B3EC, #00FEFF, #FDD196);
+    filter: blur(110px); opacity: .28; border-radius: 50%; z-index: -1;
+  }
+  .blog-hero h1 {
+    max-width: 22ch;
+    font-size: clamp(40px, 6.5vw, 84px);
+    margin-top: 24px;
+  }
+  .blog-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, #FDD196, #FF966D, #E555C8, #BE6FD2, #54B3EC, #00FEFF);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .blog-hero h1 .alt { font-style: normal; font-weight: 700; }
+
+  .blog-hero .meta {
+    display: flex; gap: 40px; margin-top: 52px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .blog-hero .meta .item b {
+    display: block; font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 6px; font-weight: 500;
+  }
+  html[lang="ar"] .blog-hero .meta .item b { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .blog-hero .meta .item span { font-family: var(--font-serif); font-size: 22px; }
+  html[lang="ar"] .blog-hero .meta .item span { font-family: var(--font-ar); font-weight: 600; }
+
+  /* ---------- FEATURED ARTICLE ---------- */
+  .featured {
+    padding: 0 0 clamp(48px, 6vw, 80px);
+  }
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--bg-elev, var(--bg));
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+  }
+  .featured-card:hover {
+    border-color: var(--ink-3);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 860px) {
+    .featured-card { grid-template-columns: 1fr; }
+  }
+  .featured-card .body {
+    padding: clamp(32px, 4vw, 56px);
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 18px;
+  }
+  .featured-card .label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .15em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .featured-card .label::before {
+    content: ""; width: 24px; height: 1px; background: currentColor; opacity: .4;
+  }
+  .featured-card h2 {
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .featured-card .desc {
+    color: var(--ink-2);
+    font-size: 17px;
+    text-wrap: pretty;
+    max-width: 56ch;
+  }
+  .featured-card .read {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 8px;
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .featured-card .read .arrow {
+    transition: transform .3s; display: inline-block;
+  }
+  .featured-card:hover .read .arrow { transform: translateX(6px); }
+  html[lang="ar"] .featured-card:hover .read .arrow { transform: translateX(-6px); }
+
+  .featured-card .visual {
+    position: relative;
+    min-height: 360px;
+    background:
+      radial-gradient(60% 70% at 30% 30%, rgba(229,85,200,.25), transparent 60%),
+      radial-gradient(50% 60% at 80% 70%, rgba(0,254,255,.22), transparent 60%),
+      linear-gradient(135deg, #FDD196 0%, #FF966D 25%, #E555C8 50%, #BE6FD2 70%, #54B3EC 100%);
+    display: grid; place-items: center;
+    overflow: hidden;
+  }
+  .featured-card .visual::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(255,255,255,.10) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.10) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 75%);
+            mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 75%);
+    opacity: .8;
+  }
+  .featured-card .visual .seq {
+    position: relative; z-index: 1;
+    font-family: var(--font-serif);
+    font-size: clamp(96px, 14vw, 200px);
+    color: rgba(255,255,255,.95);
+    letter-spacing: -.04em;
+    line-height: 1;
+    text-shadow: 0 4px 40px rgba(0,0,0,.2);
+  }
+  .featured-card .visual .seq sub {
+    font-family: var(--font-mono);
+    font-size: .12em;
+    vertical-align: middle;
+    letter-spacing: .15em;
+    margin-left: 8px;
+    opacity: .8;
+  }
+
+  /* ---------- ARTICLE GRID ---------- */
+  .articles-section {
+    padding: clamp(48px, 6vw, 80px) 0 clamp(64px, 9vw, 120px);
+    border-top: 1px solid var(--line);
+  }
+  .articles-head {
+    display: flex; justify-content: space-between; align-items: end; gap: 32px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .articles-head h2 { font-size: clamp(28px, 3.5vw, 44px); }
+  .articles-head p { color: var(--ink-2); max-width: 48ch; }
+
+  .filter-bar {
+    display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;
+  }
+  .filter-bar button {
+    appearance: none; background: transparent; cursor: pointer;
+    border: 1px solid var(--line);
+    padding: 8px 16px; border-radius: 999px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-2);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  html[lang="ar"] .filter-bar button { font-family: var(--font-mono); letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .filter-bar button:hover { color: var(--ink); border-color: var(--ink-3); }
+  .filter-bar button.active {
+    background: var(--ink); color: var(--cta-ink, var(--bg));
+    border-color: var(--ink);
+  }
+  .filter-bar .count {
+    margin-inline-start: 6px;
+    opacity: .55;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1040px) { .articles-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .articles-grid { grid-template-columns: 1fr; } }
+
+  .article-card {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-elev, var(--bg));
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    color: inherit;
+  }
+  .article-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--ink-3);
+    box-shadow: var(--shadow-1);
+  }
+
+  .article-card .thumb {
+    aspect-ratio: 16/10;
+    position: relative;
+    background: var(--bg-band);
+    display: grid; place-items: center;
+    overflow: hidden;
+  }
+  .article-card .thumb::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: .5;
+  }
+  html[data-theme="dark"] .article-card .thumb::before {
+    background:
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+  }
+  .article-card .thumb .seq {
+    position: relative; z-index: 1;
+    font-family: var(--font-serif);
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -.04em;
+    background: linear-gradient(135deg, var(--grad-tl, #FDD196), var(--grad-tr, #00FEFF), var(--grad-br, #E555C8));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  /* Per-card gradient tints */
+  .article-card[data-tint="warm"] .thumb .seq  { --grad-tl:#FDD196; --grad-tr:#FF966D; --grad-br:#E555C8; }
+  .article-card[data-tint="cool"] .thumb .seq  { --grad-tl:#54B3EC; --grad-tr:#00FEFF; --grad-br:#BE6FD2; }
+  .article-card[data-tint="pink"] .thumb .seq  { --grad-tl:#E555C8; --grad-tr:#BE6FD2; --grad-br:#54B3EC; }
+  .article-card[data-tint="amber"] .thumb .seq { --grad-tl:#FDD196; --grad-tr:#FF966D; --grad-br:#FA58A4; }
+  .article-card[data-tint="cyan"] .thumb .seq  { --grad-tl:#00FEFF; --grad-tr:#54B3EC; --grad-br:#BE6FD2; }
+
+  .article-card .body {
+    padding: 24px 28px 28px;
+    display: flex; flex-direction: column; gap: 12px;
+    flex: 1;
+  }
+  .article-card .meta-row {
+    display: flex; gap: 12px; align-items: center;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .article-card .meta-row { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .article-card .meta-row .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .5; }
+
+  .article-card h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  html[lang="ar"] .article-card h3 { font-family: var(--font-ar); font-weight: 600; line-height: 1.35; }
+  .article-card h3:hover { color: var(--ink); }
+
+  .article-card .desc {
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .article-card .footer {
+    margin-top: auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  html[lang="ar"] .article-card .footer { letter-spacing: .04em; text-transform: none; font-size: 12px; }
+  .article-card .footer .read { color: var(--ink); display: inline-flex; gap: 8px; align-items: center; }
+  .article-card .footer .arrow { transition: transform .3s; display: inline-block; }
+  .article-card:hover .footer .arrow { transform: translateX(4px); }
+  html[lang="ar"] .article-card:hover .footer .arrow { transform: translateX(-4px); }
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter {
+    margin-top: 64px;
+    padding: clamp(40px, 6vw, 72px) clamp(28px, 5vw, 64px);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background:
+      radial-gradient(60% 80% at 80% 50%, rgba(229,85,200,.10), transparent 60%),
+      radial-gradient(60% 80% at 20% 50%, rgba(0,254,255,.08), transparent 60%),
+      var(--bg-elev, var(--bg));
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  @media (max-width: 860px) { .newsletter { grid-template-columns: 1fr; } }
+  .newsletter h3 { font-size: clamp(24px, 2.6vw, 34px); margin: 0 0 12px; }
+  .newsletter p { color: var(--ink-2); margin: 0; }
+  .newsletter form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .newsletter input {
+    flex: 1; min-width: 220px;
+    padding: 14px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: inherit; font-size: 15px;
+    transition: border-color .2s;
+  }
+  .newsletter input:focus {
+    outline: none; border-color: var(--ink-3);
+  }
+  .newsletter button {
+    appearance: none; cursor: pointer;
+    padding: 14px 24px;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    background: var(--ink); color: var(--cta-ink, var(--bg));
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .15em; text-transform: uppercase;
+    transition: opacity .2s;
+  }
+  html[lang="ar"] .newsletter button { letter-spacing: .04em; text-transform: none; font-size: 14px; font-family: var(--font-ar); font-weight: 600; }
+  .newsletter button:hover { opacity: .85; }
+  .newsletter .note {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-3); margin-top: 12px;
+  }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER (shared with Home) ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html" aria-current="page"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html" aria-current="page"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<!-- ============ HERO ============ -->
+<section class="blog-hero">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="container">
+    <span class="eyebrow"><span class="i18n-en">Field notes · 10-part series</span><span class="i18n-ar">ملاحظات الميدان · سلسلة من ١٠ مقالات</span></span>
+    <h1>
+      <span class="i18n-en">Insights on digital growth, content, and <span class="alt">personal branding</span>.</span>
+      <span class="i18n-ar">رؤى في النمو الرقمي، صناعة المحتوى، و<span class="alt">بناء البراند الشخصي</span>.</span>
+    </h1>
+    <p class="lede" style="margin-top:24px; max-width: 56ch;">
+      <span class="i18n-en">Long-form thinking from the Optiiimum team. The frameworks we use with paying clients — opened up, with the receipts.</span>
+      <span class="i18n-ar">تفكير طويل من فريق أوبتيموم. الأطر اللي بنشتغل بيها مع العملاء — بنفتحها لك بالأدلة.</span>
+    </p>
+    <div class="meta">
+      <div class="item">
+        <b><span class="i18n-en">Series</span><span class="i18n-ar">السلسلة</span></b>
+        <span><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Articles</span><span class="i18n-ar">عدد المقالات</span></b>
+        <span><span class="i18n-en">10 published</span><span class="i18n-ar">١٠ مقالات منشورة</span></span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Reading time</span><span class="i18n-ar">زمن القراءة</span></b>
+        <span><span class="i18n-en">~8 min each</span><span class="i18n-ar">~٨ دقائق لكل مقال</span></span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">For</span><span class="i18n-ar">للجمهور</span></b>
+        <span><span class="i18n-en">Experts, founders, doctors</span><span class="i18n-ar">خبراء، مؤسسين، أطباء</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED ============ -->
+<section class="featured">
+  <div class="container">
+    <a href="assets/blogs/01_what-is-personal-branding.html" class="featured-card">
+      <div class="body">
+        <span class="label">
+          <span class="i18n-en">Featured · Start here · 01 of 10</span>
+          <span class="i18n-ar">مقال مميز · ابدأ من هنا · ١ من ١٠</span>
+        </span>
+        <h2>
+          <span class="i18n-en">What is personal branding? A practical guide to building a memorable professional image.</span>
+          <span class="i18n-ar">ما هو البراند الشخصي؟ دليل عملي لبناء صورة احترافية فيها أثر.</span>
+        </h2>
+        <p class="desc">
+          <span class="i18n-en">Discover what personal branding really means, why it matters, and how to build a clear professional image that consistently attracts trust, clients, and opportunities.</span>
+          <span class="i18n-ar">اكتشف معنى البراند الشخصي الحقيقي، ليه مهم، وإزاي تبني صورة احترافية واضحة بتجذب الثقة والعملاء والفرص باستمرار.</span>
+        </p>
+        <span class="read">
+          <span class="i18n-en">Read article</span><span class="i18n-ar">اقرأ المقال</span>
+          <span class="arrow">→</span>
+        </span>
+      </div>
+      <div class="visual" aria-hidden="true" style="background-image:url('assets/blogs/covers/01_what-is-personal-branding.jpg'); background-size:cover; background-position:center;"></div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ ARTICLES ============ -->
+<section class="articles-section">
+  <div class="container">
+    <div class="articles-head">
+      <div>
+        <span class="eyebrow"><span class="i18n-en">The series</span><span class="i18n-ar">السلسلة</span></span>
+        <h2 style="margin-top:8px;">
+          <span class="i18n-en">Read in order — or pick your gap.</span>
+          <span class="i18n-ar">اقرأ بالترتيب — أو ابدأ من الفجوة اللي عندك.</span>
+        </h2>
+      </div>
+      <p>
+        <span class="i18n-en">Each article is self-contained. Numbered for the curious; useful for the strategic.</span>
+        <span class="i18n-ar">كل مقال مكتفي بنفسه. مرقّم لمن يحب الترتيب؛ ومفيد لمن يفكّر استراتيجياً.</span>
+      </p>
+    </div>
+
+    <div class="filter-bar" role="tablist" aria-label="Article filters">
+      <button class="active" data-filter="all" type="button">
+        <span class="i18n-en">All</span><span class="i18n-ar">الكل</span>
+        <span class="count">10</span>
+      </button>
+      <button data-filter="foundation" type="button">
+        <span class="i18n-en">Foundations</span><span class="i18n-ar">الأساسيات</span>
+        <span class="count">3</span>
+      </button>
+      <button data-filter="build" type="button">
+        <span class="i18n-en">Building</span><span class="i18n-ar">التنفيذ</span>
+        <span class="count">3</span>
+      </button>
+      <button data-filter="growth" type="button">
+        <span class="i18n-en">Growth &amp; trust</span><span class="i18n-ar">النمو والثقة</span>
+        <span class="count">2</span>
+      </button>
+      <button data-filter="business" type="button">
+        <span class="i18n-en">Business</span><span class="i18n-ar">قرارات الأعمال</span>
+        <span class="count">2</span>
+      </button>
+    </div>
+
+    <div class="articles-grid">
+
+      <a href="assets/blogs/02_build-personal-brand-from-scratch.html" class="article-card" data-tint="warm" data-cat="build">
+        <div class="thumb" style="background-image:url('assets/blogs/covers/02_build-personal-brand-from-scratch.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Building</span><span class="i18n-ar">التنفيذ</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">8 min read</span><span class="i18n-ar">٨ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">How to build a strong personal brand from scratch — step by step.</span>
+            <span class="i18n-ar">إزاي تبني براند شخصي قوي من الصفر — خطوة بخطوة.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">A practical, step-by-step guide to building your personal brand from scratch — clearly, consistently, and in a way that attracts the right audience.</span>
+            <span class="i18n-ar">دليل عملي خطوة بخطوة لبناء براندك الشخصي من الصفر — بوضوح، باستمرار، وبطريقة بتجذب الجمهور الصح.</span>
+          </p>
+          <div class="footer">
+            <span>02 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/03_personal-brand-vs-personal-marketing.html" class="article-card" data-tint="cool" data-cat="foundation">
+        <div class="thumb" style="background-image:url('assets/blogs/covers/03_personal-brand-vs-personal-marketing.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Foundations</span><span class="i18n-ar">الأساسيات</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">7 min read</span><span class="i18n-ar">٧ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">Personal brand vs. personal marketing: the difference that changes your results.</span>
+            <span class="i18n-ar">البراند الشخصي مقابل التسويق الشخصي: الفرق اللي بيغيّر نتايجك.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Understand the difference between personal branding and personal marketing so you can build a presence that's compelling — not just promotional.</span>
+            <span class="i18n-ar">افهم الفرق بين البراند الشخصي والتسويق الشخصي عشان تبني حضور بيشد الانتباه — مش مجرد ترويج.</span>
+          </p>
+          <div class="footer">
+            <span>03 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/04_personal-brand-core-elements.html" class="article-card" data-tint="pink" data-cat="foundation">
+        <div class="thumb" style="background-image:url('assets/blogs/covers/04_personal-brand-core-elements.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Foundations</span><span class="i18n-ar">الأساسيات</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">8 min read</span><span class="i18n-ar">٨ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">The core elements of a successful personal brand.</span>
+            <span class="i18n-ar">العناصر الأساسية للبراند الشخصي الناجح.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Discover the essential elements of a successful personal brand — from message and value to tone of voice, consistency, and proof of expertise.</span>
+            <span class="i18n-ar">اكتشف العناصر الأساسية للبراند الشخصي الناجح — من الرسالة والقيمة لنبرة الصوت والاتساق وأدلة الخبرة.</span>
+          </p>
+          <div class="footer">
+            <span>04 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/05_personal-brand-common-mistakes.html" class="article-card" data-tint="amber" data-cat="growth">
+        <div class="thumb" style="background-image:url('assets/blogs/covers/05_personal-brand-common-mistakes.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Growth &amp; trust</span><span class="i18n-ar">النمو والثقة</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">9 min read</span><span class="i18n-ar">٩ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">Common mistakes that weaken a personal brand — and how to avoid them.</span>
+            <span class="i18n-ar">الأخطاء الشائعة اللي بتضعّف البراند الشخصي — وإزاي تتجنّبها.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Identify the silent mistakes that weaken personal brands — inconsistency, copying, premature selling — and learn how to fix them quickly.</span>
+            <span class="i18n-ar">اعرف الأخطاء الصامتة اللي بتضعّف البراند الشخصي — التذبذب، التقليد، البيع المبكر — وإزاي تصلّحها بسرعة.</span>
+          </p>
+          <div class="footer">
+            <span>05 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/06_content-strategy-personal-brand.html" class="article-card" data-tint="cyan" data-cat="build">
+        <div class="thumb"><span class="seq">06</span></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Building</span><span class="i18n-ar">التنفيذ</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">10 min read</span><span class="i18n-ar">١٠ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">How to build a content strategy that actually builds your personal brand.</span>
+            <span class="i18n-ar">إزاي تبني استراتيجية محتوى بتبني فعلاً البراند الشخصي بتاعك.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Learn how to build a content strategy that serves your personal brand — from audience definition to content pillars, measurement, and improvement.</span>
+            <span class="i18n-ar">اتعلّم تبني استراتيجية محتوى بتخدم براندك الشخصي — من تحديد الجمهور لأعمدة المحتوى والقياس والتحسين.</span>
+          </p>
+          <div class="footer">
+            <span>06 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/07_turn-expertise-into-selling-brand.html" class="article-card" data-tint="warm" data-cat="business">
+        <div class="thumb"><span class="seq">07</span></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Business</span><span class="i18n-ar">قرارات الأعمال</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">8 min read</span><span class="i18n-ar">٨ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">How to turn your expertise into a personal brand that sells.</span>
+            <span class="i18n-ar">إزاي تحوّل خبرتك لبراند شخصي بيبيع.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Translate your expertise into a personal brand that communicates value clearly and attracts the right clients — without aggressive selling.</span>
+            <span class="i18n-ar">حوّل خبرتك لبراند شخصي بيوصّل قيمتك بوضوح وبيجذب العملاء المناسبين — من غير ضغط بيع.</span>
+          </p>
+          <div class="footer">
+            <span>07 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/08_build-trust-through-personal-brand.html" class="article-card" data-tint="pink" data-cat="growth">
+        <div class="thumb"><span class="seq">08</span></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Growth &amp; trust</span><span class="i18n-ar">النمو والثقة</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">7 min read</span><span class="i18n-ar">٧ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">How to build trust through your personal brand.</span>
+            <span class="i18n-ar">إزاي تبني الثقة من خلال البراند الشخصي بتاعك.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">A practical guide to building trust through your personal brand — through clarity, consistency, proof of expertise, and real value to your audience.</span>
+            <span class="i18n-ar">دليل عملي لبناء الثقة من خلال البراند الشخصي — بالوضوح، الاتساق، أدلة الخبرة، والقيمة الحقيقية للجمهور.</span>
+          </p>
+          <div class="footer">
+            <span>08 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/09_when-you-need-agency.html" class="article-card" data-tint="cool" data-cat="business">
+        <div class="thumb"><span class="seq">09</span></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Business</span><span class="i18n-ar">قرارات الأعمال</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">6 min read</span><span class="i18n-ar">٦ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">When do you actually need an agency to build your personal brand?</span>
+            <span class="i18n-ar">إمتى فعلاً محتاج وكالة عشان تبني البراند الشخصي بتاعك؟</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Discover when partnering with a specialized agency becomes the right move to build a personal brand that's organized, consistent, and measurable.</span>
+            <span class="i18n-ar">اعرف إمتى الشراكة مع وكالة متخصصة بتبقى الخطوة الصح لبراند شخصي منظّم ومتسق وقابل للقياس.</span>
+          </p>
+          <div class="footer">
+            <span>09 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="assets/blogs/10_measure-personal-brand-success.html" class="article-card" data-tint="cyan" data-cat="build">
+        <div class="thumb"><span class="seq">10</span></div>
+        <div class="body">
+          <div class="meta-row">
+            <span><span class="i18n-en">Building</span><span class="i18n-ar">التنفيذ</span></span>
+            <span class="dot"></span>
+            <span><span class="i18n-en">9 min read</span><span class="i18n-ar">٩ دقائق</span></span>
+          </div>
+          <h3>
+            <span class="i18n-en">How to measure personal brand success with clear KPIs.</span>
+            <span class="i18n-ar">إزاي تقيس نجاح البراند الشخصي بمؤشرات واضحة.</span>
+          </h3>
+          <p class="desc">
+            <span class="i18n-en">Learn the most important indicators for measuring personal brand success — from visibility and trust to engagement, opportunities, and conversion.</span>
+            <span class="i18n-ar">اتعلّم أهم المؤشرات لقياس نجاح البراند الشخصي — من الظهور والثقة للتفاعل والفرص والتحويل.</span>
+          </p>
+          <div class="footer">
+            <span>10 / 10</span>
+            <span class="read">
+              <span class="i18n-en">Read</span><span class="i18n-ar">اقرأ</span>
+              <span class="arrow">→</span>
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Newsletter / signup -->
+    <div class="newsletter">
+      <div>
+        <span class="eyebrow"><span class="i18n-en">Series subscription</span><span class="i18n-ar">اشتراك في السلسلة</span></span>
+        <h3 style="margin-top:8px;">
+          <span class="i18n-en">Get the next article in your inbox.</span>
+          <span class="i18n-ar">المقال الجاي يوصلك على إيميلك.</span>
+        </h3>
+        <p>
+          <span class="i18n-en">One email when a new piece drops. No marketing fluff, no daily nudges — only the frameworks worth your time.</span>
+          <span class="i18n-ar">إيميل واحد لمّا مقال جديد ينزل. مفيش رسايل بيع، مفيش يومي — بس الأطر اللي بتستاهل وقتك.</span>
+        </p>
+      </div>
+      <div>
+        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent = '✓ Subscribed';">
+          <input type="email" required placeholder="you@brand.com" aria-label="Email">
+          <button type="submit">
+            <span class="i18n-en">Subscribe</span><span class="i18n-ar">اشترك</span>
+          </button>
+        </form>
+        <div class="note">
+          <span class="i18n-en">⚠ Needs final integration · ESP / Mailchimp / Beehiiv</span>
+          <span class="i18n-ar">⚠ ينتظر الربط النهائي بنظام النشرة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <span class="eyebrow" style="color:rgba(245,242,236,.55);"><span class="i18n-en">Start a project</span><span class="i18n-ar">ابدأ مشروع</span></span>
+    <h2 style="margin-top:16px;">
+      <span class="i18n-en">Reading is the gateway. The work is the answer.</span>
+      <span class="i18n-ar">القراية هي البداية. التنفيذ هو الإجابة.</span>
+    </h2>
+    <p class="lede">
+      <span class="i18n-en">When you're ready to put the frameworks to work, book a 15-minute discovery call.</span>
+      <span class="i18n-ar">لمّا تكون جاهز تطبّق الأطر دي عملياً، احجز مكالمة استكشافية ١٥ دقيقة.</span>
+    </p>
+    <div class="final-cta-btns">
+      <a href="Home.html#contact" class="btn btn-primary">
+        <span class="i18n-en">Book a discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost">
+        <span class="i18n-en">WhatsApp us</span><span class="i18n-ar">واتساب</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (shared) ============ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-bottom" style="border:0; padding-top:40px;">
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="Home.html"><span class="i18n-en">Back to Home</span><span class="i18n-ar">للصفحة الرئيسية</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) { document.documentElement.setAttribute('data-theme', t); const i = document.getElementById('themeIcon'); if (i) i.textContent = t === 'dark' ? '☾' : '◐'; }
+  function applyLang(l) { document.documentElement.setAttribute('lang', l); document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr'); }
+  function toggleTheme() { const cur = document.documentElement.getAttribute('data-theme') || 'light'; const next = cur === 'light' ? 'dark' : 'light'; localStorage.setItem('opt_theme', next); applyTheme(next); }
+  function toggleLang() { const cur = document.documentElement.getAttribute('lang') || 'en'; const next = cur === 'en' ? 'ar' : 'en'; localStorage.setItem('opt_lang', next); applyLang(next); }
+
+  (function() {
+    const t = localStorage.getItem('opt_theme'); if (t) applyTheme(t);
+    const l = localStorage.getItem('opt_lang'); if (l) applyLang(l);
+  })();
+
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // Filter behavior
+  document.querySelectorAll('.filter-bar button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-bar button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.article-card').forEach(card => {
+        const show = f === 'all' || card.dataset.cat === f;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

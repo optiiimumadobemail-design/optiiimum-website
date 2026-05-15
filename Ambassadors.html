@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Ambassadors — Optiiimum | Trusted Voices &amp; Testimonials</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meet the ambassadors and trusted voices who share their experiences with Optiiimum&apos;s strategy, content, media production, personal branding, and digital growth systems.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ==== ABOUT-SPECIFIC ==== */
+  .about-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(80px, 14vw, 160px) 0 clamp(40px, 6vw, 80px);
+  }
+  .about-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(44px, 7.5vw, 96px);
+  }
+  .about-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .about-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .about-hero .meta {
+    display: flex; gap: 36px; margin-top: 56px;
+    padding-top: 28px; border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .about-hero .meta .item b { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); margin-bottom: 8px; font-weight: 500; }
+  html[lang="ar"] .about-hero .meta .item b { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .about-hero .meta .item span { font-family: var(--font-serif); font-size: 22px; line-height: 1.2; }
+  html[lang="ar"] .about-hero .meta .item span { font-family: var(--font-ar); font-weight: 600; }
+
+  .ambient-orb {
+    position: absolute; pointer-events: none;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -15vw; top: -15vw;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .35; border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* Story */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 920px) { .story-grid { grid-template-columns: 1fr; } }
+  .story-side { position: sticky; top: 110px; }
+  @media (max-width: 920px) { .story-side { position: static; } }
+  .story-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg-band) center/cover;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line);
+    overflow: hidden; position: relative;
+  }
+  .story-portrait::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4) 100%);
+  }
+  .story-portrait .label {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    z-index: 2; color: white;
+  }
+  .story-portrait .label b { font-family: var(--font-serif); font-size: 24px; display: block; line-height: 1.1; }
+  html[lang="ar"] .story-portrait .label b { font-family: var(--font-ar); font-weight: 700; }
+  .story-portrait .label span { font-size: 13px; opacity: .85; margin-top: 4px; display: block; }
+
+  .story-body { font-size: 17px; line-height: 1.7; color: var(--ink-2); }
+  .story-body p { margin: 0 0 1.2em; text-wrap: pretty; }
+  .story-body p:first-child::first-letter {
+    font-family: var(--font-serif); font-size: 4em; line-height: .8;
+    float: left; padding: 0.05em 0.1em 0 0; color: var(--ink);
+  }
+  html[lang="ar"] .story-body p:first-child::first-letter {
+    font-family: var(--font-ar); float: right; padding: 0 0 0 0.15em; font-size: 3em;
+  }
+  .story-body strong { color: var(--ink); font-weight: 500; }
+  .story-body .signature {
+    display: flex; align-items: center; gap: 14px; margin-top: 32px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    color: var(--ink-3); font-size: 13px;
+  }
+  .story-body .signature b { color: var(--ink); font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
+  html[lang="ar"] .story-body .signature b { font-family: var(--font-ar); font-weight: 600; }
+  .story-body .signature .glyph {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    flex: none;
+  }
+
+  /* Geos */
+  .geos {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-top: 28px;
+  }
+  @media (max-width: 720px) { .geos { grid-template-columns: repeat(2, 1fr); } }
+  .geo {
+    padding: 14px; border: 1px solid var(--line);
+    border-radius: var(--r); background: var(--bg-elev);
+    font-size: 13.5px; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .geo .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* Why different */
+  .why-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 920px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .15s, transform .2s, box-shadow .2s;
+  }
+  .why-card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-1); }
+  .why-card .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .12em;
+  }
+  .why-card h3 { font-size: 22px; line-height: 1.15; }
+  .why-card p { color: var(--ink-2); font-size: 14.5px; margin: 0; text-wrap: pretty; }
+
+  /* Culture grid */
+  .culture-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+  }
+  @media (max-width: 920px) { .culture-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 140px; } }
+  @media (max-width: 560px) { .culture-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .culture-tile {
+    grid-column: span 2; grid-row: span 1;
+    border-radius: var(--r-lg);
+    background: var(--bg-band) center/cover;
+    border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+    transition: transform .25s ease;
+  }
+  .culture-tile:hover { transform: scale(1.02); }
+  .culture-tile::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+  }
+  .culture-tile .cap {
+    position: absolute; left: 16px; right: 16px; bottom: 14px;
+    color: white; z-index: 2;
+    font-family: var(--font-mono); font-size: 11.5px;
+    text-transform: uppercase; letter-spacing: .12em;
+  }
+  html[lang="ar"] .culture-tile .cap { letter-spacing: .04em; text-transform: none; font-size: 13px; font-family: var(--font-mono); }
+  /* Asymmetric layout */
+  .culture-tile.tall { grid-row: span 2; }
+  .culture-tile.wide { grid-column: span 3; }
+  .culture-tile.huge { grid-column: span 3; grid-row: span 2; }
+  @media (max-width: 920px) {
+    .culture-tile.tall, .culture-tile.huge { grid-row: span 2; }
+    .culture-tile.wide, .culture-tile.huge { grid-column: span 3; }
+  }
+  @media (max-width: 560px) {
+    .culture-tile, .culture-tile.tall, .culture-tile.wide, .culture-tile.huge {
+      grid-column: span 2; grid-row: span 1;
+    }
+  }
+
+  /* Credibility */
+  .creds-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .creds-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cred {
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--bg-elev);
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative; overflow: hidden;
+  }
+  .cred .badge {
+    position: absolute; top: 16px; inset-inline-end: 16px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: conic-gradient(from 220deg, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2));
+    opacity: .8;
+  }
+  .cred b { font-family: var(--font-serif); font-size: clamp(36px, 4vw, 52px); line-height: 1; }
+  .cred .label { font-size: 13.5px; color: var(--ink-2); }
+  .cred .note { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-top: 6px; letter-spacing: .08em; }
+  html[lang="ar"] .cred .note { letter-spacing: 0; font-size: 12.5px; }
+
+  /* Team preview */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  .role {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 180px; position: relative;
+    transition: border-color .15s, transform .2s;
+  }
+  .role:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .role .num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: .12em; }
+  .role .glyph {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(229,85,200,.12);
+    margin-bottom: 8px;
+  }
+  .role b { font-size: 17px; line-height: 1.2; font-family: var(--font-serif); font-weight: 400; }
+  html[lang="ar"] .role b { font-family: var(--font-ar); font-weight: 600; font-size: 18px; }
+  .role p { font-size: 13px; color: var(--ink-2); margin: 0; }
+  .role .count { margin-top: auto; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+
+  /* Notice */
+  .image-notice {
+    background: rgba(229,85,200,.08);
+    border: 1px solid rgba(229,85,200,.3);
+    color: var(--accent);
+    padding: 14px 18px; border-radius: var(--r);
+    font-size: 13px; line-height: 1.5;
+    margin-top: 24px;
+  }
+  .image-notice b { color: var(--accent); }
+</style>
+<style>
+
+.amb-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+@media (max-width: 920px) { .amb-page-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .amb-page-grid { grid-template-columns: 1fr; } }
+
+.amb-card {
+  position: relative;
+  padding: 24px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)),
+    rgba(255,255,255,.015);
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform .25s, border-color .25s;
+  isolation: isolate;
+}
+[data-theme="light"] .amb-card { border-color: rgba(0,0,0,.07); background: rgba(255,255,255,.85); }
+.amb-card:hover { transform: translateY(-3px); border-color: rgba(229,85,200,.4); }
+.amb-card-head { display: flex; align-items: center; gap: 12px; }
+.amb-avatar {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -.02em;
+  color: rgba(0,0,0,.7);
+  flex: none;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.18) inset;
+}
+.amb-meta { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.amb-meta b {
+  font-family: var(--font-sans); font-weight: 700; font-size: 15px;
+  letter-spacing: -.01em; color: var(--ink);
+}
+.amb-meta span {
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
+}
+html[lang="ar"] .amb-meta b { font-family: var(--font-ar); font-size: 16px; }
+html[lang="ar"] .amb-meta span { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+.amb-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.35;
+  letter-spacing: -.005em;
+  background: linear-gradient(110deg, #FDD196 0%, #FF966D 25%, #E555C8 55%, #54B3EC 90%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-wrap: pretty;
+}
+html[lang="ar"] .amb-quote { font-family: var(--font-ar); font-style: normal; font-weight: 700; font-size: 18px; line-height: 1.7; }
+
+.amb-more {
+  margin-top: auto;
+}
+.amb-more summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 6px 0;
+  display: inline-block;
+  border-bottom: 1px solid var(--line);
+  transition: color .15s, border-color .15s;
+}
+.amb-more summary::-webkit-details-marker { display: none; }
+html[lang="ar"] .amb-more summary { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.amb-more[open] summary { color: var(--ink); border-color: var(--ink); }
+.amb-more p { margin: 12px 0 0; font-size: 13.5px; line-height: 1.65; color: var(--ink-2); }
+html[lang="ar"] .amb-more p { font-family: var(--font-ar); font-size: 14.5px; line-height: 1.85; }
+
+.amb-cat {
+  position: absolute; top: 14px; inset-inline-end: 14px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+[data-theme="light"] .amb-cat { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.08); }
+html[lang="ar"] .amb-cat { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 11px; }
+
+.amb-filterbar {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 32px 0 12px;
+}
+.amb-filterbar button {
+  font: inherit; font-size: 12.5px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+  font-family: var(--font-mono);
+  letter-spacing: .04em;
+}
+html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spacing: 0; font-size: 13.5px; }
+.amb-filterbar button.is-active {
+  background: var(--ink); color: var(--bg); border-color: var(--ink);
+}
+.amb-filterbar button:hover:not(.is-active) { color: var(--ink); border-color: var(--ink); }
+
+.amb-card.hidden { display: none; }
+
+</style>
+<style id="ambassadors-css">
+/* ============================================================
+   AMBASSADORS — premium photo cards (face-safe, bilingual)
+   ============================================================ */
+.amb-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 24px;
+}
+@media (max-width: 980px) { .amb-page-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; } }
+@media (max-width: 560px) { .amb-page-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+.amb-card {
+  position: relative;
+  padding: 0;
+  border-radius: 22px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s;
+  isolation: isolate;
+}
+[data-theme="dark"] .amb-card { background: rgba(22,22,22,.6); border-color: rgba(255,255,255,.07); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.amb-card::before {
+  /* Gradient border on hover */
+  content: ""; position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #FDD196, #FF966D, #E555C8, #BE6FD2, #54B3EC, #00FEFF);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.amb-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 60px -28px rgba(229,85,200,.35), 0 8px 20px -10px rgba(0,0,0,.2);
+}
+.amb-card:hover::before { opacity: 1; }
+
+/* Portrait — face-safe, sits on a warm off-white that blends with photo cutouts */
+.amb-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background:
+    radial-gradient(120% 80% at 50% 110%, rgba(229,85,200,.12), transparent 60%),
+    radial-gradient(80% 60% at 70% -10%, rgba(84,179,236,.10), transparent 60%),
+    #F1EFE9;
+  overflow: hidden;
+}
+[data-theme="dark"] .amb-portrait {
+  background:
+    radial-gradient(120% 80% at 50% 110%, rgba(229,85,200,.18), transparent 55%),
+    radial-gradient(80% 60% at 70% -10%, rgba(84,179,236,.14), transparent 55%),
+    #EDEAE2;
+}
+.amb-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%; /* keep face/eyes visible at top */
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .35s ease;
+  filter: saturate(1.02);
+}
+.amb-card:hover .amb-portrait img { transform: scale(1.04); }
+
+/* Body */
+.amb-body {
+  padding: 22px 22px 24px;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+}
+.amb-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.amb-meta b {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.amb-meta span {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+html[lang="ar"] .amb-meta b { font-family: var(--font-ar); font-size: 18px; }
+html[lang="ar"] .amb-meta span { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+
+.amb-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: pretty;
+  letter-spacing: -.005em;
+}
+html[lang="ar"] .amb-quote { font-family: var(--font-ar); font-style: normal; font-weight: 600; font-size: 17px; line-height: 1.65; }
+
+.amb-more { margin-top: auto; }
+.amb-more summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--line);
+  width: max-content;
+  transition: color .2s, border-color .2s;
+}
+.amb-more summary::-webkit-details-marker { display: none; }
+.amb-more summary::after { content: "↓"; font-size: 11px; opacity: .6; transition: transform .2s; }
+.amb-more[open] summary::after { transform: rotate(180deg); }
+.amb-more[open] summary { color: var(--ink); border-color: var(--ink); }
+html[lang="ar"] .amb-more summary { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.amb-more p { margin: 14px 0 0; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+html[lang="ar"] .amb-more p { font-family: var(--font-ar); font-size: 14.5px; line-height: 1.85; }
+
+.amb-cat {
+  position: absolute;
+  top: 14px; inset-inline-end: 14px;
+  z-index: 3;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: rgba(11,11,11,.65);
+  color: #FFFFFF;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.18);
+  pointer-events: none;
+  max-width: calc(100% - 28px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html[lang="ar"] .amb-cat { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 11px; }
+
+/* Filter bar (Ambassadors page only) */
+.amb-filterbar {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 32px;
+}
+.amb-filterbar button {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: all .2s;
+}
+html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.amb-filterbar button.is-active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.amb-filterbar button:hover:not(.is-active) { color: var(--ink); border-color: var(--ink); }
+.amb-card.hidden { display: none; }
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html" aria-current="page"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html" aria-current="page"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<main>
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">Ambassadors</span>
+      <span class="i18n-ar">سفراء أوبتيمم</span>
+    </span>
+    <h1>
+      <span class="i18n-en">Trusted voices who <span class="opt-grad-text">represent Optiiimum.</span></span>
+      <span class="i18n-ar">أصواتٌ موثوقةٌ <span class="opt-grad-text">تُمثِّل Optiiimum.</span></span>
+    </h1>
+    <p class="lede" style="margin-top:20px; max-width: 60ch;">
+      <span class="i18n-en">Meet the experts, founders, creators, doctors, consultants, and leaders whose words reflect the impact of Optiiimum&apos;s strategy, content, media production, and digital growth systems.</span>
+      <span class="i18n-ar">تعرَّف على الخبراء، المؤسِّسين، صنَّاع المحتوى، الأطبَّاء، الاستشاريين، والقادة الذين تعكس كلماتُهم أثر استراتيجية Optiiimum، المحتوى، الإنتاج الإعلامي، وأنظمة النمو الرقمي.</span>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="amb-filterbar" role="tablist">
+      <button type="button" data-filter="all" class="is-active"><span class="i18n-en">All</span><span class="i18n-ar">الكل</span></button>
+      <button type="button" data-filter="medical"><span class="i18n-en">Medical & Health</span><span class="i18n-ar">الطب والصحة</span></button>
+      <button type="button" data-filter="personal"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></button>
+      <button type="button" data-filter="media"><span class="i18n-en">Media Production</span><span class="i18n-ar">الإنتاج الإعلامي</span></button>
+      <button type="button" data-filter="impact"><span class="i18n-en">Education & Social Impact</span><span class="i18n-ar">التعليم والتأثير</span></button>
+      <button type="button" data-filter="fitness"><span class="i18n-en">Fitness & Sports</span><span class="i18n-ar">اللياقة والرياضة</span></button>
+      <button type="button" data-filter="business"><span class="i18n-en">Business</span><span class="i18n-ar">البيزنس</span></button>
+      <button type="button" data-filter="podcast"><span class="i18n-en">Podcasts & Content</span><span class="i18n-ar">البودكاست والمحتوى</span></button>
+    </div>
+
+    <div class="amb-page-grid">
+<div class="i18n-en" style="display: contents;">
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-michael-younan.jpg" alt="Dr. Michael Younan, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Michael Younan</b>
+      <span>Physiotherapist</span>
+    </div>
+    <p class="amb-quote">&ldquo;They launched my brand and connected me with my clients.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Through expert guidance in personal branding, my social media platforms were launched successfully — helping me connect meaningfully with my clients and showcase my skills online.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="media" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-islam-nasr-allah.jpg" alt="Dr. Islam Nasr Allah, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Islam Nasr Allah</b>
+      <span>Medical Products Specialist</span>
+    </div>
+    <p class="amb-quote">&ldquo;They elevated my brand across KSA and boosted our sales.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their media production elevated my brand presence in KSA by showcasing all Mega Trust products professionally — resulting in a strong boost to our sales and brand image.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Media Production</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/sally-kotb.jpg" alt="Sally Kotb, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Sally Kotb</b>
+      <span>Maternity Specialist</span>
+    </div>
+    <p class="amb-quote">&ldquo;They redefined my online presence in the maternity field.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They redefined my online presence — allowing me to reconnect with a larger audience in the maternity field and significantly increase my visibility and trust on social media.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/mohamed-alaa.jpg" alt="Mohamed Alaa, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Mohamed Alaa</b>
+      <span>CEO of Shezlong</span>
+    </div>
+    <p class="amb-quote">&ldquo;Shezlong became a recognised platform in mental health.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With their support, Shezlong has become a well-known platform in mental health support — achieving broad awareness and making a positive impact for those in need.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/amr-mansy.jpg" alt="Amr Mansy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Amr Mansy</b>
+      <span>Celebrity Advocate</span>
+    </div>
+    <p class="amb-quote">&ldquo;Their event coverage created real impact for mental health.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their expertise in event coverage brought substantial visibility to my mental health initiatives — creating a meaningful impact on Egypt's mental health community.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Education &amp; Social Impact</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/kato.jpg" alt="Kato, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Kato</b>
+      <span>Founder of Stanvi</span>
+    </div>
+    <p class="amb-quote">&ldquo;They brought Stanvi's vision to life — and engaged our audience.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Transforming my brand, they delivered dynamic media production for Stanvi products and events — bringing our vision to life and deeply engaging our audience.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/moustapha-zaalouk.jpg" alt="Moustapha Zaalouk, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Moustapha Zaalouk</b>
+      <span>CEO of Tac Universe</span>
+    </div>
+    <p class="amb-quote">&ldquo;They amplified my voice — and my clients'.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With precision and creativity, they crafted my personal brand, utilising podcast production to amplify my voice and that of my clients — strengthening Tac Universe's reputation.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Podcasts &amp; Content</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/nilly-shams.jpg" alt="Nilly Shams, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Nilly Shams</b>
+      <span>Nutrition Expert</span>
+    </div>
+    <p class="amb-quote">&ldquo;My podcast + marketing strategy made my brand stand out.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their approach helped me connect with my audience on a new level — producing a podcast and implementing powerful digital marketing strategies that made my brand stand out.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Podcasts &amp; Content</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/diana-samir.jpg" alt="Diana Samir, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Diana Samir</b>
+      <span>Beauty Doctor</span>
+    </div>
+    <p class="amb-quote">&ldquo;They built my online presence from the ground up.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They built my social media presence from the ground up — creating a solid foundation that resonates with my target audience and amplifies my reach.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ali-hamdy.jpg" alt="Ali Hamdy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ali Hamdy</b>
+      <span>UAE Entrepreneur</span>
+    </div>
+    <p class="amb-quote">&ldquo;They expanded EMS awareness across 20 UAE branches.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their team expanded EMS awareness across my 20 branches in the UAE — significantly strengthening the influence and reach of my brand.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/sheikh-fahad-al-sabah.jpg" alt="Sheikh Fahad Al Sabah, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Sheikh Fahad Al Sabah</b>
+      <span>Minister of Interior, Kuwait</span>
+    </div>
+    <p class="amb-quote">&ldquo;They brought innovative digital solutions to Kuwait's services.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their role was key in establishing passport kiosks for visitors to Kuwait — bringing innovative digital solutions to improve our services.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Education &amp; Social Impact</span>
+</article>
+<article class="amb-card" data-cat="media" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ziad-el-hadary.jpg" alt="Ziad El Hadary, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ziad El Hadary</b>
+      <span>Medical Content Strategist</span>
+    </div>
+    <p class="amb-quote">&ldquo;Together we enhanced awareness in the medical community.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Through a collaborative effort, they helped us generate impactful content that enhanced awareness and engagement within the medical community.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Media Production</span>
+</article>
+<article class="amb-card" data-cat="fitness" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/diet-and-cheat.jpg" alt="Diet &amp; Cheat, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Diet &amp; Cheat</b>
+      <span>Fitness Brand</span>
+    </div>
+    <p class="amb-quote">&ldquo;We led fitness awareness across the Gulf and Egypt.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their collaboration allowed us to elevate fitness awareness across the Gulf and Egyptian markets — establishing our brand as a health and fitness leader.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Fitness &amp; Sports</span>
+</article>
+<article class="amb-card" data-cat="fitness" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ragy-issac.jpg" alt="Ragy Issac, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ragy Issac</b>
+      <span>Football Consultant</span>
+    </div>
+    <p class="amb-quote">&ldquo;They took my brand global and gave young athletes a stage.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They expanded my personal brand globally — helping promote my football programmes and providing young athletes with opportunities to achieve their dreams.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Fitness &amp; Sports</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/mohamed-el-kossy.jpg" alt="Mohamed El Kossy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Mohamed El Kossy</b>
+      <span>UN Podcast Producer</span>
+    </div>
+    <p class="amb-quote">&ldquo;They gave refugees a global platform to share their stories.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their team brought our podcast to life — giving refugees a powerful platform to share their stories with audiences worldwide.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Podcasts &amp; Content</span>
+</article>
+<article class="amb-card" data-cat="personal" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/kiro-fawzy.jpg" alt="Kiro Fawzy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Kiro Fawzy</b>
+      <span>Social Media Influencer</span>
+    </div>
+    <p class="amb-quote">&ldquo;My five million followers actually feel me now.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With their media production expertise, my personal brand grew stronger — reaching and resonating with my 5 million followers more effectively.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Personal Branding</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ali-el-bakry.jpg" alt="Ali El Bakry, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ali El Bakry</b>
+      <span>Founder of Karsma</span>
+    </div>
+    <p class="amb-quote">&ldquo;Karsma made a real impact in KSA's medical apparel scene.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Awareness of my new brand in KSA increased substantially — helping Karsma make a significant impact in the medical apparel industry.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-hany-el-shafie.jpg" alt="Dr. Hany El Shafie, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Hany El Shafie</b>
+      <span>Maternity Care Expert</span>
+    </div>
+    <p class="amb-quote">&ldquo;They positioned me as a leader in maternity and prenatal testing.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They positioned me as a leading figure in maternity and prenatal testing — crafting a brand that speaks to both clients and industry professionals.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-amr-el-werdany.jpg" alt="Dr. Amr El Werdany, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Amr El Werdany</b>
+      <span>Al-Azhar Sheikh</span>
+    </div>
+    <p class="amb-quote">&ldquo;They widened the reach of my teachings and retreats.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their efforts raised awareness for my retreats — allowing me to share my teachings with a wider community and deepen my influence.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Education &amp; Social Impact</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/nour-el-dien-el-sherif.jpg" alt="Nour El Dien El Sherif, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Nour El Dien El Sherif</b>
+      <span>Business Leader · Education</span>
+    </div>
+    <p class="amb-quote">&ldquo;They established my brand in Egypt's education sector.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They were instrumental in establishing my brand in Egypt's education sector — managing my complex portfolio and supporting my maintenance network with ease.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/marina-bekhit.jpg" alt="Marina Bekhit, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Marina Bekhit</b>
+      <span>Vocal Coach</span>
+    </div>
+    <p class="amb-quote">&ldquo;They helped me market Arabic voices to the world.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They helped my brand expand globally — guiding me in marketing Arabic voices internationally and creating valuable connections worldwide.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Education &amp; Social Impact</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/omar-ossman.jpg" alt="Omar Ossman, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Omar Ossman</b>
+      <span>Chairman</span>
+    </div>
+    <p class="amb-quote">&ldquo;They turned my ideas into a powerful digital presence.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their strategic partnership in media production brought my personal branding ideas to life — transforming them into a powerful digital presence.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/rana-amer.jpg" alt="Rana Amer, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Rana Amer</b>
+      <span>Nutritionist &amp; Influencer</span>
+    </div>
+    <p class="amb-quote">&ldquo;Two million followers — and the content kept landing.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With their media production expertise, my brand reached new heights — engaging over 2 million followers and delivering impactful content across platforms.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/mohamed-raouf.jpg" alt="Mohamed Raouf, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Mohamed Raouf</b>
+      <span>CEO of Go-Brandz</span>
+    </div>
+    <p class="amb-quote">&ldquo;They executed our vision faster than we ever expected.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>The team's speed in delivering both strategies and visuals was remarkable. Optiiimum grasped our brand vision effortlessly and executed it with precision — bringing our ideas to life faster than we ever expected.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+</div>
+<div class="i18n-ar" style="display: contents;">
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-michael-younan.jpg" alt="د. مايكل يونان، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>د. مايكل يونان</b>
+      <span>أخصائي علاج طبيعي</span>
+    </div>
+    <p class="amb-quote">«أطلقوا براندي ووصّلوني بجمهوري.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>بفضل توجيههم في البراند الشخصي، انطلقت منصّاتي على السوشيال ميديا بنجاح — وقدرت أوصل لجمهوري بشكلٍ حقيقي وأُظهر خبرتي بصورةٍ مهنية.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الطب والصحة</span>
+</article>
+<article class="amb-card" data-cat="media" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-islam-nasr-allah.jpg" alt="د. إسلام نصر الله، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>د. إسلام نصر الله</b>
+      <span>أخصائي المنتجات الطبية</span>
+    </div>
+    <p class="amb-quote">«رفعوا حضور علامتي في السعودية وضاعفوا مبيعاتنا.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>إنتاجهم الإعلامي رفع حضور علامتي في السوق السعودي، وأبرز منتجات Mega Trust بشكلٍ احترافي — مما أدى إلى نموٍّ قويٍ في المبيعات وصورة العلامة.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الإنتاج الإعلامي</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/sally-kotb.jpg" alt="سالي قطب، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>سالي قطب</b>
+      <span>أخصائية رعاية الأمومة</span>
+    </div>
+    <p class="amb-quote">«أعادوا تعريف حضوري الرقمي في مجال رعاية الأمومة.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>أعادوا بناء حضوري الرقمي من الأساس، وفتحوا لي بابًا أوسع للوصول إلى جمهوري في مجال رعاية الأمومة، وضاعفوا ثقتي وانتشاري على السوشيال ميديا.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الطب والصحة</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/mohamed-alaa.jpg" alt="محمد علاء، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>محمد علاء</b>
+      <span>الرئيس التنفيذي لـ Shezlong</span>
+    </div>
+    <p class="amb-quote">«شيزلونج بقت منصّة معروفة في دعم الصحة النفسية.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>بدعمهم، أصبحت Shezlong منصّةً معروفةً في مجال دعم الصحة النفسية، ووصلت إلى وعيٍ جماهيريٍّ واسع، وأحدثت أثرًا إيجابيًّا لكلِّ مَن يحتاج المساعدة.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/amr-mansy.jpg" alt="عمرو منسي، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>عمرو منسي</b>
+      <span>مناصرٌ بارز</span>
+    </div>
+    <p class="amb-quote">«تغطيتهم لفعالياتي خلقت أثرًا حقيقيًّا لقضايا الصحة النفسية.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>خبرتهم في تغطية الفعاليات منحت مبادراتي للصحة النفسية انتشارًا حقيقيًّا — وصنعت أثرًا ملموسًا داخل مجتمع الصحة النفسية في مصر.</p>
+    </details>
+  </div>
+  <span class="amb-cat">التعليم والتأثير المجتمعي</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/kato.jpg" alt="كاتو، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>كاتو</b>
+      <span>مؤسِّس Stanvi</span>
+    </div>
+    <p class="amb-quote">«حوّلوا رؤية Stanvi إلى واقع — وربطونا بجمهورنا.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>حوّلوا علامتي بصريًّا وحسّيًّا، وقدّموا إنتاجًا إعلاميًّا ديناميكيًّا لمنتجات Stanvi وفعالياتها — ونقلوا رؤيتنا إلى الواقع، وعمّقوا تفاعل جمهورنا.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/moustapha-zaalouk.jpg" alt="مصطفى زعلوك، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>مصطفى زعلوك</b>
+      <span>الرئيس التنفيذي لـ Tac Universe</span>
+    </div>
+    <p class="amb-quote">«ضخّموا صوتي… وصوت عملائي.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>صاغوا علامتي الشخصية بدقّةٍ وإبداع، ووظّفوا إنتاج البودكاست لإيصال صوتي وصوت عملائي — فترسّخت سمعة Tac Universe بشكلٍ أعمق.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البودكاست والمحتوى</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/nilly-shams.jpg" alt="نيللي شمس، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>نيللي شمس</b>
+      <span>خبيرة تغذية</span>
+    </div>
+    <p class="amb-quote">«البودكاست والاستراتيجية الرقمية ميّزوا براندي.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>أسلوبهم ساعدني أتواصل مع جمهوري بشكلٍ جديد — أنتجوا لي بودكاست ونفّذوا استراتيجياتٍ تسويقيةً قويةً جعلت علامتي تتميَّز فعلًا.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البودكاست والمحتوى</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/diana-samir.jpg" alt="ديانا سمير، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>ديانا سمير</b>
+      <span>طبيبة تجميل</span>
+    </div>
+    <p class="amb-quote">«بنوا حضوري الرقمي من الصفر.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>بنوا حضوري على المنصّات من الصفر، وأرسَوا أساسًا متينًا يتحدّث بلغة جمهوري، ويوسِّع وصولي بثقة.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الطب والصحة</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ali-hamdy.jpg" alt="علي حمدي، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>علي حمدي</b>
+      <span>رائد أعمال — الإمارات</span>
+    </div>
+    <p class="amb-quote">«وسّعوا الوعي بالـ EMS عبر 20 فرعًا في الإمارات.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>فريقهم وسّع الوعي بخدمات الـ EMS عبر فروعي العشرين في الإمارات — وعزّز تأثير علامتي ووصولها بشكلٍ ملموس.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/sheikh-fahad-al-sabah.jpg" alt="الشيخ فهد الصباح، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>الشيخ فهد الصباح</b>
+      <span>وزير الداخلية الكويتي</span>
+    </div>
+    <p class="amb-quote">«قدّموا حلولًا رقميةً مبتكرةً لخدمات الكويت.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>كان لدورهم أثرٌ محوريٌّ في تأسيس أكشاك جوازات السفر لزوّار دولة الكويت — مقدِّمين حلولًا رقميةً مبتكرة لرفع جودة خدماتنا.</p>
+    </details>
+  </div>
+  <span class="amb-cat">التعليم والتأثير المجتمعي</span>
+</article>
+<article class="amb-card" data-cat="media" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ziad-el-hadary.jpg" alt="زياد الحضري، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>زياد الحضري</b>
+      <span>استراتيجي محتوى طبي</span>
+    </div>
+    <p class="amb-quote">«رفعنا الوعي داخل المجتمع الطبي بمحتوى مؤثّر.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>عبر تعاونٍ حقيقيٍّ معهم، نجحنا في إنتاج محتوى مؤثِّر — رفع الوعي وعمّق التفاعل داخل المجتمع الطبي.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الإنتاج الإعلامي</span>
+</article>
+<article class="amb-card" data-cat="fitness" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/diet-and-cheat.jpg" alt="Diet &amp; Cheat، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Diet &amp; Cheat</b>
+      <span>براند لياقةٍ بدنية</span>
+    </div>
+    <p class="amb-quote">«قُدنا الوعي باللياقة في الخليج ومصر.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>شراكتهم معنا رفعت الوعي باللياقة البدنية في الأسواق الخليجية والمصرية — ورسّخت علامتنا كقائدٍ في مجال الصحة واللياقة.</p>
+    </details>
+  </div>
+  <span class="amb-cat">اللياقة والرياضة</span>
+</article>
+<article class="amb-card" data-cat="fitness" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ragy-issac.jpg" alt="راجي إسحاق، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>راجي إسحاق</b>
+      <span>مستشار كرة قدم</span>
+    </div>
+    <p class="amb-quote">«وسّعوا علامتي عالميًّا، وفتحوا للشباب أبواب الفرصة.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>وسّعوا علامتي الشخصية حول العالم، وروّجوا لبرامجي الكروية، وفتحوا أمام الشباب من اللاعبين أبواب الفرصة لتحقيق أحلامهم.</p>
+    </details>
+  </div>
+  <span class="amb-cat">اللياقة والرياضة</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/mohamed-el-kossy.jpg" alt="محمد القصي، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>محمد القصي</b>
+      <span>منتج بودكاست — الأمم المتحدة</span>
+    </div>
+    <p class="amb-quote">«منحوا اللاجئين منصّةً عالميةً تحكي قصصهم.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>فريقهم بثّ الحياة في بودكاستنا — ومنح اللاجئين منصّةً قويةً لرواية قصصهم لجمهورٍ حول العالم.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البودكاست والمحتوى</span>
+</article>
+<article class="amb-card" data-cat="personal" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/kiro-fawzy.jpg" alt="كيرو فوزي، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>كيرو فوزي</b>
+      <span>مؤثِّر على وسائل التواصل</span>
+    </div>
+    <p class="amb-quote">«المتابعون الخمسة ملايين أصبحوا يلمسون شخصيّتي.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>بخبرتهم في الإنتاج الإعلامي، تعمّقت علامتي الشخصية، وامتدّ صداها بصدقٍ أكبر بين الخمسة ملايين متابع.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البراند الشخصي</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/ali-el-bakry.jpg" alt="علي البكري، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>علي البكري</b>
+      <span>مؤسِّس Karsma</span>
+    </div>
+    <p class="amb-quote">«Karsma صنعت أثرًا حقيقيًّا في سوق الزي الطبي السعودي.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>وعي السوق السعودي بعلامتي ارتفع بشكلٍ ملحوظ — وKarsma استطاعت أن تحدث أثرًا حقيقيًّا في صناعة الملابس الطبية.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-hany-el-shafie.jpg" alt="د. هاني الشافعي، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>د. هاني الشافعي</b>
+      <span>خبير رعاية الأمومة</span>
+    </div>
+    <p class="amb-quote">«وضعوني في صدارة مجال الأمومة وفحوصات ما قبل الولادة.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>رسّخوا مكانتي كمرجعٍ بارز في رعاية الأمومة وفحوصات ما قبل الولادة — وصاغوا علامةً تخاطب العملاء وأهل المهنة في آنٍ واحد.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الطب والصحة</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/dr-amr-el-werdany.jpg" alt="د. عمرو الورداني، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>د. عمرو الورداني</b>
+      <span>شيخ من الأزهر الشريف</span>
+    </div>
+    <p class="amb-quote">«وسّعوا انتشار تعاليمي وخلواتي الإيمانية.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>جهودهم رفعت الوعي بخلواتي الإيمانية — ومنحتني فرصةً لمشاركة تعاليمي مع جمهورٍ أوسع، وتعميق أثري.</p>
+    </details>
+  </div>
+  <span class="amb-cat">التعليم والتأثير المجتمعي</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/nour-el-dien-el-sherif.jpg" alt="نور الدين الشريف، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>نور الدين الشريف</b>
+      <span>قائد أعمال — قطاع التعليم</span>
+    </div>
+    <p class="amb-quote">«رسّخوا علامتي في قطاع التعليم في مصر.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>كان لهم دورٌ محوريٌّ في تأسيس علامتي داخل قطاع التعليم في مصر — وأداروا ملفّاتي المعقّدة، ودعموا شبكة الصيانة الخاصة بي بسلاسةٍ تامّة.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/marina-bekhit.jpg" alt="مارينا بخيت، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>مارينا بخيت</b>
+      <span>مدرِّبة صوت</span>
+    </div>
+    <p class="amb-quote">«ساعدوني أسوّق الأصوات العربية للعالم.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>ساعدوا علامتي على التوسُّع عالميًّا — وقادوني في تسويق الأصوات العربية على المستوى الدولي، وفتحوا لي اتصالاتٍ قيّمةً حول العالم.</p>
+    </details>
+  </div>
+  <span class="amb-cat">التعليم والتأثير المجتمعي</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/omar-ossman.jpg" alt="عمر عثمان، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>عمر عثمان</b>
+      <span>رئيس مجلس إدارة</span>
+    </div>
+    <p class="amb-quote">«حوّلوا أفكاري إلى حضورٍ رقميٍّ قوي.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>شراكتهم الاستراتيجية في الإنتاج الإعلامي جسّدت أفكار علامتي الشخصية — وحوّلتها إلى حضورٍ رقميٍّ مُؤثِّر.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/rana-amer.jpg" alt="رنا عامر، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>رنا عامر</b>
+      <span>أخصائية تغذية ومؤثِّرة</span>
+    </div>
+    <p class="amb-quote">«مليونان من المتابعين — والمحتوى ما زال يلامس قلوبهم.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>بفضل خبرتهم في الإنتاج الإعلامي، وصلت علامتي إلى آفاقٍ جديدة، وتفاعل معها أكثرُ من مليونَي متابع، وامتدّ تأثير المحتوى عبر كلّ المنصّات.</p>
+    </details>
+  </div>
+  <span class="amb-cat">الطب والصحة</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambassadors/mohamed-raouf.jpg" alt="محمد رؤوف، سفير Optiiimum" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>محمد رؤوف</b>
+      <span>الرئيس التنفيذي لـ Go-Brandz</span>
+    </div>
+    <p class="amb-quote">«نفّذوا رؤيتنا أسرع بكثيرٍ مما توقّعنا.»</p>
+    <details class="amb-more">
+      <summary>اقرأ الشهادة كاملة</summary>
+      <p>سرعة الفريق في تسليم الاستراتيجية والمحتوى البصري كانت لافتةً جدًا. فهموا رؤيتنا بسلاسة، ونفّذوها بدقّةٍ نادرة — وحوّلوا الأفكار إلى واقعٍ أسرع من أي توقّعٍ لنا.</p>
+    </details>
+  </div>
+  <span class="amb-cat">البيزنس وريادة الأعمال</span>
+</article>
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta-section">
+  <div class="container">
+    <div class="opt-box">
+      <h2>
+        <span class="i18n-en">Want to build a brand <span class="opt-grad-text">people trust</span>?</span>
+        <span class="i18n-ar">هل تودُّ بناء علامةٍ <span class="opt-grad-text">يثق بها الناس</span>؟</span>
+      </h2>
+      <p class="lede">
+        <span class="i18n-en">Start with a 15-minute discovery call and let&apos;s identify the right growth system for your brand.</span>
+        <span class="i18n-ar">ابدأ بمكالمةٍ استكشافيةٍ مدّتها 15 دقيقة، ولنُحدِّد معًا نظام النمو الأنسب لعلامتك.</span>
+      </p>
+      <div class="final-cta-btns">
+        <a href="Consultation.html" class="btn btn-primary">
+          <span class="i18n-en">Book a 15-min discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        </a>
+        <a href="CaseStudies.html" class="btn btn-ghost">
+          <span class="i18n-en">View case studies</span><span class="i18n-ar">شاهد دراسات الحالة</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function () {
+  // Filter buttons → category filter
+  const grid = document.querySelector('.amb-page-grid');
+  if (!grid) return;
+  const btns = document.querySelectorAll('.amb-filterbar button');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.filter;
+      btns.forEach(b => b.classList.toggle('is-active', b === btn));
+      document.querySelectorAll('.amb-card').forEach(card => {
+        const match = key === 'all' || card.dataset.cat === key;
+        card.classList.toggle('hidden', !match);
+      });
+    });
+  });
+})();
+</script>
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="Home.html#cases"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Home.html#team"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Home.html#blog"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Home.html#services"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Home.html#courses"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+          <li><a href="https://www.instagram.com/optiiimumsolutions" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/104597175/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@optimumsolutions851" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@optiiimumsolutionsegy" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/Optiiimum" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://x.com/optiiimum_sol" target="_blank" rel="noopener">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="needs-final">
+        <b><span class="i18n-en">⚠ Needs final links</span><span class="i18n-ar">⚠ تحتاج الروابط النهائية</span></b>
+        <div style="margin-top:6px;">
+          <span class="i18n-en">Public email address · Calendly / booking link · Privacy &amp; Terms pages — to be supplied by the team.</span>
+          <span class="i18n-ar">إيميل عام · رابط حجز المكالمة · صفحات الخصوصية والشروط — في انتظار البيانات النهائية من الفريق.</span>
+        </div>
+      </div>
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute('lang') || 'en';
+    const next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    const t = localStorage.getItem('opt_theme');
+    if (t) applyTheme(t);
+    const l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+</script>
+
+</body>
+</html>

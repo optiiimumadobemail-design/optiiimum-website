@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+// Auto theme by local time, with manual override.
+// Runs synchronously before paint to prevent flash of wrong theme.
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') {
+      theme = manual;
+    } else {
+      var h = new Date().getHours();
+      theme = (h >= 7 && h < 19) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>FAQ — Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ten honest answers about how Optiiimum works, who we fit, and what to expect.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ==== ABOUT-SPECIFIC ==== */
+  .about-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(80px, 14vw, 160px) 0 clamp(40px, 6vw, 80px);
+  }
+  .about-hero h1 {
+    max-width: 18ch;
+    font-size: clamp(44px, 7.5vw, 96px);
+  }
+  .about-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .about-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .about-hero .meta {
+    display: flex; gap: 36px; margin-top: 56px;
+    padding-top: 28px; border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .about-hero .meta .item b { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); margin-bottom: 8px; font-weight: 500; }
+  html[lang="ar"] .about-hero .meta .item b { letter-spacing: .04em; text-transform: none; font-size: 13px; }
+  .about-hero .meta .item span { font-family: var(--font-serif); font-size: 22px; line-height: 1.2; }
+  html[lang="ar"] .about-hero .meta .item span { font-family: var(--font-ar); font-weight: 600; }
+
+  .ambient-orb {
+    position: absolute; pointer-events: none;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -15vw; top: -15vw;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .35; border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* Story */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 920px) { .story-grid { grid-template-columns: 1fr; } }
+  .story-side { position: sticky; top: 110px; }
+  @media (max-width: 920px) { .story-side { position: static; } }
+  .story-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg-band) center/cover;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--line);
+    overflow: hidden; position: relative;
+  }
+  .story-portrait::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4) 100%);
+  }
+  .story-portrait .label {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    z-index: 2; color: white;
+  }
+  .story-portrait .label b { font-family: var(--font-serif); font-size: 24px; display: block; line-height: 1.1; }
+  html[lang="ar"] .story-portrait .label b { font-family: var(--font-ar); font-weight: 700; }
+  .story-portrait .label span { font-size: 13px; opacity: .85; margin-top: 4px; display: block; }
+
+  .story-body { font-size: 17px; line-height: 1.7; color: var(--ink-2); }
+  .story-body p { margin: 0 0 1.2em; text-wrap: pretty; }
+  .story-body p:first-child::first-letter {
+    font-family: var(--font-serif); font-size: 4em; line-height: .8;
+    float: left; padding: 0.05em 0.1em 0 0; color: var(--ink);
+  }
+  html[lang="ar"] .story-body p:first-child::first-letter {
+    font-family: var(--font-ar); float: right; padding: 0 0 0 0.15em; font-size: 3em;
+  }
+  .story-body strong { color: var(--ink); font-weight: 500; }
+  .story-body .signature {
+    display: flex; align-items: center; gap: 14px; margin-top: 32px;
+    padding-top: 24px; border-top: 1px solid var(--line);
+    color: var(--ink-3); font-size: 13px;
+  }
+  .story-body .signature b { color: var(--ink); font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
+  html[lang="ar"] .story-body .signature b { font-family: var(--font-ar); font-weight: 600; }
+  .story-body .signature .glyph {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: conic-gradient(from 220deg at 50% 50%, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    flex: none;
+  }
+
+  /* Geos */
+  .geos {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 12px; margin-top: 28px;
+  }
+  @media (max-width: 720px) { .geos { grid-template-columns: repeat(2, 1fr); } }
+  .geo {
+    padding: 14px; border: 1px solid var(--line);
+    border-radius: var(--r); background: var(--bg-elev);
+    font-size: 13.5px; color: var(--ink-2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .geo .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* Why different */
+  .why-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 920px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .15s, transform .2s, box-shadow .2s;
+  }
+  .why-card:hover { border-color: var(--ink); transform: translateY(-2px); box-shadow: var(--shadow-1); }
+  .why-card .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .12em;
+  }
+  .why-card h3 { font-size: 22px; line-height: 1.15; }
+  .why-card p { color: var(--ink-2); font-size: 14.5px; margin: 0; text-wrap: pretty; }
+
+  /* Culture grid */
+  .culture-grid {
+    display: grid; gap: 14px; margin-top: 48px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 180px;
+  }
+  @media (max-width: 920px) { .culture-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 140px; } }
+  @media (max-width: 560px) { .culture-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .culture-tile {
+    grid-column: span 2; grid-row: span 1;
+    border-radius: var(--r-lg);
+    background: var(--bg-band) center/cover;
+    border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+    transition: transform .25s ease;
+  }
+  .culture-tile:hover { transform: scale(1.02); }
+  .culture-tile::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+  }
+  .culture-tile .cap {
+    position: absolute; left: 16px; right: 16px; bottom: 14px;
+    color: white; z-index: 2;
+    font-family: var(--font-mono); font-size: 11.5px;
+    text-transform: uppercase; letter-spacing: .12em;
+  }
+  html[lang="ar"] .culture-tile .cap { letter-spacing: .04em; text-transform: none; font-size: 13px; font-family: var(--font-mono); }
+  /* Asymmetric layout */
+  .culture-tile.tall { grid-row: span 2; }
+  .culture-tile.wide { grid-column: span 3; }
+  .culture-tile.huge { grid-column: span 3; grid-row: span 2; }
+  @media (max-width: 920px) {
+    .culture-tile.tall, .culture-tile.huge { grid-row: span 2; }
+    .culture-tile.wide, .culture-tile.huge { grid-column: span 3; }
+  }
+  @media (max-width: 560px) {
+    .culture-tile, .culture-tile.tall, .culture-tile.wide, .culture-tile.huge {
+      grid-column: span 2; grid-row: span 1;
+    }
+  }
+
+  /* Credibility */
+  .creds-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .creds-grid { grid-template-columns: repeat(2, 1fr); } }
+  .cred {
+    padding: 28px 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--bg-elev);
+    display: flex; flex-direction: column; gap: 8px;
+    position: relative; overflow: hidden;
+  }
+  .cred .badge {
+    position: absolute; top: 16px; inset-inline-end: 16px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: conic-gradient(from 220deg, var(--grad-1), var(--grad-6), var(--grad-5), var(--grad-4), var(--grad-3), var(--grad-2));
+    opacity: .8;
+  }
+  .cred b { font-family: var(--font-serif); font-size: clamp(36px, 4vw, 52px); line-height: 1; }
+  .cred .label { font-size: 13.5px; color: var(--ink-2); }
+  .cred .note { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-top: 6px; letter-spacing: .08em; }
+  html[lang="ar"] .cred .note { letter-spacing: 0; font-size: 12.5px; }
+
+  /* Team preview */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 48px;
+  }
+  @media (max-width: 920px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+  .role {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 180px; position: relative;
+    transition: border-color .15s, transform .2s;
+  }
+  .role:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .role .num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); letter-spacing: .12em; }
+  .role .glyph {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(229,85,200,.12);
+    margin-bottom: 8px;
+  }
+  .role b { font-size: 17px; line-height: 1.2; font-family: var(--font-serif); font-weight: 400; }
+  html[lang="ar"] .role b { font-family: var(--font-ar); font-weight: 600; font-size: 18px; }
+  .role p { font-size: 13px; color: var(--ink-2); margin: 0; }
+  .role .count { margin-top: auto; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); }
+
+  /* Notice */
+  .image-notice {
+    background: rgba(229,85,200,.08);
+    border: 1px solid rgba(229,85,200,.3);
+    color: var(--accent);
+    padding: 14px 18px; border-radius: var(--r);
+    font-size: 13px; line-height: 1.5;
+    margin-top: 24px;
+  }
+  .image-notice b { color: var(--accent); }
+</style>
+<style>
+
+.faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 880px; margin: 0 auto; }
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-elev);
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.faq-item[open] { border-color: var(--ink-2); }
+.faq-item summary {
+  cursor: pointer;
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 16.5px;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink-3);
+  transition: transform .25s, color .15s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); color: var(--ink); }
+.faq-item .answer {
+  padding: 0 24px 22px;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 72ch;
+}
+html[lang="ar"] .faq-item summary { font-family: var(--font-ar); font-weight: 600; font-size: 17px; }
+html[lang="ar"] .faq-item .answer { font-family: var(--font-ar); line-height: 1.8; }
+
+</style>
+  <script src="slider.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+      <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+      <a href="FAQ.html" aria-current="page"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
+  <a href="FAQ.html" aria-current="page"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+</div>
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow"><span class="i18n-en">Frequently asked questions</span><span class="i18n-ar">الأسئلة الشائعة</span></span>
+    <h1><span class="i18n-en">Honest <span class="opt-grad-text">answers.</span> No fluff.</span><span class="i18n-ar">إجاباتٌ <span class="opt-grad-text">صريحة.</span> بلا حشو.</span></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="i18n-en"><div class="faq-list"><details class="faq-item">
+  <summary>How is Optiiimum different from a normal agency?</summary>
+  <div class="answer">We build operating systems, not deliverables. Every engagement leaves behind playbooks, content templates, paid funnels, and reporting dashboards that keep running after we leave. The result: growth that survives the contract.</div>
+</details><details class="faq-item">
+  <summary>Who is the right fit for working with you?</summary>
+  <div class="answer">Founders, doctors, educators, and brands ready to commit to a system — not just one-off campaigns. If you have a real product, real demand, and the bandwidth to execute, we move fast together.</div>
+</details><details class="faq-item">
+  <summary>What does a typical engagement look like?</summary>
+  <div class="answer">Discovery → strategy thesis → 30-day system build → 90-day execution loop → quarterly review. Most clients renew at the 90-day mark because the system is producing measurable outcomes by then.</div>
+</details><details class="faq-item">
+  <summary>How quickly will I see results?</summary>
+  <div class="answer">Content quality and engagement shift within 4–6 weeks. Paid funnel performance stabilises around week 8. Major brand-equity moves — followers, authority, demand — compound between months 3 and 6.</div>
+</details><details class="faq-item">
+  <summary>Do you work with healthcare and personal brands?</summary>
+  <div class="answer">Yes. Some of our strongest case studies are in healthcare and personal branding — Diana Clinics, Dr. Bassant Habash, Dr. Peter Moris, Shift Tamrid, and others. We understand the regulatory and ethical constraints of medical content.</div>
+</details><details class="faq-item">
+  <summary>What about the academy courses — are they live or self-paced?</summary>
+  <div class="answer">A mix. Digital Pro Max is a 30-day live cohort. AI × Business is a 3-day intensive. Doctors\u2019 Content Prescription and the Million-View Course are self-paced with monthly live Q&As. All twelve courses use the same systems we run for paying clients.</div>
+</details><details class="faq-item">
+  <summary>Where are you based?</summary>
+  <div class="answer">Dubai · Alexandria · Cairo. We work with clients across MENA, the GCC, and remotely worldwide. Most engagements are run remotely with quarterly on-site visits where it adds value.</div>
+</details><details class="faq-item">
+  <summary>What\u2019s the investment range?</summary>
+  <div class="answer">Engagements typically range between mid-five and mid-six figures USD annually, depending on scope, channels, and execution intensity. The 30-minute discovery call is the right place to scope a number specific to you.</div>
+</details><details class="faq-item">
+  <summary>Can I talk to a current client before signing?</summary>
+  <div class="answer">Yes — for serious engagements we connect you with a relevant ambassador whose engagement profile matches yours. You speak with them directly, no scripts.</div>
+</details><details class="faq-item">
+  <summary>What if we\u2019re not a fit?</summary>
+  <div class="answer">On the discovery call we tell you honestly. We refer-out to trusted partners when the brief is outside our zone. No hard sell, no padding.</div>
+</details></div></div>
+    <div class="i18n-ar"><div class="faq-list"><details class="faq-item">
+  <summary>بمَ تختلف Optiiimum عن أيِّ وكالةٍ تقليدية؟</summary>
+  <div class="answer">نحن نبني أنظمة تشغيلٍ لا مجرد مخرجات. كل تعاونٍ يترك خلفه أدلَّةً للعمل، قوالبَ محتوى، مساراتٍ إعلانية، ولوحاتِ تقاريرَ تستمر في العمل بعد رحيلنا. النتيجة: نموٌّ يصمد بعد انتهاء العقد.</div>
+</details><details class="faq-item">
+  <summary>مَن هو العميل المناسب للعمل معكم؟</summary>
+  <div class="answer">المؤسسون، الأطباء، المعلمون، والعلامات المستعدّون للالتزام بمنظومةٍ متكاملة — لا حملاتٍ منعزلة. إن كان لديك منتجٌ حقيقي، طلبٌ حقيقي، وقدرةٌ على التنفيذ، نتقدّم بسرعةٍ معًا.</div>
+</details><details class="faq-item">
+  <summary>كيف يبدو التعاون المعتاد معكم؟</summary>
+  <div class="answer">استكشاف ← استراتيجية ← بناء النظام في ٣٠ يومًا ← دورة تنفيذٍ مدّتها ٩٠ يومًا ← مراجعةٌ ربعية. معظم العملاء يجدّدون في اليوم التسعين لأن النظام يكون قد بدأ يُنتج نتائجَ قابلةً للقياس.</div>
+</details><details class="faq-item">
+  <summary>متى تظهر النتائج؟</summary>
+  <div class="answer">تتحسّن جودة المحتوى والتفاعل خلال ٤–٦ أسابيع. ويستقرّ أداء القمع الإعلاني المدفوع في الأسبوع الثامن تقريبًا. أما التحوّلات الكبرى في قيمة العلامة — المتابعون، السلطة، الطلب — فتتراكم بين الشهر الثالث والسادس.</div>
+</details><details class="faq-item">
+  <summary>هل تعملون مع قطاعَي الرعاية الصحية والعلامات الشخصية؟</summary>
+  <div class="answer">نعم. بعض أقوى دراساتنا في الرعاية الصحية وبناء العلامات الشخصية — Diana Clinics، د. بسنت حبش، د. بيتر موريس، Shift Tamrid، وغيرهم. نحن نُدرك القيود التنظيمية والأخلاقية للمحتوى الطبي.</div>
+</details><details class="faq-item">
+  <summary>ودورات الأكاديمية — هل هي مباشرةٌ أم ذاتية التعلُّم؟</summary>
+  <div class="answer">مزيجٌ من النوعين. Digital Pro Max برنامجٌ مباشرٌ مدّته ٣٠ يومًا. AI × Business مكثَّفٌ في ٣ أيام. أما "روشتة المحتوى للأطباء" و"كورس المليون مشاهدة" فذاتيا التعلُّم مع جلسات أسئلة شهرية مباشرة. وكل الدورات الاثنتي عشرة تستخدم الأنظمة ذاتها التي نطبّقها مع عملائنا.</div>
+</details><details class="faq-item">
+  <summary>أين مقرّكم؟</summary>
+  <div class="answer">دبي · الإسكندرية · القاهرة. نعمل مع عملاء في منطقة الشرق الأوسط وشمال أفريقيا، دول الخليج، وعن بُعدٍ حول العالم. تجري أغلب التعاونات عن بُعد، مع زياراتٍ ميدانية ربعية حين يضيف ذلك قيمة.</div>
+</details><details class="faq-item">
+  <summary>ما متوسط الاستثمار المطلوب؟</summary>
+  <div class="answer">تتراوح حزم التعاون عادةً بين عشرات إلى مئات الآلاف من الدولارات سنويًا، تبعًا لنطاق العمل، القنوات، وكثافة التنفيذ. والمكالمة الاستكشافية ذات الثلاثين دقيقة هي المكان الأنسب لتحديد رقمٍ يخصُّك أنت.</div>
+</details><details class="faq-item">
+  <summary>هل يمكنني التحدُّث مع أحد عملائكم الحاليين قبل التعاقد؟</summary>
+  <div class="answer">نعم — للتعاونات الجدية نوصّلك مباشرةً بسفيرٍ يتطابق ملفُّ تعاونه مع ملفّك. تتحدّث معه مباشرةً، دون نصوصٍ مُعدَّة.</div>
+</details><details class="faq-item">
+  <summary>وماذا لو لم نكن مناسبَين لبعضنا؟</summary>
+  <div class="answer">نقول لك ذلك بصراحةٍ في المكالمة الاستكشافية. ونحيلك إلى شركاءَ موثوقين حين يخرج طلبك عن منطقة قوّتنا. بلا ضغطٍ بيعي، بلا حشو.</div>
+</details></div></div>
+  </div>
+</section>
+<section class="final-cta-section">
+  <div class="container">
+    <div class="opt-box">
+      <h2>
+        <span class="i18n-en">Still have a <span class="opt-grad-text">question</span>?</span>
+        <span class="i18n-ar">لديك <span class="opt-grad-text">سؤالٌ</span> آخر؟</span>
+      </h2>
+      <p class="lede">
+        <span class="i18n-en">30-minute discovery call. No pitch deck, no boilerplate — just a frank look at where the leverage is in your business.</span>
+        <span class="i18n-ar">مكالمة استكشافية لمدة 30 دقيقة. بلا عروض جاهزة، بلا حشوٍ — محادثةٌ صريحةٌ حول مكامن القوة في عملك.</span>
+      </p>
+      <div class="final-cta-btns">
+        <a href="Consultation.html" class="btn btn-primary">
+          <span class="i18n-en">Book a discovery call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        </a>
+        <a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="btn btn-ghost">
+          <span class="i18n-en">WhatsApp us</span><span class="i18n-ar">تواصل عبر واتساب</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="Home.html#cases"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Home.html#team"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Home.html#blog"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Home.html#services"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="Home.html#services"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Home.html#courses"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Home.html#courses"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+          <li><a href="https://www.instagram.com/optiiimumsolutions" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/104597175/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@optimumsolutions851" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@optiiimumsolutionsegy" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://www.facebook.com/Optiiimum" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://x.com/optiiimum_sol" target="_blank" rel="noopener">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="needs-final">
+        <b><span class="i18n-en">⚠ Needs final links</span><span class="i18n-ar">⚠ تحتاج الروابط النهائية</span></b>
+        <div style="margin-top:6px;">
+          <span class="i18n-en">Public email address · Calendly / booking link · Privacy &amp; Terms pages — to be supplied by the team.</span>
+          <span class="i18n-ar">إيميل عام · رابط حجز المكالمة · صفحات الخصوصية والشروط — في انتظار البيانات النهائية من الفريق.</span>
+        </div>
+      </div>
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeIcon').textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    const cur = document.documentElement.getAttribute('lang') || 'en';
+    const next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    const t = localStorage.getItem('opt_theme');
+    if (t) applyTheme(t);
+    const l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', () => mm.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+</script>
+
+</body>
+</html>
