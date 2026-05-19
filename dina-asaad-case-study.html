@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Dina Asaad — Case Study | Optiiimum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Jost:wght@300;400;500;600&family=IM+Fell+English:ital@1&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF8F4;
+    --ink: #1A1A18;
+    --forest: #1E3A2F;
+    --sage: #4A7B65;
+    --copper: #B8703A;
+    --copper-light: #D4894F;
+    --mist: #E8E2D8;
+    --mid: #6B6458;
+    --rule: rgba(26,26,24,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-left.visible { opacity: 1; transform: none; }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal-right.visible { opacity: 1; transform: none; }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.22s; }
+  .delay-3 { transition-delay: 0.36s; }
+  .delay-4 { transition-delay: 0.5s; }
+
+  /* ─── HEADER BAR ─── */
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .logo {
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo span { color: var(--copper); }
+  .nav-tag {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 500;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* Decorative concentric arcs */
+  .hero-arcs {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    pointer-events: none;
+  }
+  .hero-arcs circle {
+    fill: none;
+    stroke: rgba(255,255,255,0.04);
+    stroke-width: 1;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 48px 60px;
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow-line {
+    width: 40px;
+    height: 1px;
+    background: var(--copper);
+  }
+  .hero-eyebrow span {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(46px, 5.5vw, 76px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--warm-white);
+    margin-bottom: 20px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: #C8956A;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(250,248,244,0.6);
+    max-width: 420px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .hero-tag {
+    border: 1px solid rgba(184,112,58,0.4);
+    padding: 6px 14px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.7);
+    font-weight: 500;
+    border-radius: 2px;
+  }
+
+  /* Right: stat cluster */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.03);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .hero-stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--warm-white);
+    margin-bottom: 6px;
+  }
+  .hero-stat-number span {
+    color: var(--copper-light);
+    font-size: 36px;
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.5);
+    font-weight: 500;
+  }
+  .hero-stat-accent {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 6px; height: 6px;
+    background: var(--copper);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  /* Hero bottom strip */
+  .hero-strip {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-strip-item .dot {
+    width: 4px; height: 4px;
+    background: var(--copper);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hero-strip-item span {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: rgba(250,248,244,0.45);
+    font-weight: 400;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 100px 48px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* Section label */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+  .section-label-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--copper);
+  }
+  .section-label-line {
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--copper);
+    opacity: 0.6;
+  }
+  .section-label-text {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 600;
+  }
+
+  .section-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .section-headline em {
+    font-style: italic;
+    color: var(--sage);
+  }
+
+  .section-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--mid);
+    max-width: 620px;
+  }
+
+  /* ─── CHALLENGE ─── */
+  .challenge { background: var(--warm-white); }
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .challenge-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .challenge-card {
+    border-left: 2px solid var(--copper);
+    padding: 20px 24px;
+    background: var(--cream);
+  }
+  .challenge-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .challenge-card-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    position: relative;
+    padding: 36px 36px 36px 48px;
+    background: var(--forest);
+    margin: 60px 0 0;
+  }
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    left: 16px;
+    top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--copper);
+    line-height: 1;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--warm-white);
+    margin-bottom: 16px;
+  }
+  .pull-quote cite {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ─── STRATEGY ─── */
+  .strategy { background: var(--cream); }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+    background: var(--rule);
+  }
+  .strategy-pillar {
+    background: var(--warm-white);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .strategy-pillar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--copper);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .strategy-pillar:hover::after { transform: scaleX(1); }
+  .pillar-number {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 40px;
+    color: rgba(184,112,58,0.18);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+  .pillar-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+  .pillar-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 600;
+    border-top: 1px solid rgba(184,112,58,0.3);
+    padding-top: 12px;
+  }
+
+  /* ─── TRANSFORMATION TIMELINE ─── */
+  .timeline-section { background: var(--forest); padding: 100px 48px; }
+  .timeline-section .section-label-text { color: rgba(250,248,244,0.4); }
+  .timeline-section .section-label-num { color: var(--copper-light); }
+  .timeline-section .section-headline { color: var(--warm-white); }
+  .timeline-section .section-headline em { color: #C8956A; }
+
+  .timeline {
+    position: relative;
+    margin-top: 60px;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--copper), rgba(184,112,58,0.1));
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 52px 48px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -6px;
+    top: 5px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--copper);
+    border: 2px solid var(--forest);
+  }
+  .timeline-month {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .timeline-event {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--warm-white);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .timeline-detail {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(250,248,244,0.5);
+    max-width: 500px;
+  }
+
+  /* ─── RESULTS ─── */
+  .results { background: var(--cream); }
+  .results-headline-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+  .results-intro {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--mid);
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    margin-bottom: 2px;
+  }
+  .metric-card {
+    background: var(--warm-white);
+    padding: 36px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--copper);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+  }
+  .metric-card:hover::before { transform: scaleX(1); }
+  .metric-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-number sup {
+    font-size: 22px;
+    vertical-align: super;
+    color: var(--copper);
+  }
+  .metric-number sub {
+    font-size: 18px;
+    color: var(--copper);
+  }
+  .metric-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 500;
+  }
+  .metric-sublabel {
+    font-size: 11px;
+    color: var(--copper);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* Wide metric */
+  .metric-wide {
+    background: var(--forest);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .metric-wide-left .metric-number { color: var(--warm-white); font-size: 60px; }
+  .metric-wide-left .metric-label { color: rgba(250,248,244,0.5); text-align: left; }
+  .metric-wide-right {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: rgba(250,248,244,0.7);
+    max-width: 400px;
+    text-align: right;
+    line-height: 1.45;
+  }
+
+  /* ─── KEY LEARNINGS ─── */
+  .learnings { background: var(--warm-white); }
+  .learnings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 52px;
+  }
+  .learning-item {
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+  }
+  .learning-icon {
+    width: 36px; height: 36px;
+    border: 1px solid var(--copper);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--copper);
+  }
+  .learning-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .learning-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    background: var(--forest);
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 16vw, 220px);
+    font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+  .cta-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--copper-light);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .cta-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 66px);
+    font-weight: 400;
+    color: var(--warm-white);
+    line-height: 1.12;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .cta-headline em { font-style: italic; color: #C8956A; }
+  .cta-sub {
+    font-size: 16px;
+    color: rgba(250,248,244,0.5);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--copper);
+    color: var(--warm-white);
+    text-decoration: none;
+    padding: 16px 44px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .cta-btn:hover {
+    background: var(--copper-light);
+    transform: translateY(-2px);
+  }
+  .cta-btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(250,248,244,0.7);
+    text-decoration: none;
+    padding: 15px 44px;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+    margin-left: 16px;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  .cta-btn-outline:hover {
+    border-color: var(--copper);
+    color: var(--warm-white);
+  }
+
+  /* Footer */
+  .case-footer {
+    background: var(--ink);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .case-footer-logo {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.3);
+    font-weight: 600;
+  }
+  .case-footer-logo span { color: var(--copper); }
+  .case-footer-copy {
+    font-size: 12px;
+    color: rgba(250,248,244,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .site-header { padding: 18px 24px; }
+    section { padding: 72px 24px; }
+    .hero-inner { grid-template-columns: 1fr; padding: 60px 24px 40px; }
+    .hero-stats { display: none; }
+    .hero-strip { padding: 16px 24px; gap: 20px; flex-wrap: wrap; }
+    .challenge-grid { grid-template-columns: 1fr; gap: 40px; }
+    .strategy-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .metric-wide { flex-direction: column; gap: 16px; text-align: center; }
+    .metric-wide-right { text-align: center; }
+    .learnings-grid { grid-template-columns: 1fr; }
+    .results-headline-block { grid-template-columns: 1fr; gap: 24px; }
+    .cta-section { padding: 80px 24px; }
+    .cta-btn-outline { margin-left: 0; margin-top: 12px; }
+    .case-footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+    .timeline-section { padding: 72px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="#" class="logo">Opti<span>i</span>imum</a>
+  <span class="nav-tag">Case Study No. 02</span>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-noise"></div>
+
+  <!-- Decorative concentric arcs SVG -->
+  <svg class="hero-arcs" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="700" cy="350" r="150"/>
+    <circle cx="700" cy="350" r="240"/>
+    <circle cx="700" cy="350" r="330"/>
+    <circle cx="700" cy="350" r="420"/>
+    <circle cx="700" cy="350" r="510"/>
+  </svg>
+
+  <div class="hero-inner">
+    <!-- Left -->
+    <div>
+      <div class="hero-eyebrow reveal">
+        <div class="hero-eyebrow-line"></div>
+        <span>Personal Brand · Therapy &amp; NLP</span>
+      </div>
+      <h1 class="hero-title reveal delay-1">
+        The Voice<br>She Never<br><em>Knew She Had</em>
+      </h1>
+      <p class="hero-subtitle reveal delay-2">
+        Dr. Dina Asaad entered our doors as a brilliant therapist with zero digital footprint and a deep fear of the camera. Six months later, she commands 100,000 followers — and a waiting list.
+      </p>
+      <div class="hero-tags reveal delay-3">
+        <span class="hero-tag">Psychotherapy</span>
+        <span class="hero-tag">NLP Training</span>
+        <span class="hero-tag">Personal Branding</span>
+        <span class="hero-tag">0 → 100K</span>
+        <span class="hero-tag">6 Months</span>
+      </div>
+    </div>
+
+    <!-- Right: Stats -->
+    <div class="hero-stats reveal-right delay-2">
+      <div class="hero-stat">
+        <div class="hero-stat-accent"></div>
+        <div class="hero-stat-number">0<span>→</span></div>
+        <div class="hero-stat-label">Starting Followers</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-accent"></div>
+        <div class="hero-stat-number">100<span>K</span></div>
+        <div class="hero-stat-label">Followers · All Platforms</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">6<span>Mo</span></div>
+        <div class="hero-stat-label">Time to Achieve</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">∞<span> </span></div>
+        <div class="hero-stat-label">Booking Availability Left</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strip -->
+  <div class="hero-strip">
+    <div class="hero-strip-item"><span class="dot"></span><span>Dr. Dina Asaad</span></div>
+    <div class="hero-strip-item"><span class="dot"></span><span>Licensed Therapist &amp; NLP Trainer</span></div>
+    <div class="hero-strip-item"><span class="dot"></span><span>Egypt · Gulf Markets</span></div>
+    <div class="hero-strip-item"><span class="dot"></span><span>Optiiimum — 2024</span></div>
+  </div>
+</section>
+
+
+<!-- CHALLENGE -->
+<section class="challenge">
+  <div class="container">
+    <div class="section-label reveal">
+      <span class="section-label-num">01</span>
+      <div class="section-label-line"></div>
+      <span class="section-label-text">The Starting Point</span>
+    </div>
+
+    <div class="challenge-grid">
+      <div>
+        <h2 class="section-headline reveal">
+          Invisible to the world.<br><em>Indispensable</em> to her clients.
+        </h2>
+        <p class="section-body reveal delay-1">
+          Dr. Dina Asaad is exceptional at what she does. Her private clients know it. The problem was that the thousands of people who could benefit from her expertise had never heard of her — because she had never shown up online. Not through choice, but through fear.
+        </p>
+        <p class="section-body reveal delay-2" style="margin-top:20px">
+          Camera shyness is common. In Dr. Dina's case, it was profound — not a reluctance, but a genuine psychological barrier that had kept one of Egypt's most talented therapists entirely off-screen. Her expertise was world-class. Her digital presence was nonexistent.
+        </p>
+
+        <div class="pull-quote reveal delay-3">
+          <p>The breakthrough wasn't in the content strategy.<br>It was in helping Dina believe the camera could be a safe place.</p>
+          <cite>Optiiimum Creative Direction Team</cite>
+        </div>
+      </div>
+
+      <div class="challenge-cards">
+        <div class="challenge-card reveal delay-1">
+          <div class="challenge-card-title">Zero Digital Presence</div>
+          <div class="challenge-card-body">No social media accounts, no content history, no audience. Absolute ground zero — which meant every follower, every view, every booking would need to be built from scratch.</div>
+        </div>
+        <div class="challenge-card reveal delay-2">
+          <div class="challenge-card-title">Severe Camera Shyness</div>
+          <div class="challenge-card-body">Dr. Dina's reluctance to appear on camera wasn't casual discomfort. It was a deeply ingrained self-consciousness that would require more than just technical production support to overcome.</div>
+        </div>
+        <div class="challenge-card reveal delay-3">
+          <div class="challenge-card-title">Highly Competitive Niche</div>
+          <div class="challenge-card-body">The mental health and NLP space online is saturated with voices. Breaking through wouldn't just require showing up — it would require showing up in a way that immediately commanded authority and trust.</div>
+        </div>
+        <div class="challenge-card reveal delay-4">
+          <div class="challenge-card-title">Credibility vs. Virality Tension</div>
+          <div class="challenge-card-body">Therapists risk diluting professional credibility through content that feels superficial. We needed hooks that were bold and scroll-stopping, while preserving the weight of Dr. Dina's expertise.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STRATEGY -->
+<section class="strategy">
+  <div class="container">
+    <div class="section-label reveal">
+      <span class="section-label-num">02</span>
+      <div class="section-label-line"></div>
+      <span class="section-label-text">The Approach</span>
+    </div>
+    <h2 class="section-headline reveal">
+      Three pillars.<br><em>One transformation.</em>
+    </h2>
+    <p class="section-body reveal delay-1">
+      We didn't start with a content calendar. We started with Dina — understanding that no strategy survives if the person at the centre of it doesn't feel safe. Our three-pillar approach was built around that truth.
+    </p>
+
+    <div class="strategy-grid">
+      <div class="strategy-pillar reveal delay-1">
+        <div class="pillar-number">I</div>
+        <h3 class="pillar-title">Directed Comfort — The Photoshoot Protocol</h3>
+        <p class="pillar-body">Our creative directors didn't just set up cameras and lights. They designed an environment of psychological safety. Multiple professional photoshoot sessions were conducted with a single mandate: Dina must feel genuinely comfortable before a single frame is shot. Warm briefings, gradual exposure, deliberate pacing. The result wasn't just beautiful imagery — it was a practitioner who learned to own her presence on screen.</p>
+        <span class="pillar-tag">Creative Direction · Visual Identity</span>
+      </div>
+      <div class="strategy-pillar reveal delay-2">
+        <div class="pillar-number">II</div>
+        <h3 class="pillar-title">Shock Hooks — Content That Stops the Scroll</h3>
+        <p class="pillar-body">Our content team developed a library of high-impact hooks specifically engineered for the psychology niche — topics that challenge assumptions, spark curiosity, and tap into the universal questions people are already asking about their mental health. Not clickbait. Substance delivered with edge. Hooks that made watching Dr. Dina feel urgent, not optional.</p>
+        <span class="pillar-tag">Content Strategy · Copywriting</span>
+      </div>
+      <div class="strategy-pillar reveal delay-3">
+        <div class="pillar-number">III</div>
+        <h3 class="pillar-title">Authority Architecture — Building Trust at Scale</h3>
+        <p class="pillar-body">Virality means nothing without credibility. Every piece of content was structured to simultaneously attract new audiences and deepen trust with existing ones. Dr. Dina's NLP expertise, clinical background, and genuine warmth were woven into the narrative — positioning her not just as a content creator, but as the therapist people specifically seek out.</p>
+        <span class="pillar-tag">Brand Positioning · Audience Trust</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TRANSFORMATION TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-label reveal">
+      <span class="section-label-num">03</span>
+      <div class="section-label-line" style="background:rgba(184,112,58,0.5)"></div>
+      <span class="section-label-text">Month by Month</span>
+    </div>
+    <h2 class="section-headline reveal">The <em>six-month</em><br>arc of change.</h2>
+
+    <div class="timeline" style="max-width:700px; margin-top:60px">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">Month 1</div>
+        <div class="timeline-event">The First Frame</div>
+        <div class="timeline-detail">Initial creative direction sessions. Deep trust-building between Dina and our production team. First professional photoshoots. Brand identity established — visual language, tone, positioning. Zero publishing pressure.</div>
+      </div>
+      <div class="timeline-item reveal delay-1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">Month 2</div>
+        <div class="timeline-event">First Pieces Go Live</div>
+        <div class="timeline-detail">Carefully crafted debut content launches across platforms. Shock hooks begin doing their work. First wave of organic engagement. Dina grows increasingly comfortable in front of the lens — the difference is visible on screen.</div>
+      </div>
+      <div class="timeline-item reveal delay-2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">Month 3</div>
+        <div class="timeline-event">Momentum Builds</div>
+        <div class="timeline-detail">Content cadence established. Algorithm traction begins. Several videos achieve significant reach. Follower growth accelerates. First inbound inquiries for therapy sessions and NLP training.</div>
+      </div>
+      <div class="timeline-item reveal delay-3">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">Month 4–5</div>
+        <div class="timeline-event">Viral Inflection Point</div>
+        <div class="timeline-detail">Multiple pieces reach viral-level distribution. Community engagement deepens — followers become advocates. Dr. Dina's confidence on camera is now unmistakable. Booking inquiries begin to surge.</div>
+      </div>
+      <div class="timeline-item reveal delay-4">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">Month 6</div>
+        <div class="timeline-event">100K &amp; Fully Booked</div>
+        <div class="timeline-detail">Approximately 100,000 followers across all platforms. Therapy schedule fully booked. NLP training programmes at capacity. Dr. Dina Asaad — once invisible online — is now a recognized, sought-after authority in mental health.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="container">
+    <div class="section-label reveal">
+      <span class="section-label-num">04</span>
+      <div class="section-label-line"></div>
+      <span class="section-label-text">The Numbers</span>
+    </div>
+
+    <div class="results-headline-block">
+      <h2 class="section-headline reveal">
+        Six months.<br><em>Measurable proof.</em>
+      </h2>
+      <p class="results-intro reveal delay-1">
+        The results speak to more than growth metrics. They document the transformation of a brilliant professional into a confident public figure — and the commercial impact that followed.
+      </p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card reveal">
+        <div class="metric-number">100<sub>K</sub></div>
+        <div class="metric-label">Total Followers</div>
+        <div class="metric-sublabel">Across All Platforms</div>
+      </div>
+      <div class="metric-card reveal delay-1">
+        <div class="metric-number">6<sub>Mo</sub></div>
+        <div class="metric-label">Time to Achieve</div>
+        <div class="metric-sublabel">From Absolute Zero</div>
+      </div>
+      <div class="metric-card reveal delay-2">
+        <div class="metric-number"><sup>∞</sup>0</div>
+        <div class="metric-label">Availability Left</div>
+        <div class="metric-sublabel">Fully Booked Schedule</div>
+      </div>
+      <div class="metric-card reveal delay-3">
+        <div class="metric-number">0<sub>→</sub></div>
+        <div class="metric-label">Starting Point</div>
+        <div class="metric-sublabel">No Prior Digital Presence</div>
+      </div>
+    </div>
+
+    <div class="metric-wide reveal">
+      <div class="metric-wide-left">
+        <div class="metric-number" style="font-family:'Playfair Display',serif; font-size:56px; color:var(--warm-white); line-height:1">Fully<br>Booked</div>
+        <div class="metric-label" style="color:rgba(250,248,244,0.4); font-size:11px; letter-spacing:0.2em; text-transform:uppercase; font-weight:500; margin-top:8px; text-align:left">Therapy Sessions · NLP Programmes</div>
+      </div>
+      <div class="metric-wide-right">
+        "The most meaningful result isn't in the follower count — it's that a therapist who feared the camera now inspires thousands to seek the help they need."
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- KEY LEARNINGS -->
+<section class="learnings">
+  <div class="container">
+    <div class="section-label reveal">
+      <span class="section-label-num">05</span>
+      <div class="section-label-line"></div>
+      <span class="section-label-text">What This Teaches Us</span>
+    </div>
+    <h2 class="section-headline reveal">
+      Four lessons worth<br><em>carrying forward.</em>
+    </h2>
+
+    <div class="learnings-grid">
+      <div class="learning-item reveal delay-1">
+        <div class="learning-icon">I</div>
+        <h3 class="learning-title">The Human Has to Come First</h3>
+        <p class="learning-body">No content strategy outperforms authenticity. Before we wrote a single hook or planned a single shoot, we invested in helping Dr. Dina feel safe. That investment compounded into everything — the quality of the content, the relatability of her presence, the trust her audience felt.</p>
+      </div>
+      <div class="learning-item reveal delay-2">
+        <div class="learning-icon">II</div>
+        <h3 class="learning-title">Fear Is a Branding Problem</h3>
+        <p class="learning-body">Camera shyness isn't just a personal challenge — it's a barrier to reach, revenue, and impact. Treating it as a creative direction challenge rather than a personal failing unlocked everything. Professional direction, patient environments, and the right team made Dina's confidence a built asset.</p>
+      </div>
+      <div class="learning-item reveal delay-3">
+        <div class="learning-icon">III</div>
+        <h3 class="learning-title">Shock Hooks Serve Depth, Not Replace It</h3>
+        <p class="learning-body">The hooks got the clicks. The substance kept the audience. In sensitive fields like mental health, the two must work together — bold enough to compete in an attention economy, substantive enough to build the trust that converts followers into clients.</p>
+      </div>
+      <div class="learning-item reveal delay-4">
+        <div class="learning-icon">IV</div>
+        <h3 class="learning-title">Authority Is the Real Product</h3>
+        <p class="learning-body">We weren't building a social media account. We were engineering the perception of a leading practitioner. Every photoshoot, every caption, every hook was a brick in the architecture of Dr. Dina Asaad as the go-to name in therapy and NLP. The bookings followed naturally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg-text">OPTIIIMUM</div>
+  <div class="container" style="position:relative; z-index:2">
+    <p class="cta-eyebrow reveal">Your story is next</p>
+    <h2 class="cta-headline reveal delay-1">
+      Your expertise deserves<br>an audience <em>that knows it.</em>
+    </h2>
+    <p class="cta-sub reveal delay-2">
+      Whether you're starting from zero or ready to scale what you've built — we know how to turn your knowledge into a brand people seek out.
+    </p>
+    <div class="reveal delay-3">
+      <a href="#" class="cta-btn">Start the Conversation</a>
+      <a href="#" class="cta-btn-outline">View All Case Studies</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="case-footer">
+  <span class="case-footer-logo">Opti<span>i</span>imum</span>
+  <span class="case-footer-copy">© 2024 Optiiimum. All rights reserved.</span>
+</footer>
+
+
+<script>
+  // Scroll reveal observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Animate hero stats numbers on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        setTimeout(() => el.classList.add('visible'), 100);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
