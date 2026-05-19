@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') { theme = manual; }
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Terms &amp; Conditions | Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Read the terms that apply when using the Optiiimum website, booking discovery calls, purchasing courses, or engaging with our services.">
+<meta property="og:title" content="Terms & Conditions | Optiiimum">
+<meta property="og:description" content="Read the terms that apply when using the Optiiimum website, booking discovery calls, purchasing courses, or engaging with our services.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="legal.css">
+<script src="slider.js" defer></script>
+<script src="loader.js"></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="legal-hero">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">Legal · Optiiimum</span>
+      <span class="i18n-ar">القانوني · أوبتيموم</span>
+    </span>
+    <h1>
+      <span class="i18n-en">Terms &amp; <span class="alt">Conditions.</span></span>
+      <span class="i18n-ar">الشروط <span class="alt">والأحكام.</span></span>
+    </h1>
+    <p class="lede">
+      <span class="i18n-en">By using the Optiiimum website, booking a discovery call, submitting a form, purchasing a course, or engaging with our services, you agree to the following Terms &amp; Conditions.</span>
+      <span class="i18n-ar">باستخدامك لموقع Optiiimum، أو حجز مكالمة استكشافية، أو إرسال نموذج، أو شراء كورس، أو التعامل مع خدماتنا، فإنك توافق على الشروط والأحكام التالية.</span>
+    </p>
+
+    <div class="legal-meta">
+      <div class="item">
+        <b><span class="i18n-en">Last updated</span><span class="i18n-ar">آخر تحديث</span></b>
+        <span>May 18, 2026</span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Effective</span><span class="i18n-ar">يسري من</span></b>
+        <span>May 18, 2026</span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Applies to</span><span class="i18n-ar">يطبَّق على</span></b>
+        <span><span class="i18n-en">optiiimum.com &amp; all sub-services</span><span class="i18n-ar">optiiimum.com وجميع الخدمات الفرعية</span></span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Questions?</span><span class="i18n-ar">لديك سؤال؟</span></b>
+        <span><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BODY ============ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="legal-shell">
+
+      <!-- TOC -->
+      <aside class="legal-toc" aria-label="On this page">
+        <h2><span class="i18n-en">On this page</span><span class="i18n-ar">في هذه الصفحة</span></h2>
+        <ol>
+          <li><a href="#about"><span class="i18n-en">About Optiiimum</span><span class="i18n-ar">عن Optiiimum</span></a></li>
+          <li><a href="#use"><span class="i18n-en">Website Use</span><span class="i18n-ar">استخدام الموقع</span></a></li>
+          <li><a href="#discovery"><span class="i18n-en">Discovery Calls</span><span class="i18n-ar">المكالمات الاستكشافية</span></a></li>
+          <li><a href="#services"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a></li>
+          <li><a href="#no-guarantee"><span class="i18n-en">No Guaranteed Results</span><span class="i18n-ar">عدم ضمان النتائج</span></a></li>
+          <li><a href="#courses"><span class="i18n-en">Courses &amp; Educational Content</span><span class="i18n-ar">الكورسات والمحتوى التعليمي</span></a></li>
+          <li><a href="#payments"><span class="i18n-en">Payments &amp; Refunds</span><span class="i18n-ar">المدفوعات والاسترداد</span></a></li>
+          <li><a href="#client"><span class="i18n-en">Client Responsibilities</span><span class="i18n-ar">مسؤوليات العميل</span></a></li>
+          <li><a href="#ip"><span class="i18n-en">Intellectual Property</span><span class="i18n-ar">الملكية الفكرية</span></a></li>
+          <li><a href="#portfolio"><span class="i18n-en">Portfolio &amp; Case Studies</span><span class="i18n-ar">الأعمال السابقة ودراسات الحالة</span></a></li>
+          <li><a href="#third"><span class="i18n-en">Third-Party Links</span><span class="i18n-ar">روابط خارجية</span></a></li>
+          <li><a href="#submissions"><span class="i18n-en">User-Submitted Content</span><span class="i18n-ar">محتوى المستخدم</span></a></li>
+          <li><a href="#liability"><span class="i18n-en">Limitation of Liability</span><span class="i18n-ar">حدود المسؤولية</span></a></li>
+          <li><a href="#changes"><span class="i18n-en">Changes to Services or Website</span><span class="i18n-ar">تغييرات الموقع أو الخدمات</span></a></li>
+          <li><a href="#law"><span class="i18n-en">Governing Law</span><span class="i18n-ar">القانون الحاكم</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact</span><span class="i18n-ar">التواصل</span></a></li>
+        </ol>
+      </aside>
+
+      <!-- CONTENT -->
+      <div class="legal-body">
+
+        <article id="about" class="legal-section">
+          <span class="num">01</span>
+          <h2><span class="i18n-en">About Optiiimum</span><span class="i18n-ar">عن Optiiimum</span></h2>
+          <p>
+            <span class="i18n-en">Optiiimum is a digital marketing and personal branding agency offering marketing services, content systems, branding projects, training programs, and online courses for founders, doctors, educators, coaches, ed-tech operators, and consumer brands.</span>
+            <span class="i18n-ar">Optiiimum وكالة تسويق رقمي وبراندينج شخصي، تُقدّم خدمات التسويق، أنظمة المحتوى، مشاريع البراندينج، برامج التدريب، والكورسات الإلكترونية للمؤسسين، الأطباء، المعلمين، المدربين، شركات التعليم التقني، والبراندات الاستهلاكية.</span>
+          </p>
+        </article>
+
+        <article id="use" class="legal-section">
+          <span class="num">02</span>
+          <h2><span class="i18n-en">Website Use</span><span class="i18n-ar">استخدام الموقع</span></h2>
+          <p>
+            <span class="i18n-en">By using this website, you agree to:</span>
+            <span class="i18n-ar">باستخدامك لهذا الموقع، فإنك توافق على:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Use the website lawfully and for its intended purpose</span><span class="i18n-ar">استخدام الموقع بشكل قانوني وللغرض المخصَّص له</span></li>
+            <li><span class="i18n-en">Not misuse any forms or submit false or misleading information</span><span class="i18n-ar">عدم إساءة استخدام النماذج أو إرسال معلومات كاذبة أو مضلِّلة</span></li>
+            <li><span class="i18n-en">Not attempt to hack, scrape, overload, or disrupt the website or its infrastructure</span><span class="i18n-ar">عدم محاولة اختراق الموقع أو سحب بياناته أو إثقاله أو تعطيل بنيته التحتية</span></li>
+            <li><span class="i18n-en">Not copy, reproduce, or redistribute website content without written permission</span><span class="i18n-ar">عدم نسخ أو إعادة نشر أو إعادة توزيع محتوى الموقع دون إذن خطّي</span></li>
+          </ul>
+        </article>
+
+        <article id="discovery" class="legal-section">
+          <span class="num">03</span>
+          <h2><span class="i18n-en">Discovery Calls</span><span class="i18n-ar">المكالمات الاستكشافية</span></h2>
+          <p>
+            <span class="i18n-en">The <strong>15-minute discovery call</strong> is designed to understand your goals, brand, and which Optiiimum service may best fit your situation.</span>
+            <span class="i18n-ar">تهدف <strong>المكالمة الاستكشافية لمدة 15 دقيقة</strong> إلى فهم أهدافك، براندك، والخدمة الأنسب من Optiiimum لحالتك.</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Discovery calls are scoping conversations, not full free consulting sessions.</span><span class="i18n-ar">المكالمة الاستكشافية محادثة تعريفية لتقييم التعاون، وليست جلسة استشارية مجانية كاملة.</span></li>
+            <li><span class="i18n-en">Optiiimum may recommend a suitable service, course, or next step based on the discussion.</span><span class="i18n-ar">قد ترشّح Optiiimum خدمة، كورس، أو خطوة تالية مناسبة بناءً على المحادثة.</span></li>
+            <li><span class="i18n-en">Booking a call does not guarantee acceptance as a client; we reserve the right to decline engagements that fall outside our scope or operating principles.</span><span class="i18n-ar">حجز المكالمة لا يضمن قبولك كعميل؛ ونحتفظ بحق رفض التعاونات التي تقع خارج نطاق عملنا أو مبادئنا التشغيلية.</span></li>
+          </ul>
+        </article>
+
+        <article id="services" class="legal-section">
+          <span class="num">04</span>
+          <h2><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h2>
+          <p>
+            <span class="i18n-en">Optiiimum's services may include, without limitation:</span>
+            <span class="i18n-ar">قد تشمل خدمات Optiiimum، على سبيل المثال لا الحصر:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Social media strategy and content creation</span><span class="i18n-ar">استراتيجية السوشيال ميديا وصناعة المحتوى</span></li>
+            <li><span class="i18n-en">Paid ads and media buying</span><span class="i18n-ar">الإعلانات الممولة وشراء الميديا</span></li>
+            <li><span class="i18n-en">Personal branding and reputation systems</span><span class="i18n-ar">البراندينج الشخصي وأنظمة بناء السمعة</span></li>
+            <li><span class="i18n-en">Video production and creative direction</span><span class="i18n-ar">إنتاج الفيديو والإدارة الإبداعية</span></li>
+            <li><span class="i18n-en">Community moderation and campaign management</span><span class="i18n-ar">إدارة المجتمعات الرقمية وإدارة الحملات</span></li>
+            <li><span class="i18n-en">Digital growth systems, branding projects, and corporate training</span><span class="i18n-ar">أنظمة النمو الرقمي، مشاريع البراندينج، وبرامج التدريب المؤسسي</span></li>
+          </ul>
+          <p>
+            <span class="i18n-en">Service scope, pricing, timelines, deliverables, and payment terms are defined in a written proposal, contract, invoice, or agreement specific to each engagement.</span>
+            <span class="i18n-ar">يتم تحديد نطاق الخدمة، الأسعار، الجداول الزمنية، التسليمات، وشروط الدفع في عرض مكتوب، عقد، فاتورة، أو اتفاقية خاصة بكل تعاون.</span>
+          </p>
+        </article>
+
+        <article id="no-guarantee" class="legal-section">
+          <span class="num">05</span>
+          <h2><span class="i18n-en">No Guaranteed Results</span><span class="i18n-ar">عدم ضمان النتائج</span></h2>
+          <p>
+            <span class="i18n-en">Marketing outcomes depend on many factors outside any single party's control, including:</span>
+            <span class="i18n-ar">تعتمد نتائج التسويق على عوامل كثيرة خارج سيطرة أي طرف بمفرده، منها:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Budget level and market conditions</span><span class="i18n-ar">مستوى الميزانية وظروف السوق</span></li>
+            <li><span class="i18n-en">Audience behavior and platform algorithms</span><span class="i18n-ar">سلوك الجمهور وخوارزميات المنصات</span></li>
+            <li><span class="i18n-en">Quality of the offer, the product, and the content</span><span class="i18n-ar">جودة العرض، المنتج، والمحتوى</span></li>
+            <li><span class="i18n-en">Client responsiveness and timely approvals</span><span class="i18n-ar">سرعة استجابة العميل والموافقات في الوقت المناسب</span></li>
+            <li><span class="i18n-en">Campaign duration and competitive landscape</span><span class="i18n-ar">مدة الحملة وحالة المنافسة</span></li>
+          </ul>
+          <p>
+            <span class="i18n-en">Optiiimum commits to professional strategy and execution. We do <strong>not guarantee</strong> specific sales, revenue, followers, reach, or ROAS unless a particular outcome is clearly stated in a signed agreement.</span>
+            <span class="i18n-ar">تلتزم Optiiimum بتقديم استراتيجية وتنفيذ مهني. ولا <strong>نضمن</strong> أرقامًا محددة من المبيعات، الإيرادات، المتابعين، الوصول، أو ROAS، ما لم يُذكر ذلك صراحة في اتفاقية مُوقَّعة.</span>
+          </p>
+        </article>
+
+        <article id="courses" class="legal-section">
+          <span class="num">06</span>
+          <h2><span class="i18n-en">Courses and Educational Content</span><span class="i18n-ar">الكورسات والمحتوى التعليمي</span></h2>
+          <ul>
+            <li><span class="i18n-en">Our courses are educational products designed to teach systems and frameworks.</span><span class="i18n-ar">كورساتنا منتجات تعليمية مصمَّمة لشرح الأنظمة وأطر العمل.</span></li>
+            <li><span class="i18n-en">Access may be delivered through third-party platforms such as Teachable or YouTube.</span><span class="i18n-ar">قد يتم تقديم الكورسات عبر منصات خارجية مثل Teachable أو YouTube.</span></li>
+            <li><span class="i18n-en">Course availability, pricing, content, bonuses, and access terms may change.</span><span class="i18n-ar">قد تتغيّر تفاصيل الكورس من حيث التوفّر، الأسعار، المحتوى، المكافآت، وشروط الوصول.</span></li>
+            <li><span class="i18n-en">Student results vary based on effort, implementation, skill level, and consistency.</span><span class="i18n-ar">تختلف نتائج الطلاب باختلاف الجهد، التطبيق، مستوى المهارة، والاستمرارية.</span></li>
+            <li><span class="i18n-en">Course purchase and refund terms follow the specific platform policy or the offer's stated terms at the time of purchase.</span><span class="i18n-ar">تتبع شروط شراء واسترداد الكورسات سياسة المنصة المحدّدة أو شروط العرض المُعلَنة وقت الشراء.</span></li>
+          </ul>
+        </article>
+
+        <article id="payments" class="legal-section">
+          <span class="num">07</span>
+          <h2><span class="i18n-en">Payments and Refunds</span><span class="i18n-ar">المدفوعات والاسترداد</span></h2>
+          <p>
+            <span class="i18n-en">Payment terms vary by engagement type:</span>
+            <span class="i18n-ar">تختلف شروط الدفع بحسب نوع التعاون:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Payment terms for services are defined separately for each engagement (proposal, contract, or invoice).</span><span class="i18n-ar">يتم تحديد شروط الدفع لخدماتنا بشكل منفصل لكل تعاون (عرض، عقد، أو فاتورة).</span></li>
+            <li><span class="i18n-en">Course payment terms depend on the course platform or the specific campaign offer.</span><span class="i18n-ar">تعتمد شروط دفع الكورسات على منصة الكورس أو العرض المحدَّد للحملة.</span></li>
+            <li><span class="i18n-en">Refunds, where available, are handled according to the specific service agreement, invoice, course platform, or stated offer terms.</span><span class="i18n-ar">يتم التعامل مع طلبات الاسترداد، حين تتوفر، وفقًا لاتفاقية الخدمة المحددة، الفاتورة، منصة الكورس، أو شروط العرض المُعلنة.</span></li>
+          </ul>
+        </article>
+
+        <article id="client" class="legal-section">
+          <span class="num">08</span>
+          <h2><span class="i18n-en">Client Responsibilities</span><span class="i18n-ar">مسؤوليات العميل</span></h2>
+          <p>
+            <span class="i18n-en">For an engagement to succeed, the client agrees to:</span>
+            <span class="i18n-ar">لكي ينجح التعاون، يوافق العميل على:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Provide accurate and complete information when requested</span><span class="i18n-ar">تقديم معلومات دقيقة وكاملة عند طلبها</span></li>
+            <li><span class="i18n-en">Approve content and deliverables on time</span><span class="i18n-ar">اعتماد المحتوى والتسليمات في الوقت المحدد</span></li>
+            <li><span class="i18n-en">Supply required brand assets, access credentials, and historical data</span><span class="i18n-ar">توفير الأصول الخاصة بالبراند، الصلاحيات، والبيانات السابقة عند الحاجة</span></li>
+            <li><span class="i18n-en">Respond within agreed communication timelines</span><span class="i18n-ar">الالتزام بالاستجابة في المواعيد المتفق عليها للتواصل</span></li>
+            <li><span class="i18n-en">Comply with platform policies and applicable advertising regulations</span><span class="i18n-ar">الالتزام بسياسات المنصات وأنظمة الإعلانات المعمول بها</span></li>
+            <li><span class="i18n-en">Ensure that any claims, offers, or product information shared are accurate</span><span class="i18n-ar">التأكد من دقة أي ادعاءات، عروض، أو معلومات منتج يتم مشاركتها</span></li>
+          </ul>
+        </article>
+
+        <article id="ip" class="legal-section">
+          <span class="num">09</span>
+          <h2><span class="i18n-en">Intellectual Property</span><span class="i18n-ar">الملكية الفكرية</span></h2>
+          <p>
+            <span class="i18n-en">All website content, copy, designs, visuals, frameworks, training materials, course content, and brand materials belong to Optiiimum or their respective owners — unless explicitly agreed otherwise in writing.</span>
+            <span class="i18n-ar">كل محتوى الموقع، النصوص، التصاميم، العناصر البصرية، أطر العمل، المواد التدريبية، محتوى الكورسات، ومواد البراند مملوكة لـ Optiiimum أو لأصحابها الأصليين — ما لم يُتَّفق على غير ذلك صراحةً وبشكل كتابي.</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">You may not copy, resell, redistribute, or reuse our materials without written permission.</span><span class="i18n-ar">لا يحق لك نسخ أو إعادة بيع أو إعادة توزيع أو استخدام موادنا دون إذن خطّي.</span></li>
+            <li><span class="i18n-en">Client ownership of final deliverables depends on the signed agreement and full payment completion.</span><span class="i18n-ar">تتوقّف ملكية العميل للتسليمات النهائية على الاتفاقية المُوقَّعة واكتمال السداد.</span></li>
+          </ul>
+        </article>
+
+        <article id="portfolio" class="legal-section">
+          <span class="num">10</span>
+          <h2><span class="i18n-en">Portfolio, Case Studies, and Social Proof</span><span class="i18n-ar">الأعمال السابقة ودراسات الحالة</span></h2>
+          <p>
+            <span class="i18n-en">Unless explicitly agreed otherwise in writing, Optiiimum may showcase selected work, case studies, testimonials, screenshots, logos, results, and client examples for portfolio and marketing purposes.</span>
+            <span class="i18n-ar">ما لم يُتَّفق على غير ذلك صراحةً بشكل كتابي، يحق لـ Optiiimum عرض نماذج مختارة من الأعمال، دراسات الحالة، الشهادات، صور الشاشة، الشعارات، النتائج، وأمثلة العملاء لأغراض البورتفوليو والتسويق.</span>
+          </p>
+          <p>
+            <span class="i18n-en">Where confidentiality applies, we respect it strictly according to the signed agreement.</span>
+            <span class="i18n-ar">عند وجود التزام بالسرية، نحترمه التزامًا تامًا وفقًا للاتفاقية المُوقَّعة.</span>
+          </p>
+        </article>
+
+        <article id="third" class="legal-section">
+          <span class="num">11</span>
+          <h2><span class="i18n-en">Third-Party Links</span><span class="i18n-ar">روابط خارجية</span></h2>
+          <p>
+            <span class="i18n-en">Our website and communications may include links to third-party platforms such as Teachable, YouTube, Google, Meta, WhatsApp, LinkedIn, Instagram, TikTok, and similar tools. Optiiimum is not responsible for the content, policies, availability, or technical issues of any third-party platform.</span>
+            <span class="i18n-ar">قد يحتوي موقعنا ورسائلنا على روابط لمنصات خارجية مثل Teachable، YouTube، Google، Meta، WhatsApp، LinkedIn، Instagram، TikTok، وأدوات مشابهة. لا تتحمّل Optiiimum مسؤولية محتوى أو سياسات أو توفّر أو مشاكل تقنية في أي منصة خارجية.</span>
+          </p>
+        </article>
+
+        <article id="submissions" class="legal-section">
+          <span class="num">12</span>
+          <h2><span class="i18n-en">User-Submitted Content</span><span class="i18n-ar">المحتوى الذي يرسله المستخدم</span></h2>
+          <p>
+            <span class="i18n-en">If you submit messages, form data, files, portfolios, CVs, or links to us, you confirm that you have the right to share that content and that it does not infringe on the rights of any third party.</span>
+            <span class="i18n-ar">عند إرسال أي رسائل أو بيانات نماذج أو ملفات أو بورتفوليو أو سير ذاتية أو روابط إلينا، فإنك تُقرّ بأنك تملك الحق في مشاركة هذا المحتوى، وأنه لا ينتهك حقوق أي طرف آخر.</span>
+          </p>
+        </article>
+
+        <article id="liability" class="legal-section">
+          <span class="num">13</span>
+          <h2><span class="i18n-en">Limitation of Liability</span><span class="i18n-ar">حدود المسؤولية</span></h2>
+          <p>
+            <span class="i18n-en">To the maximum extent permitted by law, Optiiimum is not liable for indirect, incidental, consequential, or special damages arising from website use, third-party platform issues, marketing outcomes, or reliance on information provided through our services or content.</span>
+            <span class="i18n-ar">إلى أقصى حد يسمح به القانون، لا تتحمّل Optiiimum أي مسؤولية عن الأضرار غير المباشرة أو العرضية أو التبعية أو الخاصة الناشئة عن استخدام الموقع، مشاكل المنصات الخارجية، نتائج التسويق، أو الاعتماد على معلومات مُقدّمة عبر خدماتنا أو محتوانا.</span>
+          </p>
+        </article>
+
+        <article id="changes" class="legal-section">
+          <span class="num">14</span>
+          <h2><span class="i18n-en">Changes to Services or Website</span><span class="i18n-ar">تغييرات الموقع أو الخدمات</span></h2>
+          <p>
+            <span class="i18n-en">Optiiimum may update or modify website content, service descriptions, course information, pricing, availability, page content, and features at any time. Significant changes will be reflected in the "Last updated" date above.</span>
+            <span class="i18n-ar">يحق لـ Optiiimum تحديث أو تعديل محتوى الموقع، أوصاف الخدمات، معلومات الكورسات، الأسعار، التوفّر، محتوى الصفحات، والخصائص في أي وقت. وتنعكس التغييرات الجوهرية في تاريخ "آخر تحديث" أعلى الصفحة.</span>
+          </p>
+        </article>
+
+        <article id="law" class="legal-section">
+          <span class="num">15</span>
+          <h2><span class="i18n-en">Governing Law</span><span class="i18n-ar">القانون الحاكم</span></h2>
+          <div class="legal-note">
+            <b><span class="i18n-en">Placeholder pending legal review:</span><span class="i18n-ar">صياغة مبدئية في انتظار المراجعة القانونية:</span></b>
+            <span class="i18n-en"> This section will be completed according to the legal jurisdiction selected by Optiiimum after final legal review. Until then, disputes will be resolved in good faith between the parties.</span>
+            <span class="i18n-ar"> يتم استكمال هذا الجزء وفقًا للولاية القانونية التي تختارها Optiiimum بعد المراجعة القانونية النهائية. وحتى ذلك الحين، تتم تسوية أي خلافات بحسن نية بين الأطراف.</span>
+          </div>
+        </article>
+
+        <article id="contact" class="legal-section">
+          <span class="num">16</span>
+          <h2><span class="i18n-en">Contact</span><span class="i18n-ar">التواصل</span></h2>
+          <p>
+            <span class="i18n-en">For any questions about these Terms &amp; Conditions:</span>
+            <span class="i18n-ar">لأي استفسار حول الشروط والأحكام:</span>
+          </p>
+          <ul>
+            <li><strong>Optiiimum</strong> · <span class="i18n-en">Alexandria · Cairo · Dubai</span><span class="i18n-ar">الإسكندرية · القاهرة · دبي</span></li>
+            <li><span class="i18n-en">Website:</span><span class="i18n-ar">الموقع:</span> <a href="Home.html">www.optiiimum.com</a></li>
+            <li><span class="i18n-en">Email:</span><span class="i18n-ar">البريد:</span> <a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+            <li><span class="i18n-en">Book a 15-minute call:</span><span class="i18n-ar">احجز مكالمة لمدة 15 دقيقة:</span> <a href="https://calendly.com/optimumsol-info/30min" target="_blank" rel="noopener noreferrer">calendly.com/optimumsol-info</a></li>
+          </ul>
+        </article>
+
+        <!-- Closing CTA -->
+        <div class="legal-closing">
+          <h3>
+            <span class="i18n-en">Have a question before signing?</span>
+            <span class="i18n-ar">عندك سؤال قبل التعاقد؟</span>
+          </h3>
+          <p>
+            <span class="i18n-en">Book a 15-minute discovery call and we'll walk through the scope, terms, and what to expect — in plain language.</span>
+            <span class="i18n-ar">احجز مكالمة استكشافية لمدة 15 دقيقة، وهنشرح لك النطاق، الشروط، وإيه اللي ممكن تتوقعه — بلغة بسيطة.</span>
+          </p>
+          <div class="btns">
+            <a class="btn btn-primary" href="https://calendly.com/optimumsol-info/30min" target="_blank" rel="noopener">
+              <span class="i18n-en">Book on Calendly</span><span class="i18n-ar">احجز على Calendly</span>
+              <span class="arrow">→</span>
+            </a>
+            <a class="btn btn-ghost" href="PrivacyPolicy.html">
+              <span class="i18n-en">Read Privacy Policy</span><span class="i18n-ar">اقرأ سياسة الخصوصية</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Services.html"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Courses.html"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://calendly.com/optimumsol-info/30min" target="_blank" rel="noopener"><span class="i18n-en">Book on Calendly</span><span class="i18n-ar">احجز على Calendly</span></a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="PrivacyPolicy.html"><span class="i18n-en">Privacy Policy</span><span class="i18n-ar">سياسة الخصوصية</span></a> ·
+        <a href="TermsConditions.html"><span class="i18n-en">Terms &amp; Conditions</span><span class="i18n-ar">الشروط والأحكام</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    var icon = document.getElementById('themeIcon');
+    if (icon) icon.textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    var next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    var cur = document.documentElement.getAttribute('lang') || 'en';
+    var next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    var t = localStorage.getItem('opt_theme');
+    if (t) applyTheme(t);
+    var l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  var mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', function(){ mm.classList.add('open'); });
+  document.getElementById('menuClose').addEventListener('click', function(){ mm.classList.remove('open'); });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.classList.remove('open'); }); });
+
+  (function(){
+    var links = document.querySelectorAll('.legal-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      byId[id] = a;
+    });
+    var sections = document.querySelectorAll('.legal-section');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          links.forEach(function(l){ l.classList.remove('is-active'); });
+          var a = byId[e.target.id];
+          if (a) a.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+    sections.forEach(function(s){ io.observe(s); });
+  })();
+</script>
+
+<script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
+</body>
+</html>

@@ -267,6 +267,7 @@
   .image-notice b { color: var(--accent); }
 </style>
   <script src="slider.js" defer></script>
+<script src="loader.js"></script>
 </head>
 <body>
 
@@ -277,18 +278,22 @@
       <span class="brand-name">optiiimum<span class="dot">.</span></span>
     </a>
 
-    <nav class="primary-nav" aria-label="Primary">
-      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-      <a href="About.html" aria-current="page"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
-      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
-      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
-      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
-      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html" aria-current="page"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
     </nav>
 
     <div class="topbar-actions">
@@ -299,7 +304,7 @@
         <span id="themeIcon">◐</span>
       </button>
       <a href="Consultation.html" class="nav-cta">
-        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
         <span class="arrow">→</span>
       </a>
       <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
@@ -309,17 +314,23 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
   <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-  <a href="About.html" aria-current="page"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="About.html" aria-current="page"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
   <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
   <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
   <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
   <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
 </div>
 <!-- ============ ABOUT HERO ============ -->
 <section class="about-hero">
@@ -345,14 +356,26 @@
         <span><span class="i18n-en">25 in-house specialists</span><span class="i18n-ar">٢٥ متخصص داخلي</span></span>
       </div>
       <div class="item">
-        <b><span class="i18n-en">Headquarters</span><span class="i18n-ar">المقر</span></b>
-        <span><span class="i18n-en">Cairo · serving MENA &amp; beyond</span><span class="i18n-ar">القاهرة · بنخدم مينا والعالم</span></span>
+        <b><span class="i18n-en">Headquarters</span><span class="i18n-ar">المقار</span></b>
+        <span><span class="i18n-en">Alexandria · Cairo · Dubai</span><span class="i18n-ar">الإسكندرية · القاهرة · دبي</span></span>
       </div>
       <div class="item">
         <b><span class="i18n-en">Documented cases</span><span class="i18n-ar">دراسات حالة موثقة</span></b>
-        <span>13+</span>
+        <span>61+</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ REAL TEAM PHOTO (top of page) ============ -->
+<section class="section" style="padding: 24px 0 8px;">
+  <div class="container">
+    <figure style="margin:0; position:relative; border-radius: 22px; overflow:hidden; border:1px solid var(--line); background: linear-gradient(135deg, #1c1c1b 0%, #0b0b0b 100%);">
+      <img src="assets/team/optiiimum-team-portrait.png" alt="The full Optiiimum team — real people behind the system" loading="eager" decoding="async" style="width:100%; height:auto; display:block;">
+      <figcaption style="position:absolute; left:24px; right:24px; bottom:22px; z-index:2; font-family: var(--font-mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color:#f5f2ec; text-shadow: 0 2px 10px rgba(0,0,0,.7);">
+        <span class="i18n-en">The team. Real people. Real receipts.</span><span class="i18n-ar">الفريق. ناس حقيقية. وأدلة حقيقية.</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -371,7 +394,7 @@
 
     <div class="story-grid" style="margin-top:48px;">
       <aside class="story-side">
-        <div class="story-portrait" style="background-image:url('assets/ambassadors/jozeph.jpg');">
+        <div class="story-portrait" style="background-image:url('assets/Team/Jozeph--Managing-irector.jpg');">
           <div class="label">
             <b>Jozeph Ezzat</b>
             <span>
@@ -392,15 +415,15 @@
 
       <div class="story-body">
         <div class="i18n-en">
-          <p>Optiiimum was founded by <strong>Jozeph Ezzat</strong> — a marketer who'd already done the hardest thing in the field: build one of MENA's largest personal brands from zero, and turn that audience into a 25,000-student academy. The agency was the next, inevitable step.</p>
+          <p>Optiiimum was founded by <strong>Jozeph Ezzat</strong> — a marketer who'd already done the hardest thing in the field: build one of MENA's largest personal brands from zero, and turn that audience into a 40,000-student academy. The agency was the next, inevitable step.</p>
 
           <p>What Jozeph saw, working with brand after brand, was a recurring failure mode. Talented teams executing hard, on the wrong things. Beautiful content with no distribution thesis. Performance budgets without funnel logic. Founders posting daily into a void that was never going to compound. The problem wasn't effort; it was the absence of a <strong>system</strong>.</p>
 
           <p>So we built one. Optiiimum is structured around five capabilities — <strong>strategy, content, creative, performance, and growth systems</strong> — that operate as one machine, not a menu. A client engagement starts with a thesis, gets translated into a content architecture, gets fed by a paid-media engine, and produces a measurable outcome the team is accountable for.</p>
 
-          <p>From our headquarters in Cairo, we work with founders, doctors, educators, ed-tech operators, and consumer brands across <strong>Egypt, the Gulf, Europe, Canada, and the United States</strong>. Twenty-five in-house specialists across seven departments — no critical path is outsourced.</p>
+          <p>From our headquarters across <strong>Alexandria, Cairo, and Dubai</strong>, we work with founders, doctors, educators, ed-tech operators, and consumer brands across <strong>Egypt, the Gulf, Europe, Canada, and the United States</strong>. Twenty-five in-house specialists across seven departments — no critical path is outsourced.</p>
 
-          <p>Thirteen documented case studies. Hundreds of campaigns. One thesis: build the system, and the numbers follow.</p>
+          <p>61+ documented case studies. Hundreds of campaigns. One thesis: build the system, and the numbers follow.</p>
 
           <div class="signature">
             <span class="glyph"></span>
@@ -493,8 +516,8 @@
         <span class="num">05</span>
         <h3><span class="i18n-en">Real cases. Real receipts.</span><span class="i18n-ar">حالات حقيقية. وأدلة حقيقية.</span></h3>
         <p>
-          <span class="i18n-en">Thirteen documented case studies. Verifiable on every brand's public profile. We don't claim what we can't prove — and we don't take work where we can't.</span>
-          <span class="i18n-ar">١٣ دراسة حالة موثقة. كلها قابلة للتحقق على بروفايلات البراندات العامة. مبندّعيش حاجة منقدرش نثبتها — ومش بنشتغل مع براند منقدرش نطلعّه نتيجة.</span>
+          <span class="i18n-en">61+ documented case studies. Verifiable on every brand's public profile. We don't claim what we can't prove — and we don't take work where we can't.</span>
+          <span class="i18n-ar">٦١+ دراسة حالة موثقة. كلها قابلة للتحقق على بروفايلات البراندات العامة. مبندّعيش حاجة منقدرش نثبتها — ومش بنشتغل مع براند منقدرش نطلعّه نتيجة.</span>
         </p>
       </div>
 
@@ -528,36 +551,32 @@
     </div>
 
     <div class="culture-grid">
-      <div class="culture-tile huge" style="background-image:url('assets/culture/01-planning.png');">
+      <div class="culture-tile huge" style="background-image:url('assets/culture/Website-Images-for-team-(1).jpg');">
         <span class="cap"><span class="i18n-en">Planning &amp; strategy</span><span class="i18n-ar">تخطيط واستراتيجية</span></span>
       </div>
-      <div class="culture-tile" style="background-image:url('assets/culture/02-meeting.png');">
+      <div class="culture-tile" style="background-image:url('assets/culture/Website-Images-for-team-(2).jpg');">
         <span class="cap"><span class="i18n-en">Client meetings</span><span class="i18n-ar">اجتماعات عملاء</span></span>
       </div>
-      <div class="culture-tile tall" style="background-image:url('assets/culture/03-shooting.png');">
+      <div class="culture-tile tall" style="background-image:url('assets/culture/Website-Images-for-team-(3).jpg');">
         <span class="cap"><span class="i18n-en">On set / shooting</span><span class="i18n-ar">تصوير على المسرح</span></span>
       </div>
-      <div class="culture-tile" style="background-image:url('assets/culture/04-editing.png');">
+      <div class="culture-tile" style="background-image:url('assets/culture/Website-Images-for-team-(4).jpg');">
         <span class="cap"><span class="i18n-en">Editing bay</span><span class="i18n-ar">المونتاج</span></span>
       </div>
-      <div class="culture-tile wide" style="background-image:url('assets/culture/05-creation.png');">
+      <div class="culture-tile wide" style="background-image:url('assets/culture/Website-Images-for-team-(5).jpg');">
         <span class="cap"><span class="i18n-en">Content creation</span><span class="i18n-ar">صناعة المحتوى</span></span>
       </div>
-      <div class="culture-tile" style="background-image:url('assets/culture/06-collaboration.png');">
+      <div class="culture-tile" style="background-image:url('assets/culture/Website-Images-for-team-(6).jpg');">
         <span class="cap"><span class="i18n-en">Collaboration</span><span class="i18n-ar">شغل مشترك</span></span>
       </div>
-      <div class="culture-tile" style="background-image:url('assets/culture/07-execution.png');">
+      <div class="culture-tile" style="background-image:url('assets/culture/Website-Images-for-team-(7).jpg');">
         <span class="cap"><span class="i18n-en">Execution</span><span class="i18n-ar">تنفيذ ميداني</span></span>
       </div>
     </div>
 
-    <div class="image-notice">
-      <b><span class="i18n-en">⚠ Photo verification needed</span><span class="i18n-ar">⚠ في انتظار التحقق من الصور</span></b>
-      <span class="i18n-en"> · Captions are placeholder pairings against the supplied photo set. Final captions to be confirmed by the team — and the full ~145-image gallery to be curated and tagged into <code>assets/culture/</code>.</span>
-      <span class="i18n-ar"> · العناوين مبدئية مع الصور الموجودة. الفريق هيأكد المطابقة النهائية — والمكتبة الكاملة (حوالي ١٤٥ صورة) محتاجة تنسيق وتسمية في <code>assets/culture/</code>.</span>
     </div>
-  </div>
 </section>
+
 
 <!-- ============ CREDIBILITY NUMBERS ============ -->
 <section class="proof">
@@ -572,12 +591,113 @@
       <span class="i18n-ar">مسحوبة من أرشيف دراسات الحالة الموثقة — كل رقم تحت قابل للتحقق على بروفايل براند حقيقي.</span>
     </p>
     <div class="proof-grid">
-      <div class="proof-stat"><b>13+</b><span class="i18n-en">Documented case studies</span><span class="i18n-ar">دراسة حالة موثقة</span></div>
+      <div class="proof-stat"><b>61+</b><span class="i18n-en">Documented case studies</span><span class="i18n-ar">دراسة حالة موثقة</span></div>
       <div class="proof-stat"><b>35+</b><span class="i18n-en">Global brands served</span><span class="i18n-ar">براند عالمي</span></div>
       <div class="proof-stat"><b>25</b><span class="i18n-en">In-house specialists</span><span class="i18n-ar">متخصص داخلي</span></div>
       <div class="proof-stat"><b>7</b><span class="i18n-en">Specialised departments</span><span class="i18n-ar">إدارات متخصصة</span></div>
       <div class="proof-stat"><b>5</b><span class="i18n-en">Geographies served</span><span class="i18n-ar">جغرافيات بنخدمها</span></div>
       <div class="proof-stat"><b>10K+</b><span class="i18n-en">Course graduates from playbooks</span><span class="i18n-ar">خريج كورس بنفس البلايبوكاتنا</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM TOGETHER GALLERY ============ -->
+<section class="section">
+  <style>
+    .at-gallery-head { margin-bottom: 32px; }
+    .at-gallery-head .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; opacity: .55; }
+    .at-gallery-head h2 {
+      font-family: var(--font-serif); font-size: clamp(34px, 4.5vw, 60px);
+      line-height: 1.05; letter-spacing: -.02em; margin: 10px 0 12px; text-wrap: balance;
+    }
+    .at-gallery-head p { max-width: 60ch; color: var(--ink-2); margin: 0; line-height: 1.55; }
+    .at-bento {
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 180px;
+    }
+    .at-bento figure {
+      margin: 0; position: relative; overflow: hidden;
+      border-radius: 18px; border: 1px solid var(--line);
+      background: var(--bg-band);
+    }
+    .at-bento figure img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .at-bento figure:hover img { transform: scale(1.05); }
+    .at-bento figure::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+    }
+    .at-bento figcaption {
+      position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2;
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .14em;
+      text-transform: uppercase; color: #f5f2ec; text-shadow: 0 1px 4px rgba(0,0,0,.6);
+    }
+    html[lang="ar"] .at-bento figcaption { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+    /* Bento layout */
+    .at-bento .cell-1 { grid-column: span 2; grid-row: span 2; }
+    .at-bento .cell-2 { grid-column: span 2; }
+    .at-bento .cell-3 { grid-column: span 2; }
+    .at-bento .cell-4 { grid-column: span 2; }
+    .at-bento .cell-5 { grid-column: span 2; }
+    .at-bento .cell-6 { grid-column: span 3; }
+    .at-bento .cell-7 { grid-column: span 3; }
+    @media (max-width: 920px) {
+      .at-bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; }
+      .at-bento .cell-1 { grid-column: span 2; grid-row: span 2; }
+      .at-bento .cell-2, .at-bento .cell-3, .at-bento .cell-4, .at-bento .cell-5 { grid-column: span 2; }
+      .at-bento .cell-6, .at-bento .cell-7 { grid-column: span 2; }
+    }
+    @media (max-width: 560px) {
+      .at-bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+      .at-bento .cell-1 { grid-column: span 2; grid-row: span 2; }
+      .at-bento .cell-2, .at-bento .cell-3, .at-bento .cell-4,
+      .at-bento .cell-5, .at-bento .cell-6, .at-bento .cell-7 { grid-column: span 1; }
+    }
+  </style>
+  <div class="container">
+    <div class="at-gallery-head">
+      <span class="eyebrow"><span class="i18n-en">04.5 · The Team, together</span><span class="i18n-ar">٠٤.٥ · الفريق، معًا</span></span>
+      <h2>
+        <span class="i18n-en">Real people. Same room. Every week.</span>
+        <span class="i18n-ar">ناس حقيقية. أوضة واحدة. كل أسبوع.</span>
+      </h2>
+      <p>
+        <span class="i18n-en">A peek at the team behind the systems — planning together, shipping together, and showing up for the work that ends up on your feed.</span>
+        <span class="i18n-ar">نظرة على الفريق وراء النظام — بنخطّط مع بعض، بنشتغل مع بعض، وبنحضر للشغل اللي بيوصل لجمهورك في الآخر.</span>
+      </p>
+    </div>
+    <div class="at-bento">
+      <figure class="cell-1">
+        <img src="assets/culture/Website-Images-for-team-(8).jpg" alt="Optiiimum team gathered in the studio" loading="lazy">
+        <figcaption><span class="i18n-en">All-hands. Every Monday.</span><span class="i18n-ar">اجتماع الفريق. كل اثنين.</span></figcaption>
+      </figure>
+      <figure class="cell-2">
+        <img src="assets/culture/Website-Images-for-team-(10).jpg" alt="Department leads in a planning session" loading="lazy">
+        <figcaption><span class="i18n-en">Planning together</span><span class="i18n-ar">تخطيط مشترك</span></figcaption>
+      </figure>
+      <figure class="cell-3">
+        <img src="assets/culture/Website-Images-for-team-(11).jpg" alt="Editors and creators reviewing footage" loading="lazy">
+        <figcaption><span class="i18n-en">Reviewing dailies</span><span class="i18n-ar">مراجعة المونتاج</span></figcaption>
+      </figure>
+      <figure class="cell-4">
+        <img src="assets/culture/Website-Images-for-team-(14).jpg" alt="Optiiimum team in front of brand wall" loading="lazy">
+        <figcaption><span class="i18n-en">In front of the wall</span><span class="i18n-ar">قدام حيط البراند</span></figcaption>
+      </figure>
+      <figure class="cell-5">
+        <img src="assets/culture/Website-Images-for-team-(15).jpg" alt="Content creators on set" loading="lazy">
+        <figcaption><span class="i18n-en">On set, in flow</span><span class="i18n-ar">على البلاتوه</span></figcaption>
+      </figure>
+      <figure class="cell-6">
+        <img src="assets/culture/Website-Images-for-team-(17).jpg" alt="Account managers and clients at a review meeting" loading="lazy">
+        <figcaption><span class="i18n-en">Client reviews</span><span class="i18n-ar">مراجعات مع العميل</span></figcaption>
+      </figure>
+      <figure class="cell-7">
+        <img src="assets/culture/Website-Images-for-team-(20).jpg" alt="Full Optiiimum team portrait" loading="lazy">
+        <figcaption><span class="i18n-en">The full crew</span><span class="i18n-ar">الفريق كامل</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -801,8 +921,8 @@
       </div>
       <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
       <div>
-        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
-        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+        <a href="PrivacyPolicy.html"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="TermsConditions.html"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
       </div>
     </div>
   </div>
@@ -849,5 +969,8 @@
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
 </script>
 
+
+  <script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
 </body>
 </html>

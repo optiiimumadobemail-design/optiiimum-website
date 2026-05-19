@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+(function () {
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') theme = manual;
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Internships at Optiiimum — Growth Internship Program</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A 3-month paid internship at Optiiimum — rotate across content, design, strategy, and media buying. Built for graduates who want a fast start in digital growth.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+  /* ===== Hero ===== */
+  .intern-hero {
+    position: relative; overflow: hidden;
+    padding: clamp(96px, 14vw, 160px) 0 clamp(36px, 5vw, 64px);
+  }
+  .intern-hero .eyebrow { display: inline-block; }
+  .intern-hero h1 {
+    max-width: 22ch;
+    margin-top: 18px;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 1.03;
+    text-wrap: balance;
+  }
+  .intern-hero h1 .alt {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .intern-hero h1 .alt { font-style: normal; font-weight: 700; }
+  .intern-hero .lede {
+    max-width: 60ch; margin-top: 24px;
+    font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .intern-hero-orb {
+    position: absolute; pointer-events: none; z-index: -1;
+    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
+    inset-inline-end: -18vw; top: -16vw;
+    background: conic-gradient(from 220deg at 50% 50%,
+      var(--grad-1), var(--grad-6), var(--grad-5),
+      var(--grad-4), var(--grad-3), var(--grad-2), var(--grad-1));
+    filter: blur(120px); opacity: .3; border-radius: 50%;
+  }
+
+  /* ===== Facts strip ===== */
+  .intern-facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 18px;
+  }
+  @media (max-width: 720px) { .intern-facts { grid-template-columns: repeat(2, 1fr); } }
+  .intern-fact { padding: 4px 12px; }
+  .intern-fact .n {
+    display: block;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(34px, 4vw, 48px);
+    line-height: 1; letter-spacing: -.02em;
+    background: linear-gradient(120deg, var(--grad-1), var(--grad-3), var(--grad-5));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html[lang="ar"] .intern-fact .n { font-family: var(--font-ar); font-style: normal; font-weight: 700; }
+  .intern-fact .lbl {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .15em; text-transform: uppercase;
+    color: var(--ink-3); margin-top: 8px; display: block;
+  }
+  html[lang="ar"] .intern-fact .lbl { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 12px; }
+
+  /* ===== Section blocks ===== */
+  .intern-section { padding: clamp(64px, 9vw, 110px) 0; }
+  .intern-section h2 {
+    font-size: clamp(32px, 4.4vw, 56px);
+    line-height: 1.05; margin: 8px 0 0; max-width: 22ch;
+    letter-spacing: -.015em;
+  }
+  .intern-section .lede {
+    max-width: 60ch; margin-top: 18px;
+    color: var(--ink-2); font-size: 16px; line-height: 1.6;
+  }
+
+  /* ===== Tracks grid ===== */
+  .tracks {
+    display: grid; gap: 16px; margin-top: 40px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 1024px) { .tracks { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px)  { .tracks { grid-template-columns: 1fr; } }
+  .track {
+    padding: 24px 22px 22px;
+    border-radius: var(--r-lg);
+    background: var(--bg-band);
+    border: 1px solid var(--line);
+    position: relative;
+    transition: transform .25s, border-color .25s;
+  }
+  .track:hover { transform: translateY(-3px); border-color: var(--ink-3); }
+  .track .num {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--ink-3); letter-spacing: .18em;
+    margin-bottom: 14px; display: block;
+  }
+  .track b {
+    font-family: var(--font-serif); font-size: 22px;
+    line-height: 1.15; letter-spacing: -.005em; display: block;
+  }
+  html[lang="ar"] .track b { font-family: var(--font-ar); font-weight: 700; font-style: normal; }
+  .track p { color: var(--ink-2); font-size: 14px; line-height: 1.55; margin: 8px 0 0; }
+
+  /* ===== Timeline ===== */
+  .timeline {
+    display: grid; gap: 14px; margin-top: 36px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 720px) { .timeline { grid-template-columns: 1fr; } }
+  .tl-step {
+    padding: 22px;
+    border-radius: var(--r-lg);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .tl-step .week {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-3); display: block; margin-bottom: 10px;
+  }
+  html[lang="ar"] .tl-step .week { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 12px; }
+  .tl-step b {
+    font-family: var(--font-serif); font-size: 20px; line-height: 1.2;
+    display: block;
+  }
+  html[lang="ar"] .tl-step b { font-family: var(--font-ar); font-weight: 700; }
+  .tl-step p { color: var(--ink-2); font-size: 13.5px; line-height: 1.55; margin: 8px 0 0; }
+
+  /* ===== Two-col who + outcomes ===== */
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 56px); margin-top: 36px;
+  }
+  @media (max-width: 920px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .col h3 {
+    font-family: var(--font-serif); font-size: 28px;
+    line-height: 1.15; letter-spacing: -.005em; margin: 0 0 18px;
+  }
+  html[lang="ar"] .two-col .col h3 { font-family: var(--font-ar); font-weight: 700; }
+  .two-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .two-col li {
+    padding: 16px 18px; border-radius: 14px;
+    border: 1px solid var(--line); background: var(--bg-band);
+    color: var(--ink-2); font-size: 14.5px; line-height: 1.55;
+    position: relative; padding-inline-start: 44px;
+  }
+  .two-col li::before {
+    content: "→"; position: absolute;
+    inset-inline-start: 18px; top: 14px;
+    color: var(--grad-4); font-weight: 700;
+  }
+  html[dir="rtl"] .two-col li::before { content: "←"; }
+
+  /* ===== FAQ ===== */
+  .intern-faq { display: grid; gap: 8px; margin-top: 36px; max-width: 820px; }
+  .intern-faq details {
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: 18px 22px; background: var(--bg-band);
+    transition: background .25s;
+  }
+  .intern-faq details[open] { background: var(--bg-elev); }
+  .intern-faq summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-serif); font-size: 19px;
+    line-height: 1.25; letter-spacing: -.005em;
+  }
+  html[lang="ar"] .intern-faq summary { font-family: var(--font-ar); font-weight: 700; }
+  .intern-faq summary::-webkit-details-marker { display: none; }
+  .intern-faq summary::after {
+    content: "+"; font-family: var(--font-mono);
+    font-size: 22px; color: var(--ink-3);
+    transition: transform .25s;
+  }
+  .intern-faq details[open] summary::after { content: "−"; }
+  .intern-faq details p {
+    margin: 12px 0 0; color: var(--ink-2);
+    font-size: 14.5px; line-height: 1.6;
+  }
+
+  /* ===== Apply CTA ===== */
+  .intern-cta { padding: clamp(64px, 9vw, 110px) 0 clamp(96px, 12vw, 140px); }
+  .intern-cta .opt-box {
+    text-align: center;
+    padding: clamp(48px, 7vw, 96px) clamp(24px, 4vw, 56px);
+  }
+  .intern-cta h2 {
+    max-width: 24ch; margin: 0 auto;
+    font-size: clamp(34px, 5vw, 60px); line-height: 1.05;
+    letter-spacing: -.015em;
+  }
+  .intern-cta .lede { max-width: 56ch; margin: 18px auto 28px; color: var(--ink-2); }
+  .intern-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+</style>
+<script src="loader.js"></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html" aria-current="page"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme"><span id="themeIcon">◐</span></button>
+      <a href="#apply" class="nav-cta">
+        <span class="i18n-en">Apply now</span><span class="i18n-ar">قدّم الآن</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html" aria-current="page"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="intern-hero">
+  <div class="intern-hero-orb" aria-hidden="true"></div>
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">Growth Internship Program · Optiiimum</span>
+      <span class="i18n-ar">برنامج تدريب النمو · Optiiimum</span>
+    </span>
+    <h1>
+      <span class="i18n-en">Start your first career step <span class="alt">in a real growth team.</span></span>
+      <span class="i18n-ar">ابدأ خطوتك الأولى في <span class="alt">فريق نمو حقيقي.</span></span>
+    </h1>
+    <p class="lede">
+      <span class="i18n-en">A 3-month paid internship at Optiiimum's Cairo office. You'll rotate across content, design, strategy, and media buying — shipping real work for real brands, mentored by senior leads. Top performers join the team full-time.</span>
+      <span class="i18n-ar">برنامج تدريب مدفوع لمدة 3 شهور في مقرنا بالقاهرة. هتلف على أقسام المحتوى، الديزاين، الاستراتيجية، والميديا باينج — وهتطلق شغل فعلي لبراندات حقيقية، تحت إشراف ليدز سينيور. اللي يتميّز بينضم للفريق فل تايم.</span>
+    </p>
+
+    <div class="intern-facts">
+      <div class="intern-fact">
+        <span class="n">3</span>
+        <span class="lbl"><span class="i18n-en">Months · paid</span><span class="i18n-ar">شهور · مدفوع</span></span>
+      </div>
+      <div class="intern-fact">
+        <span class="n">4</span>
+        <span class="lbl"><span class="i18n-en">Department rotations</span><span class="i18n-ar">أقسام للتدوير</span></span>
+      </div>
+      <div class="intern-fact">
+        <span class="n">6+</span>
+        <span class="lbl"><span class="i18n-en">Senior mentors</span><span class="i18n-ar">مرشدين سينيور</span></span>
+      </div>
+      <div class="intern-fact">
+        <span class="n">70%</span>
+        <span class="lbl"><span class="i18n-en">Convert to full-time</span><span class="i18n-ar">بيلتحقوا فل تايم</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRACKS ============ -->
+<section class="intern-section">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">What you'll rotate through</span>
+      <span class="i18n-ar">الأقسام اللي هتشتغل فيها</span>
+    </span>
+    <h2>
+      <span class="i18n-en">Four real tracks. <span class="opt-grad-text">One growth team.</span></span>
+      <span class="i18n-ar">٤ مسارات شغل حقيقية. <span class="opt-grad-text">فريق نمو واحد.</span></span>
+    </h2>
+    <p class="lede">
+      <span class="i18n-en">You won't make coffee. From day one you'll be inside live accounts — drafting briefs, editing posts, building decks, reviewing ad performance, and learning how digital growth actually compounds.</span>
+      <span class="i18n-ar">مفيش قهوة. من اليوم الأول هتكون داخل حسابات شغّالة — بتساعد في برييفات، بتحرّر بوستات، بتبني عروض، بتراجع أداء إعلانات، وبتفهم النمو الرقمي إزاي بيتراكم فعلًا.</span>
+    </p>
+
+    <div class="tracks">
+      <article class="track">
+        <span class="num">01</span>
+        <b><span class="i18n-en">Content & Strategy</span><span class="i18n-ar">المحتوى والاستراتيجية</span></b>
+        <p>
+          <span class="i18n-en">Audience research, scripting, content calendars, bilingual copy in AR/EN. You'll ship at least 10 published posts.</span>
+          <span class="i18n-ar">بحث جمهور، كتابة سكربتات، تقاويم محتوى، نسخ ثنائية اللغة. هتطلق على الأقل 10 منشورات منشورة.</span>
+        </p>
+      </article>
+
+      <article class="track">
+        <span class="num">02</span>
+        <b><span class="i18n-en">Design & Brand</span><span class="i18n-ar">الديزاين والبراند</span></b>
+        <p>
+          <span class="i18n-en">Brand templates, social grids, motion graphics fundamentals, and applying brand guidelines under an art director.</span>
+          <span class="i18n-ar">قوالب براند، جريد سوشيال، أساسيات الموشن جرافيكس، وتطبيق دليل البراند تحت إشراف آرت دايركتور.</span>
+        </p>
+      </article>
+
+      <article class="track">
+        <span class="num">03</span>
+        <b><span class="i18n-en">Production & Video</span><span class="i18n-ar">الإنتاج والفيديو</span></b>
+        <p>
+          <span class="i18n-en">Pre-production planning, on-set assistance, cuts and short-form editing. End the rotation with a published reel.</span>
+          <span class="i18n-ar">تخطيط ما قبل الإنتاج، مساعدة على السيت، مونتاج وقصص قصيرة. تخرج بريل منشورة باسمك.</span>
+        </p>
+      </article>
+
+      <article class="track">
+        <span class="num">04</span>
+        <b><span class="i18n-en">Media Buying & Analytics</span><span class="i18n-ar">شراء الإعلانات والتحليلات</span></b>
+        <p>
+          <span class="i18n-en">Meta &amp; TikTok ads basics, audience structures, reading reports, and writing weekly performance summaries.</span>
+          <span class="i18n-ar">أساسيات إعلانات ميتا وتيك توك، تركيب الجمهور، قراءة تقارير، وكتابة ملخصات أداء أسبوعية.</span>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="intern-section" style="background: var(--bg-band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">The 12 weeks</span>
+      <span class="i18n-ar">الـ ١٢ أسبوع</span>
+    </span>
+    <h2>
+      <span class="i18n-en">Structured to make you <span class="opt-grad-text">job-ready.</span></span>
+      <span class="i18n-ar">مبني علشان تخرج <span class="opt-grad-text">جاهز للسوق.</span></span>
+    </h2>
+
+    <div class="timeline">
+      <div class="tl-step">
+        <span class="week"><span class="i18n-en">Weeks 1–2</span><span class="i18n-ar">الأسبوع ١–٢</span></span>
+        <b><span class="i18n-en">Onboard</span><span class="i18n-ar">انضمام</span></b>
+        <p>
+          <span class="i18n-en">Meet the team, learn our process, read past case studies, shadow live meetings.</span>
+          <span class="i18n-ar">اتعرف على الفريق، اتعلم العملية، اقرا دراسات حالة سابقة، احضر اجتماعات حية.</span>
+        </p>
+      </div>
+      <div class="tl-step">
+        <span class="week"><span class="i18n-en">Weeks 3–6</span><span class="i18n-ar">الأسبوع ٣–٦</span></span>
+        <b><span class="i18n-en">First rotation</span><span class="i18n-ar">أول قسم</span></b>
+        <p>
+          <span class="i18n-en">Embed in one department. Own a small piece of a real account end-to-end with a senior mentor.</span>
+          <span class="i18n-ar">انضم لقسم واحد. خد جزء صغير من حساب حقيقي من البداية للنهاية مع مرشد سينيور.</span>
+        </p>
+      </div>
+      <div class="tl-step">
+        <span class="week"><span class="i18n-en">Weeks 7–10</span><span class="i18n-ar">الأسبوع ٧–١٠</span></span>
+        <b><span class="i18n-en">Second rotation</span><span class="i18n-ar">القسم التاني</span></b>
+        <p>
+          <span class="i18n-en">Switch into the department that fits your strength. Ship measurable work with named credit.</span>
+          <span class="i18n-ar">انتقل للقسم اللي بيناسب قوتك. طلّق شغل بقياسات حقيقية وباسمك.</span>
+        </p>
+      </div>
+      <div class="tl-step">
+        <span class="week"><span class="i18n-en">Weeks 11–12</span><span class="i18n-ar">الأسبوع ١١–١٢</span></span>
+        <b><span class="i18n-en">Showcase</span><span class="i18n-ar">عرض ختامي</span></b>
+        <p>
+          <span class="i18n-en">Present your 12-week portfolio to the leadership team. Top performers are offered a full-time role.</span>
+          <span class="i18n-ar">اعرض بورتفوليو الـ١٢ أسبوع بتاعك على القيادة. اللي يتميّز بنعرض عليه فل تايم.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO + OUTCOMES ============ -->
+<section class="intern-section">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">Who this is for</span>
+      <span class="i18n-ar">البرنامج ده لمين</span>
+    </span>
+    <h2>
+      <span class="i18n-en">Built for graduates who <span class="opt-grad-text">want to start strong.</span></span>
+      <span class="i18n-ar">للخريجين اللي عايزين <span class="opt-grad-text">يبدأوا قوي.</span></span>
+    </h2>
+
+    <div class="two-col">
+      <div class="col">
+        <h3><span class="i18n-en">You'll thrive here if you…</span><span class="i18n-ar">هتبدع هنا لو…</span></h3>
+        <ul>
+          <li><span class="i18n-en">Graduated in the last 18 months in marketing, media, design, business, or anything you can defend.</span><span class="i18n-ar">اتخرّجت في آخر 18 شهر من تخصص تسويق، إعلام، ديزاين، أعمال، أو أي تخصص تقدر تدافع عنه.</span></li>
+          <li><span class="i18n-en">Write strong Arabic and English — both, not just one.</span><span class="i18n-ar">بتكتب عربي وإنجليزي قوي — الاتنين، مش واحد بس.</span></li>
+          <li><span class="i18n-en">Live in (or can relocate to) Greater Cairo. The internship is on-site.</span><span class="i18n-ar">ساكن (أو تقدر تنتقل) للقاهرة الكبرى. التدريب حضوري.</span></li>
+          <li><span class="i18n-en">Already make things — even if just for yourself. Portfolio &gt; transcript.</span><span class="i18n-ar">بتعمل حاجات بنفسك — حتى لو لنفسك بس. البورتفوليو أهم من الشهادة.</span></li>
+          <li><span class="i18n-en">Take feedback well and ship faster than you talk.</span><span class="i18n-ar">بتتقبّل الملاحظات وبتنفّذ أسرع ما تتكلم.</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3><span class="i18n-en">What you'll leave with</span><span class="i18n-ar">هتطلع بإيه</span></h3>
+        <ul>
+          <li><span class="i18n-en">A 12-week portfolio of real, published work — with brand names you can show.</span><span class="i18n-ar">بورتفوليو ١٢ أسبوع شغل حقيقي منشور — بأسماء براندات تقدر تعرضها.</span></li>
+          <li><span class="i18n-en">Hands-on experience across content, design, video, and paid media.</span><span class="i18n-ar">خبرة عملية في المحتوى، الديزاين، الفيديو، والميديا المدفوعة.</span></li>
+          <li><span class="i18n-en">Senior mentorship and a named reference for your CV and LinkedIn.</span><span class="i18n-ar">إرشاد سينيور ومرجع باسم محدد للسيرة الذاتية واللينكدإن.</span></li>
+          <li><span class="i18n-en">A monthly stipend and a clear path to a full-time offer.</span><span class="i18n-ar">مكافأة شهرية ومسار واضح لعرض توظيف فل تايم.</span></li>
+          <li><span class="i18n-en">An alumni network of past interns now working across the region.</span><span class="i18n-ar">شبكة خريجين من المتدربين السابقين الشغّالين في المنطقة.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="intern-section" style="background: var(--bg-band); border-top: 1px solid var(--line);">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">Common questions</span>
+      <span class="i18n-ar">أسئلة شائعة</span>
+    </span>
+    <h2>
+      <span class="i18n-en">Before you apply.</span>
+      <span class="i18n-ar">قبل ما تقدّم.</span>
+    </h2>
+
+    <div class="intern-faq">
+      <details>
+        <summary><span class="i18n-en">Is the internship paid?</span><span class="i18n-ar">التدريب مدفوع؟</span></summary>
+        <p>
+          <span class="i18n-en">Yes. Every accepted intern receives a monthly stipend for all 3 months. We never accept unpaid interns.</span>
+          <span class="i18n-ar">أيوة. كل متدرب مقبول بياخد مكافأة شهرية طول الـ3 شهور. مفيش تدريب من غير مقابل عندنا أبداً.</span>
+        </p>
+      </details>
+      <details>
+        <summary><span class="i18n-en">Is the program remote or on-site?</span><span class="i18n-ar">حضوري ولا أونلاين؟</span></summary>
+        <p>
+          <span class="i18n-en">On-site at our Cairo office. The rotation model only works when you're in the room with the team.</span>
+          <span class="i18n-ar">حضوري في مقرنا بالقاهرة. نظام التدوير ده مبيشتغلش غير وأنت في الأوضة مع الفريق.</span>
+        </p>
+      </details>
+      <details>
+        <summary><span class="i18n-en">When does the next cohort start?</span><span class="i18n-ar">امتى بتبدأ الدفعة الجاية؟</span></summary>
+        <p>
+          <span class="i18n-en">We run two cohorts a year — one in spring and one in autumn. Apply any time; we'll match you to the next one.</span>
+          <span class="i18n-ar">عندنا دفعتين في السنة — واحدة الربيع وواحدة الخريف. قدّم في أي وقت وهنحطّك في أقرب دفعة.</span>
+        </p>
+      </details>
+      <details>
+        <summary><span class="i18n-en">Do I need an agency background?</span><span class="i18n-ar">لازم خبرة في وكالات؟</span></summary>
+        <p>
+          <span class="i18n-en">No. We hire on portfolio, taste, and how you think — not where you've worked. Many of our best alumni came from outside marketing.</span>
+          <span class="i18n-ar">لأ. بنوظّف بناءً على البورتفوليو، الذوق، وطريقة التفكير — مش على فين اشتغلت قبل كده. أحسن خريجينا جم من خارج التسويق أصلاً.</span>
+        </p>
+      </details>
+      <details>
+        <summary><span class="i18n-en">What happens after the 3 months?</span><span class="i18n-ar">إيه اللي بيحصل بعد الـ3 شهور؟</span></summary>
+        <p>
+          <span class="i18n-en">Around 70% of interns are offered a full-time role. The rest leave with a strong portfolio, references, and our active recommendations.</span>
+          <span class="i18n-ar">حوالي 70% من المتدربين بناخدهم فل تايم. الباقي بيخرج ببورتفوليو قوي، مراجع، وتوصياتنا الفعّالة.</span>
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLY CTA ============ -->
+<section class="intern-cta" id="apply">
+  <div class="container">
+    <div class="opt-box">
+      <span class="eyebrow">
+        <span class="i18n-en">Apply</span>
+        <span class="i18n-ar">قدّم</span>
+      </span>
+      <h2 style="margin-top:14px;">
+        <span class="i18n-en">Ready to <span class="opt-grad-text">start strong?</span></span>
+        <span class="i18n-ar">جاهز <span class="opt-grad-text">تبدأ قوي؟</span></span>
+      </h2>
+      <p class="lede">
+        <span class="i18n-en">Send us your portfolio (or anything you've made) and a short note. We read every application within 5 business days.</span>
+        <span class="i18n-ar">ابعتلنا بورتفوليو (أو أي حاجة عملتها) وملاحظة قصيرة. بنقرأ كل تقديم خلال 5 أيام عمل.</span>
+      </p>
+      <div class="intern-cta-btns">
+        <a href="Careers.html#apply" class="btn btn-primary">
+          <span class="i18n-en">Apply to the Growth Internship</span>
+          <span class="i18n-ar">قدّم لتدريب النمو</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="Careers.html" class="btn btn-ghost">
+          <span class="i18n-en">See full-time roles instead</span>
+          <span class="i18n-ar">شوف وظائف فل تايم بدلاً من ذلك</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Theme + lang + mobile menu toggles
+(function () {
+  var themeBtn = document.getElementById('themeToggle');
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('opt_theme', next); } catch (e) {}
+  });
+  var langBtn = document.getElementById('langToggle');
+  if (langBtn) langBtn.addEventListener('click', function () {
+    var cur = document.documentElement.getAttribute('lang') || 'en';
+    var next = cur === 'ar' ? 'en' : 'ar';
+    document.documentElement.setAttribute('lang', next);
+    document.documentElement.setAttribute('dir', next === 'ar' ? 'rtl' : 'ltr');
+    try { localStorage.setItem('opt_lang', next); } catch (e) {}
+  });
+  var open  = document.getElementById('menuOpen');
+  var close = document.getElementById('menuClose');
+  var menu  = document.getElementById('mobileMenu');
+  if (open && menu)  open.addEventListener('click', function () { menu.classList.add('open'); });
+  if (close && menu) close.addEventListener('click', function () { menu.classList.remove('open'); });
+})();
+</script>
+<script src="nav-slider.js" defer></script>
+<script src="social-footer.js" defer></script>
+</body>
+</html>

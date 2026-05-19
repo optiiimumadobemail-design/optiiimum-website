@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') { theme = manual; }
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<title>Privacy Policy | Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Read how Optiiimum collects, uses, and protects information shared through our website, discovery calls, contact forms, courses, and services.">
+<meta property="og:title" content="Privacy Policy | Optiiimum">
+<meta property="og:description" content="Read how Optiiimum collects, uses, and protects information shared through our website, discovery calls, contact forms, courses, and services.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="legal.css">
+<script src="slider.js" defer></script>
+<script src="loader.js"></script>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
+    </nav>
+
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme">
+        <span id="themeIcon">◐</span>
+      </button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
+  <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+  <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+  <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+  <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+  <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="legal-hero">
+  <div class="container">
+    <span class="eyebrow">
+      <span class="i18n-en">Legal · Optiiimum</span>
+      <span class="i18n-ar">القانوني · أوبتيموم</span>
+    </span>
+    <h1>
+      <span class="i18n-en">Privacy <span class="alt">Policy.</span></span>
+      <span class="i18n-ar">سياسة <span class="alt">الخصوصية.</span></span>
+    </h1>
+    <p class="lede">
+      <span class="i18n-en">At Optiiimum, we respect your privacy and are committed to protecting the information you share with us when you visit our website, contact us, book a discovery call, apply for a role, or interact with our services, courses, and content.</span>
+      <span class="i18n-ar">في Optiiimum، نحترم خصوصيتك ونلتزم بحماية المعلومات التي تشاركها معنا عند زيارة موقعنا، التواصل معنا، حجز مكالمة استكشافية، التقديم على وظيفة، أو التفاعل مع خدماتنا وكورساتنا ومحتوانا.</span>
+    </p>
+
+    <div class="legal-meta">
+      <div class="item">
+        <b><span class="i18n-en">Last updated</span><span class="i18n-ar">آخر تحديث</span></b>
+        <span>May 18, 2026</span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Effective</span><span class="i18n-ar">يسري من</span></b>
+        <span>May 18, 2026</span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Applies to</span><span class="i18n-ar">يطبَّق على</span></b>
+        <span><span class="i18n-en">optiiimum.com &amp; all sub-services</span><span class="i18n-ar">optiiimum.com وجميع الخدمات الفرعية</span></span>
+      </div>
+      <div class="item">
+        <b><span class="i18n-en">Questions?</span><span class="i18n-ar">لديك سؤال؟</span></b>
+        <span><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BODY ============ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="legal-shell">
+
+      <!-- TOC -->
+      <aside class="legal-toc" aria-label="On this page">
+        <h2><span class="i18n-en">On this page</span><span class="i18n-ar">في هذه الصفحة</span></h2>
+        <ol>
+          <li><a href="#info"><span class="i18n-en">Information We Collect</span><span class="i18n-ar">المعلومات التي نجمعها</span></a></li>
+          <li><a href="#how"><span class="i18n-en">How We Collect Information</span><span class="i18n-ar">كيف نجمع المعلومات</span></a></li>
+          <li><a href="#use"><span class="i18n-en">How We Use Your Information</span><span class="i18n-ar">كيف نستخدم معلوماتك</span></a></li>
+          <li><a href="#discovery"><span class="i18n-en">Discovery Call Data</span><span class="i18n-ar">بيانات المكالمة الاستكشافية</span></a></li>
+          <li><a href="#external"><span class="i18n-en">Course &amp; Platform Links</span><span class="i18n-ar">روابط الكورسات والمنصات</span></a></li>
+          <li><a href="#cookies"><span class="i18n-en">Cookies &amp; Tracking</span><span class="i18n-ar">ملفات تعريف الارتباط</span></a></li>
+          <li><a href="#share"><span class="i18n-en">Sharing Information</span><span class="i18n-ar">مشاركة المعلومات</span></a></li>
+          <li><a href="#security"><span class="i18n-en">Data Security</span><span class="i18n-ar">حماية البيانات</span></a></li>
+          <li><a href="#retention"><span class="i18n-en">Data Retention</span><span class="i18n-ar">مدة الاحتفاظ بالبيانات</span></a></li>
+          <li><a href="#rights"><span class="i18n-en">Your Rights</span><span class="i18n-ar">حقوقك</span></a></li>
+          <li><a href="#kids"><span class="i18n-en">Children's Privacy</span><span class="i18n-ar">خصوصية الأطفال</span></a></li>
+          <li><a href="#intl"><span class="i18n-en">International Users</span><span class="i18n-ar">المستخدمون الدوليون</span></a></li>
+          <li><a href="#changes"><span class="i18n-en">Changes to This Policy</span><span class="i18n-ar">تحديثات السياسة</span></a></li>
+          <li><a href="#contact"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ol>
+      </aside>
+
+      <!-- CONTENT -->
+      <div class="legal-body">
+
+        <article id="info" class="legal-section">
+          <span class="num">01</span>
+          <h2><span class="i18n-en">Information We Collect</span><span class="i18n-ar">المعلومات التي نجمعها</span></h2>
+          <p>
+            <span class="i18n-en">Depending on how you interact with Optiiimum, we may collect the following types of information:</span>
+            <span class="i18n-ar">وفقًا لطريقة تفاعلك مع Optiiimum، قد نجمع الأنواع التالية من المعلومات:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Full name, email address, phone or WhatsApp number</span><span class="i18n-ar">الاسم الكامل، البريد الإلكتروني، رقم الهاتف أو واتساب</span></li>
+            <li><span class="i18n-en">Company or brand name, job title, country, and city</span><span class="i18n-ar">اسم الشركة أو البراند، المسمى الوظيفي، الدولة، والمدينة</span></li>
+            <li><span class="i18n-en">Website or social media links you share with us</span><span class="i18n-ar">روابط الموقع أو حسابات السوشيال ميديا التي تشاركها معنا</span></li>
+            <li><span class="i18n-en">Service interest, monthly budget range, and current business challenge</span><span class="i18n-ar">الخدمة التي تهتم بها، نطاق الميزانية الشهرية، والتحدي الحالي في شغلك</span></li>
+            <li><span class="i18n-en">Preferred call time and messages submitted through our forms</span><span class="i18n-ar">الوقت المفضّل للمكالمة والرسائل المرسلة عبر النماذج</span></li>
+            <li><span class="i18n-en">Careers application details, portfolio links, and CVs or uploaded files</span><span class="i18n-ar">بيانات التقديم على الوظائف، روابط البورتفوليو، والسير الذاتية أو الملفات المرفقة</span></li>
+            <li><span class="i18n-en">Course-related inquiry details and learning preferences</span><span class="i18n-ar">تفاصيل استفسارات الكورسات وتفضيلات التعلم</span></li>
+            <li><span class="i18n-en">Analytics, device information, and website usage data</span><span class="i18n-ar">بيانات التحليلات، معلومات الجهاز، وبيانات استخدام الموقع</span></li>
+          </ul>
+        </article>
+
+        <article id="how" class="legal-section">
+          <span class="num">02</span>
+          <h2><span class="i18n-en">How We Collect Information</span><span class="i18n-ar">كيف نجمع المعلومات</span></h2>
+          <p>
+            <span class="i18n-en">We collect information through the following channels:</span>
+            <span class="i18n-ar">نجمع المعلومات من خلال القنوات التالية:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Contact forms, discovery call forms, and careers application forms</span><span class="i18n-ar">نماذج التواصل، نماذج حجز المكالمة الاستكشافية، ونماذج التقديم على الوظائف</span></li>
+            <li><span class="i18n-en">Newsletter sign-ups (where available) and direct email communication</span><span class="i18n-ar">الاشتراك في النشرة البريدية (إن وُجدت) والتواصل المباشر بالإيميل</span></li>
+            <li><span class="i18n-en">WhatsApp links and messages you send to our official channels</span><span class="i18n-ar">روابط واتساب والرسائل التي ترسلها على قنواتنا الرسمية</span></li>
+            <li><span class="i18n-en">Interactions with our social media pages and course landing pages</span><span class="i18n-ar">التفاعل مع صفحاتنا على السوشيال ميديا وصفحات الكورسات</span></li>
+            <li><span class="i18n-en">Website analytics, cookies, and similar tracking tools</span><span class="i18n-ar">تحليلات الموقع، الكوكيز، والأدوات المشابهة للتتبع</span></li>
+            <li><span class="i18n-en">Third-party platforms we link to from our website</span><span class="i18n-ar">المنصات الخارجية التي نضع روابطها على موقعنا</span></li>
+          </ul>
+        </article>
+
+        <article id="use" class="legal-section">
+          <span class="num">03</span>
+          <h2><span class="i18n-en">How We Use Your Information</span><span class="i18n-ar">كيف نستخدم معلوماتك</span></h2>
+          <p>
+            <span class="i18n-en">We use the information you share to:</span>
+            <span class="i18n-ar">نستخدم المعلومات التي تشاركها معنا في:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Respond to inquiries and schedule discovery calls</span><span class="i18n-ar">الرد على الاستفسارات وحجز المكالمات الاستكشافية</span></li>
+            <li><span class="i18n-en">Understand client needs and recommend the most suitable Optiiimum service or course</span><span class="i18n-ar">فهم احتياجات العميل والترشيح للخدمة أو الكورس المناسب من Optiiimum</span></li>
+            <li><span class="i18n-en">Prepare proposals and manage client communication</span><span class="i18n-ar">إعداد العروض وإدارة التواصل مع العملاء</span></li>
+            <li><span class="i18n-en">Improve website performance and refine our marketing campaigns</span><span class="i18n-ar">تحسين أداء الموقع وتطوير حملاتنا التسويقية</span></li>
+            <li><span class="i18n-en">Review job applications and support careers communication</span><span class="i18n-ar">مراجعة طلبات التوظيف والتواصل بشأن الوظائف</span></li>
+            <li><span class="i18n-en">Send updates, offers, or relevant content — only where you have permitted us to do so</span><span class="i18n-ar">إرسال التحديثات والعروض أو المحتوى ذي الصلة — فقط في حال موافقتك المسبقة</span></li>
+          </ul>
+        </article>
+
+        <article id="discovery" class="legal-section">
+          <span class="num">04</span>
+          <h2><span class="i18n-en">Discovery Call Data</span><span class="i18n-ar">بيانات المكالمة الاستكشافية</span></h2>
+          <p>
+            <span class="i18n-en">The <strong>15-minute discovery call</strong> is designed to understand your brand, goals, current challenges, and which Optiiimum service may best fit your situation. It is a scoping conversation — not a full free consulting session.</span>
+            <span class="i18n-ar">تهدف <strong>المكالمة الاستكشافية لمدة 15 دقيقة</strong> إلى فهم براندك، أهدافك، التحديات الحالية، وأنسب خدمات Optiiimum لحالتك. هي مكالمة تعريفية لتقييم التعاون — وليست جلسة استشارية مجانية كاملة.</span>
+          </p>
+          <p>
+            <span class="i18n-en">Information shared during the call may be used internally to prepare a tailored recommendation, proposal, or next-step plan. We treat that conversation with confidentiality and only share it with team members involved in your account.</span>
+            <span class="i18n-ar">قد تُستخدم المعلومات التي تتم مشاركتها أثناء المكالمة داخليًا لإعداد توصية مخصصة، عرض، أو خطة الخطوة التالية. ونتعامل مع هذه المحادثة بسرية ولا نُشاركها إلا مع أعضاء الفريق المعنيين بحسابك.</span>
+          </p>
+        </article>
+
+        <article id="external" class="legal-section">
+          <span class="num">05</span>
+          <h2><span class="i18n-en">Course &amp; External Platform Links</span><span class="i18n-ar">روابط الكورسات والمنصات الخارجية</span></h2>
+          <p>
+            <span class="i18n-en">Some buttons on our course pages lead to third-party platforms such as:</span>
+            <span class="i18n-ar">بعض الأزرار على صفحات الكورسات قد تنقلك إلى منصات خارجية مثل:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Teachable (course hosting and checkout)</span><span class="i18n-ar">Teachable (استضافة الكورسات والدفع)</span></li>
+            <li><span class="i18n-en">YouTube (free educational content)</span><span class="i18n-ar">YouTube (المحتوى التعليمي المجاني)</span></li>
+            <li><span class="i18n-en">Payment processors and checkout platforms</span><span class="i18n-ar">معالجات الدفع ومنصات الشيك آوت</span></li>
+            <li><span class="i18n-en">Social media platforms, WhatsApp, and similar tools</span><span class="i18n-ar">منصات السوشيال ميديا، واتساب، والأدوات المشابهة</span></li>
+            <li><span class="i18n-en">Google Forms, Calendly, or similar scheduling and form tools</span><span class="i18n-ar">Google Forms، Calendly، أو أدوات حجز ونماذج مشابهة</span></li>
+          </ul>
+          <p>
+            <span class="i18n-en">These platforms operate under their own privacy policies and terms. We recommend reviewing them when you visit each platform.</span>
+            <span class="i18n-ar">تعمل هذه المنصات وفقًا لسياسات الخصوصية والشروط الخاصة بها. ننصحك بمراجعتها عند زيارة كل منصة.</span>
+          </p>
+        </article>
+
+        <article id="cookies" class="legal-section">
+          <span class="num">06</span>
+          <h2><span class="i18n-en">Cookies and Tracking Technologies</span><span class="i18n-ar">ملفات تعريف الارتباط وأدوات التتبع</span></h2>
+          <p>
+            <span class="i18n-en">We may use tools such as analytics cookies, performance tracking, and marketing pixels (for example, Google Analytics or the Meta Pixel) to understand how visitors use our website, improve user experience, and refine the performance of our ads.</span>
+            <span class="i18n-ar">قد نستخدم أدوات مثل كوكيز التحليلات، تتبع الأداء، وبكسلات التسويق (مثل Google Analytics أو Meta Pixel) لفهم طريقة استخدام الزوار للموقع، تحسين تجربة المستخدم، وتطوير أداء الإعلانات.</span>
+          </p>
+          <p>
+            <span class="i18n-en">You can manage or disable cookies through your browser settings at any time. Disabling certain cookies may affect parts of the site experience.</span>
+            <span class="i18n-ar">يمكنك إدارة أو إيقاف الكوكيز من إعدادات المتصفح في أي وقت. وقد يؤدي تعطيل بعض الكوكيز إلى التأثير على بعض أجزاء الموقع.</span>
+          </p>
+        </article>
+
+        <article id="share" class="legal-section">
+          <span class="num">07</span>
+          <h2><span class="i18n-en">Sharing Information</span><span class="i18n-ar">مشاركة المعلومات</span></h2>
+          <p>
+            <span class="i18n-en"><strong>Optiiimum does not sell personal data.</strong> We may share information only in the following cases:</span>
+            <span class="i18n-ar"><strong>لا تبيع Optiiimum بياناتك الشخصية.</strong> قد نشارك المعلومات فقط في الحالات التالية:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">With internal team members who need it to serve you</span><span class="i18n-ar">مع أعضاء الفريق الداخليين الذين يحتاجون إليها لخدمتك</span></li>
+            <li><span class="i18n-en">With trusted service providers such as scheduling tools, CRM tools, form tools, and email platforms</span><span class="i18n-ar">مع مقدمي خدمات موثوقين مثل أدوات الحجز، إدارة العلاقات، النماذج، ومنصات البريد الإلكتروني</span></li>
+            <li><span class="i18n-en">With payment or course-hosting platforms when you purchase a service or course</span><span class="i18n-ar">مع منصات الدفع أو منصات استضافة الكورسات عند شرائك لخدمة أو كورس</span></li>
+            <li><span class="i18n-en">With legal or compliance authorities where required by law</span><span class="i18n-ar">مع الجهات القانونية أو التنظيمية في حال طلبها بموجب القانون</span></li>
+          </ul>
+        </article>
+
+        <article id="security" class="legal-section">
+          <span class="num">08</span>
+          <h2><span class="i18n-en">Data Security</span><span class="i18n-ar">حماية البيانات</span></h2>
+          <p>
+            <span class="i18n-en">We apply reasonable technical and organizational measures to protect the information you share with us. No system, however, can guarantee absolute security, and we do not promise that data transmitted over the internet is fully immune from unauthorized access.</span>
+            <span class="i18n-ar">نطبّق إجراءات تقنية وتنظيمية مناسبة لحماية المعلومات التي تشاركها معنا. ومع ذلك، لا يمكن لأي نظام أن يضمن أمانًا مطلقًا، ولا نُقدّم وعدًا بأن البيانات المُرسَلة عبر الإنترنت بمنأى تامٍّ عن أي وصول غير مصرح به.</span>
+          </p>
+        </article>
+
+        <article id="retention" class="legal-section">
+          <span class="num">09</span>
+          <h2><span class="i18n-en">Data Retention</span><span class="i18n-ar">مدة الاحتفاظ بالبيانات</span></h2>
+          <p>
+            <span class="i18n-en">We retain your information only as long as needed for business operations, legal obligations, ongoing communication, or service delivery. When the data is no longer required, we either delete it or anonymise it.</span>
+            <span class="i18n-ar">نحتفظ بمعلوماتك فقط للمدة اللازمة لأغراض تشغيل العمل، الالتزامات القانونية، التواصل المستمر، أو تقديم الخدمة. وعندما تنتفي الحاجة، نقوم بحذفها أو إخفاء هوية صاحبها.</span>
+          </p>
+        </article>
+
+        <article id="rights" class="legal-section">
+          <span class="num">10</span>
+          <h2><span class="i18n-en">Your Rights</span><span class="i18n-ar">حقوقك</span></h2>
+          <p>
+            <span class="i18n-en">You may, at any time, request to:</span>
+            <span class="i18n-ar">يحق لك في أي وقت أن تطلب:</span>
+          </p>
+          <ul>
+            <li><span class="i18n-en">Access the personal data we hold about you</span><span class="i18n-ar">الاطلاع على البيانات الشخصية المحفوظة لديك</span></li>
+            <li><span class="i18n-en">Correct or update information that is inaccurate</span><span class="i18n-ar">تصحيح أو تحديث أي معلومات غير دقيقة</span></li>
+            <li><span class="i18n-en">Delete your personal data, where permitted by law</span><span class="i18n-ar">حذف بياناتك الشخصية حسب ما يسمح به القانون</span></li>
+            <li><span class="i18n-en">Opt out of marketing communications</span><span class="i18n-ar">إيقاف الاشتراك في الرسائل التسويقية</span></li>
+            <li><span class="i18n-en">Ask any question about how your data is used</span><span class="i18n-ar">طرح أي سؤال حول طريقة استخدام بياناتك</span></li>
+          </ul>
+          <p>
+            <span class="i18n-en">To make any of these requests, email us at <a href="mailto:info@optiiimum.com">info@optiiimum.com</a>.</span>
+            <span class="i18n-ar">لتقديم أي من هذه الطلبات، راسلنا على <a href="mailto:info@optiiimum.com">info@optiiimum.com</a>.</span>
+          </p>
+        </article>
+
+        <article id="kids" class="legal-section">
+          <span class="num">11</span>
+          <h2><span class="i18n-en">Children's Privacy</span><span class="i18n-ar">خصوصية الأطفال</span></h2>
+          <p>
+            <span class="i18n-en">Optiiimum offers some programs designed for younger learners, such as <strong>Kidia AI Creators</strong>. These programs are intended to be accessed with the involvement of a parent or guardian.</span>
+            <span class="i18n-ar">تُقدّم Optiiimum بعض البرامج المصمَّمة للأطفال والناشئين، مثل <strong>Kidia AI Creators</strong>. وهذه البرامج مخصَّصة للاستخدام تحت إشراف ولي الأمر أو الوصي.</span>
+          </p>
+          <p>
+            <span class="i18n-en">We do not intentionally collect personal information from children without appropriate guardian consent. If a parent or guardian believes that a child has provided us with information without their consent, they may contact us at <a href="mailto:info@optiiimum.com">info@optiiimum.com</a> to request review or deletion.</span>
+            <span class="i18n-ar">لا نقوم عمدًا بجمع المعلومات الشخصية للأطفال دون موافقة ولي الأمر. وإذا اعتقد ولي الأمر أو الوصي أن طفلًا قام بمشاركة معلوماته دون موافقته، يمكنه التواصل معنا على <a href="mailto:info@optiiimum.com">info@optiiimum.com</a> لطلب المراجعة أو الحذف.</span>
+          </p>
+        </article>
+
+        <article id="intl" class="legal-section">
+          <span class="num">12</span>
+          <h2><span class="i18n-en">International Users</span><span class="i18n-ar">المستخدمون من خارج مصر</span></h2>
+          <p>
+            <span class="i18n-en">Optiiimum serves clients and visitors based in Egypt, the GCC, Europe, Canada, the United States, and other regions. By using our website or services, you acknowledge that your information may be processed in countries that may have different data protection laws than your home country.</span>
+            <span class="i18n-ar">تخدم Optiiimum عملاء وزوارًا من مصر، دول الخليج، أوروبا، كندا، الولايات المتحدة، ودول أخرى. وباستخدامك لموقعنا أو خدماتنا، فإنك تُقرّ بأن معلوماتك قد تتم معالجتها في دول تختلف فيها قوانين حماية البيانات عن دولتك.</span>
+          </p>
+        </article>
+
+        <article id="changes" class="legal-section">
+          <span class="num">13</span>
+          <h2><span class="i18n-en">Changes to This Policy</span><span class="i18n-ar">تحديثات سياسة الخصوصية</span></h2>
+          <p>
+            <span class="i18n-en">We may update this Privacy Policy from time to time to reflect changes to our services, legal requirements, or operations. When we do, we update the "Last updated" date at the top of this page.</span>
+            <span class="i18n-ar">قد نقوم بتحديث سياسة الخصوصية من وقت لآخر لتعكس التغييرات في خدماتنا، المتطلبات القانونية، أو أسلوب عملنا. وعند التحديث، نُحدّث تاريخ "آخر تحديث" أعلى الصفحة.</span>
+          </p>
+          <div class="legal-note">
+            <b><span class="i18n-en">A note from Optiiimum:</span><span class="i18n-ar">ملاحظة من Optiiimum:</span></b>
+            <span class="i18n-en"> This Privacy Policy reflects our current practices in clear, business-friendly language. The final wording is intended to be reviewed by a qualified legal advisor before relying on it for regulated jurisdictions.</span>
+            <span class="i18n-ar"> هذه السياسة تعكس ممارساتنا الحالية بصياغة مهنية واضحة. ويُوصى بمراجعة الصياغة النهائية مع مستشار قانوني مؤهَّل قبل الاعتماد عليها في الولايات التنظيمية الرسمية.</span>
+          </div>
+        </article>
+
+        <article id="contact" class="legal-section">
+          <span class="num">14</span>
+          <h2><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></h2>
+          <p>
+            <span class="i18n-en">For any questions about this Privacy Policy or how we handle your information:</span>
+            <span class="i18n-ar">لأي استفسار حول سياسة الخصوصية أو طريقة تعاملنا مع بياناتك:</span>
+          </p>
+          <ul>
+            <li><strong>Optiiimum</strong> · <span class="i18n-en">Alexandria · Cairo · Dubai</span><span class="i18n-ar">الإسكندرية · القاهرة · دبي</span></li>
+            <li><span class="i18n-en">Website:</span><span class="i18n-ar">الموقع:</span> <a href="Home.html">www.optiiimum.com</a></li>
+            <li><span class="i18n-en">Email:</span><span class="i18n-ar">البريد:</span> <a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+            <li><span class="i18n-en">Book a 15-minute call:</span><span class="i18n-ar">احجز مكالمة لمدة 15 دقيقة:</span> <a href="https://calendly.com/optimumsol-info/30min" target="_blank" rel="noopener noreferrer">calendly.com/optimumsol-info</a></li>
+          </ul>
+        </article>
+
+        <!-- Closing CTA -->
+        <div class="legal-closing">
+          <h3>
+            <span class="i18n-en">Still have a question about your data?</span>
+            <span class="i18n-ar">لديك استفسار آخر حول بياناتك؟</span>
+          </h3>
+          <p>
+            <span class="i18n-en">Talk to us directly. We'll answer plainly, in English or Arabic — whichever you prefer.</span>
+            <span class="i18n-ar">تواصل معنا مباشرة. هنرد عليك بصراحة، بالعربي أو الإنجليزي — حسبما تفضّل.</span>
+          </p>
+          <div class="btns">
+            <a class="btn btn-primary" href="Consultation.html">
+              <span class="i18n-en">Contact Optiiimum</span><span class="i18n-ar">تواصل مع Optiiimum</span>
+              <span class="arrow">→</span>
+            </a>
+            <a class="btn btn-ghost" href="TermsConditions.html">
+              <span class="i18n-en">Read Terms &amp; Conditions</span><span class="i18n-ar">اقرأ الشروط والأحكام</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-col">
+        <a href="Home.html" class="brand-link" style="margin-bottom:24px;">
+          <span class="brand-mark"></span>
+          <span class="brand-name">Optiiimum<span class="tm">™</span></span>
+        </a>
+        <p class="foot-pos">
+          <span class="i18n-en">A digital growth system, not another agency.</span>
+          <span class="i18n-ar">نظام نمو رقمي، مش وكالة تانية.</span>
+        </p>
+        <div class="foot-controls">
+          <button class="icon-btn lang-btn" onclick="toggleLang()">
+            <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()">◐</button>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Company</span><span class="i18n-ar">الشركة</span></h4>
+        <ul>
+          <li><a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a></li>
+          <li><a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a></li>
+          <li><a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a></li>
+          <li><a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a></li>
+          <li><a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></h4>
+        <ul>
+          <li><a href="Services.html"><span class="i18n-en">Social Media Strategy</span><span class="i18n-ar">استراتيجية السوشيال</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Content Creation</span><span class="i18n-ar">صناعة المحتوى</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Paid Media</span><span class="i18n-ar">الإعلانات الممولة</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Personal Branding</span><span class="i18n-ar">البراند الشخصي</span></a></li>
+          <li><a href="Services.html"><span class="i18n-en">Video Production</span><span class="i18n-ar">إنتاج الفيديو</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Academy</span><span class="i18n-ar">الأكاديمية</span></h4>
+        <ul>
+          <li><a href="Courses.html"><span class="i18n-en">Digital Pro Max</span><span class="i18n-ar">ديجيتال برو ماكس</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">Go Viral</span><span class="i18n-ar">المليون مشاهدة</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">AI × Business</span><span class="i18n-ar">AI × Business</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">Doctors' Content</span><span class="i18n-ar">روشتة المحتوى</span></a></li>
+          <li><a href="Courses.html"><span class="i18n-en">All courses →</span><span class="i18n-ar">كل الكورسات →</span></a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4><span class="i18n-en">Get in touch</span><span class="i18n-ar">تواصل معنا</span></h4>
+        <ul>
+          <li><a href="mailto:info@optiiimum.com">info@optiiimum.com</a></li>
+          <li><a href="https://calendly.com/optimumsol-info/30min" target="_blank" rel="noopener"><span class="i18n-en">Book on Calendly</span><span class="i18n-ar">احجز على Calendly</span></a></li>
+          <li><a href="https://wa.me/201097961682" target="_blank" rel="noopener">WhatsApp +20 109 796 1682</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
+      <div>
+        <a href="PrivacyPolicy.html"><span class="i18n-en">Privacy Policy</span><span class="i18n-ar">سياسة الخصوصية</span></a> ·
+        <a href="TermsConditions.html"><span class="i18n-en">Terms &amp; Conditions</span><span class="i18n-ar">الشروط والأحكام</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/201097961682" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004A9.87 9.87 0 0 1 7.1 20.41l-.355-.21-3.694.97 1.001-3.59-.232-.367a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.892-9.884a9.83 9.83 0 0 1 6.994 2.898 9.825 9.825 0 0 1 2.892 6.994c-.003 5.45-4.437 9.885-9.888 9.885zM20.52 3.449C18.24 1.245 15.24.044 12.05.04 5.495.04.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.877 11.877 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.423-8.45z"/>
+  </svg>
+</a>
+
+<script>
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    var icon = document.getElementById('themeIcon');
+    if (icon) icon.textContent = t === 'dark' ? '☾' : '◐';
+  }
+  function applyLang(l) {
+    document.documentElement.setAttribute('lang', l);
+    document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  }
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute('data-theme') || 'light';
+    var next = cur === 'light' ? 'dark' : 'light';
+    localStorage.setItem('opt_theme', next);
+    applyTheme(next);
+  }
+  function toggleLang() {
+    var cur = document.documentElement.getAttribute('lang') || 'en';
+    var next = cur === 'en' ? 'ar' : 'en';
+    localStorage.setItem('opt_lang', next);
+    applyLang(next);
+  }
+  (function() {
+    var t = localStorage.getItem('opt_theme');
+    if (t) applyTheme(t);
+    var l = localStorage.getItem('opt_lang');
+    if (l) applyLang(l);
+  })();
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('langToggle').addEventListener('click', toggleLang);
+  var mm = document.getElementById('mobileMenu');
+  document.getElementById('menuOpen').addEventListener('click', function(){ mm.classList.add('open'); });
+  document.getElementById('menuClose').addEventListener('click', function(){ mm.classList.remove('open'); });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.classList.remove('open'); }); });
+
+  /* Highlight current TOC item while scrolling */
+  (function(){
+    var links = document.querySelectorAll('.legal-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      byId[id] = a;
+    });
+    var sections = document.querySelectorAll('.legal-section');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          links.forEach(function(l){ l.classList.remove('is-active'); });
+          var a = byId[e.target.id];
+          if (a) a.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+    sections.forEach(function(s){ io.observe(s); });
+  })();
+</script>
+
+<script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
+</body>
+</html>

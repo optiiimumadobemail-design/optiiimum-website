@@ -585,6 +585,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 .amb-card.hidden { display: none; }
 </style>
   <script src="slider.js" defer></script>
+<script src="loader.js"></script>
 </head>
 <body>
 
@@ -595,18 +596,22 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
       <span class="brand-name">optiiimum<span class="dot">.</span></span>
     </a>
 
-    <nav class="primary-nav" aria-label="Primary">
-      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-      <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
-      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
-      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
-      <a href="Ambassadors.html" aria-current="page"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
-      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html" aria-current="page"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
     </nav>
 
     <div class="topbar-actions">
@@ -617,7 +622,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
         <span id="themeIcon">◐</span>
       </button>
       <a href="Consultation.html" class="nav-cta">
-        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
         <span class="arrow">→</span>
       </a>
       <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
@@ -627,17 +632,23 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
   <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-  <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
   <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
   <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
   <a href="Ambassadors.html" aria-current="page"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
   <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
 </div>
 <main>
 <section class="page-hero">
@@ -672,179 +683,9 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 
     <div class="amb-page-grid">
 <div class="i18n-en" style="display: contents;">
-<article class="amb-card" data-cat="medical" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-michael-younan.jpg" alt="Dr. Michael Younan, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Dr. Michael Younan</b>
-      <span>Physiotherapist</span>
-    </div>
-    <p class="amb-quote">&ldquo;They launched my brand and connected me with my clients.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Through expert guidance in personal branding, my social media platforms were launched successfully — helping me connect meaningfully with my clients and showcase my skills online.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Medical &amp; Health</span>
-</article>
-<article class="amb-card" data-cat="media" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-islam-nasr-allah.jpg" alt="Dr. Islam Nasr Allah, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Dr. Islam Nasr Allah</b>
-      <span>Medical Products Specialist</span>
-    </div>
-    <p class="amb-quote">&ldquo;They elevated my brand across KSA and boosted our sales.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their media production elevated my brand presence in KSA by showcasing all Mega Trust products professionally — resulting in a strong boost to our sales and brand image.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Media Production</span>
-</article>
-<article class="amb-card" data-cat="medical" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/sally-kotb.jpg" alt="Sally Kotb, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Sally Kotb</b>
-      <span>Maternity Specialist</span>
-    </div>
-    <p class="amb-quote">&ldquo;They redefined my online presence in the maternity field.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>They redefined my online presence — allowing me to reconnect with a larger audience in the maternity field and significantly increase my visibility and trust on social media.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Medical &amp; Health</span>
-</article>
-<article class="amb-card" data-cat="business" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/mohamed-alaa.jpg" alt="Mohamed Alaa, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Mohamed Alaa</b>
-      <span>CEO of Shezlong</span>
-    </div>
-    <p class="amb-quote">&ldquo;Shezlong became a recognised platform in mental health.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>With their support, Shezlong has become a well-known platform in mental health support — achieving broad awareness and making a positive impact for those in need.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Business &amp; Entrepreneurship</span>
-</article>
 <article class="amb-card" data-cat="impact" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/amr-mansy.jpg" alt="Amr Mansy, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Amr Mansy</b>
-      <span>Celebrity Advocate</span>
-    </div>
-    <p class="amb-quote">&ldquo;Their event coverage created real impact for mental health.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their expertise in event coverage brought substantial visibility to my mental health initiatives — creating a meaningful impact on Egypt's mental health community.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Education &amp; Social Impact</span>
-</article>
-<article class="amb-card" data-cat="business" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/kato.jpg" alt="Kato, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Kato</b>
-      <span>Founder of Stanvi</span>
-    </div>
-    <p class="amb-quote">&ldquo;They brought Stanvi's vision to life — and engaged our audience.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Transforming my brand, they delivered dynamic media production for Stanvi products and events — bringing our vision to life and deeply engaging our audience.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Business &amp; Entrepreneurship</span>
-</article>
-<article class="amb-card" data-cat="podcast" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/moustapha-zaalouk.jpg" alt="Moustapha Zaalouk, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Moustapha Zaalouk</b>
-      <span>CEO of Tac Universe</span>
-    </div>
-    <p class="amb-quote">&ldquo;They amplified my voice — and my clients'.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>With precision and creativity, they crafted my personal brand, utilising podcast production to amplify my voice and that of my clients — strengthening Tac Universe's reputation.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Podcasts &amp; Content</span>
-</article>
-<article class="amb-card" data-cat="podcast" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/nilly-shams.jpg" alt="Nilly Shams, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Nilly Shams</b>
-      <span>Nutrition Expert</span>
-    </div>
-    <p class="amb-quote">&ldquo;My podcast + marketing strategy made my brand stand out.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their approach helped me connect with my audience on a new level — producing a podcast and implementing powerful digital marketing strategies that made my brand stand out.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Podcasts &amp; Content</span>
-</article>
-<article class="amb-card" data-cat="medical" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/diana-samir.jpg" alt="Diana Samir, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Diana Samir</b>
-      <span>Beauty Doctor</span>
-    </div>
-    <p class="amb-quote">&ldquo;They built my online presence from the ground up.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>They built my social media presence from the ground up — creating a solid foundation that resonates with my target audience and amplifies my reach.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Medical &amp; Health</span>
-</article>
-<article class="amb-card" data-cat="business" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/ali-hamdy.jpg" alt="Ali Hamdy, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Ali Hamdy</b>
-      <span>UAE Entrepreneur</span>
-    </div>
-    <p class="amb-quote">&ldquo;They expanded EMS awareness across 20 UAE branches.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their team expanded EMS awareness across my 20 branches in the UAE — significantly strengthening the influence and reach of my brand.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Business &amp; Entrepreneurship</span>
-</article>
-<article class="amb-card" data-cat="impact" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/sheikh-fahad-al-sabah.jpg" alt="Sheikh Fahad Al Sabah, Optiiimum ambassador" loading="lazy">
+    <img src="assets/ambasedors/الشيخ-فهد-يوسف-سعود-الصباح---وزير-الداخلية-الكويتي.jpg" alt="Sheikh Fahad Al Sabah, Optiiimum ambassador" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -859,145 +700,9 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
   </div>
   <span class="amb-cat">Education &amp; Social Impact</span>
 </article>
-<article class="amb-card" data-cat="media" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/ziad-el-hadary.jpg" alt="Ziad El Hadary, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Ziad El Hadary</b>
-      <span>Medical Content Strategist</span>
-    </div>
-    <p class="amb-quote">&ldquo;Together we enhanced awareness in the medical community.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Through a collaborative effort, they helped us generate impactful content that enhanced awareness and engagement within the medical community.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Media Production</span>
-</article>
-<article class="amb-card" data-cat="fitness" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/diet-and-cheat.jpg" alt="Diet &amp; Cheat, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Diet &amp; Cheat</b>
-      <span>Fitness Brand</span>
-    </div>
-    <p class="amb-quote">&ldquo;We led fitness awareness across the Gulf and Egypt.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their collaboration allowed us to elevate fitness awareness across the Gulf and Egyptian markets — establishing our brand as a health and fitness leader.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Fitness &amp; Sports</span>
-</article>
-<article class="amb-card" data-cat="fitness" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/ragy-issac.jpg" alt="Ragy Issac, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Ragy Issac</b>
-      <span>Football Consultant</span>
-    </div>
-    <p class="amb-quote">&ldquo;They took my brand global and gave young athletes a stage.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>They expanded my personal brand globally — helping promote my football programmes and providing young athletes with opportunities to achieve their dreams.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Fitness &amp; Sports</span>
-</article>
-<article class="amb-card" data-cat="podcast" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/mohamed-el-kossy.jpg" alt="Mohamed El Kossy, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Mohamed El Kossy</b>
-      <span>UN Podcast Producer</span>
-    </div>
-    <p class="amb-quote">&ldquo;They gave refugees a global platform to share their stories.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their team brought our podcast to life — giving refugees a powerful platform to share their stories with audiences worldwide.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Podcasts &amp; Content</span>
-</article>
-<article class="amb-card" data-cat="personal" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/kiro-fawzy.jpg" alt="Kiro Fawzy, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Kiro Fawzy</b>
-      <span>Social Media Influencer</span>
-    </div>
-    <p class="amb-quote">&ldquo;My five million followers actually feel me now.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>With their media production expertise, my personal brand grew stronger — reaching and resonating with my 5 million followers more effectively.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Personal Branding</span>
-</article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/ali-el-bakry.jpg" alt="Ali El Bakry, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Ali El Bakry</b>
-      <span>Founder of Karsma</span>
-    </div>
-    <p class="amb-quote">&ldquo;Karsma made a real impact in KSA's medical apparel scene.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Awareness of my new brand in KSA increased substantially — helping Karsma make a significant impact in the medical apparel industry.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Business &amp; Entrepreneurship</span>
-</article>
-<article class="amb-card" data-cat="medical" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-hany-el-shafie.jpg" alt="Dr. Hany El Shafie, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Dr. Hany El Shafie</b>
-      <span>Maternity Care Expert</span>
-    </div>
-    <p class="amb-quote">&ldquo;They positioned me as a leader in maternity and prenatal testing.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>They positioned me as a leading figure in maternity and prenatal testing — crafting a brand that speaks to both clients and industry professionals.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Medical &amp; Health</span>
-</article>
-<article class="amb-card" data-cat="impact" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-amr-el-werdany.jpg" alt="Dr. Amr El Werdany, Optiiimum ambassador" loading="lazy">
-  </div>
-  <div class="amb-body">
-    <div class="amb-meta">
-      <b>Dr. Amr El Werdany</b>
-      <span>Al-Azhar Sheikh</span>
-    </div>
-    <p class="amb-quote">&ldquo;They widened the reach of my teachings and retreats.&rdquo;</p>
-    <details class="amb-more">
-      <summary>Read full testimonial</summary>
-      <p>Their efforts raised awareness for my retreats — allowing me to share my teachings with a wider community and deepen my influence.</p>
-    </details>
-  </div>
-  <span class="amb-cat">Education &amp; Social Impact</span>
-</article>
-<article class="amb-card" data-cat="business" data-reveal>
-  <div class="amb-portrait">
-    <img src="assets/ambassadors/nour-el-dien-el-sherif.jpg" alt="Nour El Dien El Sherif, Optiiimum ambassador" loading="lazy">
+    <img src="assets/ambasedors/Nour-el-dien-el-sherif.jpg" alt="Nour El Dien El Sherif, Optiiimum ambassador" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1014,7 +719,313 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="impact" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/marina-bekhit.jpg" alt="Marina Bekhit, Optiiimum ambassador" loading="lazy">
+    <img src="assets/ambasedors/Dr-amr-el-werdany.jpg" alt="Dr. Amr El Werdany, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Amr El Werdany</b>
+      <span>Al-Azhar Sheikh</span>
+    </div>
+    <p class="amb-quote">&ldquo;They widened the reach of my teachings and retreats.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their efforts raised awareness for my retreats — allowing me to share my teachings with a wider community and deepen my influence.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Education &amp; Social Impact</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/amr-mansy.jpg" alt="Amr Mansy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Amr Mansy</b>
+      <span>Celebrity Advocate</span>
+    </div>
+    <p class="amb-quote">&ldquo;Their event coverage created real impact for mental health.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their expertise in event coverage brought substantial visibility to my mental health initiatives — creating a meaningful impact on Egypt's mental health community.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Education &amp; Social Impact</span>
+</article>
+<article class="amb-card" data-cat="media" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/dr-islam-nasr-allah.jpg" alt="Dr. Islam Nasr Allah, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Islam Nasr Allah</b>
+      <span>Medical Products Specialist</span>
+    </div>
+    <p class="amb-quote">&ldquo;They elevated my brand across KSA and boosted our sales.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their media production elevated my brand presence in KSA by showcasing all Mega Trust products professionally — resulting in a strong boost to our sales and brand image.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Media Production</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Mohamed-Alaa.jpg" alt="Mohamed Alaa, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Mohamed Alaa</b>
+      <span>CEO of Shezlong</span>
+    </div>
+    <p class="amb-quote">&ldquo;Shezlong became a recognised platform in mental health.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With their support, Shezlong has become a well-known platform in mental health support — achieving broad awareness and making a positive impact for those in need.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/dr-michael-younan.jpg" alt="Dr. Michael Younan, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Michael Younan</b>
+      <span>Physiotherapist</span>
+    </div>
+    <p class="amb-quote">&ldquo;They launched my brand and connected me with my clients.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Through expert guidance in personal branding, my social media platforms were launched successfully — helping me connect meaningfully with my clients and showcase my skills online.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/sally-kotb.jpg" alt="Sally Kotb, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Sally Kotb</b>
+      <span>Maternity Specialist</span>
+    </div>
+    <p class="amb-quote">&ldquo;They redefined my online presence in the maternity field.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They redefined my online presence — allowing me to reconnect with a larger audience in the maternity field and significantly increase my visibility and trust on social media.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/kato.jpg" alt="Kato, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Kato</b>
+      <span>Founder of Stanvi</span>
+    </div>
+    <p class="amb-quote">&ldquo;They brought Stanvi's vision to life — and engaged our audience.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Transforming my brand, they delivered dynamic media production for Stanvi products and events — bringing our vision to life and deeply engaging our audience.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Moustapha-Zaalouk.jpg" alt="Moustapha Zaalouk, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Moustapha Zaalouk</b>
+      <span>CEO of Tac Universe</span>
+    </div>
+    <p class="amb-quote">&ldquo;They amplified my voice — and my clients'.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With precision and creativity, they crafted my personal brand, utilising podcast production to amplify my voice and that of my clients — strengthening Tac Universe's reputation.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Podcasts &amp; Content</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Nilly-shams.jpg" alt="Nilly Shams, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Nilly Shams</b>
+      <span>Nutrition Expert</span>
+    </div>
+    <p class="amb-quote">&ldquo;My podcast + marketing strategy made my brand stand out.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their approach helped me connect with my audience on a new level — producing a podcast and implementing powerful digital marketing strategies that made my brand stand out.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Podcasts &amp; Content</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Diana-samir.jpg" alt="Diana Samir, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Diana Samir</b>
+      <span>Beauty Doctor</span>
+    </div>
+    <p class="amb-quote">&ldquo;They built my online presence from the ground up.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They built my social media presence from the ground up — creating a solid foundation that resonates with my target audience and amplifies my reach.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Ali-Hamdy.jpg" alt="Ali Hamdy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ali Hamdy</b>
+      <span>UAE Entrepreneur</span>
+    </div>
+    <p class="amb-quote">&ldquo;They expanded EMS awareness across 20 UAE branches.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their team expanded EMS awareness across my 20 branches in the UAE — significantly strengthening the influence and reach of my brand.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="media" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Ziad-el-hadary.jpg" alt="Ziad El Hadary, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ziad El Hadary</b>
+      <span>Medical Content Strategist</span>
+    </div>
+    <p class="amb-quote">&ldquo;Together we enhanced awareness in the medical community.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Through a collaborative effort, they helped us generate impactful content that enhanced awareness and engagement within the medical community.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Media Production</span>
+</article>
+<article class="amb-card" data-cat="fitness" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Diet-&-Cheat.jpg" alt="Diet &amp; Cheat, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Diet &amp; Cheat</b>
+      <span>Fitness Brand</span>
+    </div>
+    <p class="amb-quote">&ldquo;We led fitness awareness across the Gulf and Egypt.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their collaboration allowed us to elevate fitness awareness across the Gulf and Egyptian markets — establishing our brand as a health and fitness leader.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Fitness &amp; Sports</span>
+</article>
+<article class="amb-card" data-cat="fitness" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Ragy-Issac.jpg" alt="Ragy Issac, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ragy Issac</b>
+      <span>Football Consultant</span>
+    </div>
+    <p class="amb-quote">&ldquo;They took my brand global and gave young athletes a stage.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They expanded my personal brand globally — helping promote my football programmes and providing young athletes with opportunities to achieve their dreams.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Fitness &amp; Sports</span>
+</article>
+<article class="amb-card" data-cat="podcast" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Mohamed-el-kossy.jpg" alt="Mohamed El Kossy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Mohamed El Kossy</b>
+      <span>UN Podcast Producer</span>
+    </div>
+    <p class="amb-quote">&ldquo;They gave refugees a global platform to share their stories.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Their team brought our podcast to life — giving refugees a powerful platform to share their stories with audiences worldwide.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Podcasts &amp; Content</span>
+</article>
+<article class="amb-card" data-cat="personal" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Kiro-Fawzy.jpg" alt="Kiro Fawzy, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Kiro Fawzy</b>
+      <span>Social Media Influencer</span>
+    </div>
+    <p class="amb-quote">&ldquo;My five million followers actually feel me now.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>With their media production expertise, my personal brand grew stronger — reaching and resonating with my 5 million followers more effectively.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Personal Branding</span>
+</article>
+<article class="amb-card" data-cat="business" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Ali-el-bakry.jpg" alt="Ali El Bakry, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Ali El Bakry</b>
+      <span>Founder of Karsma</span>
+    </div>
+    <p class="amb-quote">&ldquo;Karsma made a real impact in KSA's medical apparel scene.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>Awareness of my new brand in KSA increased substantially — helping Karsma make a significant impact in the medical apparel industry.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Business &amp; Entrepreneurship</span>
+</article>
+<article class="amb-card" data-cat="medical" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/dr-hany-el-shafie.jpg" alt="Dr. Hany El Shafie, Optiiimum ambassador" loading="lazy">
+  </div>
+  <div class="amb-body">
+    <div class="amb-meta">
+      <b>Dr. Hany El Shafie</b>
+      <span>Maternity Care Expert</span>
+    </div>
+    <p class="amb-quote">&ldquo;They positioned me as a leader in maternity and prenatal testing.&rdquo;</p>
+    <details class="amb-more">
+      <summary>Read full testimonial</summary>
+      <p>They positioned me as a leading figure in maternity and prenatal testing — crafting a brand that speaks to both clients and industry professionals.</p>
+    </details>
+  </div>
+  <span class="amb-cat">Medical &amp; Health</span>
+</article>
+<article class="amb-card" data-cat="impact" data-reveal>
+  <div class="amb-portrait">
+    <img src="assets/ambasedors/Marina-Bekhit.jpg" alt="Marina Bekhit, Optiiimum ambassador" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1031,7 +1042,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/omar-ossman.jpg" alt="Omar Ossman, Optiiimum ambassador" loading="lazy">
+    <img src="assets/ambasedors/Omar-ossman.jpg" alt="Omar Ossman, Optiiimum ambassador" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1048,7 +1059,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="medical" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/rana-amer.jpg" alt="Rana Amer, Optiiimum ambassador" loading="lazy">
+    <img src="assets/ambasedors/Rana-Amer.jpg" alt="Rana Amer, Optiiimum ambassador" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1065,7 +1076,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/mohamed-raouf.jpg" alt="Mohamed Raouf, Optiiimum ambassador" loading="lazy">
+    <img src="assets/ambasedors/Mohamed-Raouf- Go-brandz.jpg" alt="Mohamed Raouf, Optiiimum ambassador" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1084,7 +1095,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 <div class="i18n-ar" style="display: contents;">
 <article class="amb-card" data-cat="medical" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-michael-younan.jpg" alt="د. مايكل يونان، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/dr-michael-younan.jpg" alt="د. مايكل يونان، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1101,7 +1112,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="media" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-islam-nasr-allah.jpg" alt="د. إسلام نصر الله، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/dr-islam-nasr-allah.jpg" alt="د. إسلام نصر الله، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1118,7 +1129,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="medical" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/sally-kotb.jpg" alt="سالي قطب، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/sally-kotb.jpg" alt="سالي قطب، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1135,7 +1146,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/mohamed-alaa.jpg" alt="محمد علاء، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Mohamed-Alaa.jpg" alt="محمد علاء، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1152,7 +1163,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="impact" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/amr-mansy.jpg" alt="عمرو منسي، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/amr-mansy.jpg" alt="عمرو منسي، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1169,7 +1180,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/kato.jpg" alt="كاتو، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/kato.jpg" alt="كاتو، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1186,7 +1197,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="podcast" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/moustapha-zaalouk.jpg" alt="مصطفى زعلوك، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Moustapha-Zaalouk.jpg" alt="مصطفى زعلوك، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1203,7 +1214,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="podcast" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/nilly-shams.jpg" alt="نيللي شمس، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Nilly-shams.jpg" alt="نيللي شمس، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1220,7 +1231,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="medical" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/diana-samir.jpg" alt="ديانا سمير، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Diana-samir.jpg" alt="ديانا سمير، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1237,7 +1248,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/ali-hamdy.jpg" alt="علي حمدي، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Ali-Hamdy.jpg" alt="علي حمدي، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1254,7 +1265,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="impact" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/sheikh-fahad-al-sabah.jpg" alt="الشيخ فهد الصباح، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/الشيخ-فهد-يوسف-سعود-الصباح---وزير-الداخلية-الكويتي.jpg" alt="الشيخ فهد الصباح، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1271,7 +1282,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="media" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/ziad-el-hadary.jpg" alt="زياد الحضري، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Ziad-el-hadary.jpg" alt="زياد الحضري، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1288,7 +1299,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="fitness" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/diet-and-cheat.jpg" alt="Diet &amp; Cheat، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Diet-&-Cheat.jpg" alt="Diet &amp; Cheat، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1305,7 +1316,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="fitness" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/ragy-issac.jpg" alt="راجي إسحاق، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Ragy-Issac.jpg" alt="راجي إسحاق، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1322,7 +1333,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="podcast" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/mohamed-el-kossy.jpg" alt="محمد القصي، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Mohamed-el-kossy.jpg" alt="محمد القصي، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1339,7 +1350,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="personal" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/kiro-fawzy.jpg" alt="كيرو فوزي، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Kiro-Fawzy.jpg" alt="كيرو فوزي، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1356,7 +1367,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/ali-el-bakry.jpg" alt="علي البكري، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Ali-el-bakry.jpg" alt="علي البكري، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1373,7 +1384,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="medical" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-hany-el-shafie.jpg" alt="د. هاني الشافعي، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/dr-hany-el-shafie.jpg" alt="د. هاني الشافعي، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1390,7 +1401,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="impact" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/dr-amr-el-werdany.jpg" alt="د. عمرو الورداني، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Dr-amr-el-werdany.jpg" alt="د. عمرو الورداني، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1407,7 +1418,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/nour-el-dien-el-sherif.jpg" alt="نور الدين الشريف، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Nour-el-dien-el-sherif.jpg" alt="نور الدين الشريف، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1424,7 +1435,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="impact" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/marina-bekhit.jpg" alt="مارينا بخيت، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Marina-Bekhit.jpg" alt="مارينا بخيت، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1441,7 +1452,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/omar-ossman.jpg" alt="عمر عثمان، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Omar-ossman.jpg" alt="عمر عثمان، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1458,7 +1469,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="medical" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/rana-amer.jpg" alt="رنا عامر، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Rana-Amer.jpg" alt="رنا عامر، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1475,7 +1486,7 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
 </article>
 <article class="amb-card" data-cat="business" data-reveal>
   <div class="amb-portrait">
-    <img src="assets/ambassadors/mohamed-raouf.jpg" alt="محمد رؤوف، سفير Optiiimum" loading="lazy">
+    <img src="assets/ambasedors/Mohamed-Raouf- Go-brandz.jpg" alt="محمد رؤوف، سفير Optiiimum" loading="lazy">
   </div>
   <div class="amb-body">
     <div class="amb-meta">
@@ -1615,8 +1626,8 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
       </div>
       <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
       <div>
-        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
-        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+        <a href="PrivacyPolicy.html"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="TermsConditions.html"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
       </div>
     </div>
   </div>
@@ -1663,5 +1674,8 @@ html[lang="ar"] .amb-filterbar button { font-family: var(--font-ar); letter-spac
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
 </script>
 
+
+  <script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
 </body>
 </html>

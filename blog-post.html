@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') theme = manual;
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+<title id="pageTitle">Optiiimum · Article</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta id="metaDescription" name="description" content="An Optiiimum article on personal branding, content, and growth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+<style>
+  /* ============ Article-only typography & layout ============ */
+  html, body { background: var(--bg); color: var(--ink); }
+  body { font-family: var(--font-sans); line-height: 1.7; }
+  html[lang="ar"] body { font-family: var(--font-ar); }
+
+  /* Compact topbar */
+  .article-topbar {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  .article-topbar-inner {
+    max-width: var(--maxw,1240px); margin: 0 auto;
+    padding: 14px clamp(16px, 4vw, 32px);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand-link { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; border: 0; }
+  .brand-mark {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: conic-gradient(from 180deg, #FDD196, #FF966D, #E555C8, #54B3EC, #FDD196);
+  }
+  .brand-name { font-weight: 700; letter-spacing: -0.01em; font-size: 16px; }
+  .back-link { font-size: 13px; color: var(--ink-2); border: 0; display: inline-flex; gap: 6px; align-items: center; }
+  .back-link:hover { color: var(--accent); }
+  .lang-toggle {
+    background: transparent; border: 1px solid var(--line); color: var(--ink);
+    padding: 7px 12px; border-radius: 999px; font-size: 12px; cursor: pointer;
+    font-family: var(--font-mono);
+  }
+  .lang-toggle:hover { border-color: var(--ink); }
+
+  /* Hero */
+  .post-hero {
+    padding: clamp(48px,7vw,90px) clamp(16px,4vw,32px) clamp(32px,4vw,56px);
+    max-width: 1100px; margin: 0 auto;
+  }
+  .post-eyebrow {
+    font-family: var(--font-mono); font-size: 11.5px;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .post-title {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: clamp(34px, 5.2vw, 68px);
+    line-height: 1.05; letter-spacing: -.02em;
+    margin: 18px 0 0; text-wrap: balance; max-width: 22ch;
+  }
+  html[lang="ar"] .post-title { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.15; }
+  .post-meta {
+    margin-top: 22px; display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap; color: var(--ink-3); font-size: 13px;
+    font-family: var(--font-mono);
+  }
+  .post-meta .dot { opacity: .4; }
+
+  /* Cover image */
+  .post-cover {
+    max-width: 1240px; margin: 0 auto;
+    padding: 0 clamp(16px,4vw,32px);
+  }
+  .post-cover-inner {
+    position: relative; aspect-ratio: 16 / 9;
+    border-radius: clamp(14px, 1.4vw, 22px); overflow: hidden;
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, #1c1c1b 0%, #0b0b0b 100%);
+  }
+  .post-cover-inner img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 1.4s cubic-bezier(.2,.7,.1,1);
+  }
+  .post-cover-inner:hover img { transform: scale(1.02); }
+  .post-cover-glow {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(80% 60% at 100% 0%, rgba(229,85,200,.18), transparent 60%),
+      radial-gradient(80% 60% at 0% 100%, rgba(84,179,236,.16), transparent 60%);
+    mix-blend-mode: screen;
+  }
+
+  /* Body */
+  .post-body {
+    max-width: 780px; margin: 0 auto;
+    padding: clamp(40px,5vw,72px) clamp(16px,4vw,32px) 24px;
+    font-size: clamp(16px, 1.1vw, 18px);
+    color: var(--ink-2);
+  }
+  .post-body .lede {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.45; color: var(--ink);
+    margin: 0 0 36px; text-wrap: pretty;
+  }
+  html[lang="ar"] .post-body .lede { font-family: var(--font-ar); font-weight: 500; line-height: 1.6; }
+  .post-body h2 {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15;
+    letter-spacing: -.01em; color: var(--ink);
+    margin: 56px 0 16px; text-wrap: balance;
+  }
+  html[lang="ar"] .post-body h2 { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.3; }
+  .post-body h3 {
+    font-weight: 600; font-size: 19px; letter-spacing: -.005em;
+    color: var(--ink); margin: 36px 0 10px;
+  }
+  .post-body p { margin: 0 0 18px; text-wrap: pretty; }
+  .post-body p strong { color: var(--ink); font-weight: 600; }
+  .post-body ul, .post-body ol { padding-inline-start: 22px; margin: 0 0 22px; }
+  .post-body li { margin: 6px 0; }
+  .post-body blockquote {
+    margin: 32px 0; padding: 18px 22px;
+    border-inline-start: 3px solid var(--accent);
+    background: var(--bg-band); border-radius: 0 12px 12px 0;
+    font-family: var(--font-serif); font-size: 22px; line-height: 1.45;
+    color: var(--ink);
+  }
+  html[lang="ar"] .post-body blockquote { font-family: var(--font-ar); font-weight: 500; border-radius: 12px 0 0 12px; }
+
+  /* Section divider chip between body and CTA */
+  .post-divider {
+    max-width: 780px; margin: 28px auto 0; padding: 0 clamp(16px,4vw,32px);
+    display: flex; align-items: center; gap: 14px;
+    color: var(--ink-3); font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: .25em; text-transform: uppercase;
+  }
+  .post-divider::before, .post-divider::after {
+    content: ""; flex: 1 1 auto; height: 1px; background: var(--line);
+  }
+
+  /* CTA block */
+  .post-cta {
+    max-width: 1100px; margin: 48px auto clamp(60px,8vw,110px);
+    padding: 0 clamp(16px,4vw,32px);
+  }
+  .post-cta-inner {
+    position: relative; overflow: hidden;
+    border-radius: clamp(18px, 1.8vw, 28px);
+    padding: clamp(36px,5vw,68px) clamp(28px,5vw,60px);
+    background:
+      radial-gradient(120% 80% at 85% 15%, rgba(229,85,200,.30), transparent 55%),
+      radial-gradient(120% 80% at 15% 85%, rgba(84,179,236,.26), transparent 55%),
+      linear-gradient(135deg, #0c0c0c 0%, #1a1620 60%, #0c0c0c 100%);
+    color: #FAFAF7;
+    isolation: isolate;
+  }
+  .post-cta-inner::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask: radial-gradient(80% 70% at 50% 50%, #000, transparent 80%);
+            mask: radial-gradient(80% 70% at 50% 50%, #000, transparent 80%);
+    pointer-events: none;
+  }
+  .cta-eyebrow {
+    font-family: var(--font-mono); font-size: 11.5px;
+    letter-spacing: .25em; text-transform: uppercase; color: rgba(250,250,247,.6);
+  }
+  .cta-title {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: clamp(28px, 3.8vw, 48px); line-height: 1.08;
+    letter-spacing: -.02em; margin: 14px 0 14px;
+    text-wrap: balance; max-width: 22ch;
+  }
+  html[lang="ar"] .cta-title { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.2; }
+  .cta-grad {
+    background: linear-gradient(135deg, #FDD196, #FF6BA5 35%, #E555C8 65%, #54B3EC);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .cta-sub {
+    max-width: 56ch; color: rgba(250,250,247,.78);
+    font-size: 15.5px; line-height: 1.6; margin: 0 0 28px;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 14.5px; border: 0;
+    text-decoration: none;
+    transition: transform .25s, box-shadow .25s, background .25s, color .25s;
+  }
+  .cta-btn-primary {
+    background: #FAFAF7; color: #0A0A0A;
+  }
+  .cta-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 38px -16px rgba(250,250,247,.45); }
+  .cta-btn-ghost {
+    background: transparent; color: #FAFAF7;
+    border: 1px solid rgba(250,250,247,.3);
+  }
+  .cta-btn-ghost:hover { background: rgba(250,250,247,.08); border-color: rgba(250,250,247,.55); }
+  .cta-btn .arrow { transition: transform .25s ease; }
+  .cta-btn:hover .arrow { transform: translateX(3px); }
+  [dir="rtl"] .cta-btn:hover .arrow { transform: translateX(-3px); }
+
+  /* Read-more strip */
+  .more-strip {
+    max-width: 1100px; margin: 0 auto 80px;
+    padding: 24px clamp(16px,4vw,32px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .more-strip-head {
+    display: flex; align-items: end; justify-content: space-between; gap: 16px;
+    margin: 28px 0 18px; flex-wrap: wrap;
+  }
+  .more-strip-head h3 {
+    font-family: var(--font-serif); font-size: clamp(22px,2vw,30px);
+    font-weight: 400; letter-spacing: -.01em; margin: 0;
+  }
+  html[lang="ar"] .more-strip-head h3 { font-family: var(--font-ar); font-weight: 700; }
+  .more-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 880px) { .more-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .more-grid { grid-template-columns: 1fr; } }
+  .more-card {
+    text-decoration: none; color: inherit; border-bottom: 0;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--line); background: var(--bg-elev);
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+  }
+  .more-card:hover { transform: translateY(-3px); border-color: rgba(229,85,200,.4); box-shadow: 0 14px 36px -22px rgba(229,85,200,.4); }
+  .more-card .thumb { aspect-ratio: 16/10; background-size: cover; background-position: center; }
+  .more-card .meta { padding: 14px 14px 16px; }
+  .more-card .cat { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); }
+  .more-card h4 { font-weight: 600; font-size: 15px; margin: 6px 0 0; line-height: 1.35; color: var(--ink); }
+
+  /* Loading / not-found */
+  .post-loading, .post-404 {
+    max-width: 780px; margin: 80px auto; padding: 40px clamp(16px,4vw,32px);
+    text-align: center; color: var(--ink-2);
+  }
+  .post-404 h1 { font-family: var(--font-serif); font-size: 44px; margin: 0 0 12px; color: var(--ink); }
+</style>
+<script src="loader.js"></script>
+</head>
+<body>
+
+<header class="article-topbar">
+  <div class="article-topbar-inner">
+    <a href="Home.html" class="brand-link">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Optiiimum</span>
+    </a>
+    <a href="Blog.html" class="back-link">
+      <span aria-hidden="true">←</span>
+      <span class="i18n-en">All articles</span>
+      <span class="i18n-ar">كل المقالات</span>
+    </a>
+    <button class="lang-toggle" onclick="toggleLang()">
+      <span class="i18n-en">عربي</span>
+      <span class="i18n-ar">EN</span>
+    </button>
+  </div>
+</header>
+
+<main id="postMain" aria-live="polite">
+  <article class="post-loading">
+    <p style="font-family: var(--font-mono); font-size: 13px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-3);">
+      <span class="i18n-en">Loading article…</span>
+      <span class="i18n-ar">جارٍ تحميل المقال…</span>
+    </p>
+  </article>
+</main>
+
+<script src="blog-data.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function getSlug() {
+    var q = new URLSearchParams(location.search);
+    return q.get('slug') || '';
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function bi(en, ar) {
+    return '<span class="i18n-en">' + en + '</span>' +
+           '<span class="i18n-ar">' + ar + '</span>';
+  }
+
+  function renderBody(blocks, lang) {
+    if (!Array.isArray(blocks)) return '';
+    return blocks.map(function (b) {
+      var content = (b[lang] || '');
+      switch (b.type) {
+        case 'lede': return '<p class="lede" lang="'+lang+'">' + content + '</p>';
+        case 'p':    return '<p lang="'+lang+'">' + content + '</p>';
+        case 'h2':   return '<h2 lang="'+lang+'">' + content + '</h2>';
+        case 'h3':   return '<h3 lang="'+lang+'">' + content + '</h3>';
+        case 'quote':return '<blockquote lang="'+lang+'">' + content + '</blockquote>';
+        case 'ul':
+          var items = (b[lang+'Items'] || []).map(function (i) { return '<li>'+i+'</li>'; }).join('');
+          return '<ul lang="'+lang+'">' + items + '</ul>';
+        case 'ol':
+          var ois = (b[lang+'Items'] || []).map(function (i) { return '<li>'+i+'</li>'; }).join('');
+          return '<ol lang="'+lang+'">' + ois + '</ol>';
+        default: return '';
+      }
+    }).join('');
+  }
+
+  function findRelated(currentSlug) {
+    var all = (window.BLOG_POSTS || []).filter(function (p) { return p.slug !== currentSlug; });
+    // pick the next 3 in order, wrap around
+    var idx = (window.BLOG_POSTS || []).findIndex(function (p) { return p.slug === currentSlug; });
+    var ordered = (window.BLOG_POSTS || []).concat(window.BLOG_POSTS || []).slice(idx + 1, idx + 4);
+    return ordered.slice(0, 3);
+  }
+
+  function buildRelated(currentSlug) {
+    var rel = findRelated(currentSlug);
+    if (!rel.length) return '';
+    var cards = rel.map(function (p) {
+      return (
+        '<a class="more-card" href="blog-post.html?slug=' + encodeURIComponent(p.slug) + '">' +
+          '<div class="thumb" style="background-image:url(\'' + esc(p.cover) + '\');"></div>' +
+          '<div class="meta">' +
+            '<span class="cat">' + bi(esc(p.categoryEn), esc(p.categoryAr)) + '</span>' +
+            '<h4>' + bi(esc(p.titleEn), esc(p.titleAr)) + '</h4>' +
+          '</div>' +
+        '</a>'
+      );
+    }).join('');
+    return (
+      '<section class="more-strip">' +
+        '<div class="more-strip-head">' +
+          '<h3>' + bi('Keep reading', 'تابع القراءة') + '</h3>' +
+          '<a class="back-link" href="Blog.html" style="font-size:13px;">' +
+            bi('All articles →', 'كل المقالات →') +
+          '</a>' +
+        '</div>' +
+        '<div class="more-grid">' + cards + '</div>' +
+      '</section>'
+    );
+  }
+
+  function notFound() {
+    document.getElementById('postMain').innerHTML =
+      '<div class="post-404">' +
+        '<h1>' + bi("Article not found", "المقال غير موجود") + '</h1>' +
+        '<p>' + bi(
+          "We couldn't locate that article. It may have moved.",
+          "مقدرناش نلاقي المقال ده. ممكن يكون اتنقل أو الرابط مش كامل."
+        ) + '</p>' +
+        '<p style="margin-top:24px;"><a class="back-link" href="Blog.html">' +
+          bi("← Back to all articles", "← الرجوع لكل المقالات") +
+        '</a></p>' +
+      '</div>';
+  }
+
+  function render(post) {
+    document.getElementById('pageTitle').textContent = post.titleEn + ' · Optiiimum';
+    document.getElementById('metaDescription').setAttribute(
+      'content', post.summaryEn || post.titleEn
+    );
+
+    var bodyEn = renderBody(post.body || [], 'en');
+    var bodyAr = renderBody(post.body || [], 'ar');
+
+    var html =
+      '<article>' +
+        '<header class="post-hero">' +
+          '<span class="post-eyebrow">' +
+            bi(esc(post.categoryEn), esc(post.categoryAr)) +
+          '</span>' +
+          '<h1 class="post-title">' +
+            '<span class="i18n-en">' + esc(post.titleEn) + '</span>' +
+            '<span class="i18n-ar">' + esc(post.titleAr) + '</span>' +
+          '</h1>' +
+          '<div class="post-meta">' +
+            '<span>' + bi("Optiiimum Editorial", "تحرير أوبتيموم") + '</span>' +
+            '<span class="dot">·</span>' +
+            '<span>' + esc(post.readEn || '6 min read') + '</span>' +
+          '</div>' +
+        '</header>' +
+
+        '<figure class="post-cover">' +
+          '<div class="post-cover-inner">' +
+            '<img src="' + esc(post.cover) + '" alt="' + esc(post.titleEn) + '" loading="eager">' +
+            '<div class="post-cover-glow" aria-hidden="true"></div>' +
+          '</div>' +
+        '</figure>' +
+
+        '<section class="post-body">' +
+          '<div class="i18n-en">' + bodyEn + '</div>' +
+          '<div class="i18n-ar">' + bodyAr + '</div>' +
+        '</section>' +
+
+        '<div class="post-divider">' +
+          bi("Ready to apply this?", "جاهز تطبّق ده؟") +
+        '</div>' +
+
+        '<section class="post-cta">' +
+          '<div class="post-cta-inner">' +
+            '<span class="cta-eyebrow">' +
+              bi("Free · 15-minute discovery call", "مجاني · مكالمة استكشافية ١٥ دقيقة") +
+            '</span>' +
+            '<h2 class="cta-title">' +
+              '<span class="i18n-en">Let\'s build the brand <span class="cta-grad">that pays you back.</span></span>' +
+              '<span class="i18n-ar">يلا نبني البراند <span class="cta-grad">اللي يرجعلك استثمارك.</span></span>' +
+            '</h2>' +
+            '<p class="cta-sub">' +
+              bi(
+                "Tell us where you are, where you want to be, and we\'ll show you the system we\'d run. No slide-deck pitch — a real, working diagnosis of your brand and growth.",
+                "احكيلنا انت فين دلوقتي، وعايز توصل لفين، وإحنا هنوريك النظام اللي هنشتغل بيه. مفيش بريزنتيشن — تشخيص حقيقي لبراندك ونموّك."
+              ) +
+            '</p>' +
+            '<div class="cta-row">' +
+              '<a class="cta-btn cta-btn-primary" href="https://calendly.com/optimumsol-info/30min" target="_blank" rel="noopener">' +
+                bi("Book your call", "احجز مكالمتك") +
+                '<span class="arrow" aria-hidden="true">→</span>' +
+              '</a>' +
+              '<a class="cta-btn cta-btn-ghost" href="Consultation.html">' +
+                bi("Or talk to us first", "أو كلّمنا الأول") +
+                '<span class="arrow" aria-hidden="true">→</span>' +
+              '</a>' +
+            '</div>' +
+          '</div>' +
+        '</section>' +
+
+      '</article>' +
+      buildRelated(post.slug);
+
+    document.getElementById('postMain').innerHTML = html;
+    window.scrollTo(0, 0);
+  }
+
+  function start() {
+    var slug = getSlug();
+    var post = (window.BLOG_POSTS || []).find(function (p) { return p.slug === slug; });
+    if (!post) { notFound(); return; }
+    render(post);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+
+  // Re-render related on lang toggle so order labels stay fresh (no-op visually otherwise)
+  window.toggleLang = function () {
+    var cur = document.documentElement.getAttribute('lang') || 'en';
+    var next = cur === 'ar' ? 'en' : 'ar';
+    document.documentElement.setAttribute('lang', next);
+    document.documentElement.setAttribute('dir', next === 'ar' ? 'rtl' : 'ltr');
+    try { localStorage.setItem('opt_lang', next); } catch (e) {}
+  };
+})();
+</script>
+
+  <script src="social-footer.js" defer></script>
+</body>
+</html>

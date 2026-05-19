@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') theme = manual;
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+<title id="pageTitle">Branding Project · Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta id="metaDescription" name="description" content="An Optiiimum branding project — visual identity and brand system.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Optiiimum">
+<meta id="metaOgTitle" property="og:title" content="Branding Project · Optiiimum">
+<meta id="metaOgDescription" property="og:description" content="An Optiiimum branding project — visual identity and brand system.">
+<meta id="metaOgImage" property="og:image" content="assets/branding%20projects-%20deux/Deux_Guideline_Optiiimum_Branding_Project_Slide_01.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: var(--font-sans); line-height: 1.6; }
+html[lang="ar"] body { font-family: var(--font-ar); }
+
+.bproj-topbar {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+.bproj-topbar-inner {
+  max-width: 1240px; margin: 0 auto;
+  padding: 14px clamp(16px, 4vw, 32px);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.brand-link { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; border: 0; }
+.brand-name { font-weight: 700; letter-spacing: -.01em; font-size: 16px; }
+.back-link {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--ink-2); border: 1px solid var(--line); border-radius: 999px;
+  padding: 8px 14px; text-decoration: none;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.back-link:hover { color: var(--ink); border-color: var(--ink); }
+html[lang="ar"] .back-link { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.lang-toggle {
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+  padding: 7px 14px; border-radius: 999px; font-size: 12px; cursor: pointer;
+  font-family: var(--font-mono);
+}
+.lang-toggle:hover { border-color: var(--ink); }
+
+/* Hero */
+.bproj-hero {
+  padding: clamp(48px,7vw,90px) clamp(16px,4vw,32px) clamp(28px,3.5vw,48px);
+  max-width: 1240px; margin: 0 auto;
+}
+.bproj-eyebrow {
+  font-family: var(--font-mono); font-size: 11.5px;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--ink-3);
+}
+html[lang="ar"] .bproj-eyebrow { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.bproj-title {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.05; letter-spacing: -.02em;
+  margin: 16px 0 0; text-wrap: balance; max-width: 26ch;
+}
+html[lang="ar"] .bproj-title { font-family: var(--font-ar); font-weight: 700; letter-spacing: 0; line-height: 1.15; }
+.bproj-desc {
+  margin: 20px 0 0;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 70ch;
+}
+.bproj-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 24px;
+}
+.bproj-tags span {
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+  border: 1px solid var(--line);
+  padding: 6px 12px; border-radius: 999px;
+  color: var(--ink-2);
+}
+html[lang="ar"] .bproj-tags span { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 12px; }
+
+/* Hero cover */
+.bproj-cover {
+  max-width: 1240px; margin: 0 auto;
+  padding: 0 clamp(16px,4vw,32px);
+}
+.bproj-cover-inner {
+  position: relative; aspect-ratio: 16 / 10;
+  border-radius: clamp(14px, 1.4vw, 22px); overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #1c1c1b 0%, #0b0b0b 100%);
+}
+.bproj-cover-inner img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1.2s cubic-bezier(.2,.7,.1,1);
+}
+.bproj-cover-inner:hover img { transform: scale(1.02); }
+
+/* Slides grid */
+.bproj-slides {
+  max-width: 1240px; margin: 0 auto;
+  padding: clamp(48px,7vw,90px) clamp(16px,4vw,32px) clamp(48px,5vw,80px);
+}
+.bproj-slides-head {
+  display: flex; align-items: end; justify-content: space-between;
+  gap: 18px; flex-wrap: wrap; margin-bottom: 22px;
+}
+.bproj-slides-head h2 {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: clamp(24px, 2.6vw, 38px); line-height: 1.1; margin: 0;
+  letter-spacing: -.01em;
+}
+html[lang="ar"] .bproj-slides-head h2 { font-family: var(--font-ar); font-weight: 700; }
+.bproj-slides-head .meta {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3);
+}
+html[lang="ar"] .bproj-slides-head .meta { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; }
+
+.bproj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 720px) { .bproj-grid { grid-template-columns: 1fr; gap: 14px; } }
+.bproj-slide {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-band, #1a1a1a);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(.2,.7,.1,1), border-color .25s;
+}
+.bproj-slide:hover { transform: translateY(-3px); border-color: rgba(229,85,200,.5); }
+.bproj-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .6s cubic-bezier(.2,.7,.1,1);
+}
+.bproj-slide:hover img { transform: scale(1.04); }
+.bproj-slide .num {
+  position: absolute; top: 12px; inset-inline-start: 12px;
+  background: rgba(11,11,11,.78);
+  color: #FFFFFF;
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+/* Lightbox */
+.bproj-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(10,10,10,.94);
+  z-index: 1000;
+  display: none;
+  place-items: center;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+}
+.bproj-lightbox.is-open { display: grid; }
+.bproj-lightbox img {
+  max-width: min(96vw, 1100px);
+  max-height: 90vh;
+  border-radius: 12px;
+  display: block;
+}
+.bproj-lightbox button {
+  position: absolute;
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: #fff;
+  cursor: pointer;
+  font-size: 22px;
+  display: grid; place-items: center;
+  transition: background .2s, transform .15s;
+}
+.bproj-lightbox button:hover { background: rgba(255,255,255,.16); transform: scale(1.05); }
+.bproj-lb-close { top: 24px; inset-inline-end: 24px; }
+.bproj-lb-prev  { left: 24px; top: 50%; transform: translateY(-50%); }
+.bproj-lb-next  { right: 24px; top: 50%; transform: translateY(-50%); }
+html[dir="rtl"] .bproj-lb-prev { left: auto; right: 24px; }
+html[dir="rtl"] .bproj-lb-next { right: auto; left: 24px; }
+.bproj-lb-prev:hover, .bproj-lb-next:hover { transform: translateY(-50%) scale(1.05); }
+
+/* CTA */
+.bproj-cta {
+  max-width: 1240px; margin: 0 auto;
+  padding: 0 clamp(16px,4vw,32px) clamp(64px,8vw,120px);
+}
+.bproj-cta-inner {
+  border-radius: 22px;
+  padding: clamp(40px,5vw,68px) clamp(28px,4vw,56px);
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(229,85,200,.08), rgba(84,179,236,.08));
+  text-align: center;
+}
+.bproj-cta-inner h2 {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: clamp(28px, 4vw, 48px); line-height: 1.1;
+  margin: 0 0 14px;
+  letter-spacing: -.01em;
+}
+html[lang="ar"] .bproj-cta-inner h2 { font-family: var(--font-ar); font-weight: 700; }
+.bproj-cta-grad {
+  background: linear-gradient(120deg, #FDD196, #FF966D, #E555C8, #BE6FD2, #54B3EC, #00FEFF);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.bproj-cta-inner p {
+  color: var(--ink-2);
+  max-width: 56ch; margin: 0 auto;
+  font-size: 16px; line-height: 1.6;
+}
+.bproj-cta-btns {
+  display: flex; gap: 12px; justify-content: center;
+  margin-top: 28px; flex-wrap: wrap;
+}
+
+/* Related */
+.bproj-related {
+  max-width: 1240px; margin: 0 auto;
+  padding: 0 clamp(16px,4vw,32px) clamp(48px,5vw,80px);
+}
+.bproj-related h3 {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 30px); margin: 0 0 22px;
+  letter-spacing: -.005em;
+}
+html[lang="ar"] .bproj-related h3 { font-family: var(--font-ar); font-weight: 700; }
+.bproj-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 880px) { .bproj-related-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .bproj-related-grid { grid-template-columns: 1fr; } }
+.bproj-related-card {
+  display: block;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: transform .25s, border-color .2s, box-shadow .25s;
+}
+.bproj-related-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(229,85,200,.4);
+  box-shadow: 0 18px 40px -22px rgba(229,85,200,.35);
+}
+.bproj-related-card .thumb {
+  aspect-ratio: 16 / 10;
+  background: var(--bg-band) center/cover;
+}
+.bproj-related-card .body { padding: 16px 18px 18px; }
+.bproj-related-card .cat {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 6px;
+}
+html[lang="ar"] .bproj-related-card .cat { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 12px; }
+.bproj-related-card h4 {
+  font-family: var(--font-sans);
+  font-size: 15px; line-height: 1.3;
+  margin: 0; font-weight: 600;
+  letter-spacing: -.005em;
+}
+html[lang="ar"] .bproj-related-card h4 { font-family: var(--font-ar); font-weight: 700; }
+
+.not-found {
+  max-width: 700px; margin: 100px auto; padding: 40px;
+  text-align: center;
+}
+.not-found h1 { font-family: var(--font-serif); font-size: 42px; margin: 0 0 14px; }
+html[lang="ar"] .not-found h1 { font-family: var(--font-ar); }
+</style>
+<script src="loader.js"></script>
+</head>
+<body>
+
+<header class="bproj-topbar">
+  <div class="bproj-topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span style="background:linear-gradient(120deg,#FDD196,#E555C8,#54B3EC);-webkit-background-clip:text;background-clip:text;color:transparent;">.</span></span>
+    </a>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <a class="back-link" href="branding.html">
+        <span class="i18n-en">← All projects</span><span class="i18n-ar">← كل المشاريع</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="bprojMain">
+  <!-- Rendered by JS -->
+</main>
+
+<script src="branding-projects-data.js"></script>
+<script>
+(function () {
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function bi(en, ar) {
+    return '<span class="i18n-en">' + en + '</span><span class="i18n-ar">' + ar + '</span>';
+  }
+  function getSlug() {
+    var m = location.search.match(/[?&]slug=([^&]+)/);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  function slidePath(p, n) {
+    var pad = (n < 10 ? '0' : '') + n;
+    var raw = 'assets/' + p.folder + '/' + p.slidePrefix + pad + '.jpg';
+    return raw.split('/').map(encodeURIComponent).join('/');
+  }
+
+  function coverPath(p) {
+    var raw = 'assets/' + p.folder + '/' + p.cover;
+    return raw.split('/').map(encodeURIComponent).join('/');
+  }
+
+  function buildSlides(p) {
+    var html = '';
+    for (var i = 1; i <= p.slideCount; i++) {
+      var pad = (i < 10 ? '0' : '') + i;
+      html +=
+        '<div class="bproj-slide" data-idx="' + i + '">' +
+          '<img src="' + slidePath(p, i) + '" alt="' + esc(p.titleEn) + ' brand book — slide ' + pad + '" loading="lazy">' +
+          '<span class="num">' + pad + ' / ' + (p.slideCount < 10 ? '0' + p.slideCount : p.slideCount) + '</span>' +
+        '</div>';
+    }
+    return html;
+  }
+
+  function buildRelated(currentSlug) {
+    var pool = (window.BRANDING_PROJECTS || []).filter(function (p) { return p.slug !== currentSlug; });
+    pool = pool.slice(0, 3);
+    if (!pool.length) return '';
+    var cards = pool.map(function (p) {
+      var coverPath = 'assets/' + p.folder + '/' + p.cover;
+      var coverUrl = coverPath.split('/').map(encodeURIComponent).join('/');
+      return (
+        '<a class="bproj-related-card" href="branding-project.html?slug=' + encodeURIComponent(p.slug) + '" target="_blank" rel="noopener">' +
+          '<div class="thumb" style="background-image:url(\'' + coverUrl + '\')"></div>' +
+          '<div class="body">' +
+            '<span class="cat">' + bi(esc(p.industryEn), esc(p.industryAr)) + '</span>' +
+            '<h4>' + bi(esc(p.titleEn), esc(p.titleAr)) + '</h4>' +
+          '</div>' +
+        '</a>'
+      );
+    }).join('');
+    return (
+      '<section class="bproj-related">' +
+        '<h3>' + bi('More branding projects', 'مشاريع براندينج تانية') + '</h3>' +
+        '<div class="bproj-related-grid">' + cards + '</div>' +
+      '</section>'
+    );
+  }
+
+  function render(p) {
+    document.getElementById('pageTitle').textContent = p.titleEn + ' · Branding · Optiiimum';
+    document.getElementById('metaDescription').setAttribute('content', p.descEn);
+    var ogT = document.getElementById('metaOgTitle');
+    var ogD = document.getElementById('metaOgDescription');
+    var ogI = document.getElementById('metaOgImage');
+    if (ogT) ogT.setAttribute('content', p.titleEn + ' · Branding · Optiiimum');
+    if (ogD) ogD.setAttribute('content', p.descEn);
+    if (ogI) ogI.setAttribute('content', coverPath(p));
+
+    var tagsEnHtml = p.tagsEn.map(function (t) { return '<span class="i18n-en">' + esc(t) + '</span>'; }).join('');
+    var tagsArHtml = p.tagsAr.map(function (t) { return '<span class="i18n-ar">' + esc(t) + '</span>'; }).join('');
+
+    var html =
+      '<article>' +
+        '<section class="bproj-hero">' +
+          '<span class="bproj-eyebrow">' + bi(esc(p.industryEn), esc(p.industryAr)) + '</span>' +
+          '<h1 class="bproj-title">' +
+            '<span class="i18n-en">' + esc(p.titleEn) + '</span>' +
+            '<span class="i18n-ar">' + esc(p.titleAr) + '</span>' +
+          '</h1>' +
+          '<p class="bproj-desc">' +
+            '<span class="i18n-en">' + esc(p.descEn) + '</span>' +
+            '<span class="i18n-ar">' + esc(p.descAr) + '</span>' +
+          '</p>' +
+          '<div class="bproj-tags">' + tagsEnHtml + tagsArHtml + '</div>' +
+        '</section>' +
+
+        '<figure class="bproj-cover">' +
+          '<div class="bproj-cover-inner">' +
+            '<img src="' + coverPath(p) + '" alt="' + esc(p.titleEn) + ' — cover" loading="eager">' +
+          '</div>' +
+        '</figure>' +
+
+        '<section class="bproj-slides">' +
+          '<div class="bproj-slides-head">' +
+            '<h2>' + bi('Inside the brand book', 'جوة البراند بوك') + '</h2>' +
+            '<span class="meta">' +
+              '<span class="i18n-en">' + p.slideCount + ' slides · Tap to expand</span>' +
+              '<span class="i18n-ar">' + p.slideCount + ' شريحة · اضغط للتكبير</span>' +
+            '</span>' +
+          '</div>' +
+          '<div class="bproj-grid">' + buildSlides(p) + '</div>' +
+        '</section>' +
+
+        '<section class="bproj-cta">' +
+          '<div class="bproj-cta-inner">' +
+            '<h2>' +
+              '<span class="i18n-en">Want a brand <span class="bproj-cta-grad">built like this?</span></span>' +
+              '<span class="i18n-ar">عايز براند <span class="bproj-cta-grad">بنفس المستوى؟</span></span>' +
+            '</h2>' +
+            '<p>' +
+              bi(
+                "Tell us about your business. We'll respond within one business day with the system we'd run — strategy, identity, and rollout.",
+                "احكيلنا عن نشاطك. هنرد عليك في يوم عمل واحد بالنظام اللي هنشتغل بيه — استراتيجية، هوية، وتفعيل."
+              ) +
+            '</p>' +
+            '<div class="bproj-cta-btns">' +
+              '<a class="btn btn-primary" href="Consultation.html">' +
+                bi('Book a discovery call', 'احجز مكالمة استكشافية') +
+                ' <span class="arrow">→</span>' +
+              '</a>' +
+              '<a class="btn btn-ghost" href="branding.html">' +
+                bi('See more branding work', 'شوف شغل براندينج تاني') +
+                ' <span class="arrow">→</span>' +
+              '</a>' +
+            '</div>' +
+          '</div>' +
+        '</section>' +
+      '</article>' +
+      buildRelated(p.slug);
+
+    document.getElementById('bprojMain').innerHTML = html;
+    bindLightbox(p);
+    window.scrollTo(0, 0);
+  }
+
+  function bindLightbox(p) {
+    var slides = document.querySelectorAll('.bproj-slide');
+    if (!slides.length) return;
+
+    var lb = document.createElement('div');
+    lb.className = 'bproj-lightbox';
+    lb.innerHTML =
+      '<button class="bproj-lb-close" aria-label="Close">✕</button>' +
+      '<button class="bproj-lb-prev" aria-label="Previous">‹</button>' +
+      '<button class="bproj-lb-next" aria-label="Next">›</button>' +
+      '<img alt="">';
+    document.body.appendChild(lb);
+
+    var img = lb.querySelector('img');
+    var closeBtn = lb.querySelector('.bproj-lb-close');
+    var prevBtn = lb.querySelector('.bproj-lb-prev');
+    var nextBtn = lb.querySelector('.bproj-lb-next');
+    var current = 0;
+
+    function open(idx) {
+      current = idx;
+      var raw = 'assets/' + p.folder + '/' + p.slidePrefix + (idx < 10 ? '0' + idx : idx) + '.jpg';
+      img.src = raw.split('/').map(encodeURIComponent).join('/');
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    function nav(delta) {
+      var next = current + delta;
+      if (next < 1) next = p.slideCount;
+      if (next > p.slideCount) next = 1;
+      open(next);
+    }
+
+    slides.forEach(function (s) {
+      s.addEventListener('click', function () {
+        open(parseInt(s.dataset.idx, 10));
+      });
+    });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function () { nav(-1); });
+    nextBtn.addEventListener('click', function () { nav(1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') nav(1);
+      else if (e.key === 'ArrowLeft') nav(-1);
+    });
+  }
+
+  function notFound() {
+    document.getElementById('bprojMain').innerHTML =
+      '<div class="not-found">' +
+        '<h1>' + bi("Project not found", "المشروع غير موجود") + '</h1>' +
+        '<p style="color:var(--ink-2);">' +
+          bi(
+            "We couldn't locate that project. Browse all branding work below.",
+            "مقدرناش نلاقي المشروع. تقدر تتصفّح كل شغل البراندينج من هنا."
+          ) +
+        '</p>' +
+        '<p style="margin-top:24px;"><a class="back-link" href="branding.html">' +
+          bi("← All branding projects", "← كل مشاريع البراندينج") +
+        '</a></p>' +
+      '</div>';
+  }
+
+  function start() {
+    var slug = getSlug();
+    var p = (window.BRANDING_PROJECTS || []).find(function (q) { return q.slug === slug; });
+    if (!p) { notFound(); return; }
+    render(p);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+
+  window.toggleLang = function () {
+    var cur = document.documentElement.getAttribute('lang') || 'en';
+    var next = cur === 'ar' ? 'en' : 'ar';
+    document.documentElement.setAttribute('lang', next);
+    document.documentElement.setAttribute('dir', next === 'ar' ? 'rtl' : 'ltr');
+    try { localStorage.setItem('opt_lang', next); } catch (e) {}
+  };
+})();
+</script>
+
+<script src="social-footer.js" defer></script>
+</body>
+</html>

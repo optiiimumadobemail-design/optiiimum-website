@@ -238,8 +238,8 @@ window.REGISTRY = {
       market: "Egypt · Arab World",
       image: "uploads/Jozeph -Managing irector.jpg",
       role: "Also Managing Director of Optiiimum.",
-      quoteEN: "678,000 followers. 25,000 students. 10,000 lives changed. Built from zero in 50 months.",
-      quoteAR: "678 ألف متابع. 25 ألف طالب. 10 آلاف حياة تغيّرت. من الصفر، في 50 شهرًا.",
+      quoteEN: "978,000 followers. 40,000 students. 10,000 lives changed. Built from zero in 50 months.",
+      quoteAR: "978 ألف متابع. 40 ألف طالب. 10 آلاف حياة تغيّرت. من الصفر، في 50 شهرًا.",
       placement: "Home — flagship founder/ambassador moment · About · Courses",
       cardStyle: "Editorial portrait + four-stat strip · the only ambassador that doubles as the founder reveal"
     },
@@ -458,18 +458,18 @@ window.REGISTRY = {
       strategy: "Multi-audience architecture · transformation-content over trend-content · course ecosystem as a ladder (each course the logical next step) · let student outcomes become the marketing.",
       execution: "Brand Book · Social Media Launch · Custom Script Creation · Course Development (7+ courses) · Project Development & Strategic Guidance over 50 months.",
       results: {
-        followers: "678,000 authentic",
+        followers: "978,000 authentic",
         videos: "960 produced",
         viral: "1 over 4M · 1 over 3M · 1 over 2M · 6 over 1M each",
         avgViews: "90,000",
         courses: "7+ live (12 with the latest additions)",
-        students: "25,000+ paying students",
+        students: "40,000+ paying students",
         livesChanged: "10,000+ now earning income from their phones"
       },
       proof: "All 12 course landing pages live on Teachable subdomain.",
-      summaryEN: "678,000 followers. 25,000 students. 10,000 lives changed. Built from zero in 50 months.",
-      summaryAR: "678 ألف متابع. 25 ألف طالب. 10 آلاف حياة تغيّرت. من الصفر، في 50 شهرًا.",
-      homeHighlight: "678K · 25K students · 10K lives changed",
+      summaryEN: "978,000 followers. 40,000 students. 10,000 lives changed. Built from zero in 50 months.",
+      summaryAR: "978 ألف متابع. 40 ألف طالب. 10 آلاف حياة تغيّرت. من الصفر، في 50 شهرًا.",
+      homeHighlight: "978K · 40K students · 10K lives changed",
       cta: "Read the flagship case → /case-studies/jozeph-ezzat",
       note: "Strategically the flagship case study — also serves as About/Founder proof. Likely the top of the case-study list."
     },
@@ -856,9 +856,9 @@ window.REGISTRY = {
   // TAB 9 — TEAM MEMBERS
   // ============================================================
   team: [
-    { name: "Jozeph Ezzat",     title: "Managing Director",                       department: "Leadership",        image: "uploads/Jozeph -Managing irector.jpg", bioEN: "Founder & MD. Sets the strategy, holds the standard, and is also the brand at the centre of the agency's flagship case study (678K followers, 25K students, 10K lives changed).", bioAR: "المؤسس والمدير الإداري. يضع الاستراتيجية ويحرس المعيار، وهو أيضًا العلامة التي تتمحور حولها قصة النجاح الأبرز للوكالة." },
+    { name: "Jozeph Ezzat",     title: "Managing Director",                       department: "Leadership",        image: "uploads/Jozeph -Managing irector.jpg", bioEN: "Founder & MD. Sets the strategy, holds the standard, and is also the brand at the centre of the agency's flagship case study (978K followers, 40K students, 10K lives changed).", bioAR: "المؤسس والمدير الإداري. يضع الاستراتيجية ويحرس المعيار، وهو أيضًا العلامة التي تتمحور حولها قصة النجاح الأبرز للوكالة." },
     { name: "Nancy",            title: "Head of Content & Account Managers",      department: "Operations",        image: "uploads/nancy - head of content and account mangers.jpg", bioEN: "Runs the content engine and the account management organism that keeps every client on track.", bioAR: "تدير محرّك المحتوى ومنظومة إدارة الحسابات." },
-    { name: "Shiry",            title: "Head of Account Managers",                department: "Account Management",image: "uploads/shiry - head of account mangers.jpg", bioEN: "Owns the front line of every client relationship.", bioAR: "صاحبة الخط الأمامي لكل علاقة مع العميل." },
+    { name: "Shiry",            title: "Head of Moderators",                      department: "Moderation",        image: "uploads/shiry - head of account mangers.jpg", bioEN: "Owns the front line of every client relationship.", bioAR: "صاحبة الخط الأمامي لكل علاقة مع العميل." },
     { name: "Marina Emad",      title: "Head of Account Managers — Associate",    department: "Account Management",image: "uploads/marina emad - head of account mangers associate.jpg", bioEN: "Co-leads account delivery alongside Shiry.", bioAR: "تشارك في قيادة فرق الحسابات." },
     { name: "Selvana",          title: "Head of Media Buyers",                    department: "Media Buying",      image: "uploads/selvana - head of media buyers.jpg", bioEN: "Leads the paid-media discipline.", bioAR: "تقود فريق Media Buying." },
     { name: "Sarah",            title: "Media Buyer",                             department: "Media Buying",      image: "uploads/sarah - Media Buyer.jpg", bioEN: "Performance media specialist.", bioAR: "متخصصة Performance Media." },
@@ -1003,7 +1003,7 @@ window.REGISTRY = {
     homeHero: {
       eyebrow: "وكالة نمو رقمي · القاهرة · الخليج · أوروبا · أمريكا الشمالية",
       h1: "نبني أنظمة نمو رقميّة. لا مجرد محتوى.",
-      sub: "من الصفر إلى علامة قابلة للتوسّع — في الديجيتال، بدون اختصارات. أكثر من 35 علامة. أكثر من 13 قصة موثّقة. مليون مشاهدة فيديو واحد. 678 ألف متابع لعلامة شخصية واحدة. 10 آلاف حياة تغيّرت.",
+      sub: "من الصفر إلى علامة قابلة للتوسّع — في الديجيتال، بدون اختصارات. أكثر من 35 علامة. أكثر من 13 قصة موثّقة. مليون مشاهدة فيديو واحد. 978 ألف متابع لعلامة شخصية واحدة. 10 آلاف حياة تغيّرت.",
       ctaPrimary: "ابدأ المحادثة",
       ctaSecondary: "تصفّح حالاتنا"
     },
@@ -1040,7 +1040,7 @@ window.REGISTRY = {
     homeHero: {
       eyebrow: "Digital growth agency · Cairo · Gulf · Europe · North America",
       h1: "We build digital growth systems. Not posts.",
-      sub: "From zero to a brand that compounds — in digital, without shortcuts. 35+ brands. 13+ documented case studies. One video over 4M views. One personal brand at 678K. Ten thousand lives changed.",
+      sub: "From zero to a brand that compounds — in digital, without shortcuts. 35+ brands. 13+ documented case studies. One video over 4M views. One personal brand at 978K. Ten thousand lives changed.",
       ctaPrimary: "Start the conversation",
       ctaSecondary: "See our case studies"
     },
@@ -1135,7 +1135,7 @@ window.REGISTRY = {
       sections: [
         "Brand reveal animation (gradient → 'O' → wordmark)",
         "Hero: H1 + sub + 2 CTAs",
-        "Stat strip: 35 brands · 13 case studies · 678K largest personal brand · 10K lives changed",
+        "Stat strip: 35 brands · 13 case studies · 978K largest personal brand · 10K lives changed",
         "Flagship case study cell (Jozeph Ezzat)",
         "Case study rail (4 more)",
         "Services trio (Personal Brand · Corporate Brand · Education)",

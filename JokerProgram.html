@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var manual = localStorage.getItem('opt_theme');
+    var theme;
+    if (manual === 'light' || manual === 'dark') { theme = manual; }
+    else { var h = new Date().getHours(); theme = (h >= 7 && h < 19) ? 'light' : 'dark'; }
+    document.documentElement.setAttribute('data-theme', theme);
+    var lang = localStorage.getItem('opt_lang');
+    if (lang === 'en' || lang === 'ar') {
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    }
+  } catch (e) {}
+})();
+</script>
+<title>The Joker Program — AI, Content & Digital Skills for Teams · Optiiimum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Joker Program: a practical training program that helps teams learn content creation, AI usage, and digital communication — delivered for institutions across the region.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+/* ======================================================
+   JOKER PROGRAM — page-local styling
+   Playing-card geometry · institutional credibility · warm
+   ====================================================== */
+.jk-hero { padding: 130px 0 70px; position: relative; overflow: hidden; }
+.jk-hero .container { position: relative; z-index: 2; display: grid; grid-template-columns: 1.3fr .9fr; gap: 60px; align-items: center; }
+.jk-hero::before {
+  content: ""; position: absolute; inset: -10%;
+  background:
+    radial-gradient(35% 30% at 18% 25%, rgba(229,85,200,.20), transparent 65%),
+    radial-gradient(40% 30% at 82% 75%, rgba(0,254,255,.16), transparent 65%);
+  filter: blur(70px); z-index: 1; pointer-events: none;
+}
+.jk-hero h1 {
+  font-family: "Instrument Serif", "Tajawal", serif;
+  font-size: clamp(46px, 6.6vw, 96px);
+  line-height: 1.02; letter-spacing: -.02em; margin: 18px 0 22px;
+  text-wrap: balance;
+}
+.jk-hero .lede { max-width: 640px; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; opacity: .82; }
+.jk-hero .eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  opacity: .6;
+}
+.jk-hero-ctas { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .jk-hero .container { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* Playing-card stack */
+.jk-cards {
+  position: relative; aspect-ratio: 5/6;
+  display: grid; place-items: center;
+}
+.jk-card {
+  position: absolute;
+  width: 60%; aspect-ratio: 5/7;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #fafaf7 0%, #f0ebe0 100%);
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,.35), 0 4px 12px rgba(0,0,0,.15);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 18px 16px; color: #0a0a0a;
+  font-family: "Instrument Serif", serif;
+}
+.jk-card .jk-corner { font-size: 22px; line-height: 1; display: flex; align-items: center; gap: 4px; }
+.jk-card .jk-corner small { font-size: 18px; opacity: .9; }
+.jk-card .jk-corner.br { align-self: flex-end; transform: rotate(180deg); }
+.jk-card .jk-center {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  text-align: center; opacity: .65;
+}
+.jk-card.is-1 { transform: translate(-22%, -10%) rotate(-12deg); z-index: 1; }
+.jk-card.is-2 { transform: translate(22%, -6%) rotate(10deg); z-index: 2; }
+.jk-card.is-3 {
+  z-index: 3;
+  background:
+    radial-gradient(120% 80% at 50% 100%, rgba(229,85,200,.55), transparent 60%),
+    linear-gradient(180deg, #0a0a0a 0%, #1a0d18 100%);
+  color: #f5f2ec; border: 1px solid #2a2a28;
+  width: 64%;
+}
+.jk-card.is-3 .jk-center { opacity: .9; color: #f5f2ec; }
+.jk-card .jk-suit { font-size: 38px; line-height: 1; }
+.jk-card.is-3 .jk-glyph {
+  font-family: "Instrument Serif", serif; font-size: 68px;
+  letter-spacing: -.02em; text-align: center;
+  background: linear-gradient(135deg, #FDD196, #FF966D, #E555C8, #54B3EC, #00FEFF);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* Stats strip */
+.jk-stats {
+  padding: 60px 0; border-top: 1px solid var(--border, #2A2A28);
+  border-bottom: 1px solid var(--border, #2A2A28);
+  margin-top: 30px;
+}
+.jk-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 800px) { .jk-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.jk-stat .num {
+  font-family: "Instrument Serif", serif; font-size: clamp(40px, 5vw, 64px);
+  letter-spacing: -.02em; line-height: 1;
+}
+.jk-stat .label {
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase; opacity: .65;
+  margin-top: 10px;
+}
+
+/* Generic section */
+.jk-section { padding: 90px 0; }
+.jk-section h2 {
+  font-family: "Instrument Serif", "Tajawal", serif;
+  font-size: clamp(36px, 5vw, 64px); line-height: 1.05; margin: 0 0 14px;
+  letter-spacing: -.02em;
+}
+.jk-section .lede { max-width: 680px; opacity: .8; margin-bottom: 44px; line-height: 1.55; }
+
+/* Who it's for */
+.jk-who-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.jk-who {
+  padding: 22px 22px; border-radius: 14px;
+  border: 1px solid var(--border, #2A2A28);
+  background: var(--surface, #161616);
+  display: flex; align-items: center; gap: 14px;
+  transition: border-color .25s, transform .25s;
+}
+.jk-who:hover { border-color: rgba(229,85,200,.55); transform: translateY(-2px); }
+.jk-who .dot {
+  width: 10px; height: 10px; border-radius: 999px; flex: none;
+  background: linear-gradient(135deg, #FDD196, #E555C8);
+}
+.jk-who h4 { margin: 0; font-size: 16px; font-weight: 500; }
+
+/* What teams learn */
+.jk-learn-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+@media (max-width: 900px) { .jk-learn-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .jk-learn-grid { grid-template-columns: 1fr; } }
+.jk-learn {
+  padding: 26px 24px; border-radius: 18px;
+  border: 1px solid var(--border, #2A2A28);
+  background: var(--surface, #161616);
+}
+.jk-learn .idx {
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: .2em; opacity: .55; margin-bottom: 14px; display: block;
+}
+.jk-learn h4 {
+  font-family: "Instrument Serif", serif; font-size: 22px;
+  margin: 0 0 8px; line-height: 1.15;
+}
+.jk-learn p { margin: 0; font-size: 14.5px; line-height: 1.55; opacity: .72; }
+
+/* Formats */
+.jk-formats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+@media (max-width: 900px) { .jk-formats { grid-template-columns: 1fr; } }
+.jk-fmt {
+  border: 1px solid var(--border, #2A2A28);
+  border-radius: 20px; padding: 28px 26px;
+  background: var(--surface, #161616);
+  position: relative; overflow: hidden;
+}
+.jk-fmt.is-featured {
+  background:
+    radial-gradient(100% 80% at 50% 0%, rgba(229,85,200,.10), transparent 60%),
+    var(--surface, #161616);
+  border-color: rgba(229,85,200,.45);
+}
+.jk-fmt .tag {
+  font-family: "JetBrains Mono", monospace; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase; opacity: .65;
+}
+.jk-fmt h3 {
+  font-family: "Instrument Serif", serif; font-size: 30px;
+  margin: 14px 0 12px; line-height: 1.1;
+}
+.jk-fmt ul { margin: 0; padding: 0; list-style: none; }
+.jk-fmt li {
+  padding: 10px 0; border-top: 1px solid var(--border, #2A2A28);
+  font-size: 14px; opacity: .82;
+  display: flex; align-items: center; gap: 10px;
+}
+.jk-fmt li::before {
+  content: ""; width: 6px; height: 6px; border-radius: 999px;
+  background: #E555C8; flex: none;
+}
+
+/* Proof block */
+.jk-proof-imgs {
+  margin-top: 32px;
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 1100px) { .jk-proof-imgs { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 800px) { .jk-proof-imgs { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 540px) { .jk-proof-imgs { grid-template-columns: repeat(2, 1fr); } }
+.jk-proof-imgs img {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border, #2A2A28);
+  display: block;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.jk-proof-imgs img:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,.35); }
+.jk-nahdi {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 22px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase; opacity: .8;
+}
+.jk-nahdi img {
+  height: 38px; width: auto; opacity: .9;
+  filter: brightness(0) invert(1);
+}
+[data-theme="light"] .jk-nahdi img { filter: none; }
+.jk-proof {
+  border: 1px solid var(--border, #2A2A28);
+  background: var(--surface, #161616);
+  border-radius: 22px; padding: 40px 36px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
+}
+@media (max-width: 800px) { .jk-proof { grid-template-columns: 1fr; } }
+.jk-proof .num {
+  font-family: "Instrument Serif", serif; font-size: clamp(64px, 9vw, 120px);
+  letter-spacing: -.04em; line-height: .9;
+  background: linear-gradient(135deg, #FDD196, #FF966D, #E555C8);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.jk-proof .num + .label {
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; opacity: .65;
+  margin-top: 14px; display: block;
+}
+.jk-proof blockquote {
+  font-family: "Instrument Serif", serif; font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.3; margin: 0; letter-spacing: -.01em;
+}
+.jk-proof cite {
+  display: block; margin-top: 16px; font-style: normal;
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase; opacity: .65;
+}
+.jk-proof-flag {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+  letter-spacing: .14em; text-transform: uppercase; opacity: .55;
+  margin-top: 18px;
+}
+
+.jk-cohort + .jk-cohort {
+  margin-top: 56px; padding-top: 56px;
+  border-top: 1px dashed var(--border, #2A2A28);
+}
+.jk-cohort-head {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.jk-cohort-head .num {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+  letter-spacing: .22em; text-transform: uppercase; opacity: .55;
+}
+.jk-cohort-head h3 {
+  font-family: "Instrument Serif", "Tajawal", serif; font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.15; margin: 0; letter-spacing: -.01em;
+}
+[dir="rtl"] .jk-cohort-head h3 { font-family: "Tajawal", "Cairo", serif; font-weight: 500; }
+
+/* CTA */
+.jk-cta {
+  padding: 120px 0 140px; text-align: center; position: relative; overflow: hidden;
+}
+.jk-cta::before {
+  content: ""; position: absolute; inset: -30%;
+  background:
+    radial-gradient(35% 30% at 35% 50%, rgba(229,85,200,.18), transparent 65%),
+    radial-gradient(35% 30% at 70% 45%, rgba(0,254,255,.13), transparent 65%);
+  filter: blur(70px); z-index: 0;
+}
+.jk-cta > .container { position: relative; z-index: 2; }
+.jk-cta h2 {
+  font-family: "Instrument Serif", "Tajawal", serif;
+  font-size: clamp(38px, 5vw, 72px); line-height: 1.05; letter-spacing: -.02em;
+  max-width: 18ch; margin: 0 auto 28px; text-wrap: balance;
+}
+[dir="rtl"] .jk-hero h1, [dir="rtl"] .jk-section h2, [dir="rtl"] .jk-cta h2 {
+  font-family: "Tajawal", "Cairo", serif; font-weight: 500;
+}
+</style>
+<script src="loader.js"></script>
+</head>
+<body data-screen-label="Joker Program">
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link" aria-label="Optiiimum home">
+      <span class="brand-name">optiiimum<span class="dot">.</span></span>
+    </a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html" aria-current="page"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
+    </nav>
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle" aria-label="Switch language">
+        <span class="i18n-en">عربي</span><span class="i18n-ar">EN</span>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="Switch theme"><span id="themeIcon">◐</span></button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        <span class="arrow">→</span>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="jk-hero">
+  <div class="container">
+    <div>
+      <span class="eyebrow"><span class="i18n-en">Corporate Training Program</span><span class="i18n-ar">برنامج تدريبي مؤسسي</span></span>
+      <h1>
+        <span class="i18n-en">The Joker Program — AI, content & digital skills for teams.</span>
+        <span class="i18n-ar">برنامج الجوكر — الذكاء الاصطناعي، المحتوى، والمهارات الرقمية للفرق.</span>
+      </h1>
+      <p class="lede">
+        <span class="i18n-en">A practical training program that helps teams learn how to create content, use AI, communicate digitally, and build smarter growth workflows — built around your industry and delivered in Arabic or English.</span>
+        <span class="i18n-ar">برنامج تدريبي عملي بيساعد الفرق تتعلم صناعة المحتوى، استخدام الذكاء الاصطناعي، التواصل الرقمي، وبناء طرق شغل أذكى للنمو — مفصّل على صناعتك بالعربي أو الإنجليزي.</span>
+      </p>
+      <div class="jk-hero-ctas">
+        <a href="Consultation.html" class="btn btn-primary">
+          <span class="i18n-en">Book a 15-Minute Discovery Call</span>
+          <span class="i18n-ar">احجز مكالمة استكشافية 15 دقيقة</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#formats" class="btn btn-ghost">
+          <span class="i18n-en">See program formats</span>
+          <span class="i18n-ar">شوف صيغ البرنامج</span>
+        </a>
+      </div>
+    </div>
+    <div class="jk-cards" aria-hidden="true">
+      <div class="jk-card is-1">
+        <div class="jk-corner"><span>A</span><small>♠</small></div>
+        <div class="jk-suit">♠</div>
+        <div class="jk-corner br"><span>A</span><small>♠</small></div>
+      </div>
+      <div class="jk-card is-2">
+        <div class="jk-corner" style="color:#A02828;"><span>K</span><small>♥</small></div>
+        <div class="jk-suit" style="color:#A02828;">♥</div>
+        <div class="jk-corner br" style="color:#A02828;"><span>K</span><small>♥</small></div>
+      </div>
+      <div class="jk-card is-3">
+        <div class="jk-corner">JK</div>
+        <div class="jk-glyph">Joker</div>
+        <div class="jk-center">The wildcard skill set</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS STRIP ============ -->
+<section class="jk-stats">
+  <div class="container jk-stats-grid">
+    <div class="jk-stat"><div class="num">2</div><div class="label"><span class="i18n-en">Institutional Cohorts · KSA + UAE</span><span class="i18n-ar">دفعتان مؤسسيتان · السعودية + الإمارات</span></div></div>
+    <div class="jk-stat"><div class="num">12</div><div class="label"><span class="i18n-en">Modules · Practical</span><span class="i18n-ar">12 وحدة عملية</span></div></div>
+    <div class="jk-stat"><div class="num">2</div><div class="label"><span class="i18n-en">Languages · AR / EN</span><span class="i18n-ar">لغتان · عربي وإنجليزي</span></div></div>
+    <div class="jk-stat"><div class="num">1–3</div><div class="label"><span class="i18n-en">Days · Onsite or Online</span><span class="i18n-ar">من يوم لـ ٣ أيام · حضوري أو أونلاين</span></div></div>
+  </div>
+</section>
+
+<!-- ============ WHO IT IS FOR ============ -->
+<section class="jk-section">
+  <div class="container">
+    <h2><span class="i18n-en">Who the program is for</span><span class="i18n-ar">البرنامج موجّه لمين</span></h2>
+    <p class="lede">
+      <span class="i18n-en">The Joker Program is the wildcard skill set every modern team needs — adapted to the realities of your industry, your tools, and your audience.</span>
+      <span class="i18n-ar">برنامج الجوكر هو ورقة المهارات المرنة اللي محتاجها كل فريق حديث — متكيف مع واقع صناعتك، أدواتك، وجمهورك.</span>
+    </p>
+    <div class="jk-who-grid">
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Corporate teams</span><span class="i18n-ar">فرق الشركات</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Pharmacists</span><span class="i18n-ar">الصيادلة</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Doctors</span><span class="i18n-ar">الأطباء</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Sales teams</span><span class="i18n-ar">فرق المبيعات</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Marketing teams</span><span class="i18n-ar">فرق التسويق</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Educators</span><span class="i18n-ar">المدرسين</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Customer-facing teams</span><span class="i18n-ar">فرق خدمة العملاء</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Content teams</span><span class="i18n-ar">فرق المحتوى</span></h4></div>
+      <div class="jk-who"><span class="dot"></span><h4><span class="i18n-en">Institutions</span><span class="i18n-ar">المؤسسات</span></h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT TEAMS LEARN ============ -->
+<section class="jk-section" style="padding-top:0;">
+  <div class="container">
+    <h2><span class="i18n-en">What teams learn</span><span class="i18n-ar">إيه اللي بتتعلمه الفرق</span></h2>
+    <p class="lede">
+      <span class="i18n-en">A complete operating layer for the modern team: AI fundamentals, content fluency, and digital communication — taught with the tools they already carry in their pocket.</span>
+      <span class="i18n-ar">طبقة تشغيل كاملة للفريق الحديث: أساسيات الذكاء الاصطناعي، طلاقة المحتوى، والتواصل الرقمي — بالأدوات اللي معاهم فعلاً في الجيب.</span>
+    </p>
+    <div class="jk-learn-grid">
+      <div class="jk-learn"><span class="idx">01</span><h4><span class="i18n-en">AI Basics</span><span class="i18n-ar">أساسيات الذكاء الاصطناعي</span></h4><p><span class="i18n-en">A grounded mental model of what AI does well — and what it doesn't.</span><span class="i18n-ar">نموذج عقلي واضح لاستخدامات الذكاء الاصطناعي وحدوده.</span></p></div>
+      <div class="jk-learn"><span class="idx">02</span><h4><span class="i18n-en">ChatGPT in practice</span><span class="i18n-ar">ChatGPT في الشغل</span></h4><p><span class="i18n-en">Daily workflows that compress hours into minutes — without losing voice or accuracy.</span><span class="i18n-ar">عادات يومية بتختصر الساعات لدقائق من غير ما تخسر صوتك أو دقتك.</span></p></div>
+      <div class="jk-learn"><span class="idx">03</span><h4><span class="i18n-en">Prompt writing</span><span class="i18n-ar">كتابة البرومبت</span></h4><p><span class="i18n-en">Prompts that produce work, not chatter.</span><span class="i18n-ar">برومبتات بتنتج شغل، مش كلام.</span></p></div>
+      <div class="jk-learn"><span class="idx">04</span><h4><span class="i18n-en">Content ideation</span><span class="i18n-ar">صناعة الأفكار</span></h4><p><span class="i18n-en">Idea systems that fill a calendar without burning a team out.</span><span class="i18n-ar">نظام أفكار بيملا التقويم من غير ما يحرق الفريق.</span></p></div>
+      <div class="jk-learn"><span class="idx">05</span><h4><span class="i18n-en">Mobile video creation</span><span class="i18n-ar">فيديو موبايل</span></h4><p><span class="i18n-en">Studio-grade output from the phone in your hand.</span><span class="i18n-ar">جودة استوديو من الموبايل اللي معاك.</span></p></div>
+      <div class="jk-learn"><span class="idx">06</span><h4><span class="i18n-en">Short-form content</span><span class="i18n-ar">المحتوى القصير</span></h4><p><span class="i18n-en">Hooks, retention, pacing — the actual mechanics.</span><span class="i18n-ar">الهوكس، الاحتفاظ، الإيقاع — الميكانيكا الحقيقية.</span></p></div>
+      <div class="jk-learn"><span class="idx">07</span><h4><span class="i18n-en">Social communication</span><span class="i18n-ar">تواصل سوشيال</span></h4><p><span class="i18n-en">How a team shows up on platform — without sounding like a brochure.</span><span class="i18n-ar">إزاي الفريق يظهر على المنصة من غير ما يبان زي كتيب دعائي.</span></p></div>
+      <div class="jk-learn"><span class="idx">08</span><h4><span class="i18n-en">AI for productivity</span><span class="i18n-ar">الذكاء للإنتاجية</span></h4><p><span class="i18n-en">Personal stack: emails, meetings, briefs, research.</span><span class="i18n-ar">عُدة شخصية: إيميلات، اجتماعات، بريفات، بحث.</span></p></div>
+      <div class="jk-learn"><span class="idx">09</span><h4><span class="i18n-en">Storytelling</span><span class="i18n-ar">رواية القصة</span></h4><p><span class="i18n-en">The structure behind anything people remember.</span><span class="i18n-ar">البِنية وراء أي حاجة الناس بتفتكرها.</span></p></div>
+      <div class="jk-learn"><span class="idx">10</span><h4><span class="i18n-en">Campaign thinking</span><span class="i18n-ar">تفكير حملات</span></h4><p><span class="i18n-en">From single posts to coordinated moments.</span><span class="i18n-ar">من بوست منفرد لحملة متناسقة.</span></p></div>
+      <div class="jk-learn"><span class="idx">11</span><h4><span class="i18n-en">Content planning</span><span class="i18n-ar">تخطيط محتوى</span></h4><p><span class="i18n-en">Calendars that survive contact with reality.</span><span class="i18n-ar">تقويمات بتصمد قدام الواقع.</span></p></div>
+      <div class="jk-learn"><span class="idx">12</span><h4><span class="i18n-en">AI for customer education</span><span class="i18n-ar">الذكاء لتعليم العميل</span></h4><p><span class="i18n-en">Turn the team into a credible voice the customer trusts.</span><span class="i18n-ar">حوّل الفريق لصوت موثوق العميل بيثق فيه.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMATS ============ -->
+<section class="jk-section" id="formats" style="padding-top:0;">
+  <div class="container">
+    <h2><span class="i18n-en">Program formats</span><span class="i18n-ar">صيغ البرنامج</span></h2>
+    <p class="lede">
+      <span class="i18n-en">Pick the shape that fits your team. Every format adapts to your industry, your goals, and your language.</span>
+      <span class="i18n-ar">اختار الشكل المناسب لفريقك. كل صيغة بتتكيف مع صناعتك، أهدافك، ولغتك.</span>
+    </p>
+    <div class="jk-formats">
+      <div class="jk-fmt">
+        <span class="tag"><span class="i18n-en">Format 01</span><span class="i18n-ar">صيغة ٠١</span></span>
+        <h3><span class="i18n-en">One-day workshop</span><span class="i18n-ar">ورشة يوم واحد</span></h3>
+        <ul>
+          <li><span class="i18n-en">Intensive sprint</span><span class="i18n-ar">سبرنت مكثف</span></li>
+          <li><span class="i18n-en">Up to 50 attendees</span><span class="i18n-ar">حتى 50 مشارك</span></li>
+          <li><span class="i18n-en">Onsite or online</span><span class="i18n-ar">حضوري أو أونلاين</span></li>
+          <li><span class="i18n-en">Arabic or English</span><span class="i18n-ar">عربي أو إنجليزي</span></li>
+        </ul>
+      </div>
+      <div class="jk-fmt is-featured">
+        <span class="tag"><span class="i18n-en">Format 02 · Recommended</span><span class="i18n-ar">صيغة ٠٢ · موصى بها</span></span>
+        <h3><span class="i18n-en">Three-day intensive</span><span class="i18n-ar">برنامج مكثف ٣ أيام</span></h3>
+        <ul>
+          <li><span class="i18n-en">Full curriculum coverage</span><span class="i18n-ar">المنهج كامل</span></li>
+          <li><span class="i18n-en">Hands-on production day</span><span class="i18n-ar">يوم إنتاج عملي</span></li>
+          <li><span class="i18n-en">Live AI tooling labs</span><span class="i18n-ar">مختبرات أدوات AI</span></li>
+          <li><span class="i18n-en">Custom case studies</span><span class="i18n-ar">دراسات حالة مخصصة</span></li>
+        </ul>
+      </div>
+      <div class="jk-fmt">
+        <span class="tag"><span class="i18n-en">Format 03</span><span class="i18n-ar">صيغة ٠٣</span></span>
+        <h3><span class="i18n-en">Custom corporate program</span><span class="i18n-ar">برنامج داخلي مخصص</span></h3>
+        <ul>
+          <li><span class="i18n-en">Multi-cohort rollouts</span><span class="i18n-ar">دفعات متعددة</span></li>
+          <li><span class="i18n-en">Industry-specific playbooks</span><span class="i18n-ar">دلائل حسب الصناعة</span></li>
+          <li><span class="i18n-en">Train-the-trainer included</span><span class="i18n-ar">تدريب المدربين متضمّن</span></li>
+          <li><span class="i18n-en">Optional certificate</span><span class="i18n-ar">شهادة اختيارية</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section class="jk-section" style="padding-top:0;">
+  <div class="container">
+    <h2><span class="i18n-en">Delivered in the real world</span><span class="i18n-ar">منفّذ في الواقع</span></h2>
+    <p class="lede">
+      <span class="i18n-en">The Joker Program has been delivered for institutional teams across the region — from pharmacist cohorts in Saudi Arabia to banking teams in the UAE.</span>
+      <span class="i18n-ar">برنامج الجوكر اتنفّذ مع فرق مؤسسية في المنطقة — من دفعات صيادلة في السعودية لفرق بنوك في الإمارات.</span>
+    </p>
+
+    <div class="jk-cohort">
+      <div class="jk-cohort-head">
+        <span class="num"><span class="i18n-en">Cohort 01</span><span class="i18n-ar">دفعة ٠١</span></span>
+        <h3><span class="i18n-en">Nahdi Pharmacies · Saudi Arabia</span><span class="i18n-ar">صيدليات النهدي · السعودية</span></h3>
+      </div>
+      <div class="jk-proof">
+      <div>
+        <div class="num">50+</div>
+        <span class="label"><span class="i18n-en">Pharmacists trained · Nahdi · Saudi Arabia</span><span class="i18n-ar">صيدلي مدرّب · صيدليات النهدي · السعودية</span></span>
+        <div class="jk-nahdi">
+          <img src="assets/Joeker%20Program/nahdi-9d61ff18.png" alt="Nahdi Pharmacies" loading="lazy" decoding="async">
+          <span><span class="i18n-en">Institutional partner</span><span class="i18n-ar">شريك مؤسسي</span></span>
+        </div>
+      </div>
+      <div>
+        <blockquote>
+          <span class="i18n-en">"A three-day program that completely reframed how the team thinks about AI, content, and the patient relationship."</span>
+          <span class="i18n-ar">«برنامج ٣ أيام أعاد تشكيل تفكير الفريق عن الذكاء الاصطناعي، المحتوى، وعلاقة الصيدلي بالمريض.»</span>
+        </blockquote>
+        <cite><span class="i18n-en">— Institutional Cohort Lead</span><span class="i18n-ar">— قائد دفعة مؤسسية</span></cite>
+      </div>
+    </div>
+    <div class="jk-proof-imgs">
+      <img src="assets/Joeker%20Program/nahdi-01.jpg" alt="Joker Program · Nahdi pharmacist training session 1" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-02.jpg" alt="Joker Program · Nahdi product shelf demonstration" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-03.jpg" alt="Joker Program · Nahdi consultation desk training" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-04.jpg" alt="Joker Program · Nahdi pharmacist phone workflow" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-05.jpg" alt="Joker Program · Nahdi shelf photography practice" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-06.jpg" alt="Joker Program · Nahdi team workshop" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-07.jpg" alt="Joker Program · Nahdi mobile content creation" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-08.jpg" alt="Joker Program · Nahdi on-camera coaching" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-09.jpg" alt="Joker Program · Nahdi team selfie" loading="lazy" decoding="async">
+      <img src="assets/Joeker%20Program/nahdi-10.jpg" alt="Joker Program · Nahdi cohort group photo" loading="lazy" decoding="async">
+    </div>
+    <p class="jk-proof-flag">
+      <span class="i18n-en">▲ On-site documentation · Nahdi Pharmacies cohort, Saudi Arabia.</span>
+      <span class="i18n-ar">▲ توثيق ميداني · دفعة صيدليات النهدي، السعودية.</span>
+    </p>
+    </div>
+
+    <div class="jk-cohort">
+      <div class="jk-cohort-head">
+        <span class="num"><span class="i18n-en">Cohort 02</span><span class="i18n-ar">دفعة ٠٢</span></span>
+        <h3><span class="i18n-en">ADIB · Abu Dhabi Islamic Bank · United Arab Emirates</span><span class="i18n-ar">مصرف أبوظبي الإسلامي (ADIB) · الإمارات</span></h3>
+      </div>
+      <div class="jk-proof">
+        <div>
+          <div class="num">Bank-wide</div>
+          <span class="label"><span class="i18n-en">Customer-facing team · ADIB · UAE</span><span class="i18n-ar">فريق خدمة العملاء · ADIB · الإمارات</span></span>
+          <div class="jk-nahdi">
+            <span><span class="i18n-en">Institutional partner</span><span class="i18n-ar">شريك مؤسسي</span></span>
+          </div>
+        </div>
+        <div>
+          <blockquote>
+            <span class="i18n-en">"From branch staff to relationship managers — the team left able to film, edit, and post a credible video the same day."</span>
+            <span class="i18n-ar">«من موظفي الفروع لمديري العلاقات — الفريق خرج قادر يصوّر، يعمل مونتاج، وينشر فيديو محترف في نفس اليوم.»</span>
+          </blockquote>
+          <cite><span class="i18n-en">— ADIB Cohort Lead</span><span class="i18n-ar">— قائد دفعة ADIB</span></cite>
+        </div>
+      </div>
+      <div class="jk-proof-imgs">
+        <img src="assets/Joeker%20Program/adib-01.jpg" alt="Joker Program · ADIB branch coaching session" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-02.jpg" alt="Joker Program · ADIB relationship managers reviewing content" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-03.jpg" alt="Joker Program · ADIB mobile editing walkthrough" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-04.jpg" alt="Joker Program · ADIB branch lobby filming" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-05.jpg" alt="Joker Program · ADIB team cohort photo" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-06.jpg" alt="Joker Program · ADIB note-taking and review" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-07.jpg" alt="Joker Program · ADIB on-camera coaching" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-08.jpg" alt="Joker Program · ADIB digital banking demo" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-09.jpg" alt="Joker Program · ADIB live workshop floor" loading="lazy" decoding="async">
+        <img src="assets/Joeker%20Program/adib-10.jpg" alt="Joker Program · ADIB customer-facing team training" loading="lazy" decoding="async">
+      </div>
+      <p class="jk-proof-flag">
+        <span class="i18n-en">▲ On-site documentation · ADIB cohort, United Arab Emirates.</span>
+        <span class="i18n-ar">▲ توثيق ميداني · دفعة ADIB، الإمارات.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="jk-cta">
+  <div class="container">
+    <h2>
+      <span class="i18n-en">Bring the Joker Program to your team.</span>
+      <span class="i18n-ar">نفّذ برنامج الجوكر مع فريقك.</span>
+    </h2>
+    <a href="Consultation.html" class="btn btn-primary">
+      <span class="i18n-en">Book a 15-Minute Discovery Call</span>
+      <span class="i18n-ar">احجز مكالمة استكشافية 15 دقيقة</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<script>
+(function(){
+  function toggleTheme(){
+    var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', cur);
+    try { localStorage.setItem('opt_theme', cur); } catch(e){}
+  }
+  function toggleLang(){
+    var cur = document.documentElement.getAttribute('lang') === 'ar' ? 'en' : 'ar';
+    document.documentElement.setAttribute('lang', cur);
+    document.documentElement.setAttribute('dir', cur === 'ar' ? 'rtl' : 'ltr');
+    try { localStorage.setItem('opt_lang', cur); } catch(e){}
+  }
+  var t = document.getElementById('themeToggle'); if (t) t.addEventListener('click', toggleTheme);
+  var l = document.getElementById('langToggle'); if (l) l.addEventListener('click', toggleLang);
+})();
+</script>
+<script src="nav-slider.js" defer></script>
+</body>
+</html>

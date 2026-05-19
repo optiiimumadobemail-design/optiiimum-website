@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<script>
+(function(){try{var m=localStorage.getItem('opt_theme'),t;if(m==='light'||m==='dark')t=m;else{var h=new Date().getHours();t=(h>=7&&h<19)?'light':'dark';}document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('opt_lang');if(l==='en'||l==='ar'){document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');}}catch(e){}})();
+</script>
+<title>Sky Point — we didn't just create content. We created an experience. — Optiiimum Case Study</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How we turned a challenge into a signature content system using a digital character that brings Finland to life — for Sky Point.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+
+<style>
+.csd-hero {
+  padding: 120px 0 60px; position: relative; overflow: hidden;
+}
+.csd-hero .container { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr; gap: 50px; align-items: center; }
+@media (max-width: 900px) { .csd-hero .container { grid-template-columns: 1fr; gap: 30px; } }
+.csd-hero h1 {
+  font-family: "Instrument Serif", "Tajawal", serif;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 1.04; letter-spacing: -.02em; margin: 18px 0 16px; text-wrap: balance;
+}
+.csd-hero h1 .grad {
+  background: linear-gradient(120deg, #E555C8, #BE6FD2, #54B3EC);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-style: italic;
+}
+html[lang="ar"] .csd-hero h1 .grad { font-style: normal; font-weight: 700; }
+.csd-hero .industry { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; opacity: .6; }
+.csd-hero .lede { max-width: 560px; line-height: 1.6; opacity: .82; }
+.csd-hero .timeline { margin-top: 18px; font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .14em; opacity: .55; }
+.csd-hero .visual {
+  aspect-ratio: 3 / 2; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line, #2A2A28);
+  background: linear-gradient(135deg, rgba(229,85,200,.2), rgba(84,179,236,.18));
+}
+.csd-hero .visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.csd-hero::before {
+  content: ""; position: absolute; inset: -10%; z-index: 1;
+  background: radial-gradient(35% 30% at 20% 30%, rgba(229,85,200,.18), transparent 65%), radial-gradient(40% 30% at 80% 70%, rgba(84,179,236,.16), transparent 65%);
+  filter: blur(60px); pointer-events: none;
+}
+
+.csd-stats {
+  padding: 50px 0; border-top: 1px solid var(--line, #2A2A28); border-bottom: 1px solid var(--line, #2A2A28);
+}
+.csd-stats .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 740px) { .csd-stats .row { grid-template-columns: repeat(2, 1fr); } }
+.csd-stats .stat b { display: block; font-family: "Instrument Serif", serif; font-size: clamp(34px, 5vw, 56px); letter-spacing: -.02em; line-height: 1; margin-bottom: 8px; }
+.csd-stats .stat span { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; opacity: .6; }
+
+.csd-section { padding: 80px 0; }
+.csd-section h2 { font-family: "Instrument Serif", "Tajawal", serif; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 20px; max-width: 22ch; }
+.csd-section p { max-width: 64ch; line-height: 1.65; opacity: .85; margin: 0 0 14px; }
+
+.csd-pillars { padding: 60px 0; border-top: 1px solid var(--line, #2A2A28); }
+.csd-pillars .head { margin-bottom: 32px; }
+.csd-pillars .head h2 { font-family: "Instrument Serif", "Tajawal", serif; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.05; margin: 0; }
+.csd-pillars .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 900px) { .csd-pillars .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .csd-pillars .grid { grid-template-columns: 1fr; } }
+.csd-pillars .pill {
+  border: 1px solid var(--line, #2A2A28); border-radius: 14px; padding: 22px;
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--bg-elev, var(--bg));
+  min-height: 150px;
+}
+.csd-pillars .pill .num {
+  font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .18em;
+  color: #E555C8;
+}
+.csd-pillars .pill h3 { font-size: 18px; line-height: 1.25; margin: 0; }
+
+/* Gallery rail */
+.csd-gallery { padding: 60px 0; border-top: 1px solid var(--line, #2A2A28); }
+.csd-gallery .head { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
+.csd-gallery h2 { font-family: "Instrument Serif", "Tajawal", serif; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.05; margin: 0; }
+.csd-gallery .count { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .18em; opacity: .55; }
+.csd-gallery .rail {
+  display: flex; gap: 18px; overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 0 16px;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+.csd-gallery .rail::-webkit-scrollbar { height: 8px; }
+.csd-gallery .rail::-webkit-scrollbar-thumb { background: var(--line, #2A2A28); border-radius: 4px; }
+.csd-gallery .item {
+  flex: 0 0 calc((100% - 36px) / 3); scroll-snap-align: start;
+  aspect-ratio: 3/4; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--line, #2A2A28); position: relative;
+  background: var(--bg-band, #161616);
+}
+.csd-gallery .item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.csd-gallery .item:hover img { transform: scale(1.04); }
+.csd-gallery .item .badge { position: absolute; top: 12px; left: 12px; background: rgba(11,11,11,.7); color: #f5f2ec; font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .14em; padding: 4px 8px; border-radius: 6px; }
+[dir="rtl"] .csd-gallery .item .badge { left: auto; right: 12px; }
+@media (max-width: 860px) { .csd-gallery .item { flex: 0 0 calc((100% - 18px) / 2); } }
+@media (max-width: 560px) { .csd-gallery .item { flex: 0 0 80%; } }
+.csd-arrows { display: flex; gap: 10px; margin-top: 12px; justify-content: flex-end; }
+.csd-arrows button { width: 42px; height: 42px; border-radius: 999px; border: 1px solid var(--line, #2A2A28); background: transparent; color: inherit; font-size: 18px; cursor: pointer; display: grid; place-items: center; }
+.csd-arrows button:hover { background: var(--ink, #fff); color: var(--bg, #000); border-color: transparent; }
+
+.csd-quote { padding: 80px 0; border-top: 1px solid var(--line, #2A2A28); }
+.csd-quote blockquote {
+  margin: 0; max-width: 24ch;
+  font-family: "Instrument Serif", "Tajawal", serif;
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1.1; letter-spacing: -.02em;
+}
+.csd-quote blockquote .em {
+  background: linear-gradient(120deg, #E555C8, #54B3EC);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.csd-cta { padding: 100px 0 120px; text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--line, #2A2A28); }
+.csd-cta::before { content: ""; position: absolute; inset: -30%; background: radial-gradient(35% 30% at 35% 50%, rgba(229,85,200,.18), transparent 65%); filter: blur(70px); z-index: 0; }
+.csd-cta > .container { position: relative; z-index: 2; }
+.csd-cta h2 { font-family: "Instrument Serif", "Tajawal", serif; font-size: clamp(34px, 4.5vw, 60px); line-height: 1.05; letter-spacing: -.02em; max-width: 20ch; margin: 0 auto 20px; text-wrap: balance; }
+.csd-cta .btn { display: inline-flex; gap: 10px; align-items: center; }
+[dir="rtl"] .csd-hero h1, [dir="rtl"] .csd-section h2, [dir="rtl"] .csd-gallery h2, [dir="rtl"] .csd-pillars .head h2, [dir="rtl"] .csd-cta h2, [dir="rtl"] .csd-quote blockquote { font-family: "Tajawal", "Cairo", serif; font-weight: 500; }
+</style>
+<script src="loader.js"></script>
+</head>
+<body data-screen-label="sky-point">
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="Home.html" class="brand-link"><span class="brand-name">optiiimum<span class="dot">.</span></span></a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html" aria-current="page"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
+    </nav>
+    <div class="topbar-actions">
+      <button class="icon-btn lang-btn" id="langToggle"><span class="i18n-en">عربي</span><span class="i18n-ar">EN</span></button>
+      <button class="icon-btn" id="themeToggle"><span id="themeIcon">◐</span></button>
+      <a href="Consultation.html" class="nav-cta">
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="csd-hero">
+  <div class="container">
+    <div>
+      <span class="industry">
+        <span class="i18n-en">Case Study · Travel &amp; Tourism · Digital Character · Finland</span>
+        <span class="i18n-ar">دراسة حالة · سفر وسياحة · شخصية رقمية · فنلندا</span>
+      </span>
+      <h1>
+        <span class="i18n-en">Sky Point — we didn't just create content. We created <span class="grad">an experience.</span></span>
+        <span class="i18n-ar">Sky Point — ما عملناش محتوى وبس. عملنا <span class="grad">تجربة.</span></span>
+      </h1>
+      <p class="lede">
+        <span class="i18n-en">How we turned a challenge into a signature content system — using a fully animated digital character that brings Finland to life, without ever needing the team in front of the camera.</span>
+        <span class="i18n-ar">إزاي حوّلنا تحدي لنظام محتوى مميز — بشخصية رقمية متحركة بالكامل بتنقل فنلندا للجمهور، من غير ما الفريق يقف قدّام الكاميرا.</span>
+      </p>
+      <div class="timeline">
+        <span class="i18n-en">Custom digital characters · Cinematic content system · Travel brand</span>
+        <span class="i18n-ar">شخصيات رقمية مخصصة · نظام محتوى سينمائي · براند سفر</span>
+      </div>
+    </div>
+    <div class="visual">
+      <img src="assets/case%20study%20-%20Sky%20Point/cover.jpg" alt="Sky Point case study cover — Finland digital character" loading="eager" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="csd-stats">
+  <div class="container">
+    <div class="row i18n-en">
+      <div class="stat"><b>3</b><span>Digital Characters</span></div>
+      <div class="stat"><b>43</b><span>Cinematic Frames</span></div>
+      <div class="stat"><b>0</b><span>On-camera Shoots</span></div>
+      <div class="stat"><b>1</b><span>Signature Brand World</span></div>
+    </div>
+    <div class="row i18n-ar">
+      <div class="stat"><b>3</b><span>شخصيات رقمية</span></div>
+      <div class="stat"><b>43</b><span>كادر سينمائي</span></div>
+      <div class="stat"><b>0</b><span>تصوير قدّام الكاميرا</span></div>
+      <div class="stat"><b>1</b><span>عالم براند مميز</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="csd-section">
+  <div class="container">
+    <span class="industry" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;">
+      <span class="i18n-en">The Challenge</span><span class="i18n-ar">التحدي</span>
+    </span>
+    <h2>
+      <span class="i18n-en">A travel brand that wanted people to feel Finland — without ever appearing on camera.</span>
+      <span class="i18n-ar">براند سفر عايز الناس تحس بفنلندا — من غير ما حد من الفريق يظهر قدّام الكاميرا.</span>
+    </h2>
+    <p>
+      <span class="i18n-en">When we started working with Sky Point, the goal was clear: create content that lets people feel Finland before they even travel there. Not generic travel videos — a full emotional experience that captures the calm lifestyle, nature, activities, and unique atmosphere Finland is known for.</span>
+      <span class="i18n-ar">لما بدأنا الشغل مع Sky Point، الهدف كان واضح: نعمل محتوى يخلّي الناس تحس بفنلندا قبل ما تسافر أصلًا. مش فيديوهات سياحة عادية — تجربة عاطفية كاملة بتنقل الـlifestyle الهادي، الطبيعة، الأنشطة، والجو المميز اللي فنلندا معروفة بيه.</span>
+    </p>
+    <p>
+      <span class="i18n-en">But we faced an important challenge from day one: the Sky Point team wasn't comfortable appearing on camera or consistently filming personal videos. That could have easily limited everything to generic stock footage — with no strong, recognisable identity.</span>
+      <span class="i18n-ar">بس واجهنا تحدّي مهم من أول يوم: فريق Sky Point مكانش مرتاح يظهر قدّام الكاميرا أو يصوّر فيديوهات شخصية بشكل مستمر. ده كان ممكن بسهولة يخلّي المحتوى عبارة عن لقطات سفر عامة — من غير هوية قوية ومميزة.</span>
+    </p>
+    <p>
+      <span class="i18n-en">Instead of treating it as a limitation, we turned it into an opportunity.</span>
+      <span class="i18n-ar">بدل ما نتعامل مع الموضوع كقيد، حوّلناه لفرصة.</span>
+    </p>
+  </div>
+</section>
+
+<section class="csd-section" style="border-top:1px solid var(--line, #2A2A28);">
+  <div class="container">
+    <span class="industry" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;">
+      <span class="i18n-en">The Solution</span><span class="i18n-ar">الحل</span>
+    </span>
+    <h2>
+      <span class="i18n-en">We built a cast of digital characters — the consistent face of the brand.</span>
+      <span class="i18n-ar">بنينا مجموعة شخصيات رقمية — تبقى الوش الثابت للبراند.</span>
+    </h2>
+    <p>
+      <span class="i18n-en">We designed three fully animated digital characters — Aimo, Aino, and Otso — each with their own personality, wardrobe, accessory system, and emotional range. They became the core storytelling element of every piece of content: flexible enough to live in any scene, recognisable enough to make Sky Point unmistakable.</span>
+      <span class="i18n-ar">صمّمنا ثلاث شخصيات رقمية متحركة بالكامل — Aimo و Aino و Otso — كل واحدة ليها شخصيتها، ملابسها، إكسسواراتها، وتعبيراتها. وبقوا العنصر الأساسي في كل قطعة محتوى: مرنين بحيث يقدروا يعيشوا في أي مشهد، ومميّزين بحيث Sky Point تبقى لا تتشابه مع غيرها.</span>
+    </p>
+    <p>
+      <span class="i18n-en">Through this approach, Sky Point now has a consistent visual identity across every channel, faster and more efficient content production, a highly recognisable brand presence, and a richer audience experience — without ever requiring the team to film themselves.</span>
+      <span class="i18n-ar">بالطريقة دي، Sky Point دلوقتي عندها هوية بصرية ثابتة على كل القنوات، إنتاج محتوى أسرع وأكفأ، حضور براند مميز جدًا، وتجربة جمهور أعمق — من غير ما الفريق يضطر يصوّر نفسه.</span>
+    </p>
+  </div>
+</section>
+
+<section class="csd-pillars">
+  <div class="container">
+    <div class="head">
+      <h2><span class="i18n-en">The content strategy.</span><span class="i18n-ar">استراتيجية المحتوى.</span></h2>
+    </div>
+    <div class="grid">
+      <div class="pill">
+        <span class="num">01</span>
+        <h3><span class="i18n-en">Sell the experience, not the destination.</span><span class="i18n-ar">نبيع التجربة، مش المكان.</span></h3>
+      </div>
+      <div class="pill">
+        <span class="num">02</span>
+        <h3><span class="i18n-en">Strong hooks · soft, emotional storytelling.</span><span class="i18n-ar">هوكس قوية · سرد ناعم وعاطفي.</span></h3>
+      </div>
+      <div class="pill">
+        <span class="num">03</span>
+        <h3><span class="i18n-en">Motion-based digital characters as the brand's face.</span><span class="i18n-ar">شخصيات رقمية متحركة بتمثّل وش البراند.</span></h3>
+      </div>
+      <div class="pill">
+        <span class="num">04</span>
+        <h3><span class="i18n-en">Cinematic editing that mirrors Finland's calm.</span><span class="i18n-ar">مونتاج سينمائي بيعكس هدوء فنلندا.</span></h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="csd-quote">
+  <div class="container">
+    <blockquote>
+      <span class="i18n-en">We don't just show places. <span class="em">We help people picture their next chapter.</span></span>
+      <span class="i18n-ar">إحنا ما بنعرضش أماكن. <span class="em">إحنا بنخلّي الناس تتخيّل الفصل الجاي من حياتهم.</span></span>
+    </blockquote>
+  </div>
+</section>
+
+<section class="csd-gallery">
+  <div class="container">
+    <div class="head">
+      <h2><span class="i18n-en">Proof archive — from the campaign.</span><span class="i18n-ar">أرشيف الإثبات — من الحملة.</span></h2>
+      <span class="count">43 <span class="i18n-en">items</span><span class="i18n-ar">عنصر</span></span>
+    </div>
+    <div class="rail" id="csdRail">
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/01.jpg" alt="sky-point proof 1" loading="lazy">
+        <span class="badge">01 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/02.jpg" alt="sky-point proof 2" loading="lazy">
+        <span class="badge">02 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/03.jpg" alt="sky-point proof 3" loading="lazy">
+        <span class="badge">03 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/04.jpg" alt="sky-point proof 4" loading="lazy">
+        <span class="badge">04 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/05.jpg" alt="sky-point proof 5" loading="lazy">
+        <span class="badge">05 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/06.jpg" alt="sky-point proof 6" loading="lazy">
+        <span class="badge">06 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/07.jpg" alt="sky-point proof 7" loading="lazy">
+        <span class="badge">07 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/08.jpg" alt="sky-point proof 8" loading="lazy">
+        <span class="badge">08 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/09.jpg" alt="sky-point proof 9" loading="lazy">
+        <span class="badge">09 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/10.jpg" alt="sky-point proof 10" loading="lazy">
+        <span class="badge">10 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/11.jpg" alt="sky-point proof 11" loading="lazy">
+        <span class="badge">11 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/12.jpg" alt="sky-point proof 12" loading="lazy">
+        <span class="badge">12 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/13.jpg" alt="sky-point proof 13" loading="lazy">
+        <span class="badge">13 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/14.jpg" alt="sky-point proof 14" loading="lazy">
+        <span class="badge">14 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/15.jpg" alt="sky-point proof 15" loading="lazy">
+        <span class="badge">15 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/16.jpg" alt="sky-point proof 16" loading="lazy">
+        <span class="badge">16 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/17.jpg" alt="sky-point proof 17" loading="lazy">
+        <span class="badge">17 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/18.jpg" alt="sky-point proof 18" loading="lazy">
+        <span class="badge">18 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/19.jpg" alt="sky-point proof 19" loading="lazy">
+        <span class="badge">19 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/20.jpg" alt="sky-point proof 20" loading="lazy">
+        <span class="badge">20 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/21.jpg" alt="sky-point proof 21" loading="lazy">
+        <span class="badge">21 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/22.jpg" alt="sky-point proof 22" loading="lazy">
+        <span class="badge">22 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/23.jpg" alt="sky-point proof 23" loading="lazy">
+        <span class="badge">23 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/24.jpg" alt="sky-point proof 24" loading="lazy">
+        <span class="badge">24 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/25.jpg" alt="sky-point proof 25" loading="lazy">
+        <span class="badge">25 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/26.jpg" alt="sky-point proof 26" loading="lazy">
+        <span class="badge">26 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/27.jpg" alt="sky-point proof 27" loading="lazy">
+        <span class="badge">27 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/28.jpg" alt="sky-point proof 28" loading="lazy">
+        <span class="badge">28 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/29.jpg" alt="sky-point proof 29" loading="lazy">
+        <span class="badge">29 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/30.jpg" alt="sky-point proof 30" loading="lazy">
+        <span class="badge">30 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/31.jpg" alt="sky-point proof 31" loading="lazy">
+        <span class="badge">31 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/32.jpg" alt="sky-point proof 32" loading="lazy">
+        <span class="badge">32 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/33.jpg" alt="sky-point proof 33" loading="lazy">
+        <span class="badge">33 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/34.jpg" alt="sky-point proof 34" loading="lazy">
+        <span class="badge">34 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/35.jpg" alt="sky-point proof 35" loading="lazy">
+        <span class="badge">35 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/36.jpg" alt="sky-point proof 36" loading="lazy">
+        <span class="badge">36 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/37.jpg" alt="sky-point proof 37" loading="lazy">
+        <span class="badge">37 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/38.jpg" alt="sky-point proof 38" loading="lazy">
+        <span class="badge">38 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/39.jpg" alt="sky-point proof 39" loading="lazy">
+        <span class="badge">39 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/40.jpg" alt="sky-point proof 40" loading="lazy">
+        <span class="badge">40 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/41.jpg" alt="sky-point proof 41" loading="lazy">
+        <span class="badge">41 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/42.jpg" alt="sky-point proof 42" loading="lazy">
+        <span class="badge">42 / 43</span>
+      </div>
+      <div class="item">
+        <img src="assets/case%20study%20-%20Sky%20Point/43.jpg" alt="sky-point proof 43" loading="lazy">
+        <span class="badge">43 / 43</span>
+      </div>
+    </div>
+    <div class="csd-arrows">
+      <button type="button" id="csdPrev" aria-label="Previous">‹</button>
+      <button type="button" id="csdNext" aria-label="Next">›</button>
+    </div>
+  </div>
+</section>
+
+<section class="csd-section" style="border-top:1px solid var(--line, #2A2A28);">
+  <div class="container">
+    <span class="industry" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;">
+      <span class="i18n-en">The Result</span><span class="i18n-ar">النتيجة</span>
+    </span>
+    <h2>
+      <span class="i18n-en">A challenge turned into a distinctive brand advantage.</span>
+      <span class="i18n-ar">تحدّي اتحوّل لميزة براند مميزة.</span>
+    </h2>
+    <p>
+      <span class="i18n-en">We successfully turned a key constraint — no on-camera content — into the thing that makes Sky Point unmistakable. The brand now has a unique, memorable content style that stands out in a travel industry full of look-alike footage, attracting people who are genuinely interested in experiencing Finland in a more immersive, emotional way.</span>
+      <span class="i18n-ar">نجحنا نحوّل قيد أساسي — مفيش تصوير قدّام الكاميرا — لحاجة بتخلّي Sky Point ما تتشابهش مع حد. البراند دلوقتي عنده ستايل محتوى مميز ومش بينساه، بيبرز في صناعة سفر كلها لقطات متشابهة، وبيجذب ناس مهتمين فعلًا بيعيشوا فنلندا بشكل أعمق وأكتر عاطفية.</span>
+    </p>
+  </div>
+</section>
+
+<section class="csd-cta">
+  <div class="container">
+    <h2>
+      <span class="i18n-en">Ready to build your own brand world?</span>
+      <span class="i18n-ar">جاهز تبني عالم البراند بتاعك؟</span>
+    </h2>
+    <a href="Consultation.html" class="btn btn-primary">
+      <span class="i18n-en">Book a 15-Minute Discovery Call</span>
+      <span class="i18n-ar">احجز مكالمة استكشافية 15 دقيقة</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<script>
+(function(){
+  function tt(){ var c=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'; document.documentElement.setAttribute('data-theme',c); try{localStorage.setItem('opt_theme',c);}catch(e){}}
+  function tl(){ var c=document.documentElement.getAttribute('lang')==='ar'?'en':'ar'; document.documentElement.setAttribute('lang',c); document.documentElement.setAttribute('dir',c==='ar'?'rtl':'ltr'); try{localStorage.setItem('opt_lang',c);}catch(e){}}
+  var a=document.getElementById('themeToggle'); if(a) a.addEventListener('click',tt);
+  var b=document.getElementById('langToggle'); if(b) b.addEventListener('click',tl);
+
+  var rail=document.getElementById('csdRail'),p=document.getElementById('csdPrev'),n=document.getElementById('csdNext');
+  if(!rail||!p||!n) return;
+  function step(){var c=rail.querySelector('.item');return c?(c.getBoundingClientRect().width+18):320;}
+  function rtl(){return document.documentElement.getAttribute('dir')==='rtl';}
+  p.addEventListener('click',function(){rail.scrollBy({left:rtl()?step():-step(),behavior:'smooth'});});
+  n.addEventListener('click',function(){rail.scrollBy({left:rtl()?-step():step(),behavior:'smooth'});});
+})();
+</script>
+<script src="nav-slider.js" defer></script>
+</body>
+</html>

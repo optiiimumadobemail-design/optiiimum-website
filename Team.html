@@ -267,6 +267,7 @@
   .image-notice b { color: var(--accent); }
 </style>
   <script src="slider.js" defer></script>
+<script src="loader.js"></script>
 </head>
 <body>
 
@@ -277,18 +278,22 @@
       <span class="brand-name">optiiimum<span class="dot">.</span></span>
     </a>
 
-    <nav class="primary-nav" aria-label="Primary">
-      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-      <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
-      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
-      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
-      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
-      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-      <a href="Team.html" aria-current="page"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
     </nav>
 
     <div class="topbar-actions">
@@ -299,7 +304,7 @@
         <span id="themeIcon">◐</span>
       </button>
       <a href="Consultation.html" class="nav-cta">
-        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
         <span class="arrow">→</span>
       </a>
       <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
@@ -309,17 +314,23 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
   <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-  <a href="About.html" ><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
   <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
   <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
   <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
   <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-  <a href="Team.html" aria-current="page"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
 </div>
 <main>
 
@@ -333,302 +344,300 @@
 <section class="section">
   <div class="container">
     <div class="i18n-en"><div class="amb-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));"><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Jozeph -Managing irector.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Jozeph--Managing-irector.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Managing Director</span>
       <b>Jozeph Ezzat</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/nancy - head of content and account mangers.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/nancy---head-of-content-and-account-mangers.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Head of Content & Accounts</span>
       <b>Nancy</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/selvana - head of media buyers.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/selvana---head-of-media-buyers.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Head of Media Buyers</span>
       <b>Selvana</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/shiry - head of account mangers.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/shiry---head-of-Moderators.jpg'); background-position: center 20%;"></div>
     <div class="body">
-      <span class="field">Head of Account Managers</span>
-      <b>Shiry</b>
-    </div>
+      <span class="field">Head of Moderators</span>
+      <b>Shiry</b></div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/marina emad - head of account mangers associate.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/marina-emad---head-of-account-mangers-associate.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Senior Account Manager</span>
       <b>Marina Emad</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/verina - head of moderators associate.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/verina---head-of-moderators-associate.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Head of Moderation</span>
       <b>Verina</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/safy - art director.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/safy---art-director.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Art Director</span>
       <b>Safy</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/khaled - designer.jpeg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/khaled---designer.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Designer</span>
       <b>Khaled</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/mario- senior editor.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/mario--senior-editor.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Senior Editor</span>
       <b>Mario</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/aziiz - senior Editor.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/aziiz---senior-Editor.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Senior Editor</span>
       <b>Aziz</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Toka - Video Editor.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Toka---Video-Editor.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Video Editor</span>
       <b>Toka</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/alaa - content creator.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/alaa---content-creator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Content Creator</span>
       <b>Alaa</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/israa - content creator.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/israa---content-creator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Content Creator</span>
       <b>Israa</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/veronia- Content Creator.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/veronia--Content-Creator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Content Creator</span>
       <b>Veronia</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/sarah - Media Buyer.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/sarah---Media-Buyer.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Media Buyer</span>
       <b>Sarah</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/pakinam- traffic manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/pakinam--traffic-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Traffic Manager</span>
       <b>Pakinam</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Dody - People Manger.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Dody---People-Manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">People Manager</span>
       <b>Dody</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/helana - comunity manger.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/helana---comunity-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Community Manager</span>
       <b>Helana</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/manar - Moderator.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/manar---Moderator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Moderator</span>
       <b>Manar</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/schahd - community manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/schahd---community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Community Manager</span>
       <b>Schahd</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/norhan -  - community manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/norhan------community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Community Manager</span>
       <b>Norhan</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/nairoa -  - community manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/nairoa------community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Community Manager</span>
       <b>Nairoa</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/mohrael - Community manger.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/mohrael---Community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Community Manager</span>
       <b>Mohrael</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Jesoica - moderator.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Jesoica---moderator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Moderator</span>
       <b>Jessica</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/youstina - tele sales.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/youstina---tele-sales.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">Telesales</span>
       <b>Youstina</b>
     </div>
   </article></div></div>
     <div class="i18n-ar"><div class="amb-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));"><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Jozeph -Managing irector.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Jozeph--Managing-irector.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">المدير العام</span>
       <b>Jozeph Ezzat</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/nancy - head of content and account mangers.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/nancy---head-of-content-and-account-mangers.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">رئيس قسم المحتوى وإدارة الحسابات</span>
       <b>Nancy</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/selvana - head of media buyers.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/selvana---head-of-media-buyers.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">رئيس قسم شراء الإعلانات</span>
       <b>Selvana</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/shiry - head of account mangers.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/shiry---head-of-Moderators.jpg'); background-position: center 20%;"></div>
     <div class="body">
-      <span class="field">رئيس قسم إدارة الحسابات</span>
-      <b>Shiry</b>
-    </div>
+      <span class="field">رئيسة الموديريتورز</span>
+      <b>Shiry</b></div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/marina emad - head of account mangers associate.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/marina-emad---head-of-account-mangers-associate.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مدير حسابات أول</span>
       <b>Marina Emad</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/verina - head of moderators associate.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/verina---head-of-moderators-associate.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">رئيس قسم إدارة المجتمع</span>
       <b>Verina</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/safy - art director.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/safy---art-director.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">المدير الفني</span>
       <b>Safy</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/khaled - designer.jpeg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/khaled---designer.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مصمم جرافيك</span>
       <b>Khaled</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/mario- senior editor.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/mario--senior-editor.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">كبير المحرّرين</span>
       <b>Mario</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/aziiz - senior Editor.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/aziiz---senior-Editor.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">كبير المحرّرين</span>
       <b>Aziz</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Toka - Video Editor.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Toka---Video-Editor.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مونتيرة فيديو</span>
       <b>Toka</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/alaa - content creator.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/alaa---content-creator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">صانعة محتوى</span>
       <b>Alaa</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/israa - content creator.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/israa---content-creator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">صانعة محتوى</span>
       <b>Israa</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/veronia- Content Creator.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/veronia--Content-Creator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">صانعة محتوى</span>
       <b>Veronia</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/sarah - Media Buyer.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/sarah---Media-Buyer.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مشترية إعلانات</span>
       <b>Sarah</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/pakinam- traffic manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/pakinam--traffic-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مديرة الترافيك</span>
       <b>Pakinam</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Dody - People Manger.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Dody---People-Manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مديرة الموارد البشرية</span>
       <b>Dody</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/helana - comunity manger.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/helana---comunity-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Helana</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/manar - Moderator.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/manar---Moderator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Manar</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/schahd - community manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/schahd---community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Schahd</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/norhan -  - community manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/norhan------community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Norhan</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/nairoa -  - community manger.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/nairoa------community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Nairoa</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/mohrael - Community manger.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/mohrael---Community-manger.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Mohrael</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/Jesoica - moderator.png'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/Jesoica---moderator.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">إدارة المجتمع</span>
       <b>Jessica</b>
     </div>
   </article><article class="amb">
-    <div class="photo" style="background-image:url('assets/Team/youstina - tele sales.jpg'); background-position: center 20%;"></div>
+    <div class="photo" style="background-image:url('assets/Team/youstina---tele-sales.jpg'); background-position: center 20%;"></div>
     <div class="body">
       <span class="field">مبيعات هاتفية</span>
       <b>Youstina</b>
@@ -654,31 +663,31 @@
     </div>
     <div class="btw-bento">
       <figure class="btw-cell btw-feature" data-reveal style="--reveal-delay:0ms">
-        <img src="assets/Culture/culture-04.png" alt="Optiiimum team collaboration moment 1" loading="lazy">
+        <img src="assets/culture/Website-Images-for-team-(4).jpg" alt="Optiiimum team collaboration moment 1" loading="lazy">
         <figcaption>
           <span class="btw-label"><span class="i18n-en">Where ideas become systems</span><span class="i18n-ar">حيث تتحوّل الأفكار إلى أنظمة</span></span>
         </figcaption>
       </figure>
       <figure class="btw-cell" data-reveal style="--reveal-delay:80ms">
-        <img src="assets/Culture/culture-08.png" alt="Optiiimum team collaboration moment 2" loading="lazy">
+        <img src="assets/culture/Website-Images-for-team-(8).jpg" alt="Optiiimum team collaboration moment 2" loading="lazy">
         <figcaption>
           <span class="btw-label"><span class="i18n-en">Strategy in motion</span><span class="i18n-ar">الاستراتيجية في حركة</span></span>
         </figcaption>
       </figure>
       <figure class="btw-cell" data-reveal style="--reveal-delay:160ms">
-        <img src="assets/Culture/culture-13.png" alt="Optiiimum team collaboration moment 3" loading="lazy">
+        <img src="assets/culture/Website-Images-for-team-(13).jpg" alt="Optiiimum team collaboration moment 3" loading="lazy">
         <figcaption>
           <span class="btw-label"><span class="i18n-en">Built by real teams</span><span class="i18n-ar">شُغل مبنيٌّ بفريقٍ حقيقي</span></span>
         </figcaption>
       </figure>
       <figure class="btw-cell" data-reveal style="--reveal-delay:240ms">
-        <img src="assets/Culture/culture-16.png" alt="Optiiimum team collaboration moment 4" loading="lazy">
+        <img src="assets/culture/Website-Images-for-team-(16).jpg" alt="Optiiimum team collaboration moment 4" loading="lazy">
         <figcaption>
           <span class="btw-label"><span class="i18n-en">One system. Many minds.</span><span class="i18n-ar">نظامٌ واحد. عقولٌ عديدة.</span></span>
         </figcaption>
       </figure>
       <figure class="btw-cell btw-wide" data-reveal style="--reveal-delay:320ms">
-        <img src="assets/Culture/culture-20.png" alt="Optiiimum team collaboration moment 5" loading="lazy">
+        <img src="assets/culture/Website-Images-for-team-(20).jpg" alt="Optiiimum team collaboration moment 5" loading="lazy">
         <figcaption>
           <span class="btw-label"><span class="i18n-en">Performance, planned</span><span class="i18n-ar">أداءٌ مخطَّط له</span></span>
         </figcaption>
@@ -787,8 +796,8 @@
       </div>
       <div>© 2025–2026 Optiiimum. <span class="i18n-en">All rights reserved.</span><span class="i18n-ar">جميع الحقوق محفوظة.</span></div>
       <div>
-        <a href="#"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
-        <a href="#"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
+        <a href="PrivacyPolicy.html"><span class="i18n-en">Privacy</span><span class="i18n-ar">الخصوصية</span></a> ·
+        <a href="TermsConditions.html"><span class="i18n-en">Terms</span><span class="i18n-ar">الشروط</span></a>
       </div>
     </div>
   </div>
@@ -835,5 +844,8 @@
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
 </script>
 
+
+  <script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
 </body>
 </html>

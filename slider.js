@@ -168,6 +168,8 @@
     targets.forEach(function (t) {
       var el = document.querySelector(t.sel);
       if (!el) return;
+      // Allow opt-out for sections that ship their own slider
+      if (el.dataset.skipRail === '1') return;
       el.classList.add('opt-carousel', 'opt-carousel-' + t.kind);
       attachRail(el, {
         labelPrevEn: 'Previous',

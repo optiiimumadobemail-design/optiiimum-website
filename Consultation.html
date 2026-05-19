@@ -489,6 +489,7 @@
   }
 </style>
   <script src="slider.js" defer></script>
+<script src="loader.js"></script>
 </head>
 <body>
 
@@ -499,18 +500,22 @@
       <span class="brand-name">optiiimum<span class="dot">.</span></span>
     </a>
 
-    <nav class="primary-nav" aria-label="Primary">
-      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
-      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
-      <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
-      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
-      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-      <a href="Consultation.html" aria-current="page"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html" aria-current="page"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
     </nav>
 
     <div class="topbar-actions">
@@ -521,7 +526,7 @@
         <span id="themeIcon">◐</span>
       </button>
       <a href="Consultation.html" class="nav-cta">
-        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
         <span class="arrow">→</span>
       </a>
       <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
@@ -531,24 +536,30 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
   <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-  <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
   <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
   <a href="CaseStudies.html"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
   <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
   <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-  <a href="Consultation.html" aria-current="page"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html" aria-current="page"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
 </div>
 <!-- HERO -->
 
 <section class="section" style="padding-top: 0;">
   <div class="container">
     <figure class="consult-human btw-cell btw-wide" style="height: 280px; max-width: 920px; margin: 0 auto;" data-reveal>
-      <img src="assets/Culture/culture-03.png" alt="Optiiimum team discussing a brand growth plan" loading="lazy">
+      <img src="assets/culture/Website-Images-for-team-(3).jpg" alt="Optiiimum team discussing a brand growth plan" loading="lazy">
       <figcaption>
         <span class="btw-label"><span class="i18n-en">A real team on the other side of your call.</span><span class="i18n-ar">فريقٌ حقيقيٌّ على الطرف الآخر من مكالمتك.</span></span>
       </figcaption>
@@ -894,7 +905,7 @@
               <span><span class="i18n-en">Best video</span><span class="i18n-ar">أعلى فيديو</span></span>
             </div>
             <div class="trust-stat">
-              <b>25K+</b>
+              <b>40K+</b>
               <span><span class="i18n-en">Course students</span><span class="i18n-ar">طالب كورس</span></span>
             </div>
           </div>
@@ -973,11 +984,86 @@
           <span class="i18n-ar">حسب المشروع. بعض التعاونات بتبدأ خلال أسبوع. تعاونات تانية، خاصة بناء البراند الكامل أو أنظمة البراند الشخصي، بتاخد ٢–٣ أسابيع تحضير استراتيجي قبل ما المحتوى ينزل.</span>
         </div>
       </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">How is Optiiimum different from a normal agency?</span>
+          <span class="i18n-ar">بمَ تختلف Optiiimum عن أيِّ وكالةٍ تقليدية؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">We build operating systems, not deliverables. Every engagement leaves behind playbooks, content templates, paid funnels, and reporting dashboards that keep running after we leave.</span>
+          <span class="i18n-ar">نحن نبني أنظمة تشغيل لا مجرد مخرجات. كل تعاون يترك خلفه أدلَّةً للعمل، قوالب محتوى، مسارات إعلانية، ولوحات قياس بتفضل شغّالة بعدنا.</span>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">Who is the right fit for working with you?</span>
+          <span class="i18n-ar">مَن هو العميل المناسب للعمل معكم؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">Founders, doctors, educators, and brands ready to commit to a system — not just one-off campaigns. If you have a real product, real demand, and the bandwidth to execute, we move fast.</span>
+          <span class="i18n-ar">المؤسسون، الأطباء، المعلمون، والعلامات المستعدّون للالتزام بمنظومة متكاملة — لا حملات منعزلة. لو عندك منتج حقيقي، طلب حقيقي، وقدرة تنفيذ — هنتحرك بسرعة.</span>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">What does a typical engagement look like?</span>
+          <span class="i18n-ar">كيف يبدو التعاون المعتاد معكم؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">Discovery → strategy thesis → 30-day system build → 90-day execution loop → quarterly review. Most clients renew at the 90-day mark because the system is producing measurable results.</span>
+          <span class="i18n-ar">استكشاف ← استراتيجية ← بناء النظام في ٣٠ يومًا ← دورة تنفيذ ٩٠ يومًا ← مراجعة ربعية. أغلب العملاء بيجدّدوا عند الـ ٩٠ يوم لأن النظام بيدي نتائج قابلة للقياس.</span>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">How quickly will I see results?</span>
+          <span class="i18n-ar">متى تظهر النتائج؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">Content quality and engagement shift within 4–6 weeks. Paid funnel performance stabilises around week 8. Major brand-equity moves — followers, authority, demand — compound across months 3–6.</span>
+          <span class="i18n-ar">جودة المحتوى والتفاعل بيتغيّروا خلال ٤–٦ أسابيع. أداء القمع الإعلاني بيستقرّ حوالين الأسبوع الـ ٨. حركات البراند الكبيرة — متابعين، سلطة، طلب — بتتراكم على مدى الأشهر ٣–٦.</span>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">Do you work with healthcare and personal brands?</span>
+          <span class="i18n-ar">هل تعملون مع قطاعَي الرعاية الصحية والعلامات الشخصية؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">Yes. Some of our strongest case studies are in healthcare and personal branding — Diana Clinics, Dr. Bassant Habash, Dr. Peter Moris, Shift Tamrid, and others. We understand the sensitivities.</span>
+          <span class="i18n-ar">نعم. بعض أقوى دراسات الحالة عندنا في الرعاية الصحية والبراند الشخصي — Diana Clinics، د. بسنت حبش، د. بيتر موريس، شيفت تمريض، وغيرهم. إحنا فاهمين حساسية القطاع.</span>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">What about the academy courses — are they live or self-paced?</span>
+          <span class="i18n-ar">ودورات الأكاديمية — هل هي مباشرةٌ أم ذاتية التعلُّم؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">A mix. Digital Pro Max is a 30-day live cohort. AI × Business is a 3-day intensive. Doctors' Content Prescription and the Million-View Course are self-paced with monthly live sessions.</span>
+          <span class="i18n-ar">مزيج. Digital Pro Max برنامج مباشر ٣٠ يوم. AI × Business مكثَّف ٣ أيام. روشتة المحتوى وكورس المليون مشاهدة بالتعلُّم الذاتي مع جلسات شهرية مباشرة.</span>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="i18n-en">What's the investment range?</span>
+          <span class="i18n-ar">ما نطاق الاستثمار؟</span>
+        </summary>
+        <div class="faq-a">
+          <span class="i18n-en">Engagements typically range between mid-five and mid-six figures USD annually, depending on scope, channels, and execution intensity. The 15-minute discovery call is the right place to scope it.</span>
+          <span class="i18n-ar">التعاونات بتتراوح عادة بين ٥ أرقام ميديوم و٦ أرقام ميديوم بالدولار سنويًا، حسب النطاق، القنوات، وكثافة التنفيذ. مكالمة الاستكشاف ١٥ دقيقة هي المكان الصح علشان نحدّد ده.</span>
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
-
-<!-- Footer -->
 <footer class="foot">
   <div class="container">
     <div class="foot-bottom" style="border:0; padding-top:40px;">
@@ -1031,5 +1117,8 @@
     window.scrollTo({ top: success.offsetTop - 120, behavior: 'smooth' });
   });
 </script>
+
+  <script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
 </body>
 </html>

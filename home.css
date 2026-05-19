@@ -590,9 +590,10 @@ html[lang="ar"] .hero-stats .stat span {
     0 24px 50px -10px rgba(0,0,0,.55),
     0 0 0 1px rgba(255,255,255,.04) inset;
   opacity: 0;
-  transform: translateY(20px) scale(.95);
-  animation: scIn .9s cubic-bezier(.2,.8,.2,1) var(--d, 0s) forwards,
-             scFloat 9s ease-in-out var(--d, 0s) infinite;
+  transform: translateY(20px) scale(.96);
+  will-change: transform, opacity;
+  animation: scIn 1.8s cubic-bezier(.2,.8,.2,1) var(--d, 0s) forwards,
+             scFloat 12s ease-in-out var(--d, 0s) infinite;
   color: #FFFFFF;
 }
 [data-theme="light"] .sc {
@@ -608,26 +609,26 @@ html[lang="ar"] .hero-stats .stat span {
 }
 @keyframes scFloat {
   0%, 100% { translate: 0 0; }
-  50%      { translate: 0 -10px; }
+  50%      { translate: 0 -6px; }
 }
 .sc-mini { width: 200px; padding: 14px 16px; }
 
-/* Layout positions */
-.sc-ig  { top: 4%;  left: -4%; animation-duration: .9s, 11s; }
-.sc-yt  { top: 18%; right: -8%; animation-duration: .9s, 9.5s; animation-delay: var(--d), 0.8s; }
-.sc-tt  { bottom: 22%; left: 6%; animation-duration: .9s, 10s; animation-delay: var(--d), 1.6s; }
-.sc-fb  { bottom: 6%;  right: 4%; animation-duration: .9s, 9s; animation-delay: var(--d), 2.4s; }
-.sc-li  { top: 50%;  left: 50%; transform: translate(-50%, -50%) scale(.95); animation-duration: .9s, 12s; animation-delay: var(--d), 3.2s; }
+/* Layout positions — each slot floats on its own slow tempo */
+.sc-ig  { top: 4%;  left: -4%;   animation-duration: 1.8s, 12s; }
+.sc-yt  { top: 18%; right: -8%;  animation-duration: 1.8s, 13s; animation-delay: var(--d), 1.2s; }
+.sc-tt  { bottom: 22%; left: 6%; animation-duration: 1.8s, 11s; animation-delay: var(--d), 2.4s; }
+.sc-fb  { bottom: 6%;  right: 4%; animation-duration: 1.8s, 14s; animation-delay: var(--d), 3.6s; }
+.sc-li  { top: 50%;  left: 50%; transform: translate(-50%, -50%) scale(.96); animation-duration: 1.8s, 13s; animation-delay: var(--d), 4.8s; }
 .sc-li  { animation-name: scIn, scFloatCenter; }
-.sc-rev { top: 48%;  right: -10%; animation-duration: .9s, 10.5s; animation-delay: var(--d), 4s; }
+.sc-rev { top: 48%;  right: -10%; animation-duration: 1.8s, 12s; animation-delay: var(--d), 6s; }
 @keyframes scFloatCenter {
   0%, 100% { transform: translate(-50%, -50%); }
-  50%      { transform: translate(-50%, calc(-50% - 10px)); }
+  50%      { transform: translate(-50%, calc(-50% - 6px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sc { animation: scIn .9s ease var(--d) forwards; }
-  .sc-li { animation: scIn .9s ease var(--d) forwards; transform: translate(-50%, -50%); }
+  .sc { animation: scIn 1.4s ease var(--d) forwards; }
+  .sc-li { animation: scIn 1.4s ease var(--d) forwards; transform: translate(-50%, -50%); }
 }
 
 .sc-head {
@@ -697,12 +698,10 @@ html[lang="ar"] .sc-meta span { font-family: var(--font-ar); letter-spacing: 0; 
   transition: filter .3s ease;
 }
 .sc-num.sc-bump {
-  animation: scBump .55s ease;
+  /* deliberately empty — number tween itself is the highlight, no extra pulse */
 }
 @keyframes scBump {
-  0%   { filter: drop-shadow(0 0 0 rgba(229,85,200,0)); }
-  35%  { filter: drop-shadow(0 0 14px rgba(229,85,200,.5)); }
-  100% { filter: drop-shadow(0 0 0 rgba(229,85,200,0)); }
+  0%, 100% { filter: none; }
 }
 .sc-mini .sc-num { font-size: 22px; }
 .sc-lbl {
@@ -744,6 +743,41 @@ html[lang="ar"] .sc-foot .trend { font-family: var(--font-ar); font-size: 12.5px
   .sc-yt { right: -10%; }
   .sc-fb { right: 2%; }
   .sc-rev, .sc-li { display: none; }
+}
+
+/* ============================================================
+   ROTATOR — graceful content swap between platforms / people.
+   Opacity + light blur only — keeps the underlying float animation
+   intact so the card never visually jumps.
+   ============================================================ */
+.sc.is-swap-out {
+  opacity: 0 !important;
+  filter: blur(2px);
+  transition: opacity 1.6s cubic-bezier(.55,0,.4,1), filter 1.6s ease-out;
+}
+.sc.is-swap-in {
+  animation: scSwapIn 1.8s cubic-bezier(.2,.7,.2,1) forwards !important;
+}
+.sc.sc-li.is-swap-in,
+.sc.sc-person.sc-li.is-swap-in {
+  animation: scSwapInCenter 1.8s cubic-bezier(.2,.7,.2,1) forwards !important;
+}
+@keyframes scSwapIn {
+  0%   { opacity: 0; filter: blur(2px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+@keyframes scSwapInCenter {
+  0%   { opacity: 0; filter: blur(2px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+/* Image cross-fade inside person photo */
+.sc-person-photo {
+  transition: opacity 1.4s ease, background-image 0s;
+}
+.sc-person-photo.is-swap-out { opacity: .15; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sc.is-swap-out, .sc.is-swap-in { animation: none !important; transition: none !important; filter: none; }
 }
 
 /* ============================================================
@@ -3520,3 +3554,131 @@ html[lang="ar"] .rp-card .rp-role {
 /* Hide the legacy .culture-strip if present elsewhere in the section —
    we use the new .real-people-grid now. */
 #team .culture-strip { display: none !important; }
+
+
+/* ============================================================
+   PRIMARY NAV — paged slider (shared across all pages).
+   Was inline in Home.html; moved here so every page that links
+   home.css gets the same tab look + gradient active state.
+   ============================================================ */
+.primary-nav-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+.nav-arrow {
+  flex: none;
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--bg-elev, transparent);
+  border: 1px solid var(--ink-3);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer; padding: 0;
+  position: relative;
+  transition: color .18s ease, border-color .18s ease, background .18s ease, transform .15s ease, opacity .18s ease, box-shadow .18s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.nav-arrow::after {
+  /* pulse ring to draw the eye when there's more to scroll */
+  content: ""; position: absolute; inset: -3px;
+  border-radius: 999px; pointer-events: none;
+  border: 1px solid var(--ink-3); opacity: 0;
+  animation: navPulse 2.4s ease-out infinite;
+}
+.nav-arrow[disabled]::after, .nav-arrow.is-disabled::after { display: none; }
+@keyframes navPulse {
+  0% { transform: scale(.85); opacity: .55; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+.nav-arrow svg { width: 14px; height: 14px; }
+.nav-arrow:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: rgba(127,127,127,.06);
+}
+.nav-arrow:active { transform: scale(.94); }
+.nav-arrow:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.nav-arrow[disabled], .nav-arrow.is-disabled {
+  opacity: .28; cursor: default; pointer-events: none;
+}
+html[dir="rtl"] .nav-arrow svg { transform: scaleX(-1); }
+
+.nav-slider {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  padding: 0 8px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+}
+.nav-track {
+  display: flex;
+  align-items: stretch;
+  direction: ltr;
+  transition: transform .42s cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+.nav-track > a {
+  flex: 0 0 25%;
+  max-width: 25%;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 9px 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-radius: 999px;
+  transition: color .15s ease, background .15s ease;
+}
+[data-theme="light"] .nav-track > a { color: rgba(0,0,0,.65); }
+.nav-track > a:hover {
+  color: var(--ink);
+  background: rgba(127,127,127,.06);
+}
+.nav-track > a[aria-current="page"] {
+  background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-4), var(--grad-5), var(--grad-6));
+  color: #0A0A0A;
+  font-weight: 600;
+}
+[data-theme="light"] .nav-track > a[aria-current="page"] { color: #0A0A0A; }
+html[lang="ar"] .nav-track > a {
+  font-family: var(--font-ar);
+  font-size: 14px;
+  font-weight: 500;
+}
+html[lang="ar"] .nav-track > a[aria-current="page"] { font-weight: 700; }
+
+@media (max-width: 1180px) {
+  .primary-nav-wrap { max-width: 660px; gap: 8px; padding: 0 10px; }
+  .nav-track > a { font-size: 13px; padding: 8px 10px; }
+}
+@media (max-width: 1024px) {
+  .primary-nav-wrap { max-width: 520px; }
+  .nav-track > a { font-size: 12.5px; padding: 7px 8px; letter-spacing: -.005em; }
+}
+@media (max-width: 880px) {
+  .primary-nav-wrap { display: none; }
+}
+@media (min-width: 881px) and (max-width: 980px) {
+  .nav-track > a { flex: 0 0 33.333%; max-width: 33.333%; }
+  .primary-nav-wrap { --nav-per-page: 3; }
+}
+@media (min-width: 1280px) {
+  .nav-track > a { flex: 0 0 20%; max-width: 20%; }
+  .primary-nav-wrap { --nav-per-page: 5; }
+}
+.primary-nav-wrap { --nav-per-page: 4; }

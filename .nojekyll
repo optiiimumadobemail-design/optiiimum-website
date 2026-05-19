@@ -1,0 +1,3 @@
+# Tell GitHub Pages / Jekyll not to mangle our static files.
+# Without this, files/folders starting with "_" are ignored by Jekyll
+# (which Pages uses by default for non-Actions deployments).

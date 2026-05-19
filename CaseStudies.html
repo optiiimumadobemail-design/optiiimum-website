@@ -26,8 +26,9 @@
 </script>
 
 <title>Case Studies — Optiiimum · Receipts, not promises</title>
+<!-- 16 case studies -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Nine documented case studies across founders, doctors, ed-tech, and consumer brands — each with verified numbers and the strategy behind them.">
+<meta name="description" content="Fifteen documented case studies across founders, doctors, ed-tech, consumer brands, automotive launches, national pavilions, and AI-produced ceremonies — each with verified numbers and the strategy behind them.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,10 +110,10 @@
   @media (max-width: 980px) { .featured-case { grid-template-columns: 1fr; } }
   .featured-case .visual {
     position: relative;
-    min-height: 480px;
+    aspect-ratio: 1448 / 1086;
     background:
       linear-gradient(135deg, rgba(11,11,11,.55), rgba(11,11,11,.0)),
-      url('assets/case study - Jozeph/IMG_9515.PNG') center/cover no-repeat,
+      url('assets/case study - Jozeph/cover-for-Jozeph.jpg') center / contain no-repeat,
       linear-gradient(135deg, #FDD196, #E555C8);
   }
   .featured-case .visual .badge {
@@ -216,7 +217,8 @@
   @media (max-width: 860px) { .csh-grid { grid-template-columns: 1fr; } }
   .case-tile {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
     border: 1px solid var(--line);
     border-radius: 18px;
     overflow: hidden;
@@ -231,8 +233,9 @@
     box-shadow: var(--shadow-1);
   }
   .case-tile .img {
-    background: var(--bg-band) center/cover no-repeat;
+    background: var(--bg-band) center / contain no-repeat;
     position: relative;
+    aspect-ratio: 1448 / 1086;
   }
   .case-tile .img .pill {
     position: absolute; top: 14px; left: 14px;
@@ -291,11 +294,11 @@
   .case-tile[data-accent="warm"]  { --cs-g1:#FDD196; --cs-g2:#FA58A4; }
 
   @media (max-width: 540px) {
-    .case-tile { grid-template-columns: 1fr; }
-    .case-tile .img { aspect-ratio: 16/10; }
+    .case-tile .img { aspect-ratio: 1448 / 1086; }
   }
 </style>
   <script src="slider.js" defer></script>
+<script src="loader.js"></script>
 </head>
 <body>
 
@@ -306,18 +309,22 @@
       <span class="brand-name">optiiimum<span class="dot">.</span></span>
     </a>
 
-    <nav class="primary-nav" aria-label="Primary">
-      <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-      <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
-      <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
-      <a href="CaseStudies.html" aria-current="page"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
-      <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
-      <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-      <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-      <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-      <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-      <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-      <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+    <nav class="primary-nav-wrap" aria-label="Primary">
+      <div class="nav-slider"><div class="nav-track">
+          <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
+          <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
+          <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
+          <a href="CaseStudies.html" aria-current="page"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+          <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+          <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
+          <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
+          <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
+          <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+          <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+          <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+          <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+          <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
+        </div></div>
     </nav>
 
     <div class="topbar-actions">
@@ -328,7 +335,7 @@
         <span id="themeIcon">◐</span>
       </button>
       <a href="Consultation.html" class="nav-cta">
-        <span class="i18n-en">Book free consult</span><span class="i18n-ar">احجز استشارة</span>
+        <span class="i18n-en">Book Discovery Call</span><span class="i18n-ar">احجز مكالمة استكشافية</span>
         <span class="arrow">→</span>
       </a>
       <button class="icon-btn menu-toggle" id="menuOpen" aria-label="Open menu">≡</button>
@@ -338,39 +345,45 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="icon-btn mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  
+  
+  
+  
   <a href="Home.html"><span class="i18n-en">Home</span><span class="i18n-ar">الرئيسية</span></a>
-  <a href="About.html"><span class="i18n-en">About</span><span class="i18n-ar">من نحن</span></a>
+  <a href="About.html"><span class="i18n-en">About us</span><span class="i18n-ar">من نحن</span></a>
   <a href="Services.html"><span class="i18n-en">Services</span><span class="i18n-ar">الخدمات</span></a>
   <a href="CaseStudies.html" aria-current="page"><span class="i18n-en">Case Studies</span><span class="i18n-ar">دراسات الحالة</span></a>
+  <a href="branding.html"><span class="i18n-en">Branding Projects</span><span class="i18n-ar">مشاريع البراندينج</span></a>
+  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
   <a href="Ambassadors.html"><span class="i18n-en">Ambassadors</span><span class="i18n-ar">السفراء</span></a>
   <a href="Courses.html"><span class="i18n-en">Courses</span><span class="i18n-ar">الأكاديمية</span></a>
-  <a href="Clients.html"><span class="i18n-en">Clients</span><span class="i18n-ar">العملاء</span></a>
-  <a href="Team.html"><span class="i18n-en">Team</span><span class="i18n-ar">الفريق</span></a>
-  <a href="Blog.html"><span class="i18n-en">Blog</span><span class="i18n-ar">المقالات</span></a>
-  <a href="FAQ.html"><span class="i18n-en">FAQ</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
-  <a href="Consultation.html"><span class="i18n-en">Contact</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="Blog.html"><span class="i18n-en">Blogs</span><span class="i18n-ar">المقالات</span></a>
+  <a href="JokerProgram.html"><span class="i18n-en">Joker Program</span><span class="i18n-ar">برنامج الجوكر</span></a>
+  <a href="Careers.html"><span class="i18n-en">Careers</span><span class="i18n-ar">الوظائف</span></a>
+  <a href="contacts.html"><span class="i18n-en">Contact Us</span><span class="i18n-ar">تواصل معنا</span></a>
+  <a href="FAQ.html"><span class="i18n-en">FAQs</span><span class="i18n-ar">الأسئلة الشائعة</span></a>
 </div>
 <!-- HERO -->
 <section class="csh-hero">
   <div class="ambient" aria-hidden="true"></div>
   <div class="container">
-    <span class="eyebrow"><span class="i18n-en">Case studies · 9 documented engagements</span><span class="i18n-ar">دراسات الحالة · ٩ تعاونات موثقة</span></span>
+    <span class="eyebrow"><span class="i18n-en">Case studies · 16 documented engagements</span><span class="i18n-ar">دراسات الحالة · ١٦ تعاونًا موثّقًا</span></span>
     <h1>
       <span class="i18n-en"><span class="grad">Receipts</span>, not promises.</span>
       <span class="i18n-ar"><span class="grad">أدلة</span>، مش وعود.</span>
     </h1>
     <p class="lede">
-      <span class="i18n-en">Nine documented engagements across founders, doctors, ed-tech, and consumer brands. Real numbers. Real timelines. Every claim is verifiable on the brand's public profile.</span>
-      <span class="i18n-ar">تسع تعاونات موثقة مع مؤسسين، أطباء، تعليم، وعلامات استهلاكية. أرقام حقيقية وجداول زمنية حقيقية. كل ادّعاء قابل للتحقق على بروفايل البراند العام.</span>
+      <span class="i18n-en">Fifteen documented engagements across founders, doctors, ed-tech, consumer brands, automotive launches, national pavilions, podcast co-productions, and AI-built ceremonies. Real numbers. Real timelines. Every claim is verifiable on the brand's public profile.</span>
+      <span class="i18n-ar">خمس عشرة تعاونًا موثّقًا مع مؤسسين، أطباء، تعليم، علامات استهلاكية، إطلاقات سيارات، أجنحة دولية، إنتاج بودكاست مشترك، وحفل مولّد بالذكاء الاصطناعي. أرقام حقيقية وجداول زمنية حقيقية. كل ادّعاء قابل للتحقق على بروفايل البراند العام.</span>
     </p>
 
     <div class="csh-stats">
       <div class="item">
-        <b>9</b>
+        <b>16</b>
         <span><span class="i18n-en">Documented case studies</span><span class="i18n-ar">دراسة حالة موثقة</span></span>
       </div>
       <div class="item">
-        <b>678K</b>
+        <b>978K</b>
         <span><span class="i18n-en">Largest personal brand</span><span class="i18n-ar">أكبر براند شخصي</span></span>
       </div>
       <div class="item">
@@ -392,7 +405,7 @@
       <div class="visual" aria-hidden="true">
         <span class="badge"><span class="i18n-en">Featured · 01</span><span class="i18n-ar">مميز · ٠١</span></span>
         <span class="stat-pill">
-          678K
+          978K
           <small><span class="i18n-en">Followers · Built from 0</span><span class="i18n-ar">متابع · من الصفر</span></small>
         </span>
       </div>
@@ -403,12 +416,12 @@
           <span class="i18n-ar">جوزيف عزت — من الصفر لقائد القطاع.</span>
         </h2>
         <p class="desc">
-          <span class="i18n-en">The Optiiimum founder is also our most documented case study. 678,000 followers, 25,000 paying students, and a system that proved the phone in your pocket is a studio, a classroom, and a business.</span>
+          <span class="i18n-en">The Optiiimum founder is also our most documented case study. 978,000 followers, 40,000 paying students, and a system that proved the phone in your pocket is a studio, a classroom, and a business.</span>
           <span class="i18n-ar">مؤسس أوبتيموم نفسه دراسة حالة. ٦٧٨ ألف متابع، ٢٥ ألف طالب مدفوع، ونظام بيثبت إن الموبايل اللي في إيدك ستوديو، فصل دراسي، ومشروع.</span>
         </p>
         <div class="stats-row">
-          <div><b>678K</b><span><span class="i18n-en">Followers</span><span class="i18n-ar">متابع</span></span></div>
-          <div><b>25K+</b><span><span class="i18n-en">Students</span><span class="i18n-ar">طالب</span></span></div>
+          <div><b>978K</b><span><span class="i18n-en">Followers</span><span class="i18n-ar">متابع</span></span></div>
+          <div><b>40K+</b><span><span class="i18n-en">Students</span><span class="i18n-ar">طالب</span></span></div>
           <div><b>50</b><span><span class="i18n-en">Months</span><span class="i18n-ar">شهر</span></span></div>
         </div>
         <span class="read">
@@ -427,8 +440,8 @@
       <div>
         <span class="eyebrow"><span class="i18n-en">All case studies</span><span class="i18n-ar">كل دراسات الحالة</span></span>
         <h2 style="margin-top:8px;">
-          <span class="i18n-en">Eight more documented engagements.</span>
-          <span class="i18n-ar">ثمان تعاونات موثقة إضافية.</span>
+          <span class="i18n-en">61 more documented engagements.</span>
+          <span class="i18n-ar">٦١ تعاونًا موثّقًا إضافيًا.</span>
         </h2>
       </div>
       <p class="right">
@@ -440,7 +453,7 @@
     <div class="csh-grid">
 
       <a href="case-study-diana-clinics.html" class="case-tile" data-accent="pink">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Diana Clinics/Screenshots/IMG_9277.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Diana Clinics/cover-for-Dr-Diana.jpg');">
           <span class="pill">02</span>
         </div>
         <div class="body">
@@ -457,7 +470,7 @@
       </a>
 
       <a href="case-study-shift-tamrid.html" class="case-tile" data-accent="cyan">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Shift tamreed/IMG_9538.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Shift tamreed/cover shift tamred.jpg');">
           <span class="pill">03</span>
         </div>
         <div class="body">
@@ -474,7 +487,7 @@
       </a>
 
       <a href="case-study-dse.html" class="case-tile" data-accent="cool">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dse/IMG_9524.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dse/DSE Cover.jpg');">
           <span class="pill">04</span>
         </div>
         <div class="body">
@@ -491,7 +504,7 @@
       </a>
 
       <a href="case-study-bassant-habash.html" class="case-tile" data-accent="warm">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dr Bassant Habash/IMG_9426.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dr Bassant Habash/basamy habash cover.jpg');">
           <span class="pill">05</span>
         </div>
         <div class="body">
@@ -508,7 +521,7 @@
       </a>
 
       <a href="case-study-auzonia-kamel.html" class="case-tile" data-accent="pink">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Auzonia Kamel/IMG_9499.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Auzonia Kamel/cover-for-case-studey-0-auzonia.jpg');">
           <span class="pill">06</span>
         </div>
         <div class="body">
@@ -525,7 +538,7 @@
       </a>
 
       <a href="case-study-dalia-hosny.html" class="case-tile" data-accent="amber">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dalia Hosny/IMG_9414.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dalia Hosny/dalia-hosny-cover.jpg');">
           <span class="pill">07</span>
         </div>
         <div class="body">
@@ -542,7 +555,7 @@
       </a>
 
       <a href="case-study-peter-moris.html" class="case-tile" data-accent="cool">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dr Peter Moris/IMG_9441.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dr Peter Moris/cover-for-Dr-peter.jpg');">
           <span class="pill">08</span>
         </div>
         <div class="body">
@@ -559,7 +572,7 @@
       </a>
 
       <a href="case-study-dina-asaad.html" class="case-tile" data-accent="warm">
-        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dina Asaad/IMG_9330.PNG');">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Dina Asaad/cover---Dina-assad.jpg');">
           <span class="pill">09</span>
         </div>
         <div class="body">
@@ -575,6 +588,125 @@
         </div>
       </a>
 
+      <a href="case-study-amr-elwardany.html" class="case-tile" data-accent="warm">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/Case Study - Dr Amr elwardany/cover-dr-amr.jpg');">
+          <span class="pill">10</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Retreat Documentation · Human Storytelling</span><span class="i18n-ar">توثيق رحلات · سرد إنساني</span></span>
+          <h3>
+            <span class="i18n-en">Dr. Amr Elwardany · Rehlet El Haqiqa — from event recording to a real human journey.</span>
+            <span class="i18n-ar">د. عمر الورداني · رحلة الحقيقة — من تصوير فعالية لتوثيق رحلة إنسانية حقيقية.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Output</span><span class="i18n-ar">المخرج</span></span>
+            <span class="big">Cinematic</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-jetour-x95.html" class="case-tile" data-accent="cool">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/Case study - X95-Launching-Event-Jetour/Cover.png');">
+          <span class="pill">11</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Automotive Launch · Motion Graphics</span><span class="i18n-ar">إطلاق سيارة · موشن جرافكس</span></span>
+          <h3>
+            <span class="i18n-en">Jetour X95 — a full premium motion-graphics package delivered in 72 hours.</span>
+            <span class="i18n-ar">جيتور X95 — باكيج موشن جرافكس بريميوم كامل في 72 ساعة.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Delivery</span><span class="i18n-ar">التسليم</span></span>
+            <span class="big">72h</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-shezlong-cairo-marathon.html" class="case-tile" data-accent="amber">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study Shezlong - Cairo Marathoon/case-study-cover.jpg');">
+          <span class="pill">12</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Event Coverage · Wellbeing Brand</span><span class="i18n-ar">تغطية حدث · علامة صحة نفسية</span></span>
+          <h3>
+            <span class="i18n-en">Shezlong × Cairo Marathon — full city-wide coverage, with the Minister of Youth & Sports.</span>
+            <span class="i18n-ar">شيزلونج × ماراثون القاهرة — تغطية إعلامية كاملة بحضور وزير الشباب والرياضة.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Scope</span><span class="i18n-ar">النطاق</span></span>
+            <span class="big">City-wide</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-grow-talks.html" class="case-tile" data-accent="pink">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Grow talks/cover.jpg');">
+          <span class="pill">13</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Podcast · Street Reviews · Co-production</span><span class="i18n-ar">بودكاست · تقييمات شارع · إنتاج مشترك</span></span>
+          <h3>
+            <span class="i18n-en">Growth Talks — a full podcast season + simple street reviews → 10M+ views.</span>
+            <span class="i18n-ar">Growth Talks — موسم بودكاست كامل + تقييمات شارع بسيطة ← أكثر من 10 ملايين مشاهدة.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Views</span><span class="i18n-ar">مشاهدات</span></span>
+            <span class="big">10M+</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-expo-2020-egypt.html" class="case-tile" data-accent="cyan">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Expo 2020 Egypt pavilion/cover-egypt-pavilion.jpg');">
+          <span class="pill">14</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Government · Large-Format Screen Content</span><span class="i18n-ar">حكومي · محتوى شاشات ضخمة</span></span>
+          <h3>
+            <span class="i18n-en">Egypt Pavilion · Expo 2020 Dubai — full screen content for ~12 large screens, in 7 days.</span>
+            <span class="i18n-ar">جناح مصر · إكسبو 2020 دبي — محتوى كامل لحوالي 12 شاشة ضخمة في 7 أيام.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Delivery</span><span class="i18n-ar">التسليم</span></span>
+            <span class="big">7 days</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-sky-point.html" class="case-tile" data-accent="cool">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - Sky Point/cover.jpg');">
+          <span class="pill">15</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">Travel · Digital Character · Finland</span><span class="i18n-ar">سفر · شخصية رقمية · فنلندا</span></span>
+          <h3>
+            <span class="i18n-en">Sky Point — we didn't just create content. We created an experience.</span>
+            <span class="i18n-ar">Sky Point — ما عملناش محتوى وبس. عملنا تجربة.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Signature</span><span class="i18n-ar">بصمة</span></span>
+            <span class="big">Brand World</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="case-study-hamdan-future-science.html" class="case-tile" data-accent="cool">
+        <div class="img" style="background-image: linear-gradient(135deg, rgba(11,11,11,.5), rgba(11,11,11,.1)), url('assets/case study - hamdan ben rashed/cover.jpg');">
+          <span class="pill">16</span>
+        </div>
+        <div class="body">
+          <span class="label"><span class="i18n-en">AI Production · Ceremony · Foundation</span><span class="i18n-ar">إنتاج بالذكاء الاصطناعي · حفل · مؤسسة</span></span>
+          <h3>
+            <span class="i18n-en">Hamdan Bin Rashid Future Science Challenge 2026 — a fully AI-generated ceremony, in 15 days.</span>
+            <span class="i18n-ar">تحدي حمدان بن راشد لعلوم المستقبل 2026 — حفل سينمائي مولّد بالكامل بالذكاء الاصطناعي في 15 يوم.</span>
+          </h3>
+          <div class="stat">
+            <span><span class="i18n-en">Production</span><span class="i18n-ar">الإنتاج</span></span>
+            <span class="big">AI-built</span>
+          </div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -584,8 +716,12 @@
   <div class="container">
     <span class="eyebrow" style="color:rgba(245,242,236,.55);"><span class="i18n-en">Start a project</span><span class="i18n-ar">ابدأ مشروع</span></span>
     <h2 style="margin-top:16px;">
-      <span class="i18n-en">Ready to be case study number 10?</span>
-      <span class="i18n-ar">جاهز تكون دراسة الحالة رقم ١٠؟</span>
+      <span class="i18n-en">Ready to be case study number 62?</span>
+      <span class="i18n-ar">جاهز تكون دراسة الحالة رقم ٦٢؟</span>
+    </h2>
+    <p class="lede" style="margin-top:8px; opacity:.75;">
+      <span class="i18n-en">61 more documented engagements.</span>
+      <span class="i18n-ar">ويبقى ففرتنا ٦١ مشروع موثّق تاني.</span>
     </h2>
     <p class="lede">
       <span class="i18n-en">Tell us where you're stuck. We'll respond within one business day with a clear next step — or honestly tell you we're not the right fit.</span>
@@ -631,5 +767,8 @@
   document.getElementById('menuClose').addEventListener('click', () => mm.classList.remove('open'));
   mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
 </script>
+
+  <script src="social-footer.js" defer></script>
+<script src="nav-slider.js" defer></script>
 </body>
 </html>
